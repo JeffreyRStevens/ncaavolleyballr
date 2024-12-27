@@ -1,0 +1,16 @@
+#' NCAA Women's Volleyball Teams 2020-2024
+#'
+#' This data frame includes all NCAA Division 1, 2, and 3 teams from 2020-2024.
+#'
+#' @format ## `wvb_teams`
+#' A data frame with 5,290 rows and 7 columns:
+#' \describe{
+#'   \item{team_id}{Team ID for season/year}
+#'   \item{team_name}{Team name}
+#'   \item{conference_id}{Conference ID}
+#'   \item{conference}{Conference name}
+#'   \item{division}{NCAA division number}
+#'   \item{year}{Year for fall season}
+#' }
+#' @source <https://stats.ncaa.com>
+"wvb_teams"
