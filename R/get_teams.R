@@ -97,5 +97,5 @@ get_teams <- function(year,
   }) |>
     purrr::list_rbind() |>
     dplyr::mutate(team_id = stringr::str_extract(.data$team_url, "\\/(\\d+)", group = 1)) |>
-    dplyr::select(.data$team_id, .data$team_name, .data$team_url, .data$conference_id, .data$conference, .data$division, .data$year)
+    dplyr::select(.data$team_id, .data$team_name, .data$conference_id, .data$conference, .data$division, .data$year)
 }
