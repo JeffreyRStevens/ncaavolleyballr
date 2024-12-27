@@ -8,6 +8,14 @@
 \description{
 Downloads NCAA Division 1, 2, and 3 volleyball team information from 2020-2024, including rosters, schedules, records, and player statistics.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/JeffreyRStevens/volleyballr}
+  \item Report bugs at \url{https://github.com/JeffreyRStevens/volleyballr/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Jeffrey R. Stevens \email{jeffrey.r.stevens@protonmail.com} (\href{https://orcid.org/0000-0003-2375-1360}{ORCID}) [copyright holder]
 
