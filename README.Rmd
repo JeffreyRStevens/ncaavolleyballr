@@ -1,0 +1,72 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# volleyballr
+
+<!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+<!-- badges: end -->
+
+The goal of `{volleyballr}` is to extract women's volleyball information from the NCAA website.
+
+## Installation
+
+You can install developmental versions from [GitHub](https://github.com/) with:
+
+```{r eval = FALSE}
+# install.packages("remotes")
+remotes::install_github("JeffreyRStevens/volleyballr")
+```
+
+## Example
+
+```{r}
+library(volleyballr)
+```
+
+
+The NCAA uses a unique team ID for each women's volleyball team and each season. So first you will need to get that ID with the `find_team_id()`. For instance, to find the ID for University of Nebraska's 2024 season:
+```{r}
+find_team_id("Nebraska", 2024)
+```
+
+With this team ID, you can now extract team information about the arena, coach, record, and schedule.
+
+```{r}
+team_info <- find_team_id("Nebraska", 2024) |> 
+  team_season()
+team_info$arena
+team_info$coach
+team_info$record
+team_info$schedule
+```
+
+There is also roster and overall season performance data on individual players. 
+
+```{r}
+find_team_id("Nebraska", 2024) |> 
+  player_stats() |> 
+  knitr::kable()
+```
+
+## Citation
+
+To cite `{volleyballr}`, use:
+
+> Stevens, Jeffrey R. (2024). volleyballr: Extract data from NCAA women's volleyball website.
+> (version 0.1.0)
+> <https://github.com/JeffreyRStevens/volleyballr>
+
+
