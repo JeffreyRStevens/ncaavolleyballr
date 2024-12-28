@@ -3,7 +3,7 @@
 #' Extract player season statistics
 #'
 #' @param team_id Team ID determined by NCAA for season. To find ID, use
-#' [`find_team_id()`].
+#' `find_team_id()`.
 #'
 #' @returns
 #' Tibble of player statistics.
@@ -21,7 +21,7 @@ player_stats <- function(team_id) {
     httr2::resp_body_html() |>
     rvest::html_element("table") |>
     rvest::html_table() |>
-    dplyr::rename(Number = .data$`#`) |>
+    dplyr::rename("Number" = "#") |>
     dplyr::mutate(Number = as.numeric(.data$Number))
 
   url2 <- paste0("https://stats.ncaa.org/teams/", team_id, "/roster")
@@ -29,13 +29,12 @@ player_stats <- function(team_id) {
     httr2::resp_body_html() |>
     rvest::html_element("table") |>
     rvest::html_table() |>
-    dplyr::select(Number = .data$`#`, .data$Name, .data$Hometown, .data$`High School`) |>
+    dplyr::select("Number" = "#", "Name", "Hometown", "High School") |>
     dplyr::mutate(Number = as.numeric(.data$Number))
 
   dplyr::left_join(player_stats, roster,
                    by = dplyr::join_by("Number", "Player" == "Name")) |>
-    dplyr::relocate(.data$Hometown:.data$`High School`, .after = .data$Ht) |>
-    dplyr::mutate(dplyr::across(.data$Kills:.data$PTS, ~ as.numeric(gsub(",", "", .x)))) |>
-
+    dplyr::relocate("Hometown":"High School", .after = "Ht") |>
+    dplyr::mutate(dplyr::across("Kills":"PTS", ~ as.numeric(gsub(",", "", .x)))) |>
     dplyr::arrange(.data$Number)
 }
