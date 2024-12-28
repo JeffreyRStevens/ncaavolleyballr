@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{check_team_id}
 \alias{check_team_id}
-\title{Checks if team ID is acceptable}
+\title{Checks if team ID is valid}
 \usage{
 check_team_id(id)
 }
@@ -10,6 +10,6 @@ check_team_id(id)
 \item{id}{Team ID}
 }
 \description{
-Checks if team ID is acceptable
+Checks if team ID is valid
 }
 \keyword{internal}
