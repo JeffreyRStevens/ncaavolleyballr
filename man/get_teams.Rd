@@ -7,12 +7,13 @@
 get_teams(year, division = 1, sport = "WVB")
 }
 \arguments{
-\item{year}{Year for fall volleyball season}
+\item{year}{Year for fall volleyball season.}
 
-\item{division}{NCAA division (must be 1, 2, or 3)}
+\item{division}{NCAA division (must be 1, 2, or 3 for women's and 1 or 3
+for men's).}
 
 \item{sport}{Three letter abbreviation for NCAA sport (must be upper case;
-for example "WVB" for women's volleyball)}
+for example "WVB" for women's volleyball and "MVB" for men's volleyball).}
 }
 \value{
 Data frame of all teams, their team ID, division, conference, and year.

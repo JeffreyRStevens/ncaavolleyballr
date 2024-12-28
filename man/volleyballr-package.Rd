@@ -4,9 +4,9 @@
 \name{volleyballr-package}
 \alias{volleyballr}
 \alias{volleyballr-package}
-\title{volleyballr: Extract Data from NCAA Women's Volleyball Website}
+\title{volleyballr: Extract Data from NCAA Women's and Men's Volleyball Website}
 \description{
-Downloads NCAA Division 1, 2, and 3 volleyball team information from 2020-2024, including rosters, schedules, records, and player statistics.
+Downloads NCAA Division 1, 2, and 3 women's and men's volleyball team information from 2020-2024, including records, schedules, and player statistics.
 }
 \seealso{
 Useful links:

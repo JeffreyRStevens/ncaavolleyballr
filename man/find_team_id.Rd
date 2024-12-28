@@ -4,12 +4,15 @@
 \alias{find_team_id}
 \title{Find team ID for year}
 \usage{
-find_team_id(name, year)
+find_team_id(name, year, sport = "WVB")
 }
 \arguments{
 \item{name}{Name of school. Must match name used by NCAA.}
 
 \item{year}{Year for fall volleyball season}
+
+\item{sport}{Three letter abbreviation for NCAA sport (must be upper case;
+for example "WVB" for women's volleyball and "MVB" for men's volleyball).}
 }
 \value{
 Character string of team ID

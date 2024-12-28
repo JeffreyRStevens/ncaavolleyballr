@@ -22,8 +22,7 @@ request_url <- function(url, timeout = 5) {
 }
 
 
-
-#' Checks if team ID is acceptable
+#' Checks if team ID is valid
 #'
 #' @param id Team ID
 #'
@@ -31,5 +30,5 @@ request_url <- function(url, timeout = 5) {
 #'
 check_team_id <- function(id) {
   if (!is.character(id)) cli::cli_abort("Team ID must be a character string.")
-  if (!id %in% wvb_teams$team_id) cli::cli_abort("Team ID was not found in the list of acceptiable IDs.")
+  if (!id %in% c(wvb_teams$team_id, mvb_teams$team_id)) cli::cli_abort("Team ID was not found in the list of valid IDs.")
 }

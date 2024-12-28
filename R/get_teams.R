@@ -1,9 +1,10 @@
 #' Get all team IDs for a particular year
 #'
-#' @param year Year for fall volleyball season
-#' @param division NCAA division (must be 1, 2, or 3)
+#' @param year Year for fall volleyball season.
+#' @param division NCAA division (must be 1, 2, or 3 for women's and 1 or 3
+#' for men's).
 #' @param sport Three letter abbreviation for NCAA sport (must be upper case;
-#' for example "WVB" for women's volleyball)
+#' for example "WVB" for women's volleyball and "MVB" for men's volleyball).
 #'
 #' @returns
 #' Data frame of all teams, their team ID, division, conference, and year.
@@ -96,6 +97,6 @@ get_teams <- function(year,
     return(data)
   }) |>
     purrr::list_rbind() |>
-    dplyr::mutate(team_id = stringr::str_extract(.data$team_url, "\\/(\\d+)", group = 1)) |>
-    dplyr::select(.data$team_id, .data$team_name, .data$conference_id, .data$conference, .data$division, .data$year)
+    dplyr::mutate(team_id = stringr::str_extract(.data$team_url, "(\\d+)")) |>
+    dplyr::select("team_id", "team_name", "conference_id", "conference", "division", "year")
 }

@@ -1,15 +1,15 @@
 Package: volleyballr
 Type: Package
-Title: Extract Data from NCAA Women's Volleyball Website
+Title: Extract Data from NCAA Women's and Men's Volleyball Website
 Version: 0.1.0
 Authors@R: 
     person("Jeffrey R.", "Stevens", , "jeffrey.r.stevens@protonmail.com", 
     role = c("aut", "cre", "cph"),
     comment = c(ORCID = "0000-0003-2375-1360"))
 Maintainer: Jeffrey R. Stevens <jeffrey.r.stevens@protonmail.com>
-Description: Downloads NCAA Division 1, 2, and 3 volleyball team information
-    from 2020-2024, including rosters, schedules, records, and player
-    statistics.
+Description: Downloads NCAA Division 1, 2, and 3 women's and men's volleyball 
+    team information from 2020-2024, including records, schedules, and 
+    player statistics.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
-The goal of `{volleyballr}` is to extract women's volleyball information from the NCAA website.
+The goal of `{volleyballr}` is to extract women's and men's volleyball information from the NCAA website.
 
 ## Installation
 
@@ -30,14 +30,14 @@ You can install developmental versions from [GitHub](https://github.com/) with:
 remotes::install_github("JeffreyRStevens/volleyballr")
 ```
 
-## Example
+## Usage
 
 ```{r}
 library(volleyballr)
 ```
 
 
-The NCAA uses a unique team ID for each women's volleyball team and each season. So first you will need to get that ID with the `find_team_id()`. For instance, to find the ID for University of Nebraska's 2024 season:
+The NCAA uses a unique team ID for each women's and men's volleyball team and each season. So first you will need to get that ID with the `find_team_id()`. For instance, to find the ID for University of Nebraska's 2024 season:
 ```{r}
 find_team_id("Nebraska", 2024)
 ```
@@ -60,6 +60,15 @@ find_team_id("Nebraska", 2024) |>
   player_stats() |> 
   knitr::kable()
 ```
+
+By default, these functions return information on women's teams, but they can be set to return men's information.
+
+```{r}
+find_team_id("Long Beach St.", 2023, sport = "MVB") |> 
+  player_stats() |> 
+  knitr::kable()
+```
+
 
 ## Citation
 
