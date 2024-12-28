@@ -8,7 +8,7 @@ player_stats(team_id)
 }
 \arguments{
 \item{team_id}{Team ID determined by NCAA for season. To find ID, use
-[`find_team_id()`].}
+`find_team_id()`.}
 }
 \value{
 Tibble of player statistics.
