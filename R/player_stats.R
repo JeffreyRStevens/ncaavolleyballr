@@ -25,7 +25,7 @@ player_stats <- function(team_id) {
     rvest::html_element("table") |>
     rvest::html_table() |>
     dplyr::rename("Number" = "#") |>
-    dplyr::mutate(Number = as.numeric(.data$Number))
+    dplyr::mutate(Number = suppressWarnings(as.numeric(.data$Number)))
 
   if (yr == 2024) {
     url2 <- paste0("https://stats.ncaa.org/teams/", team_id, "/roster")
@@ -34,7 +34,7 @@ player_stats <- function(team_id) {
       rvest::html_element("table") |>
       rvest::html_table() |>
       dplyr::select("Number" = "#", "Name", "Hometown", "High School") |>
-      dplyr::mutate(Number = as.numeric(.data$Number))
+      dplyr::mutate(Number = suppressWarnings(as.numeric(.data$Number)))
 
     dplyr::left_join(player_stats, roster,
                      by = dplyr::join_by("Number", "Player" == "Name")) |>
