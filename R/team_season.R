@@ -11,6 +11,8 @@
 #' @examples
 #' \dontrun{
 #' team_season("585290")
+#' team_season(find_team_id("Nebraska", 2024))
+#' team_season(find_team_id("UCLA", 2023, sport = "MVB"))
 #' }
 team_season <- function(team_id) {
   check_team_id(team_id)
@@ -29,7 +31,11 @@ team_season <- function(team_id) {
   coach <- resp |> httr2::resp_body_html() |>
     rvest::html_elements(".mb-0") |>
     rvest::html_text()
-  coach <- coach[8]
+  if (coach[8] == "Primary Venue:") {
+    coach <- coach[19]
+  } else {
+    coach <- coach[8]
+  }
   coach <- coach |>
     stringr::str_split_1("\n          \n") |>
     stringr::str_squish() |>
