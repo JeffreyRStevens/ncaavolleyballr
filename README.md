@@ -112,7 +112,7 @@ By default, these functions return information on women’s teams, but
 they can be set to return men’s information.
 
 ``` r
-find_team_id("Long Beach St.", 2023, sport = "MVB") |> 
+find_team_id("UCLA", 2023, sport = "MVB") |> 
   player_stats() |> 
   knitr::kable()
 #> Warning: There was 1 warning in `dplyr::mutate()`.
@@ -121,35 +121,29 @@ find_team_id("Long Beach St.", 2023, sport = "MVB") |>
 #> ! NAs introduced by coercion
 ```
 
-| Number | Player | Yr | Pos | Ht | Hometown | High School | GP | GS | S | MS | Kills | Errors | Total Attacks | Hit Pct | Assists | Aces | SErr | Digs | RErr | Block Solos | Block Assists | BErr | Tripl Dbl | PTS | BHE |
-|---:|:---|:---|:---|:---|:---|:---|:---|:---|---:|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| 2 | Sebastian Rodriguez | Jr | OH | 6-5 | Hermosa Beach, CA | Redondo Union HS | 8 | 0 | 14 | NA | 4 | NA | 5 | 0.800 | NA | 3 | 3 | 3 | NA | NA | NA | NA | NA | 7.0 | 1 |
-| 3 | Mason Briggs | Sr | L | 6-0 | Valencia, CA | Bishop Alemany HS | 30 | 0 | 107 | NA | 1 | NA | 2 | 0.500 | 60 | NA | NA | 239 | 25 | NA | NA | NA | NA | 1.0 | NA |
-| 4 | Skyler Varga | Jr | OH | 6-7 |  | Muenster Public HS | 27 | 27 | 95 | NA | 283 | 116 | 636 | 0.263 | 17 | 33 | 71 | 128 | 7 | 2 | 80 | 9 | NA | 358.0 | NA |
-| 5 | Aidan Knipe | Sr | S | 6-3 | Huntington Beach, CA | Huntington Beach HS | 27 | 27 | 98 | NA | 12 | 7 | 35 | 0.143 | 1007 | 5 | 18 | 153 | NA | 4 | 63 | 4 | NA | 52.5 | 2 |
-| 6 | Ben Braun | So | MB | 6-11 | Rancho Mirage, CA | Palm Desert HS | 4 | 1 | 7 | NA | 3 | NA | 6 | 0.500 | NA | 2 | 7 | NA | NA | 2 | 8 | NA | NA | 11.0 | NA |
-| 8 | Sotiris Siapanis | Jr | OH | 6-3 | Limassol, Cyprus | The Grammar School | 27 | 27 | 97 | NA | 308 | 83 | 658 | 0.342 | 41 | 29 | 53 | 139 | 22 | 2 | 59 | 14 | NA | 368.5 | NA |
-| 9 | Nathan Harlan | Sr | OH | 6-4 | Ladera Ranch, CA | Tesoro HS | 29 | 10 | 103 | NA | 109 | 32 | 244 | 0.316 | 21 | 26 | 61 | 60 | 11 | 6 | 21 | 2 | NA | 151.5 | NA |
-| 10 | Connor Bloom | So | OH | 6-5 | Huntington Beach, CA | Orange Lutheran HS | 26 | 1 | 71 | NA | 8 | 4 | 18 | 0.222 | NA | 7 | 24 | 11 | NA | NA | 8 | NA | NA | 19.0 | NA |
-| 11 | Simon Torwie | Sr | MB | 6-10 |  |  | 26 | 26 | 94 | NA | 129 | 24 | 246 | 0.427 | 3 | 33 | 75 | 29 | NA | 15 | 111 | 15 | NA | 232.5 | 1 |
-| 12 | Clarke Godbold | Sr | OPP | 6-5 | San Pedro, CA | Palos Verdes Peninsula HS | 22 | 19 | 74 | NA | 239 | 67 | 511 | 0.337 | 11 | 20 | 59 | 52 | 16 | 6 | 58 | 3 | NA | 294.0 | NA |
-| 13 | Island Doty | So | S | 6-5 | Colorado Springs, CO | Doherty HS | 4 | 3 | 10 | NA | 4 | NA | 4 | 1.000 | 62 | 2 | 3 | 12 | NA | 1 | 3 | NA | NA | 8.5 | 1 |
-| 17 | Dane Hillis | So | OH | 6-3 | San Clemente, CA | San Clemente HS | 14 | 0 | 26 | NA | 3 | NA | 9 | 0.333 | 2 | 2 | 9 | 3 | 2 | NA | 2 | NA | NA | 6.0 | NA |
-| 18 | Nato Dickinson | Jr | OPP | 6-7 | Corona Del Mar, CA | Corona Del Mar HS | 26 | 1 | 59 | NA | 13 | 2 | 21 | 0.524 | 7 | 3 | 7 | 11 | NA | NA | 9 | 1 | NA | 20.5 | NA |
-| 19 | DiAeris McRaven | Jr | MB | 6-5 | Honolulu, HI | Moanalua HS | 20 | 16 | 58 | NA | 75 | 21 | 124 | 0.435 | 3 | 1 | 15 | 13 | 1 | 5 | 53 | 9 | NA | 107.5 | NA |
-| 20 | Aidan Grosz | Sr | MB | 6-6 | Long Beach, CA | St. Anthony HS | 2 | 1 | 4 | NA | 7 | NA | 7 | 1.000 | NA | 1 | NA | 4 | NA | 1 | 4 | NA | NA | 11.0 | NA |
-| 21 | Sebastiano Sani | Fr | OH | 6-8 | Bethesda, MD | Walter Johnson HS | 12 | 2 | 21 | NA | 23 | 7 | 38 | 0.421 | 2 | 5 | 14 | 8 | NA | 1 | 5 | NA | NA | 31.5 | 1 |
-| 22 | Caden Jackson | Jr | L | 6-0 | Laguna Niguel, CA | Dana Hills HS | 2 | 0 | 4 | NA | NA | NA | NA | NA | NA | 1 | NA | NA | NA | NA | NA | NA | NA | 1.0 | NA |
-| 23 | Derek Owens | Sr | MB | 6-7 | Minneapolis, MN | Andover HS | 1 | 0 | 2 | NA | 5 | NA | 9 | 0.556 | NA | NA | 1 | NA | NA | NA | 1 | NA | NA | 5.5 | NA |
-| 24 | Noah Robin | Jr | MB | 6-7 | Huntington Beach, CA | Huntington Beach HS | 1 | 1 | 3 | NA | 2 | 1 | 5 | 0.200 | NA | NA | 1 | NA | NA | NA | 4 | NA | NA | 4.0 | NA |
-| 26 | Eric Beebe | Sr | S | 6-0 | Anthem, AZ | Boulder Creek HS | 4 | 0 | 10 | NA | NA | NA | NA | NA | 23 | NA | NA | 6 | NA | NA | 1 | NA | NA | 0.5 | NA |
-| 27 | Lazar Bouchkov | Fr | MB | 6-6 | Sofia, Bulgaria | Vasil Levski Sport School | 17 | 15 | 56 | NA | 70 | 13 | 122 | 0.467 | 4 | NA | 18 | 8 | NA | 6 | 68 | 6 | NA | 110.0 | NA |
-| 28 | Chris Connelly | Fr | L | 5-10 | Naples, FL | Gulf Coast HS | 22 | 0 | 76 | NA | NA | NA | NA | NA | NA | NA | NA | 3 | NA | NA | NA | NA | NA | NA | NA |
-| 29 | Josh Weyerhaeuser | Fr | MB | 6-7 | Gurnee, IL | Warren Township HS | 2 | 0 | 2 | NA | 1 | 1 | 2 | 0.000 | NA | NA | NA | 2 | NA | NA | 1 | NA | NA | 1.5 | NA |
-| 31 | Daniil Hershtynovich | Fr | OPP | 6-9 | Toronto, Canada | Hodan Nalayeh | 9 | 3 | 15 | NA | 26 | 7 | 43 | 0.442 | 3 | 4 | 8 | 5 | 1 | 1 | 7 | 1 | NA | 34.5 | NA |
-| NA | TEAM | \- | \- | \- | NA | NA | \- | \- | NA | NA | NA | NA | NA | NA | NA | NA | NA | NA | 8 | NA | NA | NA | NA | NA | NA |
-| NA | Totals | \- | \- | \- | NA | NA | \- | \- | 107 | NA | 1325 | 385 | 2745 | 0.342 | 1266 | 177 | 447 | 889 | 93 | 52 | 566 | 64 | 30 | 1837.0 | 6 |
-| NA | Opponent Totals | \- | \- | \- | NA | NA | \- | \- | 107 | NA | 1157 | 593 | 2906 | 0.194 | 1111 | 93 | 467 | 852 | 177 | 21 | 292 | 52 | 29 | 1417.0 | 8 |
+| Number | Player | Yr | Pos | Ht | GP | GS | S | MS | Kills | Errors | Total Attacks | Hit Pct | Assists | Aces | SErr | Digs | RErr | Block Solos | Block Assists | BErr | Tripl Dbl | PTS | BHE |
+|---:|:---|:---|:---|:---|:---|:---|---:|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 1 | Hideharu Nakamura | Jr | L | 5-10 | 5 | 0 | 20 | NA | NA | NA | NA | NA | 1 | NA | NA | 21 | 2 | NA | NA | NA | NA | NA | NA |
+| 3 | Luca Curci | Fr | OH | 6-3 | 17 | 0 | 46 | NA | 9 | 5 | 18 | 0.222 | 5 | 2 | 12 | 27 | 6 | NA | NA | NA | NA | 11.0 | NA |
+| 7 | Andrew Rowan | So | S | 6-6 | 30 | 30 | 115 | NA | 52 | 13 | 100 | 0.390 | 1157 | 40 | 123 | 134 | 2 | 1 | 62 | 6 | NA | 124.0 | 1 |
+| 8 | Micah Wong Diallo | Fr | MB | 6-9 | 1 | 1 | 3 | NA | 6 | NA | 8 | 0.750 | NA | NA | 1 | 1 | NA | NA | 4 | NA | NA | 8.0 | NA |
+| 9 | Guy Genis | Jr | MB | 6-5 | 20 | 16 | 69 | NA | 86 | 16 | 156 | 0.449 | 8 | 2 | 20 | 25 | 1 | 3 | 67 | 8 | NA | 124.5 | NA |
+| 10 | Sean McQuiggan | Jr | MB | 6-9 | 17 | 14 | 53 | NA | 72 | 15 | 116 | 0.491 | 2 | 8 | 19 | 15 | NA | 7 | 51 | 5 | NA | 112.5 | 1 |
+| 11 | Cooper Robinson | Jr | OH | 6-7 | 28 | 25 | 95 | NA | 250 | 82 | 506 | 0.332 | 39 | 35 | 86 | 73 | 26 | 5 | 59 | 6 | NA | 319.5 | NA |
+| 12 | Alex Knight | Sr | OH | 6-5 | 27 | 8 | 91 | NA | 89 | 25 | 183 | 0.350 | 25 | 8 | 19 | 70 | 25 | NA | 24 | 2 | NA | 109.0 | NA |
+| 13 | Merrick McHenry | Sr | OH | 6-7 | 30 | 30 | 115 | NA | 217 | 27 | 325 | 0.585 | 9 | 38 | 98 | 68 | 2 | 7 | 107 | 6 | NA | 315.5 | NA |
+| 14 | Matthew Aziz | Jr | L | 6-1 | 13 | 0 | 48 | NA | NA | NA | NA | NA | 5 | NA | NA | 71 | NA | NA | NA | NA | NA | NA | NA |
+| 16 | Ido David | Jr | OPP | 6-7 | 28 | 18 | 87 | NA | 165 | 62 | 379 | 0.272 | 11 | 35 | 60 | 96 | 1 | 4 | 40 | 2 | NA | 224.0 | 1 |
+| 17 | David Flores | Sr | S | 6-2 | 22 | 1 | 39 | NA | NA | NA | NA | NA | 76 | NA | 1 | 10 | NA | NA | 2 | NA | NA | 1.0 | NA |
+| 18 | Grant Sloane | Sr | OH | 6-8 | 25 | 13 | 76 | NA | 137 | 47 | 295 | 0.305 | 8 | 21 | 36 | 66 | 1 | 3 | 32 | 3 | NA | 177.0 | 2 |
+| 19 | David Decker | So | OPP | 6-8 | 5 | 0 | 6 | NA | 3 | NA | 3 | 1.000 | NA | 1 | 1 | 2 | NA | NA | 2 | NA | NA | 5.0 | NA |
+| 20 | Ethan Champlin | Sr | OH | 6-3 | 30 | 24 | 112 | NA | 270 | 80 | 561 | 0.339 | 48 | 21 | 71 | 167 | 23 | 3 | 45 | 5 | NA | 316.5 | NA |
+| 21 | Zach Rama | So | OH | 6-8 | 25 | 5 | 64 | NA | 140 | 40 | 272 | 0.368 | 17 | 13 | 40 | 49 | 16 | 4 | 25 | 4 | NA | 169.5 | 2 |
+| 22 | Matthew Edwards | Jr | MB | 6-9 | 3 | 1 | 4 | NA | 4 | NA | 4 | 1.000 | NA | NA | 1 | NA | NA | NA | NA | NA | NA | 4.0 | NA |
+| 23 | Coleman McDonough | So | L | 5-11 | 15 | 0 | 43 | NA | NA | NA | NA | NA | 2 | NA | 4 | 22 | 4 | NA | NA | NA | NA | NA | NA |
+| NA | TEAM | \- | \- | \- | \- | \- | NA | NA | NA | NA | NA | NA | NA | NA | NA | NA | 14 | NA | NA | NA | NA | NA | NA |
+| NA | Totals | \- | \- | \- | \- | \- | 118 | NA | 1500 | 412 | 2926 | 0.372 | 1413 | 224 | 592 | 917 | 123 | 37 | 520 | 47 | 31 | 2021.0 | 7 |
+| NA | Opponent Totals | \- | \- | \- | \- | \- | 118 | NA | 1224 | 546 | 2925 | 0.232 | 1136 | 122 | 489 | 809 | 224 | 39 | 289 | 41 | 30 | 1529.5 | 5 |
 
 ## Citation
 
