@@ -22,4 +22,5 @@ Find team ID for year
 }
 \examples{
 find_team_id("Nebraska", 2024)
+find_team_id("UCLA", 2023, sport = "MVB")
 }

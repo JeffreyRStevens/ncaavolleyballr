@@ -24,5 +24,6 @@ Get all team IDs for a particular year
 \examples{
 \dontrun{
 get_teams(2024)
+get_teams(2023, division = 3, sport = "MVB")
 }
 }

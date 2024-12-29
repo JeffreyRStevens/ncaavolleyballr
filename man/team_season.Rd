@@ -19,5 +19,7 @@ Extract arena, coach, record, and schedule information for a season
 \examples{
 \dontrun{
 team_season("585290")
+team_season(find_team_id("Nebraska", 2024))
+team_season(find_team_id("UCLA", 2023, sport = "MVB"))
 }
 }

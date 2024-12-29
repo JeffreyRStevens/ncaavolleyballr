@@ -13,6 +13,7 @@
 #' @examples
 #' \dontrun{
 #' get_teams(2024)
+#' get_teams(2023, division = 3, sport = "MVB")
 #' }
 get_teams <- function(year,
                       division = 1,

@@ -11,7 +11,8 @@ player_stats(team_id)
 `find_team_id()`.}
 }
 \value{
-Tibble of player statistics.
+Tibble of player statistics. Note that hometown and high school were added
+in 2024.
 }
 \description{
 Extract player season statistics
@@ -19,5 +20,7 @@ Extract player season statistics
 \examples{
 \dontrun{
 player_stats("585290")
+player_stats(find_team_id("Nebraska", 2024))
+player_stats(find_team_id("UCLA", 2023, sport = "MVB"))
 }
 }

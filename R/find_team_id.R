@@ -13,6 +13,7 @@
 #'
 #' @examples
 #' find_team_id("Nebraska", 2024)
+#' find_team_id("UCLA", 2023, sport = "MVB")
 find_team_id <- function (name, year, sport = "WVB") {
   if (sport == "WVB") teams <- wvb_teams
   else if (sport == "MVB") teams <- mvb_teams
