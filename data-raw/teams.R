@@ -21,4 +21,4 @@ mvb_teams <- purrr::map2(rep(years, times = 2),
 
 usethis::use_data(mvb_teams, overwrite = TRUE)
 
-usethis::use_data(mvb_teams, wvb_teams, internal = TRUE, overwrite = TRUE)
+# usethis::use_data(mvb_teams, wvb_teams, internal = TRUE, overwrite = TRUE)
