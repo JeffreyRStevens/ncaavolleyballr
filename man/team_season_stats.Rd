@@ -2,19 +2,24 @@
 % Please edit documentation in R/team_season_stats.R
 \name{team_season_stats}
 \alias{team_season_stats}
-\title{Extract arena, coach, record, and schedule information for a season}
+\title{Extract arena, coach, record, and schedule information for a particular team
+and season}
 \usage{
 team_season_stats(team_id)
 }
 \arguments{
 \item{team_id}{Team ID determined by NCAA for season. To find ID, use
-`find_team_id()`.}
+\code{\link{find_team_id}()}.}
 }
 \value{
-List that includes arena, coach, record, and schedule information.
+Returns a list that includes arena, coach, schedule, and record information.
 }
 \description{
-Extract arena, coach, record, and schedule information for a season
+The NCAA's main page for a team includes a tab called "Schedule/Results".
+This function extracts information about the team's venue, coach, and
+records, as well as the table of the schedule and results. This returns a
+list, so you can subset specific components with \code{$} (e.g., for coach
+information from an object called \code{output}, use \code{output$coach}).
 }
 \examples{
 \dontrun{
@@ -23,3 +28,8 @@ team_season_stats(find_team_id("Nebraska", 2024))
 team_season_stats(find_team_id("UCLA", 2023, sport = "MVB"))
 }
 }
+\seealso{
+Other functions that extract team statistics: 
+\code{\link{team_player_stats}()}
+}
+\concept{functions that extract team statistics}

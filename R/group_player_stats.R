@@ -1,20 +1,20 @@
-#' Aggregate all player statistics from a vector of teams in a year
+#' Aggregate player statistics from a set of teams for a particular season
 #'
-#' This function runs \code{\link{team_player_stats()}} on a vector of team names to
-#' extract season data for the players and teams in the vector.
+#' This function runs \code{\link{team_player_stats}()} on a vector of team
+#' names to extract season data for the players and teams in the vector.
 #' It aggregates all player data and team data into separate data frames and
-#' combines them into a list. So, for instance, if you want to extract the
+#' combines them into a list. For instance, if you want to extract the
 #' data from the teams in the women's 2024 Final Four, pass a vector of
 #' \code{c("Louisville", "Nebraska", "Penn State", "Pittsburgh")}
-#' to the function.
+#' to the function. Team names can be found in \code{\link{ncaa_teams}} or by
+#' using \code{\link{find_team_name}()}.
 #'
 #' @param teams Character vector of team names to aggregate.
-#' @param year Year for fall volleyball season.
-#' @param sport Three letter abbreviation for NCAA sport (must be upper case;
-#' for example "WVB" for women's volleyball and "MVB" for men's volleyball).
+#' @inheritParams get_teams
 #'
 #' @returns
 #' Returns list with player statistics and team statistics data frames.
+#'
 #' @export
 #'
 #' @family functions that aggregate statistics
@@ -24,7 +24,9 @@
 #' group_player_stats(c("Louisville", "Nebraska", "Penn State", "Pittsburgh"), 2024)
 #' group_player_stats(c("UCLA", "Long Beach St."), 2023, sport = "MVB")
 #' }
-group_player_stats <- function(teams, year, sport = "WVB") {
+group_player_stats <- function(teams,
+                               year,
+                               sport = "WVB") {
   data <- purrr::map(teams,
                      ~ team_player_stats(find_team_id(.x, year, sport))) |>
     purrr::set_names(teams) |>

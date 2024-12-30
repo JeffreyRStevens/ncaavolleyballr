@@ -2,7 +2,7 @@
 % Please edit documentation in R/division_player_stats.R
 \name{division_player_stats}
 \alias{division_player_stats}
-\title{Aggregate all player statistics from a particular division and year}
+\title{Aggregate player statistics from a particular division and season}
 \usage{
 division_player_stats(
   year,
@@ -13,10 +13,9 @@ division_player_stats(
 )
 }
 \arguments{
-\item{year}{Year for fall volleyball season.}
+\item{year}{Year for fall of desired season.}
 
-\item{division}{NCAA division (must be 1, 2, or 3 for women's and 1 or 3
-for men's).}
+\item{division}{NCAA division (must be 1, 2, or 3).}
 
 \item{sport}{Three letter abbreviation for NCAA sport (must be upper case;
 for example "WVB" for women's volleyball and "MVB" for men's volleyball).}
@@ -30,7 +29,10 @@ for example "WVB" for women's volleyball and "MVB" for men's volleyball).}
 Returns list with player statistics and team statistics data frames.
 }
 \description{
-Aggregate all player statistics from a particular division and year
+This is a wrapper around \code{\link{group_player_stats}()} that extracts
+all season data from players in all teams from the chosen division.
+It aggregates all player data and team data into separate data frames and
+combines them into a list.
 }
 \examples{
 \dontrun{

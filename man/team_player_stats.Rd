@@ -2,25 +2,36 @@
 % Please edit documentation in R/team_player_stats.R
 \name{team_player_stats}
 \alias{team_player_stats}
-\title{Extract player season statistics}
+\title{Extract player statistics from a particular team and season}
 \usage{
-team_player_stats(team_id)
+team_player_stats(team_id, team_stats = TRUE)
 }
 \arguments{
 \item{team_id}{Team ID determined by NCAA for season. To find ID, use
-`find_team_id()`.}
+\code{\link{find_team_id}()}.}
+
+\item{team_stats}{Logical indicating whether to include (TRUE) or exclude
+(FALSE) team statistics. Default includes team statistics with player
+statistics.}
 }
 \value{
-Tibble of player statistics. Note that hometown and high school were added
-in 2024.
+Returns a data frame of player statistics. Note that hometown and high school
+were added in 2024.
 }
 \description{
-Extract player season statistics
+The NCAA's main page for a team includes a tab called "Team Statistics".
+This function extracts the table of player statistics for the season, as
+well as team and opponent statistics (though these can be omitted).
 }
 \examples{
 \dontrun{
 team_player_stats("585290")
-team_player_stats(find_team_id("Nebraska", 2023))
+team_player_stats(find_team_id("Nebraska", 2023), team_stats = FALSE)
 team_player_stats(find_team_id("UCLA", 2023, sport = "MVB"))
 }
 }
+\seealso{
+Other functions that extract team statistics: 
+\code{\link{team_season_stats}()}
+}
+\concept{functions that extract team statistics}

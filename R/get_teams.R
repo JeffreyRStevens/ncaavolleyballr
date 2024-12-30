@@ -1,13 +1,22 @@
-#' Get all team IDs for a particular year
+#' Extract data frame of team names, IDs, conference, division, and season
 #'
-#' @param year Year for fall volleyball season.
-#' @param division NCAA division (must be 1, 2, or 3 for women's and 1 or 3
-#' for men's).
+#' NCAA datasets use a unique ID for each sport, team, and season.
+#' This function extracts team names, IDs, and conferences for each NCAA team in
+#' a division. However, you should not need to use this function for volleyball
+#' data from 2020-2024, as it has been used to generate \code{\link{wvb_teams}}
+#' and \code{\link{mvb_teams}}. However, it is available to use for other
+#' sports, using the appropriate three letter abbreviation (e.g., men's baseball is
+#' "MBA").
+#'
+#' @param year Year for fall of desired season.
+#' @param division NCAA division (must be 1, 2, or 3).
 #' @param sport Three letter abbreviation for NCAA sport (must be upper case;
 #' for example "WVB" for women's volleyball and "MVB" for men's volleyball).
 #'
 #' @returns
-#' Data frame of all teams, their team ID, division, conference, and year.
+#' Returns a data frame of all teams, their team ID, division, conference,
+#' and season.
+#'
 #' @export
 #'
 #' @examples

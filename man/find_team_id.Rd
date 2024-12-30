@@ -2,23 +2,27 @@
 % Please edit documentation in R/find_team_id.R
 \name{find_team_id}
 \alias{find_team_id}
-\title{Find team ID for year}
+\title{Find team ID for season}
 \usage{
 find_team_id(name, year, sport = "WVB")
 }
 \arguments{
 \item{name}{Name of school. Must match name used by NCAA.}
 
-\item{year}{Year for fall volleyball season}
+\item{year}{Year for fall of desired season.}
 
 \item{sport}{Three letter abbreviation for NCAA sport (must be upper case;
 for example "WVB" for women's volleyball and "MVB" for men's volleyball).}
 }
 \value{
-Character string of team ID
+Returns a character string of team ID.
 }
 \description{
-Find team ID for year
+NCAA datasets use a unique ID for each team and season. To access a team's
+data, we must know the team ID. This function looks up the team ID from
+\code{\link{wvb_teams}} or \code{\link{mvb_teams}} using the team name.
+Team names can be found in \code{\link{ncaa_teams}} or searched with
+\code{\link{find_team_name}()}.
 }
 \examples{
 find_team_id("Nebraska", 2024)

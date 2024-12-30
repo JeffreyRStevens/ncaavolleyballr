@@ -1,15 +1,16 @@
-#' Aggregate all player statistics from a particular conference and year
+#' Aggregate player statistics from a particular conference and season
 #'
-#' @param year Year for fall volleyball season.
+#' This is a wrapper around \code{\link{group_player_stats}()} that extracts
+#' all season data from players in all teams from the chosen conference.
+#' It aggregates all player data and team data into separate data frames and
+#' combines them into a list. Conferences names can be found in
+#' \code{\link{ncaa_conferences}}.
+#'
 #' @param conf NCAA conference name.
-#' @param sport Three letter abbreviation for NCAA sport (must be upper case;
-#' for example "WVB" for women's volleyball and "MVB" for men's volleyball).
-#' @param save Logical for whether to save the statistics locally as CSVs
-#' (default FALSE).
-#' @param path Character string of path to save statistics files.
+#' @inheritParams division_player_stats
 #'
-#' @returns
-#' Returns list with player statistics and team statistics data frames.
+#' @inherit group_player_stats return
+#'
 #' @export
 #'
 #' @family functions that aggregate statistics
@@ -20,7 +21,11 @@
 #' conference_player_stats(2023, conf = "Big West", sport = "MVB")
 #' conference_player_stats(2024, conf = "Big Ten", save = TRUE, path = "data/")
 #' }
-conference_player_stats <- function(year, conf = NULL, sport = "WVB", save = FALSE, path = "") {
+conference_player_stats <- function(year,
+                                    conf = NULL,
+                                    sport = "WVB",
+                                    save = FALSE,
+                                    path = "") {
   if (!is.numeric(year)) cli::cli_abort("`year` must be a numeric.")
   if (!year %in% 2020:2024) cli::cli_abort("`year` must be between 2020-2024.")
   if (sport == "WVB") team_df <- ncaavolleyballr::wvb_teams

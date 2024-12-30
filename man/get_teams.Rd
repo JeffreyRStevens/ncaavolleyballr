@@ -2,24 +2,30 @@
 % Please edit documentation in R/get_teams.R
 \name{get_teams}
 \alias{get_teams}
-\title{Get all team IDs for a particular year}
+\title{Extract data frame of team names, IDs, conference, division, and season}
 \usage{
 get_teams(year, division = 1, sport = "WVB")
 }
 \arguments{
-\item{year}{Year for fall volleyball season.}
+\item{year}{Year for fall of desired season.}
 
-\item{division}{NCAA division (must be 1, 2, or 3 for women's and 1 or 3
-for men's).}
+\item{division}{NCAA division (must be 1, 2, or 3).}
 
 \item{sport}{Three letter abbreviation for NCAA sport (must be upper case;
 for example "WVB" for women's volleyball and "MVB" for men's volleyball).}
 }
 \value{
-Data frame of all teams, their team ID, division, conference, and year.
+Returns a data frame of all teams, their team ID, division, conference,
+and season.
 }
 \description{
-Get all team IDs for a particular year
+NCAA datasets use a unique ID for each sport, team, and season.
+This function extracts team names, IDs, and conferences for each NCAA team in
+a division. However, you should not need to use this function for volleyball
+data from 2020-2024, as it has been used to generate \code{\link{wvb_teams}}
+and \code{\link{mvb_teams}}. However, it is available to use for other
+sports, using the appropriate three letter abbreviation (e.g., men's baseball is
+"MBA").
 }
 \examples{
 \dontrun{

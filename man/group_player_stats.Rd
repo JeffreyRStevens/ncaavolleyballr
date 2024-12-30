@@ -2,14 +2,14 @@
 % Please edit documentation in R/group_player_stats.R
 \name{group_player_stats}
 \alias{group_player_stats}
-\title{Aggregate all player statistics from a vector of teams in a year}
+\title{Aggregate player statistics from a set of teams for a particular season}
 \usage{
 group_player_stats(teams, year, sport = "WVB")
 }
 \arguments{
 \item{teams}{Character vector of team names to aggregate.}
 
-\item{year}{Year for fall volleyball season.}
+\item{year}{Year for fall of desired season.}
 
 \item{sport}{Three letter abbreviation for NCAA sport (must be upper case;
 for example "WVB" for women's volleyball and "MVB" for men's volleyball).}
@@ -18,13 +18,14 @@ for example "WVB" for women's volleyball and "MVB" for men's volleyball).}
 Returns list with player statistics and team statistics data frames.
 }
 \description{
-This function runs \code{\link{team_player_stats()}} on a vector of team names to
-extract season data for the players and teams in the vector.
+This function runs \code{\link{team_player_stats}()} on a vector of team
+names to extract season data for the players and teams in the vector.
 It aggregates all player data and team data into separate data frames and
-combines them into a list. So, for instance, if you want to extract the
+combines them into a list. For instance, if you want to extract the
 data from the teams in the women's 2024 Final Four, pass a vector of
 \code{c("Louisville", "Nebraska", "Penn State", "Pittsburgh")}
-to the function.
+to the function. Team names can be found in \code{\link{ncaa_teams}} or by
+using \code{\link{find_team_name}()}.
 }
 \examples{
 \dontrun{

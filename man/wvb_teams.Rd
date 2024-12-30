@@ -12,7 +12,7 @@ A data frame with 5,289 rows and 6 columns:
   \item{conference_id}{Conference ID}
   \item{conference}{Conference name}
   \item{div}{NCAA division number (1, 2, or 3)}
-  \item{yr}{Year for fall season}
+  \item{yr}{Year for fall of season}
 }
 }
 \source{
@@ -25,4 +25,14 @@ wvb_teams
 This data frame includes all women's NCAA Division 1, 2, and 3 teams from
 2020-2024.
 }
+\examples{
+head(wvb_teams)
+}
+\seealso{
+Other data sets: 
+\code{\link{mvb_teams}},
+\code{\link{ncaa_conferences}},
+\code{\link{ncaa_teams}}
+}
+\concept{data sets}
 \keyword{datasets}

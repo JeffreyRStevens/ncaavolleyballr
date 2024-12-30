@@ -1,12 +1,21 @@
 
-
-#' Extract arena, coach, record, and schedule information for a season
+#' Extract arena, coach, record, and schedule information for a particular team
+#' and season
+#'
+#' The NCAA's main page for a team includes a tab called "Schedule/Results".
+#' This function extracts information about the team's venue, coach, and
+#' records, as well as the table of the schedule and results. This returns a
+#' list, so you can subset specific components with \code{$} (e.g., for coach
+#' information from an object called \code{output}, use \code{output$coach}).
 #'
 #' @inheritParams team_player_stats
 #'
 #' @returns
-#' List that includes arena, coach, record, and schedule information.
+#' Returns a list that includes arena, coach, schedule, and record information.
+#'
 #' @export
+#'
+#' @family functions that extract team statistics
 #'
 #' @examples
 #' \dontrun{
