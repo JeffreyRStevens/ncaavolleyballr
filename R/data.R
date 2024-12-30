@@ -10,8 +10,8 @@
 #'   \item{team_name}{Team name}
 #'   \item{conference_id}{Conference ID}
 #'   \item{conference}{Conference name}
-#'   \item{division}{NCAA division number (1, 2, or 3)}
-#'   \item{year}{Year for fall season}
+#'   \item{div}{NCAA division number (1, 2, or 3)}
+#'   \item{yr}{Year for fall season}
 #' }
 #' @source <https://stats.ncaa.org>
 "wvb_teams"
@@ -28,8 +28,8 @@
 #'   \item{team_name}{Team name}
 #'   \item{conference_id}{Conference ID}
 #'   \item{conference}{Conference name}
-#'   \item{division}{NCAA division number (1 or 3)}
-#'   \item{year}{Year for fall season}
+#'   \item{div}{NCAA division number (1 or 3)}
+#'   \item{yr}{Year for fall season}
 #' }
 #' @source <https://stats.ncaa.org>
 "mvb_teams"

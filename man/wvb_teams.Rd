@@ -11,8 +11,8 @@ A data frame with 5,289 rows and 6 columns:
   \item{team_name}{Team name}
   \item{conference_id}{Conference ID}
   \item{conference}{Conference name}
-  \item{division}{NCAA division number (1, 2, or 3)}
-  \item{year}{Year for fall season}
+  \item{div}{NCAA division number (1, 2, or 3)}
+  \item{yr}{Year for fall season}
 }
 }
 \source{
