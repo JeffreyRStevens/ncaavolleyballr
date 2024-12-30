@@ -39,8 +39,8 @@ conference_player_stats(2024, conf = "Big Ten", save = TRUE, path = "data/")
 }
 }
 \seealso{
-Other aggregate statistics: 
+Other functions that aggregate statistics: 
 \code{\link{division_player_stats}()},
 \code{\link{group_player_stats}()}
 }
-\concept{aggregate statistics}
+\concept{functions that aggregate statistics}

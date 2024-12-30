@@ -12,7 +12,7 @@
 #' Returns list with player statistics and team statistics data frames.
 #' @export
 #'
-#' @family aggregate statistics
+#' @family functions that aggregate statistics
 #'
 #' @examples
 #' \dontrun{

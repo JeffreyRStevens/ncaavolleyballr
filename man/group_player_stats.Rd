@@ -18,17 +18,23 @@ for example "WVB" for women's volleyball and "MVB" for men's volleyball).}
 Returns list with player statistics and team statistics data frames.
 }
 \description{
-Aggregate all player statistics from a vector of teams in a year
+This function runs \code{\link{team_player_stats()}} on a vector of team names to
+extract season data for the players and teams in the vector.
+It aggregates all player data and team data into separate data frames and
+combines them into a list. So, for instance, if you want to extract the
+data from the teams in the women's 2024 Final Four, pass a vector of
+\code{c("Louisville", "Nebraska", "Penn State", "Pittsburgh")}
+to the function.
 }
 \examples{
 \dontrun{
-group_player_stats(c("Nebraska", "Wisconsin"), 2024)
+group_player_stats(c("Louisville", "Nebraska", "Penn State", "Pittsburgh"), 2024)
 group_player_stats(c("UCLA", "Long Beach St."), 2023, sport = "MVB")
 }
 }
 \seealso{
-Other aggregate statistics: 
+Other functions that aggregate statistics: 
 \code{\link{conference_player_stats}()},
 \code{\link{division_player_stats}()}
 }
-\concept{aggregate statistics}
+\concept{functions that aggregate statistics}
