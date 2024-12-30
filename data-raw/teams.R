@@ -6,7 +6,7 @@ wvb_teams <- purrr::map2(rep(years, times = 3),
                         rep(1:3, each = length(years)),
                         ~ get_teams(year = .x, division = .y)) |>
   purrr::list_rbind() |>
-  dplyr::filter(team_id != "598395" & team_id != "504440") # remove Vanderbilt 2024, Georgetown 2020
+  dplyr::filter(team_id != "598395" & team_id != "585523" & team_id != "504440") # remove Vanderbilt 2024, Saint Augustine's 2024, Georgetown 2020
 
 usethis::use_data(wvb_teams, overwrite = TRUE)
 
