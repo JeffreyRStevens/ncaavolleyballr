@@ -1,4 +1,4 @@
-## code to prepare `wvb_teams` datasets
+## code to prepare `wvb_teams` dataset
 
 years <- 2020:2024
 
@@ -12,7 +12,7 @@ usethis::use_data(wvb_teams, overwrite = TRUE)
 
 
 
-## code to prepare `mvb_teams` datasets
+## code to prepare `mvb_teams` dataset
 
 years <- 2020:2024
 
@@ -23,3 +23,24 @@ mvb_teams <- purrr::map2(rep(years, times = 2),
 
 usethis::use_data(mvb_teams, overwrite = TRUE)
 
+
+
+## code to prepare `ncaa_teams` dataset
+
+ncaa_teams <- rbind(wvb_teams, mvb_teams) |>
+  dplyr::arrange(team_name) |>
+  dplyr::pull(team_name) |>
+  unique()
+
+usethis::use_data(ncaa_teams, overwrite = TRUE)
+
+
+
+## code to prepare `ncaa_conferences` dataset
+
+ncaa_conferences <- rbind(wvb_teams, mvb_teams) |>
+  dplyr::arrange(conference) |>
+  dplyr::pull(conference) |>
+  unique()
+
+usethis::use_data(ncaa_conferences, overwrite = TRUE)

@@ -11,9 +11,12 @@
 #'   \item{conference_id}{Conference ID}
 #'   \item{conference}{Conference name}
 #'   \item{div}{NCAA division number (1, 2, or 3)}
-#'   \item{yr}{Year for fall season}
+#'   \item{yr}{Year for fall of season}
 #' }
 #' @source <https://stats.ncaa.org>
+#' @family data sets
+#' @examples
+#' head(wvb_teams)
 "wvb_teams"
 
 #' NCAA Men's Volleyball Teams 2020-2024
@@ -29,7 +32,34 @@
 #'   \item{conference_id}{Conference ID}
 #'   \item{conference}{Conference name}
 #'   \item{div}{NCAA division number (1 or 3)}
-#'   \item{yr}{Year for fall season}
+#'   \item{yr}{Year for fall of season}
 #' }
 #' @source <https://stats.ncaa.org>
+#' @family data sets
+#' @examples
+#' head(mvb_teams)
 "mvb_teams"
+
+#' NCAA Team Names
+#'
+#' This vector includes names for all NCAA volleyball teams.
+#'
+#' @format
+#' A character vector with 1,089 team names.
+#' @source <https://stats.ncaa.org>
+#' @family data sets
+#' @examples
+#' head(ncaa_teams)
+"ncaa_teams"
+
+#' NCAA Conference Names
+#'
+#' This vector includes names for all NCAA volleyball conferences.
+#'
+#' @format
+#' A character vector with 111 conference names.
+#' @source <https://stats.ncaa.org>
+#' @family data sets
+#' @examples
+#' head(ncaa_conferences)
+"ncaa_conferences"
