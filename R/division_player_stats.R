@@ -25,23 +25,27 @@ division_player_stats <- function(year, division = 1, sport = "WVB", save = FALS
   if (!is.numeric(year)) cli::cli_abort("`year` must be a numeric.")
   if (!year %in% 2020:2024) cli::cli_abort("`year` must be between 2020-2024.")
   if (!division %in% 1:3) cli::cli_abort("Enter valid division as a number: 1, 2, 3")
-  if (sport == "WVB") team_df <- wvb_teams
-  else if (sport == "MVB") team_df <- mvb_teams
+  if (sport == "WVB") team_df <- volleyballr::wvb_teams
+  else if (sport == "MVB") team_df <- volleyballr::mvb_teams
   else cli::cli_abort("Invalid sport entered. Must be 'WVB' or 'MVB'.")
   if(!is.logical(save)) cli::cli_abort("`save` must be a logical (TRUE or FALSE).")
   if(!is.character(path)) cli::cli_abort("`path` must be a character string.")
 
   div_teams <- team_df |>
-    dplyr::filter(div == division & yr == year)
-  teams <- div_teams$team_name[1:5]
+    dplyr::filter(.data$div == division & .data$yr == year)
+  teams <- div_teams$team_name
 
   output <- group_player_stats(teams, year, sport)
 
   if (!grepl("/$", path)) path <- paste0(path, "/")
 
   if (save) {
-    write.csv(output$playerdata, paste0(path, sport, "_playerdata_div", division, "_", year, ".csv"))
-    write.csv(output$teamdata, paste0(path,sport, "_teamdata_div", division, "_", year, ".csv"))
+    utils::write.csv(output$playerdata,
+                     paste0(path, tolower(sport), "_playerdata_div", division, "_", year, ".csv"),
+                     row.names = FALSE)
+    utils::write.csv(output$teamdata,
+                     paste0(path, tolower(sport), "_teamdata_div", division, "_", year, ".csv"),
+                     row.names = FALSE)
   }
 
   return(output)

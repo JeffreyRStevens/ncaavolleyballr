@@ -15,6 +15,8 @@ conference_player_stats(
 \arguments{
 \item{year}{Year for fall volleyball season.}
 
+\item{conf}{NCAA conference name.}
+
 \item{sport}{Three letter abbreviation for NCAA sport (must be upper case;
 for example "WVB" for women's volleyball and "MVB" for men's volleyball).}
 
@@ -22,8 +24,6 @@ for example "WVB" for women's volleyball and "MVB" for men's volleyball).}
 (default FALSE).}
 
 \item{path}{Character string of path to save statistics files.}
-
-\item{conference}{NCAA conference name.}
 }
 \value{
 Returns list with player statistics and team statistics data frames.
@@ -33,13 +33,14 @@ Aggregate all player statistics from a particular conference and year
 }
 \examples{
 \dontrun{
-conference_player_stats(2024)
-conference_player_stats(2023, division = 3, sport = "MVB")
-conference_player_stats(2024, save = TRUE, path = "data/")
+conference_player_stats(2024, conf = "Big Ten")
+conference_player_stats(2023, conf = "Big West", sport = "MVB")
+conference_player_stats(2024, conf = "Big Ten", save = TRUE, path = "data/")
 }
 }
 \seealso{
 Other aggregate statistics: 
-\code{\link{division_player_stats}()}
+\code{\link{division_player_stats}()},
+\code{\link{group_player_stats}()}
 }
 \concept{aggregate statistics}
