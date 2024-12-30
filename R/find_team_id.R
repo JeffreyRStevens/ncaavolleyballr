@@ -15,8 +15,8 @@
 #' find_team_id("Nebraska", 2024)
 #' find_team_id("UCLA", 2023, sport = "MVB")
 find_team_id <- function (name, year, sport = "WVB") {
-  if (sport == "WVB") teams <- volleyballr::wvb_teams
-  else if (sport == "MVB") teams <- volleyballr::mvb_teams
+  if (sport == "WVB") teams <- ncaavolleyballr::wvb_teams
+  else if (sport == "MVB") teams <- ncaavolleyballr::mvb_teams
   else cli::cli_abort("Invalid sport entered. Must be 'WVB' or 'MVB'.")
   if (!name %in% teams$team_name) cli::cli_abort("Team name was not found.")
   if (!is.numeric(year)) cli::cli_abort("`year` must be a numeric.")

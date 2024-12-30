@@ -18,7 +18,7 @@
 #' }
 team_player_stats <- function(team_id) {
   check_team_id(team_id)
-  teams <- dplyr::bind_rows(volleyballr::wvb_teams, volleyballr::mvb_teams)
+  teams <- dplyr::bind_rows(ncaavolleyballr::wvb_teams, ncaavolleyballr::mvb_teams)
   team <- teams[which(teams == team_id), ]$team_name
   conference <- teams[which(teams == team_id), ]$conference
   yr <- teams[which(teams == team_id), ]$yr

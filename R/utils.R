@@ -29,7 +29,7 @@ request_url <- function(url, timeout = 5) {
 #' @keywords internal
 #'
 check_team_id <- function(id) {
-  teams <- dplyr::bind_rows(volleyballr::wvb_teams, volleyballr::mvb_teams)
+  teams <- dplyr::bind_rows(ncaavolleyballr::wvb_teams, ncaavolleyballr::mvb_teams)
   if (!is.character(id)) cli::cli_abort("Team ID must be a character string.")
   if (!id %in% c(teams$team_id)) cli::cli_abort("Team ID was not found in the list of valid IDs.")
 }

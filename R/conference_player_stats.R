@@ -23,8 +23,8 @@
 conference_player_stats <- function(year, conf = NULL, sport = "WVB", save = FALSE, path = "") {
   if (!is.numeric(year)) cli::cli_abort("`year` must be a numeric.")
   if (!year %in% 2020:2024) cli::cli_abort("`year` must be between 2020-2024.")
-  if (sport == "WVB") team_df <- volleyballr::wvb_teams
-  else if (sport == "MVB") team_df <- volleyballr::mvb_teams
+  if (sport == "WVB") team_df <- ncaavolleyballr::wvb_teams
+  else if (sport == "MVB") team_df <- ncaavolleyballr::mvb_teams
   else cli::cli_abort("Invalid sport entered. Must be 'WVB' or 'MVB'.")
   if (is.null(conf)) cli::cli_abort("Conference name is missing.")
   if (!conf %in% team_df$conference) cli::cli_abort("Enter valid conference.")

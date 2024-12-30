@@ -13,13 +13,13 @@ knitr::opts_chunk$set(
 )
 ```
 
-# volleyballr
+# ncaavolleyballr
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
-The goal of `{volleyballr}` is to extract women's and men's volleyball information from the NCAA website.
+The goal of `{ncaavolleyballr}` is to extract women's and men's volleyball information from the NCAA website.
 
 ## Installation
 
@@ -27,13 +27,13 @@ You can install developmental versions from [GitHub](https://github.com/) with:
 
 ```{r eval = FALSE}
 # install.packages("remotes")
-remotes::install_github("JeffreyRStevens/volleyballr")
+remotes::install_github("JeffreyRStevens/ncaavolleyballr")
 ```
 
 ## Usage
 
 ```{r}
-library(volleyballr)
+library(ncaavolleyballr)
 ```
 
 
@@ -72,10 +72,10 @@ find_team_id("UCLA", 2023, sport = "MVB") |>
 
 ## Citation
 
-To cite `{volleyballr}`, use:
+To cite `{ncaavolleyballr}`, use:
 
-> Stevens, Jeffrey R. (2024). volleyballr: Extract data from NCAA women's volleyball website.
+> Stevens, Jeffrey R. (2024). ncaavolleyballr: Extract data from NCAA women's volleyball website.
 > (version 0.1.0)
-> <https://github.com/JeffreyRStevens/volleyballr>
+> <https://github.com/JeffreyRStevens/ncaavolleyballr>
 
 

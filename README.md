@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# volleyballr
+# ncaavolleyballr
 
 <!-- badges: start -->
 
@@ -9,8 +9,8 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
-The goal of `{volleyballr}` is to extract women’s and men’s volleyball
-information from the NCAA website.
+The goal of `{ncaavolleyballr}` is to extract women’s and men’s
+volleyball information from the NCAA website.
 
 ## Installation
 
@@ -19,13 +19,13 @@ You can install developmental versions from
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("JeffreyRStevens/volleyballr")
+remotes::install_github("JeffreyRStevens/ncaavolleyballr")
 ```
 
 ## Usage
 
 ``` r
-library(volleyballr)
+library(ncaavolleyballr)
 ```
 
 The NCAA uses a unique team ID for each women’s and men’s volleyball
@@ -86,7 +86,7 @@ find_team_id("Nebraska", 2024) |>
 ```
 
 | Year | Team | Conference | Number | Player | Yr | Pos | Ht | Hometown | High School | GP | GS | S | Kills | Errors | Total Attacks | Hit Pct | Assists | Aces | SErr | Digs | RetAtt | RErr | Block Solos | Block Assists | BErr | PTS | BHE | Trpl Dbl |
-|---:|:---|:---|---:|:---|:---|:---|:---|:---|:---|:---|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+|---:|:---|:---|---:|:---|:---|:---|:---|:---|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | 2024 | Nebraska | Big Ten | 2 | Bergen Reilly | So | S | 6-1 | Sioux Falls, SD | O’Gorman | 36 | 36 | 122 | 81 | 14 | 175 | 0.383 | 1352 | 21 | 37 | 348 | 4 | NA | 3 | 59 | 8 | 134.5 | NA | NA |
 | 2024 | Nebraska | Big Ten | 5 | Rebekah Allick | Jr | MB | 6-4 | Lincoln, NE | Waverly | 35 | 34 | 109 | 198 | 57 | 395 | 0.357 | 9 | NA | NA | 34 | 5 | 1 | 19 | 137 | 13 | 285.5 | NA | NA |
 | 2024 | Nebraska | Big Ten | 6 | Laney Choboy | So | L/DS | 5-3 | Raleigh, NC | Leesville Road | 36 | 0 | 121 | 0 | 0 | 3 | 0.000 | 36 | NA | 1 | 185 | 311 | 10 | NA | NA | NA | NA | NA | NA |
@@ -100,9 +100,9 @@ find_team_id("Nebraska", 2024) |>
 | 2024 | Nebraska | Big Ten | 15 | Andi Jackson | So | MB | 6-3 | Brighton, CO | Brighton | 34 | 34 | 114 | 299 | 73 | 515 | 0.439 | 2 | 1 | 5 | 26 | 2 | NA | 12 | 122 | 4 | 373.0 | NA | NA |
 | 2024 | Nebraska | Big Ten | 22 | Lindsay Krause | Sr | OH | 6-4 | Papillion, NE | Skutt Catholic | 24 | 12 | 50 | 120 | 43 | 336 | 0.229 | 2 | 15 | 12 | 33 | 54 | 3 | 3 | 23 | 3 | 149.5 | NA | NA |
 | 2024 | Nebraska | Big Ten | 27 | Harper Murray | So | OH | 6-2 | Ann Arbor, MI | Skyline | 36 | 36 | 121 | 411 | 130 | 1095 | 0.257 | 30 | 39 | 34 | 294 | 598 | 23 | 5 | 60 | 10 | 485.0 | NA | NA |
-| 2024 | Nebraska | Big Ten | NA | TEAM | \- | \- | \- | NA | NA | \- | \- | NA | NA | NA | NA | NA | NA | NA | NA | NA | NA | 7 | NA | NA | NA | NA | NA | NA |
-| 2024 | Nebraska | Big Ten | NA | Totals | \- | \- | \- | NA | NA | \- | \- | 122 | 1721 | 551 | 4114 | 0.284 | 1596 | 155 | 193 | 1856 | 1920 | 81 | 51 | 581 | 50 | 2217.5 | 1 | 36 |
-| 2024 | Nebraska | Big Ten | NA | Opponent Totals | \- | \- | \- | NA | NA | \- | \- | 122 | 1376 | 749 | 4377 | 0.143 | 1321 | 81 | 342 | 1539 | 2748 | 155 | 34 | 375 | 49 | 1678.5 | 1 | 36 |
+| 2024 | Nebraska | Big Ten | NA | TEAM | \- | \- | \- | NA | NA | NA | NA | NA | NA | NA | NA | NA | NA | NA | NA | NA | NA | 7 | NA | NA | NA | NA | NA | NA |
+| 2024 | Nebraska | Big Ten | NA | Totals | \- | \- | \- | NA | NA | NA | NA | 122 | 1721 | 551 | 4114 | 0.284 | 1596 | 155 | 193 | 1856 | 1920 | 81 | 51 | 581 | 50 | 2217.5 | 1 | 36 |
+| 2024 | Nebraska | Big Ten | NA | Opponent Totals | \- | \- | \- | NA | NA | NA | NA | 122 | 1376 | 749 | 4377 | 0.143 | 1321 | 81 | 342 | 1539 | 2748 | 155 | 34 | 375 | 49 | 1678.5 | 1 | 36 |
 
 By default, these functions return information on women’s teams, but
 they can be set to return men’s information.
@@ -114,7 +114,7 @@ find_team_id("UCLA", 2023, sport = "MVB") |>
 ```
 
 | Year | Team | Conference | Number | Player | Yr | Pos | Ht | GP | GS | S | MS | Kills | Errors | Total Attacks | Hit Pct | Assists | Aces | SErr | Digs | RErr | Block Solos | Block Assists | BErr | Tripl Dbl | PTS | BHE |
-|---:|:---|:---|---:|:---|:---|:---|:---|:---|:---|---:|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+|---:|:---|:---|---:|:---|:---|:---|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | 2023 | UCLA | MPSF | 1 | Hideharu Nakamura | Jr | L | 5-10 | 5 | 0 | 20 | NA | NA | NA | NA | NA | 1 | NA | NA | 21 | 2 | NA | NA | NA | NA | NA | NA |
 | 2023 | UCLA | MPSF | 3 | Luca Curci | Fr | OH | 6-3 | 17 | 0 | 46 | NA | 9 | 5 | 18 | 0.222 | 5 | 2 | 12 | 27 | 6 | NA | NA | NA | NA | 11.0 | NA |
 | 2023 | UCLA | MPSF | 7 | Andrew Rowan | So | S | 6-6 | 30 | 30 | 115 | NA | 52 | 13 | 100 | 0.390 | 1157 | 40 | 123 | 134 | 2 | 1 | 62 | 6 | NA | 124.0 | 1 |
@@ -133,14 +133,14 @@ find_team_id("UCLA", 2023, sport = "MVB") |>
 | 2023 | UCLA | MPSF | 21 | Zach Rama | So | OH | 6-8 | 25 | 5 | 64 | NA | 140 | 40 | 272 | 0.368 | 17 | 13 | 40 | 49 | 16 | 4 | 25 | 4 | NA | 169.5 | 2 |
 | 2023 | UCLA | MPSF | 22 | Matthew Edwards | Jr | MB | 6-9 | 3 | 1 | 4 | NA | 4 | NA | 4 | 1.000 | NA | NA | 1 | NA | NA | NA | NA | NA | NA | 4.0 | NA |
 | 2023 | UCLA | MPSF | 23 | Coleman McDonough | So | L | 5-11 | 15 | 0 | 43 | NA | NA | NA | NA | NA | 2 | NA | 4 | 22 | 4 | NA | NA | NA | NA | NA | NA |
-| 2023 | UCLA | MPSF | NA | TEAM | \- | \- | \- | \- | \- | NA | NA | NA | NA | NA | NA | NA | NA | NA | NA | 14 | NA | NA | NA | NA | NA | NA |
-| 2023 | UCLA | MPSF | NA | Totals | \- | \- | \- | \- | \- | 118 | NA | 1500 | 412 | 2926 | 0.372 | 1413 | 224 | 592 | 917 | 123 | 37 | 520 | 47 | 31 | 2021.0 | 7 |
-| 2023 | UCLA | MPSF | NA | Opponent Totals | \- | \- | \- | \- | \- | 118 | NA | 1224 | 546 | 2925 | 0.232 | 1136 | 122 | 489 | 809 | 224 | 39 | 289 | 41 | 30 | 1529.5 | 5 |
+| 2023 | UCLA | MPSF | NA | TEAM | \- | \- | \- | NA | NA | NA | NA | NA | NA | NA | NA | NA | NA | NA | NA | 14 | NA | NA | NA | NA | NA | NA |
+| 2023 | UCLA | MPSF | NA | Totals | \- | \- | \- | NA | NA | 118 | NA | 1500 | 412 | 2926 | 0.372 | 1413 | 224 | 592 | 917 | 123 | 37 | 520 | 47 | 31 | 2021.0 | 7 |
+| 2023 | UCLA | MPSF | NA | Opponent Totals | \- | \- | \- | NA | NA | 118 | NA | 1224 | 546 | 2925 | 0.232 | 1136 | 122 | 489 | 809 | 224 | 39 | 289 | 41 | 30 | 1529.5 | 5 |
 
 ## Citation
 
-To cite `{volleyballr}`, use:
+To cite `{ncaavolleyballr}`, use:
 
-> Stevens, Jeffrey R. (2024). volleyballr: Extract data from NCAA
+> Stevens, Jeffrey R. (2024). ncaavolleyballr: Extract data from NCAA
 > women’s volleyball website. (version 0.1.0)
-> <https://github.com/JeffreyRStevens/volleyballr>
+> <https://github.com/JeffreyRStevens/ncaavolleyballr>
