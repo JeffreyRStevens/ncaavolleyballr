@@ -18,7 +18,7 @@
 #' }
 team_player_stats <- function(team_id) {
   check_team_id(team_id)
-  teams <- dplyr::bind_rows(wvb_teams, mvb_teams)
+  teams <- dplyr::bind_rows(volleyballr::wvb_teams, volleyballr::mvb_teams)
   team <- teams[which(teams == team_id), ]$team_name
   conference <- teams[which(teams == team_id), ]$conference
   yr <- teams[which(teams == team_id), ]$yr
@@ -44,12 +44,14 @@ team_player_stats <- function(team_id) {
     dplyr::left_join(player_stats, roster,
                      by = dplyr::join_by("Number", "Player" == "Name")) |>
       dplyr::relocate("Hometown":"High School", .after = "Ht") |>
-      dplyr::mutate(dplyr::across("Kills":"PTS", ~ as.numeric(gsub(",", "", .x)))) |>
+      dplyr::mutate(dplyr::across("Player":"Ht", as.character),
+                    dplyr::across("GP":"PTS", ~ suppressWarnings(as.numeric(gsub(",", "", .x))))) |>
       dplyr::mutate(Year = yr, Team = team, Conference = conference, .before = 1) |>
       dplyr::arrange(.data$Number)
   } else {
     player_stats |>
-      dplyr::mutate(dplyr::across("Kills":"PTS", ~ as.numeric(gsub(",", "", .x)))) |>
+      dplyr::mutate(dplyr::across("Player":"Ht", as.character),
+                    dplyr::across("GP":"PTS", ~ suppressWarnings(as.numeric(gsub(",", "", .x))))) |>
       dplyr::mutate(Year = yr, Team = team, Conference = conference, .before = 1) |>
       dplyr::arrange(.data$Number)
   }
