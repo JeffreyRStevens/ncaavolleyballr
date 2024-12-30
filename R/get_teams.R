@@ -21,7 +21,7 @@ get_teams <- function(year,
   if (is.null(year)) {
     cli::cli_abort("Enter valid year as a number (YYYY)")
   }
-  if (is.null(division)) {
+  if (!division %in% 1:3) {
     cli::cli_abort("Enter valid division as a number: 1, 2, 3")
   }
   if (year < 2002) {
@@ -89,8 +89,8 @@ get_teams <- function(year,
 
     data <- data.frame(team_url = team_urls,
                        team_name = team_names,
-                       division = division,
-                       year = year,
+                       div = division,
+                       yr = year,
                        conference_id = x)
     data <- data |>
       dplyr::left_join(conference_df, by = c("conference_id"))
@@ -99,5 +99,5 @@ get_teams <- function(year,
   }) |>
     purrr::list_rbind() |>
     dplyr::mutate(team_id = stringr::str_extract(.data$team_url, "(\\d+)")) |>
-    dplyr::select("team_id", "team_name", "conference_id", "conference", "division", "year")
+    dplyr::select("team_id", "team_name", "conference_id", "conference", "div", "yr")
 }

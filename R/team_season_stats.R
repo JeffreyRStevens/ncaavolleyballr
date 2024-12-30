@@ -2,7 +2,7 @@
 
 #' Extract arena, coach, record, and schedule information for a season
 #'
-#' @inheritParams player_stats
+#' @inheritParams team_player_stats
 #'
 #' @returns
 #' List that includes arena, coach, record, and schedule information.
@@ -10,12 +10,18 @@
 #'
 #' @examples
 #' \dontrun{
-#' team_season("585290")
-#' team_season(find_team_id("Nebraska", 2024))
-#' team_season(find_team_id("UCLA", 2023, sport = "MVB"))
+#' team_season_stats("585290")
+#' team_season_stats(find_team_id("Nebraska", 2024))
+#' team_season_stats(find_team_id("UCLA", 2023, sport = "MVB"))
 #' }
-team_season <- function(team_id) {
+team_season_stats <- function(team_id) {
   check_team_id(team_id)
+  teams <- dplyr::bind_rows(wvb_teams, mvb_teams)
+  team <- teams[which(teams == team_id), ]$team_name
+  conference <- teams[which(teams == team_id), ]$conference
+  yr <- teams[which(teams == team_id), ]$yr
+  team_info <- c(Year = yr, Team = team, Conference = conference)
+
   url <- paste0("https://stats.ncaa.org/teams/", team_id)
 
   resp <- request_url(url)
@@ -57,6 +63,6 @@ team_season <- function(team_id) {
     rvest::html_table() |>
     dplyr::filter(.data$Date != "")
 
-  output <- list(arena = arena, coach = coach, record = record, schedule = schedule)
+  output <- list(team_info = team_info, arena = arena, coach = coach, record = record, schedule = schedule)
   return(output)
 }

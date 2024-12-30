@@ -12,12 +12,17 @@
 #'
 #' @examples
 #' \dontrun{
-#' player_stats("585290")
-#' player_stats(find_team_id("Nebraska", 2024))
-#' player_stats(find_team_id("UCLA", 2023, sport = "MVB"))
+#' team_player_stats("585290")
+#' team_player_stats(find_team_id("Nebraska", 2023))
+#' team_player_stats(find_team_id("UCLA", 2023, sport = "MVB"))
 #' }
-player_stats <- function(team_id) {
-  yr <- check_team_id(team_id)
+team_player_stats <- function(team_id) {
+  check_team_id(team_id)
+  teams <- dplyr::bind_rows(wvb_teams, mvb_teams)
+  team <- teams[which(teams == team_id), ]$team_name
+  conference <- teams[which(teams == team_id), ]$conference
+  yr <- teams[which(teams == team_id), ]$yr
+
   url <- paste0("https://stats.ncaa.org/teams/", team_id, "/season_to_date_stats")
 
   player_stats <- request_url(url) |>
@@ -40,10 +45,12 @@ player_stats <- function(team_id) {
                      by = dplyr::join_by("Number", "Player" == "Name")) |>
       dplyr::relocate("Hometown":"High School", .after = "Ht") |>
       dplyr::mutate(dplyr::across("Kills":"PTS", ~ as.numeric(gsub(",", "", .x)))) |>
+      dplyr::mutate(Year = yr, Team = team, Conference = conference, .before = 1) |>
       dplyr::arrange(.data$Number)
   } else {
     player_stats |>
       dplyr::mutate(dplyr::across("Kills":"PTS", ~ as.numeric(gsub(",", "", .x)))) |>
+      dplyr::mutate(Year = yr, Team = team, Conference = conference, .before = 1) |>
       dplyr::arrange(.data$Number)
   }
 }

@@ -21,5 +21,5 @@ find_team_id <- function (name, year, sport = "WVB") {
   if (!name %in% teams$team_name) cli::cli_abort("Team name was not found.")
   if (!is.numeric(year)) cli::cli_abort("`year` must be a numeric.")
   if (!year %in% 2020:2024) cli::cli_abort("`year` must be between 2020-2024.")
-  teams[teams$team_name == name & teams$year == year, ]$team_id
+  teams[teams$team_name == name & teams$yr == year, ]$team_id
 }

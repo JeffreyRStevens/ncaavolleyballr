@@ -46,7 +46,7 @@ With this team ID, you can now extract team information about the arena, coach, 
 
 ```{r}
 team_info <- find_team_id("Nebraska", 2024) |> 
-  team_season()
+  team_season_stats()
 team_info$arena
 team_info$coach
 team_info$record
@@ -57,7 +57,7 @@ There is also roster and overall season performance data on individual players.
 
 ```{r}
 find_team_id("Nebraska", 2024) |> 
-  player_stats() |> 
+  team_player_stats() |> 
   knitr::kable()
 ```
 
@@ -65,7 +65,7 @@ By default, these functions return information on women's teams, but they can be
 
 ```{r}
 find_team_id("UCLA", 2023, sport = "MVB") |> 
-  player_stats() |> 
+  team_player_stats() |> 
   knitr::kable()
 ```
 
