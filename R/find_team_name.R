@@ -1,0 +1,19 @@
+#' Match pattern to find team names
+#'
+#' This is a convenience function to find NCAA team names in
+#' \code{\link{ncaa_teams}}. Once the proper team name is found, it can be
+#' passed to \code{\link{find_team_id}()} or \code{\link{group_player_stats}()}.
+#'
+#' @param pattern Character string of pattern you want to find in the vector
+#' of team names.
+#'
+#' @returns
+#' Returns a character vector of team names that include the submitted pattern.
+#'
+#' @export
+#'
+#' @examples
+#' find_team_name("Neb")
+find_team_name <- function(pattern) {
+  ncaavolleyballr::ncaa_teams[grep(pattern, ncaavolleyballr::ncaa_teams)]
+}

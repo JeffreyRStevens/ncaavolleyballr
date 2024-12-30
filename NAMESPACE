@@ -3,6 +3,7 @@
 export(conference_player_stats)
 export(division_player_stats)
 export(find_team_id)
+export(find_team_name)
 export(get_teams)
 export(group_player_stats)
 export(team_player_stats)
