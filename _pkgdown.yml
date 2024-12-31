@@ -6,7 +6,6 @@ template:
   bslib:
     primary: "#249ab5"
     info: "#249ab5"
-    danger: "d00000"
 
 
 reference:
