@@ -33,3 +33,12 @@ check_team_id <- function(id) {
   if (!is.character(id)) cli::cli_abort("Team ID must be a character string.")
   if (!id %in% c(teams$team_id)) cli::cli_abort("Team ID was not found in the list of valid IDs.")
 }
+
+
+#' Assigns most recent season
+#'
+#' @keywords internal
+#'
+most_recent_season <- function() {
+  2024
+}
