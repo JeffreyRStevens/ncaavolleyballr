@@ -5,3 +5,4 @@
 ^README\.Rmd$
 ^old$
 ^codecov\.yml$
+^\.github$
