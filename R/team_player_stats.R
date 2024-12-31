@@ -22,7 +22,7 @@
 #' @examples
 #' \dontrun{
 #' team_player_stats("585290")
-#' team_player_stats(find_team_id("Nebraska", 2023), team_stats = FALSE)
+#' team_player_stats(find_team_id("Nebraska", 2024), team_stats = FALSE)
 #' team_player_stats(find_team_id("UCLA", 2023, sport = "MVB"))
 #' }
 team_player_stats <- function(team_id, team_stats = TRUE) {
@@ -60,13 +60,13 @@ team_player_stats <- function(team_id, team_stats = TRUE) {
                      by = dplyr::join_by("Number", "Player" == "Name")) |>
       dplyr::relocate("Hometown":"High School", .after = "Ht") |>
       dplyr::mutate(dplyr::across("Player":"Ht", as.character),
-                    dplyr::across("GP":"PTS", ~ suppressWarnings(as.numeric(gsub(",", "", .x))))) |>
+                    dplyr::across("GP":dplyr::last_col(), ~ suppressWarnings(as.numeric(gsub(",", "", .x))))) |>
       dplyr::mutate(Season = season, Team = team, Conference = conference, .before = 1) |>
       dplyr::arrange(.data$Number)
   } else {
     player_stats |>
       dplyr::mutate(dplyr::across("Player":"Ht", as.character),
-                    dplyr::across("GP":"PTS", ~ suppressWarnings(as.numeric(gsub(",", "", .x))))) |>
+                    dplyr::across("GP":dplyr::last_col(), ~ suppressWarnings(as.numeric(gsub(",", "", .x))))) |>
       dplyr::mutate(Season = season, Team = team, Conference = conference, .before = 1) |>
       dplyr::arrange(.data$Number)
   }
