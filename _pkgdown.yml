@@ -3,6 +3,11 @@ template:
   bootstrap: 5
   bootswatch: spacelab
   light-switch: true
+  bslib:
+    primary: "#249ab5"
+    info: "#249ab5"
+    danger: "d00000"
+
 
 reference:
 - title: Find team names and IDs

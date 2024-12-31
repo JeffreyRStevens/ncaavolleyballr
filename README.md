@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ncaavolleyballr
+# ncaavolleyballr <a href="https://jeffreyrstevens.github.io/ncaavolleyballr/"><img src="man/figures/logo.png" align="right" height="139" alt="ncaavolleyballr website" /></a>
 
 <!-- badges: start -->
 
@@ -190,3 +190,12 @@ To cite `{ncaavolleyballr}`, use:
 > Stevens, Jeffrey R. (2025). ncaavolleyballr: Extract data from NCAA
 > women's volleyball website. (version 0.1.0)
 > <https://github.com/JeffreyRStevens/ncaavolleyballr>
+
+## Acknowledgments
+
+Many thanks to [Bill Petti](https://github.com/BillPetti) for making the
+code for NCAA stats extraction freely available in the
+[`{baseballr}`](https://billpetti.github.io/baseballr/) package.
+
+The volleyball background in the logo was designed by
+[Freepik](https://www.freepik.com/free-vector/volleyball-grey-gradient_59539214.htm).
