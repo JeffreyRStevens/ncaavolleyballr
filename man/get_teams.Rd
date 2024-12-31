@@ -22,10 +22,14 @@ and season.
 NCAA datasets use a unique ID for each sport, team, and season.
 This function extracts team names, IDs, and conferences for each NCAA team in
 a division. However, you should not need to use this function for volleyball
-data from 2020-2024, as it has been used to generate \code{\link{wvb_teams}}
-and \code{\link{mvb_teams}}. However, it is available to use for other
+data from 2020-2024, as it has been used to generate \link{wvb_teams}
+and \link{mvb_teams}. However, it is available to use for other
 sports, using the appropriate three letter sport code drawn from
-\code{\link{ncaa_sports}} (e.g., men's baseball is "MBA").
+\link{ncaa_sports} (e.g., men's baseball is "MBA").
+}
+\note{
+This function is a modification of the \code{ncaa_teams()} function from the
+\href{https://billpetti.github.io/baseballr/}{\code{{baseballr}}} package.
 }
 \examples{
 \dontrun{

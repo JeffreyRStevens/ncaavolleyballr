@@ -7,12 +7,12 @@
 \format{
 A data frame with 100 rows and 2 columns:
 \describe{
-  \item{code}{Sport code}
-  \item{sport}{Sport name}
+\item{code}{Sport code}
+\item{sport}{Sport name}
 }
 }
 \source{
-<https://ncaaorg.s3.amazonaws.com/championships/resources/common/NCAA_SportCodes.pdf>
+\url{https://ncaaorg.s3.amazonaws.com/championships/resources/common/NCAA_SportCodes.pdf}
 }
 \usage{
 ncaa_sports

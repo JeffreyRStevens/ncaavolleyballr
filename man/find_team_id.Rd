@@ -20,11 +20,16 @@ Returns a character string of team ID.
 \description{
 NCAA datasets use a unique ID for each team and season. To access a team's
 data, we must know the volleyball team ID. This function looks up the team ID
-from \code{\link{wvb_teams}} or \code{\link{mvb_teams}} using the team name.
-Team names can be found in \code{\link{ncaa_teams}} or searched with
-\code{\link{find_team_name}()}.
+from \link{wvb_teams} or \link{mvb_teams} using the team name.
+Team names can be found in \link{ncaa_teams} or searched with
+\code{\link[=find_team_name]{find_team_name()}}.
 }
 \examples{
 find_team_id("Nebraska", 2024)
 find_team_id("UCLA", 2023, sport = "MVB")
 }
+\seealso{
+Other search functions: 
+\code{\link{find_team_name}()}
+}
+\concept{search functions}

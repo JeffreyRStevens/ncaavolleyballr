@@ -8,7 +8,7 @@ team_player_stats(team_id, team_stats = TRUE)
 }
 \arguments{
 \item{team_id}{Team ID determined by NCAA for season. To find ID, use
-\code{\link{find_team_id}()}.}
+\code{\link[=find_team_id]{find_team_id()}}.}
 
 \item{team_stats}{Logical indicating whether to include (TRUE) or exclude
 (FALSE) team statistics. Default includes team statistics with player

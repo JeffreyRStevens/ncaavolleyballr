@@ -6,7 +6,7 @@
 \alias{ncaavolleyballr-package}
 \title{ncaavolleyballr: Extract Data from NCAA Women's and Men's Volleyball Website}
 \description{
-Downloads NCAA Division 1, 2, and 3 women's and men's volleyball team information from 2020-2024, including records, schedules, and player statistics.
+Extracts team records/schedules and player statistics for the 2020-2024 NCAA women's and men's divisions I, II, and III volleyball teams. Functions can aggregate statistics for teams, conferences, divisions, or custom groups of teams.
 }
 \seealso{
 Useful links:

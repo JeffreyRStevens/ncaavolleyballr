@@ -9,7 +9,7 @@ team_season_stats(team_id)
 }
 \arguments{
 \item{team_id}{Team ID determined by NCAA for season. To find ID, use
-\code{\link{find_team_id}()}.}
+\code{\link[=find_team_id]{find_team_id()}}.}
 }
 \value{
 Returns a list that includes arena, coach, schedule, and record information.

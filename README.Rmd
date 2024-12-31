@@ -1,5 +1,7 @@
 ---
-output: github_document
+output: 
+  github_document:
+    df_print: kable
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -15,11 +17,17 @@ knitr::opts_chunk$set(
 
 # ncaavolleyballr
 
+```{r echo=FALSE}
+library(ncaavolleyballr)
+```
+
 <!-- badges: start -->
+[![Project Status: WIP - Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![Codecov test coverage](https://codecov.io/gh/JeffreyRStevens/ncaavolleyballr/graph/badge.svg)](https://app.codecov.io/gh/JeffreyRStevens/ncaavolleyballr)
 <!-- badges: end -->
 
-The goal of `{ncaavolleyballr}` is to extract women's and men's volleyball information from the NCAA website.
+Inspired by the NCAA data extraction functions from the [`{baseballr}`](https://billpetti.github.io/baseballr/) package, the goal of `{ncaavolleyballr}` is to extract women\'s and men\'s volleyball information from the NCAA website. The functions in this package can extract team records/schedules and player statistics for the 2020-`r ncaavolleyballr:::most_recent_season()` NCAA women\'s and men\'s divisions I, II, and III volleyball teams. Functions can aggregate statistics for teams, conferences, divisions, or custom groups of teams.
 
 ## Installation
 
@@ -32,17 +40,17 @@ remotes::install_github("JeffreyRStevens/ncaavolleyballr")
 
 ## Usage
 
-```{r}
+```{r eval=FALSE}
 library(ncaavolleyballr)
 ```
 
 
-The NCAA uses a unique team ID for each women's and men's volleyball team and each season. So first you will need to get that ID with the `find_team_id()`. For instance, to find the ID for University of Nebraska's 2024 season:
+The NCAA uses a unique team ID for each women\'s and men\'s volleyball team and each season. So first you will need to get that ID with the `find_team_id()`. For instance, to find the ID for University of Nebraska\'s 2024 season:
 ```{r}
 find_team_id("Nebraska", 2024)
 ```
 
-With this team ID, you can now extract team information about the arena, coach, record, and schedule.
+With this team ID, you can now extract team information about the arena, coach, record, and schedule with `team_season_stats()`.
 
 ```{r}
 team_info <- find_team_id("Nebraska", 2024) |> 
@@ -53,20 +61,18 @@ team_info$record
 team_info$schedule
 ```
 
-There is also roster and overall season performance data on individual players. 
+There is also roster and overall season performance data on individual players with the `team_player_stats()`. 
 
 ```{r}
 find_team_id("Nebraska", 2024) |> 
-  team_player_stats() |> 
-  knitr::kable()
+  team_player_stats()
 ```
 
-By default, these functions return information on women's teams, but they can be set to return men's information.
+By default, these functions return information on women\'s teams, but they can be set to return men\'s information.
 
 ```{r}
 find_team_id("UCLA", 2023, sport = "MVB") |> 
-  team_player_stats() |> 
-  knitr::kable()
+  team_player_stats()
 ```
 
 
@@ -74,7 +80,7 @@ find_team_id("UCLA", 2023, sport = "MVB") |>
 
 To cite `{ncaavolleyballr}`, use:
 
-> Stevens, Jeffrey R. (2024). ncaavolleyballr: Extract data from NCAA women's volleyball website.
+> Stevens, Jeffrey R. (2025). ncaavolleyballr: Extract data from NCAA women\'s volleyball website.
 > (version 0.1.0)
 > <https://github.com/JeffreyRStevens/ncaavolleyballr>
 

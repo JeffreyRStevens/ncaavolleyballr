@@ -8,7 +8,7 @@
 A character vector with 111 conference names.
 }
 \source{
-<https://stats.ncaa.org>
+\url{https://stats.ncaa.org}
 }
 \usage{
 ncaa_conferences

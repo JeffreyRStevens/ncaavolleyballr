@@ -3,15 +3,19 @@
 #' NCAA datasets use a unique ID for each sport, team, and season.
 #' This function extracts team names, IDs, and conferences for each NCAA team in
 #' a division. However, you should not need to use this function for volleyball
-#' data from 2020-2024, as it has been used to generate \code{\link{wvb_teams}}
-#' and \code{\link{mvb_teams}}. However, it is available to use for other
+#' data from 2020-2024, as it has been used to generate [wvb_teams]
+#' and [mvb_teams]. However, it is available to use for other
 #' sports, using the appropriate three letter sport code drawn from
-#' \code{\link{ncaa_sports}} (e.g., men's baseball is "MBA").
+#' [ncaa_sports] (e.g., men's baseball is "MBA").
 #'
 #' @param year Year for fall of desired season.
 #' @param division NCAA division (must be 1, 2, or 3).
 #' @param sport Three letter abbreviation for NCAA sport (must be upper case;
 #' for example "WVB" for women's volleyball and "MVB" for men's volleyball).
+#'
+#' @note
+#' This function is a modification of the `ncaa_teams()` function from the
+#' [`{baseballr}`](https://billpetti.github.io/baseballr/) package.
 #'
 #' @returns
 #' Returns a data frame of all teams, their team ID, division, conference,

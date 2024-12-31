@@ -7,16 +7,16 @@
 \format{
 A data frame with 873 rows and 6 columns:
 \describe{
-  \item{team_id}{Team ID for season/year}
-  \item{team_name}{Team name}
-  \item{conference_id}{Conference ID}
-  \item{conference}{Conference name}
-  \item{div}{NCAA division number (1 or 3)}
-  \item{yr}{Year for fall of season}
+\item{team_id}{Team ID for season/year}
+\item{team_name}{Team name}
+\item{conference_id}{Conference ID}
+\item{conference}{Conference name}
+\item{div}{NCAA division number (1 or 3)}
+\item{yr}{Year for fall of season}
 }
 }
 \source{
-<https://stats.ncaa.org>
+\url{https://stats.ncaa.org}
 }
 \usage{
 mvb_teams

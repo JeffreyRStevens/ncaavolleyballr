@@ -1,10 +1,10 @@
 #' Aggregate player statistics from a particular conference and season
 #'
-#' This is a wrapper around \code{\link{group_player_stats}()} that extracts
+#' This is a wrapper around [group_player_stats()] that extracts
 #' all season data from players in all teams from the chosen conference.
 #' It aggregates all player data and team data into separate data frames and
 #' combines them into a list. Conferences names can be found in
-#' \code{\link{ncaa_conferences}}.
+#' [ncaa_conferences].
 #'
 #' @param conf NCAA conference name.
 #' @inheritParams division_player_stats

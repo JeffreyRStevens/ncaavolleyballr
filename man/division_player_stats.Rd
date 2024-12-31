@@ -29,7 +29,7 @@ for example "WVB" for women's volleyball and "MVB" for men's volleyball).}
 Returns list with player statistics and team statistics data frames.
 }
 \description{
-This is a wrapper around \code{\link{group_player_stats}()} that extracts
+This is a wrapper around \code{\link[=group_player_stats]{group_player_stats()}} that extracts
 all season data from players in all teams from the chosen division.
 It aggregates all player data and team data into separate data frames and
 combines them into a list.

@@ -1,8 +1,8 @@
 #' Match pattern to find team names
 #'
 #' This is a convenience function to find NCAA team names in
-#' \code{\link{ncaa_teams}}. Once the proper team name is found, it can be
-#' passed to \code{\link{find_team_id}()} or \code{\link{group_player_stats}()}.
+#' [ncaa_teams]. Once the proper team name is found, it can be
+#' passed to [find_team_id()] or [group_player_stats()].
 #'
 #' @param pattern Character string of pattern you want to find in the vector
 #' of team names.
@@ -11,6 +11,8 @@
 #' Returns a character vector of team names that include the submitted pattern.
 #'
 #' @export
+#'
+#' @family search functions
 #'
 #' @examples
 #' find_team_name("Neb")

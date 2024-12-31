@@ -7,14 +7,16 @@ Authors@R:
     role = c("aut", "cre", "cph"),
     comment = c(ORCID = "0000-0003-2375-1360"))
 Maintainer: Jeffrey R. Stevens <jeffrey.r.stevens@protonmail.com>
-Description: Downloads NCAA Division 1, 2, and 3 women's and men's volleyball 
-    team information from 2020-2024, including records, schedules, and 
-    player statistics.
+Description: Extracts team records/schedules and player statistics for the 
+    2020-2024 NCAA women's and men's divisions I, II, and III volleyball teams. 
+    Functions can aggregate statistics for teams, conferences, divisions, or 
+    custom groups of teams.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends: 
     R (>= 4.1)
+Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Imports: 
     cli,

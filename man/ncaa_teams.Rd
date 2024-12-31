@@ -8,7 +8,7 @@
 A character vector with 1,089 team names.
 }
 \source{
-<https://stats.ncaa.org>
+\url{https://stats.ncaa.org}
 }
 \usage{
 ncaa_teams

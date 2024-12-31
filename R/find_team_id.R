@@ -2,9 +2,9 @@
 #'
 #' NCAA datasets use a unique ID for each team and season. To access a team's
 #' data, we must know the volleyball team ID. This function looks up the team ID
-#' from \code{\link{wvb_teams}} or \code{\link{mvb_teams}} using the team name.
-#' Team names can be found in \code{\link{ncaa_teams}} or searched with
-#' \code{\link{find_team_name}()}.
+#' from [wvb_teams] or [mvb_teams] using the team name.
+#' Team names can be found in [ncaa_teams] or searched with
+#' [find_team_name()].
 #'
 #' @param name Name of school. Must match name used by NCAA.
 #' @inheritParams get_teams
@@ -13,6 +13,8 @@
 #' Returns a character string of team ID.
 #'
 #' @export
+#'
+#' @family search functions
 #'
 #' @examples
 #' find_team_id("Nebraska", 2024)
