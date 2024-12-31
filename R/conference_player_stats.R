@@ -21,20 +21,22 @@
 #' conference_player_stats(2023, conf = "Big West", sport = "MVB")
 #' conference_player_stats(2024, conf = "Big Ten", save = TRUE, path = "data/")
 #' }
-conference_player_stats <- function(year,
+conference_player_stats <- function(year = NULL,
                                     conf = NULL,
                                     sport = "WVB",
                                     save = FALSE,
                                     path = "") {
-  if (!is.numeric(year)) cli::cli_abort("`year` must be a numeric.")
-  if (!year %in% 2020:2024) cli::cli_abort("`year` must be between 2020-2024.")
+  max_year <- most_recent_season()
+  if (is.null(year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
+  if (!is.numeric(year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
+  if (!year %in% 2020:max_year) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
   if (sport == "WVB") team_df <- ncaavolleyballr::wvb_teams
   else if (sport == "MVB") team_df <- ncaavolleyballr::mvb_teams
-  else cli::cli_abort("Invalid sport entered. Must be 'WVB' or 'MVB'.")
-  if (is.null(conf)) cli::cli_abort("Conference name is missing.")
-  if (!conf %in% team_df$conference) cli::cli_abort("Enter valid conference.")
+  else cli::cli_abort("Enter valid sport (\"WVB\" or \"MVB\").")
+  if (is.null(conf)) cli::cli_abort("Enter valid conference.  Check `ncaa_conferences` for conference names.")
+  if (!conf %in% team_df$conference) cli::cli_abort("Enter valid conference.  Check `ncaa_conferences` for conference names.")
   if(!is.logical(save)) cli::cli_abort("`save` must be a logical (TRUE or FALSE).")
-  if(!is.character(path)) cli::cli_abort("`path` must be a character string.")
+  if(!is.character(path)) cli::cli_abort("Enter valid path as a character string.")
 
   conf_teams <- team_df |>
     dplyr::filter(.data$conference == conf & .data$yr == year)

@@ -5,8 +5,8 @@
 #' a division. However, you should not need to use this function for volleyball
 #' data from 2020-2024, as it has been used to generate \code{\link{wvb_teams}}
 #' and \code{\link{mvb_teams}}. However, it is available to use for other
-#' sports, using the appropriate three letter abbreviation (e.g., men's baseball is
-#' "MBA").
+#' sports, using the appropriate three letter sport code drawn from
+#' \code{\link{ncaa_sports}} (e.g., men's baseball is "MBA").
 #'
 #' @param year Year for fall of desired season.
 #' @param division NCAA division (must be 1, 2, or 3).
@@ -24,18 +24,16 @@
 #' get_teams(2024)
 #' get_teams(2023, division = 3, sport = "MVB")
 #' }
-get_teams <- function(year,
+get_teams <- function(year = NULL,
                       division = 1,
                       sport = "WVB") {
-  if (is.null(year)) {
-    cli::cli_abort("Enter valid year as a number (YYYY)")
-  }
-  if (!division %in% 1:3) {
-    cli::cli_abort("Enter valid division as a number: 1, 2, 3")
-  }
-  if (year < 2002) {
-    stop('you must provide a year that is equal to or greater than 2002')
-  }
+  max_year <- most_recent_season()
+  if (is.null(year)) cli::cli_abort(paste0("Enter valid year between 2002-", max_year, "."))
+  if (!is.numeric(year)) cli::cli_abort(paste0("Enter valid year between 2002-", max_year, "."))
+  if (year < 2002) stop(paste0("Enter valid year between 2002-", max_year, "."))
+  if (!division %in% 1:3) cli::cli_abort("Enter valid division as a number: 1, 2, 3.")
+  if (!is.character(sport)) cli::cli_abort("Enter valid sport as a three-letter character string.")
+  if (!sport %in% ncaavolleyballr::ncaa_sports$code) cli::cli_abort("Enter valid sport code from `ncaa_sports`.")
 
   url_year <- year + 1
 

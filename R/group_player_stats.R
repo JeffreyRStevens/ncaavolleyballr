@@ -21,12 +21,22 @@
 #'
 #' @examples
 #' \dontrun{
-#' group_player_stats(c("Louisville", "Nebraska", "Penn State", "Pittsburgh"), 2024)
+#' group_player_stats(c("Louisville", "Nebraska", "Penn St.", "Pittsburgh"), 2024)
 #' group_player_stats(c("UCLA", "Long Beach St."), 2023, sport = "MVB")
 #' }
-group_player_stats <- function(teams,
-                               year,
+group_player_stats <- function(teams = NULL,
+                               year = NULL,
                                sport = "WVB") {
+  max_year <- most_recent_season()
+  if (sport == "WVB") team_df <- ncaavolleyballr::wvb_teams
+  else if (sport == "MVB") team_df <- ncaavolleyballr::mvb_teams
+  else cli::cli_abort("Enter valid sport (\"WVB\" or \"MVB\").")
+  if (is.null(teams)) cli::cli_abort("Teams is missing.")
+  if (!all(teams %in% team_df$team_name)) cli::cli_abort("Team name was not found.")
+  if (is.null(year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
+  if (!is.numeric(year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
+  if (!year %in% 2020:max_year) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
+
   data <- purrr::map(teams,
                      ~ team_player_stats(find_team_id(.x, year, sport))) |>
     purrr::set_names(teams) |>

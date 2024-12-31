@@ -1,8 +1,18 @@
-test_that("find_team_id works correctly", {
-  expect_equal(find_team_id("Nebraska", 2024), "585290")
-  expect_equal(find_team_id("UCLA", 2023, "MVB"), "573670")
-  expect_error(find_team_id("UNL", 2024), "Team name was not found.")
-  expect_error(find_team_id("Nebraska", 1980), "`year` must be between")
-  expect_error(find_team_id("Nebraska", "2024"), "`year` must be a numeric.")
-  expect_error(find_team_id("Nebraska", 2024, sport = "VB"), "Invalid sport entered.")
+test_that("find_team_id() works correctly", {
+  expect_equal(find_team_id(name = "Nebraska", year = 2024),
+               "585290")
+  expect_equal(find_team_id(name = "UCLA", year = 2023, "MVB"),
+               "573670")
+  expect_error(find_team_id(),
+               "Enter valid team name.")
+  expect_error(find_team_id(name = "UNL", year = 2024),
+               "Enter valid team name.")
+  expect_error(find_team_id(name = "Nebraska"),
+               "Enter valid year between 2020-")
+  expect_error(find_team_id(name = "Nebraska", year = 1980),
+               "Enter valid year between 2020-")
+  expect_error(find_team_id(name = "Nebraska", year = "2024"),
+               "Enter valid year between 2020-")
+  expect_error(find_team_id(name = "Nebraska", year = 2024, sport = "VB"),
+               "Enter valid sport")
 })

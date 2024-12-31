@@ -5,7 +5,7 @@
 \title{Aggregate player statistics from a particular conference and season}
 \usage{
 conference_player_stats(
-  year,
+  year = NULL,
   conf = NULL,
   sport = "WVB",
   save = FALSE,

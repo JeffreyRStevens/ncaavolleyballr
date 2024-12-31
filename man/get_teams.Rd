@@ -4,7 +4,7 @@
 \alias{get_teams}
 \title{Extract data frame of team names, IDs, conference, division, and season}
 \usage{
-get_teams(year, division = 1, sport = "WVB")
+get_teams(year = NULL, division = 1, sport = "WVB")
 }
 \arguments{
 \item{year}{Year for fall of desired season.}
@@ -24,8 +24,8 @@ This function extracts team names, IDs, and conferences for each NCAA team in
 a division. However, you should not need to use this function for volleyball
 data from 2020-2024, as it has been used to generate \code{\link{wvb_teams}}
 and \code{\link{mvb_teams}}. However, it is available to use for other
-sports, using the appropriate three letter abbreviation (e.g., men's baseball is
-"MBA").
+sports, using the appropriate three letter sport code drawn from
+\code{\link{ncaa_sports}} (e.g., men's baseball is "MBA").
 }
 \examples{
 \dontrun{

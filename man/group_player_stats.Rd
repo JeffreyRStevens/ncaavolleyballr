@@ -4,7 +4,7 @@
 \alias{group_player_stats}
 \title{Aggregate player statistics from a set of teams for a particular season}
 \usage{
-group_player_stats(teams, year, sport = "WVB")
+group_player_stats(teams = NULL, year = NULL, sport = "WVB")
 }
 \arguments{
 \item{teams}{Character vector of team names to aggregate.}
@@ -29,7 +29,7 @@ using \code{\link{find_team_name}()}.
 }
 \examples{
 \dontrun{
-group_player_stats(c("Louisville", "Nebraska", "Penn State", "Pittsburgh"), 2024)
+group_player_stats(c("Louisville", "Nebraska", "Penn St.", "Pittsburgh"), 2024)
 group_player_stats(c("UCLA", "Long Beach St."), 2023, sport = "MVB")
 }
 }

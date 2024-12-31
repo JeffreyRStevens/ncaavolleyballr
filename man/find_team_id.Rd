@@ -4,7 +4,7 @@
 \alias{find_team_id}
 \title{Find team ID for season}
 \usage{
-find_team_id(name, year, sport = "WVB")
+find_team_id(name = NULL, year = NULL, sport = "WVB")
 }
 \arguments{
 \item{name}{Name of school. Must match name used by NCAA.}
@@ -19,8 +19,8 @@ Returns a character string of team ID.
 }
 \description{
 NCAA datasets use a unique ID for each team and season. To access a team's
-data, we must know the team ID. This function looks up the team ID from
-\code{\link{wvb_teams}} or \code{\link{mvb_teams}} using the team name.
+data, we must know the volleyball team ID. This function looks up the team ID
+from \code{\link{wvb_teams}} or \code{\link{mvb_teams}} using the team name.
 Team names can be found in \code{\link{ncaa_teams}} or searched with
 \code{\link{find_team_name}()}.
 }

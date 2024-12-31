@@ -27,6 +27,8 @@
 #' }
 team_player_stats <- function(team_id, team_stats = TRUE) {
   check_team_id(team_id)
+  if(!is.logical(team_stats)) cli::cli_abort("`team_stats` must be a logical (TRUE or FALSE).")
+
   teams <- dplyr::bind_rows(ncaavolleyballr::wvb_teams, ncaavolleyballr::mvb_teams)
   team <- teams[which(teams == team_id), ]$team_name
   conference <- teams[which(teams == team_id), ]$conference

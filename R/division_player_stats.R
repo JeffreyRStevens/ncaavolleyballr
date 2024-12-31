@@ -22,19 +22,21 @@
 #' division_player_stats(2023, division = 3, sport = "MVB")
 #' division_player_stats(2024, save = TRUE, path = "data/")
 #' }
-division_player_stats <- function(year,
+division_player_stats <- function(year = NULL,
                                   division = 1,
                                   sport = "WVB",
                                   save = FALSE,
                                   path = "") {
-  if (!is.numeric(year)) cli::cli_abort("`year` must be a numeric.")
-  if (!year %in% 2020:2024) cli::cli_abort("`year` must be between 2020-2024.")
-  if (!division %in% 1:3) cli::cli_abort("Enter valid division as a number: 1, 2, 3")
+  max_year <- most_recent_season()
   if (sport == "WVB") team_df <- ncaavolleyballr::wvb_teams
   else if (sport == "MVB") team_df <- ncaavolleyballr::mvb_teams
-  else cli::cli_abort("Invalid sport entered. Must be 'WVB' or 'MVB'.")
+  else cli::cli_abort("Enter valid sport (\"WVB\" or \"MVB\").")
+  if (!division %in% 1:3) cli::cli_abort("Enter valid division as a number: 1, 2, 3.")
+  if (is.null(year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
+  if (!is.numeric(year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
+  if (!year %in% 2020:max_year) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
   if(!is.logical(save)) cli::cli_abort("`save` must be a logical (TRUE or FALSE).")
-  if(!is.character(path)) cli::cli_abort("`path` must be a character string.")
+  if(!is.character(path)) cli::cli_abort("Enter valid path as a character string.")
 
   div_teams <- team_df |>
     dplyr::filter(.data$div == division & .data$yr == year)

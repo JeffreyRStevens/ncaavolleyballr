@@ -4,7 +4,7 @@
 \alias{find_team_name}
 \title{Match pattern to find team names}
 \usage{
-find_team_name(pattern)
+find_team_name(pattern = NULL)
 }
 \arguments{
 \item{pattern}{Character string of pattern you want to find in the vector

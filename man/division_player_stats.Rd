@@ -5,7 +5,7 @@
 \title{Aggregate player statistics from a particular division and season}
 \usage{
 division_player_stats(
-  year,
+  year = NULL,
   division = 1,
   sport = "WVB",
   save = FALSE,
