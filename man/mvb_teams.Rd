@@ -31,6 +31,7 @@ head(mvb_teams)
 \seealso{
 Other data sets: 
 \code{\link{ncaa_conferences}},
+\code{\link{ncaa_sports}},
 \code{\link{ncaa_teams}},
 \code{\link{wvb_teams}}
 }

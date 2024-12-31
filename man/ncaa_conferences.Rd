@@ -22,6 +22,7 @@ head(ncaa_conferences)
 \seealso{
 Other data sets: 
 \code{\link{mvb_teams}},
+\code{\link{ncaa_sports}},
 \code{\link{ncaa_teams}},
 \code{\link{wvb_teams}}
 }

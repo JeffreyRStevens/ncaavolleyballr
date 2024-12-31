@@ -32,6 +32,7 @@ head(wvb_teams)
 Other data sets: 
 \code{\link{mvb_teams}},
 \code{\link{ncaa_conferences}},
+\code{\link{ncaa_sports}},
 \code{\link{ncaa_teams}}
 }
 \concept{data sets}
