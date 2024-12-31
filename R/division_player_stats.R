@@ -42,7 +42,7 @@ division_player_stats <- function(year = NULL,
     dplyr::filter(.data$div == division & .data$yr == year)
   teams <- div_teams$team_name
 
-  output <- group_player_stats(teams, year, sport)
+  output <- group_player_stats(teams = teams, year = year, sport = sport)
 
   if (!grepl("/$", path)) path <- paste0(path, "/")
 

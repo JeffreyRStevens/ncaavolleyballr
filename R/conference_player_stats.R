@@ -42,7 +42,7 @@ conference_player_stats <- function(year = NULL,
     dplyr::filter(.data$conference == conf & .data$yr == year)
   teams <- conf_teams$team_name
 
-  output <- group_player_stats(teams, year, sport)
+  output <- group_player_stats(teams = teams, year = year, sport = sport)
 
   if (!grepl("/$", path)) path <- paste0(path, "/")
 
