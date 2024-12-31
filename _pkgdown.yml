@@ -1,0 +1,28 @@
+url: https://jeffreyrstevens.github.io/ncaavolleyballr/
+template:
+  bootstrap: 5
+  bootswatch: spacelab
+  light-switch: true
+
+reference:
+- title: Find team names and IDs
+  contents:
+  - find_team_name
+  - find_team_id
+  - get_teams
+- title: Extract team statistics
+  contents:
+  - team_season_stats
+  - team_player_stats
+- title: Aggregate team statistics
+  contents:
+  - group_player_stats
+  - division_player_stats
+  - conference_player_stats
+- title: Data
+  contents:
+  - ncaa_teams
+  - ncaa_conferences
+  - ncaa_sports
+  - wvb_teams
+  - mvb_teams
