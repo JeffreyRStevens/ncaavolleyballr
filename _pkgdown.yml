@@ -13,11 +13,13 @@ reference:
   contents:
   - find_team_name
   - find_team_id
+  - find_team_contests
   - get_teams
-- title: Extract team statistics
+- title: Extract team and player statistics
   contents:
   - team_season_stats
-  - team_player_stats
+  - player_season_stats
+  - player_match_stats
 - title: Aggregate team statistics
   contents:
   - group_player_stats
