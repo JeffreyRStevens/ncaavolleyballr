@@ -19,7 +19,7 @@ This is a convenience function to find NCAA team names in
 passed to \code{\link[=find_team_id]{find_team_id()}} or \code{\link[=group_player_stats]{group_player_stats()}}.
 }
 \examples{
-find_team_name("Neb")
+find_team_name(pattern = "Neb")
 }
 \seealso{
 Other search functions: 

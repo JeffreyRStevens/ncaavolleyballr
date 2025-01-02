@@ -25,9 +25,9 @@ well as team and opponent statistics (though these can be omitted).
 }
 \examples{
 \dontrun{
-team_player_stats("585290")
-team_player_stats(find_team_id("Nebraska", 2024), team_stats = FALSE)
-team_player_stats(find_team_id("UCLA", 2023, sport = "MVB"))
+team_player_stats(team_id = "585290")
+team_player_stats(team_id = find_team_id("Nebraska", 2024), team_stats = FALSE)
+team_player_stats(team_id = find_team_id("UCLA", 2023, sport = "MVB"))
 }
 }
 \seealso{

@@ -17,9 +17,9 @@
 #'
 #' @examples
 #' \dontrun{
-#' conference_player_stats(2024, conf = "Big Ten")
-#' conference_player_stats(2023, conf = "Big West", sport = "MVB")
-#' conference_player_stats(2024, conf = "Big Ten", save = TRUE, path = "data/")
+#' conference_player_stats(year = 2024, conf = "Big Ten")
+#' conference_player_stats(year = 2023, conf = "Big West", sport = "MVB")
+#' conference_player_stats(year = 2024, conf = "Big Ten", save = TRUE, path = "data/")
 #' }
 conference_player_stats <- function(year = NULL,
                                     conf = NULL,

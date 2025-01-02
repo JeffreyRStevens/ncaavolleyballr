@@ -29,8 +29,9 @@ using \code{\link[=find_team_name]{find_team_name()}}.
 }
 \examples{
 \dontrun{
-group_player_stats(c("Louisville", "Nebraska", "Penn St.", "Pittsburgh"), 2024)
-group_player_stats(c("UCLA", "Long Beach St."), 2023, sport = "MVB")
+group_player_stats(teams = c("Louisville", "Nebraska", "Penn St.", "Pittsburgh"),
+year = 2024)
+group_player_stats(teams = c("UCLA", "Long Beach St."), year = 2023, sport = "MVB")
 }
 }
 \seealso{

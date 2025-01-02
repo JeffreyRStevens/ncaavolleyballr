@@ -5,7 +5,7 @@
 \title{Extract arena, coach, record, and schedule information for a particular team
 and season}
 \usage{
-team_season_stats(team_id)
+team_season_stats(team_id = NULL)
 }
 \arguments{
 \item{team_id}{Team ID determined by NCAA for season. To find ID, use
@@ -23,9 +23,9 @@ information from an object called \code{output}, use \code{output$coach}).
 }
 \examples{
 \dontrun{
-team_season_stats("585290")
-team_season_stats(find_team_id("Nebraska", 2024))
-team_season_stats(find_team_id("UCLA", 2023, sport = "MVB"))
+team_season_stats(team_id = "585290")
+team_season_stats(team_id = find_team_id("Nebraska", 2024))
+team_season_stats(team_id = find_team_id("UCLA", 2023, sport = "MVB"))
 }
 }
 \seealso{

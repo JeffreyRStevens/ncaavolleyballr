@@ -4,10 +4,10 @@
 \alias{check_team_id}
 \title{Checks if team ID is valid}
 \usage{
-check_team_id(id)
+check_team_id(team_id = NULL)
 }
 \arguments{
-\item{id}{Team ID}
+\item{team_id}{Team ID}
 }
 \description{
 Checks if team ID is valid

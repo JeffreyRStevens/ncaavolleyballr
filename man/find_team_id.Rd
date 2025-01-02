@@ -4,10 +4,11 @@
 \alias{find_team_id}
 \title{Find team ID for season}
 \usage{
-find_team_id(name = NULL, year = NULL, sport = "WVB")
+find_team_id(team = NULL, year = NULL, sport = "WVB")
 }
 \arguments{
-\item{name}{Name of school. Must match name used by NCAA.}
+\item{team}{Name of school. Must match name used by NCAA. Find exact team
+name with \code{\link[=find_team_name]{find_team_name()}}.}
 
 \item{year}{Year for fall of desired season.}
 
@@ -25,8 +26,8 @@ Team names can be found in \link{ncaa_teams} or searched with
 \code{\link[=find_team_name]{find_team_name()}}.
 }
 \examples{
-find_team_id("Nebraska", 2024)
-find_team_id("UCLA", 2023, sport = "MVB")
+find_team_id(team = "Nebraska", year = 2024)
+find_team_id(team = "UCLA", year = 2023, sport = "MVB")
 }
 \seealso{
 Other search functions: 
