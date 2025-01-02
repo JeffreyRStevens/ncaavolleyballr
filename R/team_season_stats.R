@@ -8,7 +8,7 @@
 #' list, so you can subset specific components with `$` (e.g., for coach
 #' information from an object called `output`, use `output$coach`).
 #'
-#' @inheritParams team_player_stats
+#' @inheritParams player_season_stats
 #'
 #' @returns
 #' Returns a list that includes arena, coach, schedule, and record information.
@@ -19,11 +19,11 @@
 #'
 #' @examples
 #' \dontrun{
-#' team_season_stats("585290")
-#' team_season_stats(find_team_id("Nebraska", 2024))
-#' team_season_stats(find_team_id("UCLA", 2023, sport = "MVB"))
+#' team_season_stats(team_id = "585290")
+#' team_season_stats(team_id = find_team_id("Nebraska", 2024))
+#' team_season_stats(team_id = find_team_id("UCLA", 2023, sport = "MVB"))
 #' }
-team_season_stats <- function(team_id) {
+team_season_stats <- function(team_id = NULL) {
   check_team_id(team_id)
   teams <- dplyr::bind_rows(ncaavolleyballr::wvb_teams, ncaavolleyballr::mvb_teams)
   team <- teams[which(teams == team_id), ]$team_name

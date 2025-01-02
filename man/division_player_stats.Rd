@@ -36,9 +36,9 @@ combines them into a list.
 }
 \examples{
 \dontrun{
-division_player_stats(2024)
-division_player_stats(2023, division = 3, sport = "MVB")
-division_player_stats(2024, save = TRUE, path = "data/")
+division_player_stats(year = 2024)
+division_player_stats(year = 2023, division = 3, sport = "MVB")
+division_player_stats(year = 2024, save = TRUE, path = "data/")
 }
 }
 \seealso{

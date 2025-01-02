@@ -1,4 +1,4 @@
-test_that("get_teams() checks work", {
+test_that("get_teams() work", {
   expect_error(get_teams(),
                "Enter valid year between 2002-")
   expect_error(get_teams(year = "xxx"),
