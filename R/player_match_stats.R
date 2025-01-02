@@ -9,7 +9,7 @@
 #' @param contest Contest ID determined by NCAA for match. To find ID, use
 #' [find_team_contests()] for a team and season.
 #' @inheritParams find_team_id
-#' @inheritParams team_player_stats
+#' @inheritParams player_season_stats
 #'
 #' @returns
 #' By default, returns list with two data frames: visitor and home team match

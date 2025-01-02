@@ -119,11 +119,11 @@ team_info$schedule
 </div>
 
 There is also roster and overall season performance data on individual
-players with the `team_player_stats()`.
+players with the `player_season_stats()`.
 
 ``` r
 find_team_id("Nebraska", 2024) |> 
-  team_player_stats()
+  player_season_stats()
 ```
 
 <div class="kable-table">
@@ -151,6 +151,9 @@ find_team_id("Nebraska", 2024) |>
 
 By default, these functions return information on women's teams, but
 they can be set to return men's information by setting `sport = "MVB"`.
+You can also aggregate data across conferences, divisions, or custom
+groups with `conference_player_stats()`, `division_player_stats()`, and
+`group_player_stats()`.
 
 ### Match data
 
@@ -162,50 +165,21 @@ instance, to find the contest ID for 2024 National Championship match
 between Louisville and Penn State:
 
 ``` r
-find_team_contests(find_team_id("Penn St.", 2024))
+find_team_id("Penn St.", 2024) |> 
+  find_team_contests() |> 
+  tail()
 ```
 
 <div class="kable-table">
 
-| date       | team     | opponent            | contest |
-|:-----------|:---------|:--------------------|:--------|
-| 08/30/2024 | Penn St. | Tennessee           | 5682795 |
-| 09/01/2024 | Penn St. | Temple              | 5682788 |
-| 09/03/2024 | Penn St. | Louisville          | 5697050 |
-| 09/06/2024 | Penn St. | Kentucky            | 5697051 |
-| 09/07/2024 | Penn St. | Ball St.            | 5697052 |
-| 09/13/2024 | Penn St. | Duke                | 5697053 |
-| 09/14/2024 | Penn St. | Princeton           | 5697054 |
-| 09/14/2024 | Penn St. | St. John’s (NY)     | 5697055 |
-| 09/18/2024 | Penn St. | Pittsburgh          | 5695438 |
-| 09/20/2024 | Penn St. | James Madison       | 5697056 |
-| 09/22/2024 | Penn St. | Yale                | 5697057 |
-| 09/25/2024 | Penn St. | Purdue              | 5375020 |
-| 09/29/2024 | Penn St. | Michigan St.        | 5406825 |
-| 10/03/2024 | Penn St. | Maryland            | 5697058 |
-| 10/04/2024 | Penn St. | Oregon              | 5397336 |
-| 10/11/2024 | Penn St. | Michigan St.        | 5406826 |
-| 10/13/2024 | Penn St. | Indiana             | 5361311 |
-| 10/18/2024 | Penn St. | Ohio St.            | 5362667 |
-| 10/20/2024 | Penn St. | Minnesota           | 5362071 |
-| 10/24/2024 | Penn St. | UCLA                | 5397318 |
-| 10/26/2024 | Penn St. | Southern California | 5695434 |
-| 10/30/2024 | Penn St. | Michigan            | 5375004 |
-| 11/01/2024 | Penn St. | Iowa                | 5365058 |
-| 11/08/2024 | Penn St. | Northwestern        | 5361896 |
-| 11/09/2024 | Penn St. | Wisconsin           | 5695414 |
-| 11/15/2024 | Penn St. | Illinois            | 5362125 |
-| 11/17/2024 | Penn St. | Maryland            | 5697059 |
-| 11/21/2024 | Penn St. | Purdue              | 5375028 |
-| 11/24/2024 | Penn St. | Washington          | 5697060 |
-| 11/27/2024 | Penn St. | Rutgers             | 5695449 |
-| 11/29/2024 | Penn St. | Nebraska            | 5375042 |
-| 12/06/2024 | Penn St. | Delaware St.        | 6080734 |
-| 12/07/2024 | Penn St. | North Carolina      | 6080733 |
-| 12/13/2024 | Penn St. | Marquette           | 6081048 |
-| 12/15/2024 | Penn St. | Creighton           | 6081042 |
-| 12/19/2024 | Penn St. | Nebraska            | 6080708 |
-| 12/22/2024 | Penn St. | Louisville          | 6080706 |
+|     | date       | team     | opponent       | contest |
+|:----|:-----------|:---------|:---------------|:--------|
+| 32  | 12/06/2024 | Penn St. | Delaware St.   | 6080734 |
+| 33  | 12/07/2024 | Penn St. | North Carolina | 6080733 |
+| 34  | 12/13/2024 | Penn St. | Marquette      | 6081048 |
+| 35  | 12/15/2024 | Penn St. | Creighton      | 6081042 |
+| 36  | 12/19/2024 | Penn St. | Nebraska       | 6080708 |
+| 37  | 12/22/2024 | Penn St. | Louisville     | 6080706 |
 
 </div>
 

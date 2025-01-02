@@ -6,7 +6,7 @@
 #' contest IDs for each NCAA contest (volleyball match) for each team and
 #' season.
 #'
-#' @inheritParams team_player_stats
+#' @inheritParams player_season_stats
 #'
 #' @returns
 #' Returns a data frame that includes date, team, opponent, and contest ID for

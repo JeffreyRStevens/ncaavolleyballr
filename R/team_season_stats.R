@@ -8,7 +8,7 @@
 #' list, so you can subset specific components with `$` (e.g., for coach
 #' information from an object called `output`, use `output$coach`).
 #'
-#' @inheritParams team_player_stats
+#' @inheritParams player_season_stats
 #'
 #' @returns
 #' Returns a list that includes arena, coach, schedule, and record information.

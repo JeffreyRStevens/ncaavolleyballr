@@ -30,6 +30,6 @@ team_season_stats(team_id = find_team_id("UCLA", 2023, sport = "MVB"))
 }
 \seealso{
 Other functions that extract team statistics: 
-\code{\link{team_player_stats}()}
+\code{\link{player_season_stats}()}
 }
 \concept{functions that extract team statistics}

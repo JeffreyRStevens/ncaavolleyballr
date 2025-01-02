@@ -21,11 +21,11 @@
 #'
 #' @examples
 #' \dontrun{
-#' team_player_stats(team_id = "585290")
-#' team_player_stats(team_id = find_team_id("Nebraska", 2024), team_stats = FALSE)
-#' team_player_stats(team_id = find_team_id("UCLA", 2023, sport = "MVB"))
+#' player_season_stats(team_id = "585290")
+#' player_season_stats(team_id = find_team_id("Nebraska", 2024), team_stats = FALSE)
+#' player_season_stats(team_id = find_team_id("UCLA", 2023, sport = "MVB"))
 #' }
-team_player_stats <- function(team_id,
+player_season_stats <- function(team_id,
                               team_stats = TRUE) {
   check_team_id(team_id)
   if(!is.logical(team_stats)) cli::cli_abort("`team_stats` must be a logical (TRUE or FALSE).")

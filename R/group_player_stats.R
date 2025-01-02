@@ -1,6 +1,6 @@
 #' Aggregate player statistics from a set of teams for a particular season
 #'
-#' This function runs [team_player_stats()] on a vector of team
+#' This function runs [player_season_stats()] on a vector of team
 #' names to extract season data for the players and teams in the vector.
 #' It aggregates all player data and team data into separate data frames and
 #' combines them into a list. For instance, if you want to extract the
@@ -39,7 +39,7 @@ group_player_stats <- function(teams = NULL,
   if (!year %in% 2020:max_year) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
 
   data <- purrr::map(teams,
-                     ~ team_player_stats(find_team_id(.x, year, sport))) |>
+                     ~ player_season_stats(find_team_id(.x, year, sport))) |>
     purrr::set_names(teams) |>
     purrr::list_rbind(names_to = "Team") |>
     dplyr::mutate(killsperset = .data$Kills / .data$S,

@@ -62,14 +62,14 @@ team_info$record
 team_info$schedule
 ```
 
-There is also roster and overall season performance data on individual players with the `team_player_stats()`. 
+There is also roster and overall season performance data on individual players with the `player_season_stats()`. 
 
 ```{r}
 find_team_id("Nebraska", 2024) |> 
-  team_player_stats()
+  player_season_stats()
 ```
 
-By default, these functions return information on women\'s teams, but they can be set to return men\'s information by setting `sport = "MVB"`.
+By default, these functions return information on women\'s teams, but they can be set to return men\'s information by setting `sport = "MVB"`. You can also aggregate data across conferences, divisions, or custom groups with `conference_player_stats()`, `division_player_stats()`, and `group_player_stats()`.
 
 
 ### Match data
@@ -77,7 +77,9 @@ By default, these functions return information on women\'s teams, but they can b
 The NCAA also uses a unique contest ID for each women\'s and men\'s volleyball match. The easiest way to get that ID is with `find_team_contest()`, which returns the contest ID for all matches in a particular season (using the Team ID provided by `find_team_id()`). For instance, to find the contest ID for 2024 National Championship match between Louisville and Penn State:
 
 ```{r}
-find_team_contests(find_team_id("Penn St.", 2024))
+find_team_id("Penn St.", 2024) |> 
+  find_team_contests() |> 
+  tail()
 ```
 
 ```{r echo=FALSE}
