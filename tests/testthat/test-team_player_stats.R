@@ -1,7 +1,8 @@
-suppressWarnings(neb2024 <- team_player_stats("585290"))
-suppressWarnings(neb2023 <- team_player_stats("558878", team_stats = FALSE))
+suppressWarnings(neb2024 <- team_player_stats(team_id = "585290"))
+suppressWarnings(neb2023 <- team_player_stats(team_id = "558878",
+                                              team_stats = FALSE))
 
-test_that("player_stats works properly", {
+test_that("team_player_stats() works", {
   # expect_silent()
   expect_equal(neb2024$Player[1],
                "Bergen Reilly")
@@ -15,10 +16,10 @@ test_that("player_stats works properly", {
                13)
   expect_equal(nrow(neb2024),
                16)
-  expect_error(team_player_stats(585290),
-               "Team ID must be a character string.")
-  expect_error(team_player_stats("Nebraska"),
-               "Team ID was not found in the list of valid IDs.")
-  expect_error(team_player_stats("558878", team_stats = 1),
+  expect_error(team_player_stats(team_id = 585290),
+               "Enter valid team ID as a character string")
+  expect_error(team_player_stats(team_id = "Nebraska"),
+               "Enter valid team ID. ")
+  expect_error(team_player_stats(team_id = "558878", team_stats = 1),
                "`team_stats` must be a logical")
 })
