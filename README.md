@@ -39,6 +39,8 @@ remotes::install_github("JeffreyRStevens/ncaavolleyballr")
 library(ncaavolleyballr)
 ```
 
+### Season data
+
 The NCAA uses a unique team ID for each women's and men's volleyball
 team and each season. So first you will need to get that ID with the
 `find_team_id()`. For instance, to find the ID for University of
@@ -148,38 +150,91 @@ find_team_id("Nebraska", 2024) |>
 </div>
 
 By default, these functions return information on women's teams, but
-they can be set to return men's information.
+they can be set to return men's information by setting `sport = "MVB"`.
+
+### Match data
+
+The NCAA also uses a unique contest ID for each women's and men's
+volleyball match. The easiest way to get that ID is with
+`find_team_contest()`, which returns the contest ID for all matches in a
+particular season (using the Team ID provided by `find_team_id()`). For
+instance, to find the contest ID for 2024 National Championship match
+between Louisville and Penn State:
 
 ``` r
-find_team_id("UCLA", 2023, sport = "MVB") |> 
-  team_player_stats()
+find_team_contests(find_team_id("Penn St.", 2024))
 ```
 
 <div class="kable-table">
 
-| Season | Team | Conference | Number | Player | Yr | Pos | Ht | GP | GS | S | MS | Kills | Errors | Total Attacks | Hit Pct | Assists | Aces | SErr | Digs | RErr | Block Solos | Block Assists | BErr | Tripl Dbl | PTS | BHE |
-|:---|:---|:---|---:|:---|:---|:---|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| 2023-2024 | UCLA | MPSF | 1 | Hideharu Nakamura | Jr | L | 5-10 | 5 | 0 | 20 | NA | NA | NA | NA | NA | 1 | NA | NA | 21 | 2 | NA | NA | NA | NA | NA | NA |
-| 2023-2024 | UCLA | MPSF | 3 | Luca Curci | Fr | OH | 6-3 | 17 | 0 | 46 | NA | 9 | 5 | 18 | 0.222 | 5 | 2 | 12 | 27 | 6 | NA | NA | NA | NA | 11.0 | NA |
-| 2023-2024 | UCLA | MPSF | 7 | Andrew Rowan | So | S | 6-6 | 30 | 30 | 115 | NA | 52 | 13 | 100 | 0.390 | 1157 | 40 | 123 | 134 | 2 | 1 | 62 | 6 | NA | 124.0 | 1 |
-| 2023-2024 | UCLA | MPSF | 8 | Micah Wong Diallo | Fr | MB | 6-9 | 1 | 1 | 3 | NA | 6 | NA | 8 | 0.750 | NA | NA | 1 | 1 | NA | NA | 4 | NA | NA | 8.0 | NA |
-| 2023-2024 | UCLA | MPSF | 9 | Guy Genis | Jr | MB | 6-5 | 20 | 16 | 69 | NA | 86 | 16 | 156 | 0.449 | 8 | 2 | 20 | 25 | 1 | 3 | 67 | 8 | NA | 124.5 | NA |
-| 2023-2024 | UCLA | MPSF | 10 | Sean McQuiggan | Jr | MB | 6-9 | 17 | 14 | 53 | NA | 72 | 15 | 116 | 0.491 | 2 | 8 | 19 | 15 | NA | 7 | 51 | 5 | NA | 112.5 | 1 |
-| 2023-2024 | UCLA | MPSF | 11 | Cooper Robinson | Jr | OH | 6-7 | 28 | 25 | 95 | NA | 250 | 82 | 506 | 0.332 | 39 | 35 | 86 | 73 | 26 | 5 | 59 | 6 | NA | 319.5 | NA |
-| 2023-2024 | UCLA | MPSF | 12 | Alex Knight | Sr | OH | 6-5 | 27 | 8 | 91 | NA | 89 | 25 | 183 | 0.350 | 25 | 8 | 19 | 70 | 25 | NA | 24 | 2 | NA | 109.0 | NA |
-| 2023-2024 | UCLA | MPSF | 13 | Merrick McHenry | Sr | OH | 6-7 | 30 | 30 | 115 | NA | 217 | 27 | 325 | 0.585 | 9 | 38 | 98 | 68 | 2 | 7 | 107 | 6 | NA | 315.5 | NA |
-| 2023-2024 | UCLA | MPSF | 14 | Matthew Aziz | Jr | L | 6-1 | 13 | 0 | 48 | NA | NA | NA | NA | NA | 5 | NA | NA | 71 | NA | NA | NA | NA | NA | NA | NA |
-| 2023-2024 | UCLA | MPSF | 16 | Ido David | Jr | OPP | 6-7 | 28 | 18 | 87 | NA | 165 | 62 | 379 | 0.272 | 11 | 35 | 60 | 96 | 1 | 4 | 40 | 2 | NA | 224.0 | 1 |
-| 2023-2024 | UCLA | MPSF | 17 | David Flores | Sr | S | 6-2 | 22 | 1 | 39 | NA | NA | NA | NA | NA | 76 | NA | 1 | 10 | NA | NA | 2 | NA | NA | 1.0 | NA |
-| 2023-2024 | UCLA | MPSF | 18 | Grant Sloane | Sr | OH | 6-8 | 25 | 13 | 76 | NA | 137 | 47 | 295 | 0.305 | 8 | 21 | 36 | 66 | 1 | 3 | 32 | 3 | NA | 177.0 | 2 |
-| 2023-2024 | UCLA | MPSF | 19 | David Decker | So | OPP | 6-8 | 5 | 0 | 6 | NA | 3 | NA | 3 | 1.000 | NA | 1 | 1 | 2 | NA | NA | 2 | NA | NA | 5.0 | NA |
-| 2023-2024 | UCLA | MPSF | 20 | Ethan Champlin | Sr | OH | 6-3 | 30 | 24 | 112 | NA | 270 | 80 | 561 | 0.339 | 48 | 21 | 71 | 167 | 23 | 3 | 45 | 5 | NA | 316.5 | NA |
-| 2023-2024 | UCLA | MPSF | 21 | Zach Rama | So | OH | 6-8 | 25 | 5 | 64 | NA | 140 | 40 | 272 | 0.368 | 17 | 13 | 40 | 49 | 16 | 4 | 25 | 4 | NA | 169.5 | 2 |
-| 2023-2024 | UCLA | MPSF | 22 | Matthew Edwards | Jr | MB | 6-9 | 3 | 1 | 4 | NA | 4 | NA | 4 | 1.000 | NA | NA | 1 | NA | NA | NA | NA | NA | NA | 4.0 | NA |
-| 2023-2024 | UCLA | MPSF | 23 | Coleman McDonough | So | L | 5-11 | 15 | 0 | 43 | NA | NA | NA | NA | NA | 2 | NA | 4 | 22 | 4 | NA | NA | NA | NA | NA | NA |
-| 2023-2024 | UCLA | MPSF | NA | TEAM | \- | \- | \- | NA | NA | NA | NA | NA | NA | NA | NA | NA | NA | NA | NA | 14 | NA | NA | NA | NA | NA | NA |
-| 2023-2024 | UCLA | MPSF | NA | Totals | \- | \- | \- | NA | NA | 118 | NA | 1500 | 412 | 2926 | 0.372 | 1413 | 224 | 592 | 917 | 123 | 37 | 520 | 47 | 31 | 2021.0 | 7 |
-| 2023-2024 | UCLA | MPSF | NA | Opponent Totals | \- | \- | \- | NA | NA | 118 | NA | 1224 | 546 | 2925 | 0.232 | 1136 | 122 | 489 | 809 | 224 | 39 | 289 | 41 | 30 | 1529.5 | 5 |
+| date       | team     | opponent            | contest |
+|:-----------|:---------|:--------------------|:--------|
+| 08/30/2024 | Penn St. | Tennessee           | 5682795 |
+| 09/01/2024 | Penn St. | Temple              | 5682788 |
+| 09/03/2024 | Penn St. | Louisville          | 5697050 |
+| 09/06/2024 | Penn St. | Kentucky            | 5697051 |
+| 09/07/2024 | Penn St. | Ball St.            | 5697052 |
+| 09/13/2024 | Penn St. | Duke                | 5697053 |
+| 09/14/2024 | Penn St. | Princeton           | 5697054 |
+| 09/14/2024 | Penn St. | St. John’s (NY)     | 5697055 |
+| 09/18/2024 | Penn St. | Pittsburgh          | 5695438 |
+| 09/20/2024 | Penn St. | James Madison       | 5697056 |
+| 09/22/2024 | Penn St. | Yale                | 5697057 |
+| 09/25/2024 | Penn St. | Purdue              | 5375020 |
+| 09/29/2024 | Penn St. | Michigan St.        | 5406825 |
+| 10/03/2024 | Penn St. | Maryland            | 5697058 |
+| 10/04/2024 | Penn St. | Oregon              | 5397336 |
+| 10/11/2024 | Penn St. | Michigan St.        | 5406826 |
+| 10/13/2024 | Penn St. | Indiana             | 5361311 |
+| 10/18/2024 | Penn St. | Ohio St.            | 5362667 |
+| 10/20/2024 | Penn St. | Minnesota           | 5362071 |
+| 10/24/2024 | Penn St. | UCLA                | 5397318 |
+| 10/26/2024 | Penn St. | Southern California | 5695434 |
+| 10/30/2024 | Penn St. | Michigan            | 5375004 |
+| 11/01/2024 | Penn St. | Iowa                | 5365058 |
+| 11/08/2024 | Penn St. | Northwestern        | 5361896 |
+| 11/09/2024 | Penn St. | Wisconsin           | 5695414 |
+| 11/15/2024 | Penn St. | Illinois            | 5362125 |
+| 11/17/2024 | Penn St. | Maryland            | 5697059 |
+| 11/21/2024 | Penn St. | Purdue              | 5375028 |
+| 11/24/2024 | Penn St. | Washington          | 5697060 |
+| 11/27/2024 | Penn St. | Rutgers             | 5695449 |
+| 11/29/2024 | Penn St. | Nebraska            | 5375042 |
+| 12/06/2024 | Penn St. | Delaware St.        | 6080734 |
+| 12/07/2024 | Penn St. | North Carolina      | 6080733 |
+| 12/13/2024 | Penn St. | Marquette           | 6081048 |
+| 12/15/2024 | Penn St. | Creighton           | 6081042 |
+| 12/19/2024 | Penn St. | Nebraska            | 6080708 |
+| 12/22/2024 | Penn St. | Louisville          | 6080706 |
+
+</div>
+
+From that, we can see that the contest ID is 6080706. If we pass this
+contest ID to the `player_match_stats()` function, we’ll get a list with
+two data frames—one for each team in the contest—that contain player
+statistics for the match. If we want to get just the Penn State player
+data, we can set `team = "Penn St."`.
+
+``` r
+player_match_stats(contest = "6080706", team = "Penn St.")
+```
+
+<div class="kable-table">
+
+| Season | Team | Conference | Opponent Team | Opponent Conference | Location | Number | Player | P | S | Kills | Errors | TotalAttacks | HitPct | Assists | Aces | SErr | Digs | RetAtt | RErr | BlockSolos | BlockAssists | BErr | PTS | BHE |
+|:---|:---|:---|:---|:---|:---|---:|:---|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 2024-2025 | Penn St. | Big Ten | Louisville | ACC | Home | 2 | Ava Falduto | L/DS | 4 | 0 | 0 | 0 | 0.000 | 2 | 2 | 1 | 14 | 24 | 0 | 0 | 0 | 0 | 2.0 | 0 |
+| 2024-2025 | Penn St. | Big Ten | Louisville | ACC | Home | 3 | Gillian Grimes | L/DS | 4 | 0 | 0 | 0 | 0.000 | 7 | 1 | 3 | 16 | 23 | 1 | 0 | 0 | 0 | 1.0 | 0 |
+| 2024-2025 | Penn St. | Big Ten | Louisville | ACC | Home | 8 | Camryn Hannah | OH | 4 | 19 | 9 | 42 | 0.238 | 0 | 1 | 4 | 3 | 9 | 2 | 1 | 1 | 0 | 21.5 | 0 |
+| 2024-2025 | Penn St. | Big Ten | Louisville | ACC | Home | 14 | Caroline Jurevicius | OH | 4 | 10 | 4 | 26 | 0.231 | 0 | 0 | 0 | 3 | 0 | 0 | 0 | 2 | 0 | 11.0 | 0 |
+| 2024-2025 | Penn St. | Big Ten | Louisville | ACC | Home | 44 | Maggie Mendelson | MB | 4 | 6 | 1 | 14 | 0.357 | 1 | 0 | 0 | 1 | 0 | 0 | 1 | 5 | 0 | 9.5 | 0 |
+| 2024-2025 | Penn St. | Big Ten | Louisville | ACC | Home | 24 | Quinn Menger | DS | 4 | 0 | 0 | 0 | 0.000 | 0 | 0 | 1 | 4 | 0 | 0 | 0 | 0 | 0 | 0.0 | 0 |
+| 2024-2025 | Penn St. | Big Ten | Louisville | ACC | Home | 9 | Jess Mruzik | OH | 4 | 29 | 6 | 73 | 0.315 | 1 | 1 | 1 | 14 | 22 | 1 | 1 | 4 | 2 | 33.0 | 1 |
+| 2024-2025 | Penn St. | Big Ten | Louisville | ACC | Home | 11 | Jocelyn Nathan | L/DS | 4 | 0 | 0 | 0 | 0.000 | 3 | 1 | 0 | 10 | 10 | 0 | 0 | 0 | 0 | 1.0 | 0 |
+| 2024-2025 | Penn St. | Big Ten | Louisville | ACC | Home | 21 | Izzy Starck | S | 4 | 0 | 2 | 7 | -0.286 | 55 | 1 | 3 | 13 | 0 | 0 | 0 | 1 | 0 | 1.5 | 0 |
+| 2024-2025 | Penn St. | Big Ten | Louisville | ACC | Home | 1 | Taylor Trammell | MB | 4 | 8 | 1 | 15 | 0.467 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 0 | 9.5 | 0 |
+| 2024-2025 | Penn St. | Big Ten | Louisville | ACC | Home | NA | TEAM |  | 0 | 0 | 0 | 0 | 0.000 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0.0 | 0 |
+| 2024-2025 | Penn St. | Big Ten | Louisville | ACC | Home | NA | Penn St. |  | 4 | 72 | 23 | 177 | 0.277 | 69 | 7 | 13 | 78 | 88 | 4 | 3 | 16 | 2 | 90.0 | 1 |
 
 </div>
 

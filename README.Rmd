@@ -44,6 +44,7 @@ remotes::install_github("JeffreyRStevens/ncaavolleyballr")
 library(ncaavolleyballr)
 ```
 
+### Season data
 
 The NCAA uses a unique team ID for each women\'s and men\'s volleyball team and each season. So first you will need to get that ID with the `find_team_id()`. For instance, to find the ID for University of Nebraska\'s 2024 season:
 ```{r}
@@ -68,11 +69,26 @@ find_team_id("Nebraska", 2024) |>
   team_player_stats()
 ```
 
-By default, these functions return information on women\'s teams, but they can be set to return men\'s information.
+By default, these functions return information on women\'s teams, but they can be set to return men\'s information by setting `sport = "MVB"`.
+
+
+### Match data
+
+The NCAA also uses a unique contest ID for each women\'s and men\'s volleyball match. The easiest way to get that ID is with `find_team_contest()`, which returns the contest ID for all matches in a particular season (using the Team ID provided by `find_team_id()`). For instance, to find the contest ID for 2024 National Championship match between Louisville and Penn State:
 
 ```{r}
-find_team_id("UCLA", 2023, sport = "MVB") |> 
-  team_player_stats()
+find_team_contests(find_team_id("Penn St.", 2024))
+```
+
+```{r echo=FALSE}
+psu2024 <- find_team_contests(find_team_id("Penn St.", 2024))
+```
+
+
+From that, we can see that the contest ID is `r psu2024[psu2024$opponent == "Louisville", ]$contest[2]`. If we pass this contest ID to the `player_match_stats()` function, we'll get a list with two data frames---one for each team in the contest---that contain player statistics for the match. If we want to get just the Penn State player data, we can set `team = "Penn St."`.
+
+```{r}
+player_match_stats(contest = "6080706", team = "Penn St.")
 ```
 
 
