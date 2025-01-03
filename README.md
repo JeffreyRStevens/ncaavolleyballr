@@ -214,7 +214,7 @@ player_match_stats(contest = "6080706", team = "Penn St.")
 
 Play-by-play data are also available with `match_pbp()`. This returns a
 list with a data frame for each set. To extract individual set data
-frames, subset with `[["Set 1"]]`.
+frames, subset (for examples, for set 1 use `[["Set 1"]]`).
 
 ``` r
 match_pbp(contest = "6080706")[["Set 1"]] |> 
@@ -253,7 +253,7 @@ match_pbp(contest = "6080706")[["Set 1"]] |>
 To cite `{ncaavolleyballr}`, use:
 
 > Stevens, Jeffrey R. (2025). ncaavolleyballr: Extract data from NCAA
-> women's volleyball website. (version 0.1.0)
+> women's volleyball website. (version 0.2.0)
 > <https://github.com/JeffreyRStevens/ncaavolleyballr>
 
 ## Acknowledgments
