@@ -2,7 +2,7 @@
 #'
 #' The NCAA's page for a match/contest includes a tab called
 #' "Individual Statistics". This function extracts the tables of player
-#' match statistics for both visitor and home teams, as well as team statistics
+#' match statistics for both home and away teams, as well as team statistics
 #' (though these can be omitted). If a particular team is specified, only that
 #' team's statistics will be returned.
 #'
@@ -12,7 +12,7 @@
 #' @inheritParams player_season_stats
 #'
 #' @returns
-#' By default, returns list with two data frames: visitor and home team match
+#' By default, returns list with two data frames: home and away team match
 #' statistics. If team is specified, only single data frame is returned.
 #'
 #' @export
@@ -53,42 +53,42 @@ player_match_stats <- function(contest = NULL,
     as.numeric()
   season <- paste0(yr, "-", yr + 1)
 
-  visitor_team <- match_info[3, 1] |>
+  away_team <- match_info[3, 1] |>
     dplyr::pull()
-  visitor_conf <- team_df[team_df$team_name == visitor_team & team_df$yr == yr, ]$conference
+  away_conf <- team_df[team_df$team_name == away_team & team_df$yr == yr, ]$conference
 
   home_team <- match_info[4, 1] |>
     dplyr::pull()
   home_conf <- team_df[team_df$team_name == home_team & team_df$yr == yr, ]$conference
 
 
-  visitor_stats <- match_all[[4]] |>
-    dplyr::mutate(Season = season, Team = visitor_team, Conference = visitor_conf,
+  away_stats <- match_all[[4]] |>
+    dplyr::mutate(Season = season, Date = match_date, Team = away_team, Conference = away_conf,
                   `Opponent Team` = home_team, `Opponent Conference` = home_conf,
-                  Location = "Visitor", .before = 1) |>
+                  Location = "Away", .before = 1) |>
     dplyr::rename("Number" = "#", "Player" = "Name") |>
     dplyr::mutate(Number = suppressWarnings(as.numeric(.data$Number)))
   home_stats <- match_all[[5]] |>
-    dplyr::mutate(Season = season, Team = home_team, Conference = home_conf,
-                  `Opponent Team` = visitor_team, `Opponent Conference` = visitor_conf,
+    dplyr::mutate(Season = season, Date = match_date, Team = home_team, Conference = home_conf,
+                  `Opponent Team` = away_team, `Opponent Conference` = away_conf,
                   Location = "Home", .before = 1) |>
     dplyr::rename("Number" = "#", "Player" = "Name") |>
     dplyr::mutate(Number = suppressWarnings(as.numeric(.data$Number)))
 
   if (!team_stats) {
-    visitor_stats <- visitor_stats |>
+    away_stats <- away_stats |>
       dplyr::filter(.data$Number != "")
     home_stats <- home_stats |>
       dplyr::filter(.data$Number != "")
   }
 
-  stats_list <- list(visitor_team = visitor_stats, home_stats = home_stats) |>
-    purrr::set_names(visitor_team, home_team)
+  stats_list <- list(away_team = away_stats, home_stats = home_stats) |>
+    purrr::set_names(away_team, home_team)
 
   if (is.null(team)) {
     return(stats_list)
   } else {
-    if (!team %in% c(visitor_team, home_team)) cli::cli_abort("Enter valid team: \"{visitor_team}\" or \"{home_team}\"")
+    if (!team %in% c(away_team, home_team)) cli::cli_abort("Enter valid team: \"{away_team}\" or \"{home_team}\"")
     return(stats_list[[team]])
   }
 }
