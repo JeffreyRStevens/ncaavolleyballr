@@ -212,6 +212,42 @@ player_match_stats(contest = "6080706", team = "Penn St.")
 
 </div>
 
+Play-by-play data are also available with `match_pbp()`. This returns a
+list with a data frame for each set. To extract individual set data
+frames, subset with `[["Set 1"]]`.
+
+``` r
+match_pbp(contest = "6080706")[["Set 1"]] |> 
+  head(20)
+```
+
+<div class="kable-table">
+
+| Louisville | Score | Penn St. |
+|:---|:---|:---|
+| Match started |  |  |
+| Set started |  |  |
+|  |  | Sub in Gillian Grimes |
+|  |  | Sub out Maggie Mendelson |
+| Sub in Elena Scott |  |  |
+| Sub out Phekran PK Kong |  |  |
+| Payton Petersen serves |  |  |
+|  |  | Reception by Jocelyn Nathan |
+|  |  | Set by Izzy Starck |
+|  |  | Attack by Taylor Trammell |
+|  | 0-1 | \+ First ball kill by Taylor Trammell First ball kill by Taylor Trammell |
+|  |  | Sub in Maggie Mendelson |
+|  |  | Sub out Gillian Grimes |
+|  |  | Sub in Gillian Grimes |
+|  |  | Sub out Taylor Trammell |
+|  |  | Gillian Grimes serves |
+| Reception by Payton Petersen |  |  |
+| Set by Elle Glock |  |  |
+| Attack by Cara Cresse |  |  |
+| \+ First ball kill by Cara Cresse First ball kill by Cara Cresse | 1-1 |  |
+
+</div>
+
 ## Citation
 
 To cite `{ncaavolleyballr}`, use:

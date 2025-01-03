@@ -20,6 +20,7 @@ reference:
   - team_season_stats
   - player_season_stats
   - player_match_stats
+  - match_pbp
 - title: Aggregate team statistics
   contents:
   - group_player_stats
