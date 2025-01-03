@@ -28,17 +28,14 @@ find_team_contests <- function(team_id = NULL) {
 
   resp <- request_url(url)
 
-  date <- resp |> httr2::resp_body_html() |>
+  schedule <- resp |> httr2::resp_body_html() |>
     rvest::html_element("table") |>
     rvest::html_table() |>
     dplyr::filter(.data$Date != "") |>
-    dplyr::pull(.data$Date) |>
-    as.Date(format = "%m/%d/%Y")
+    dplyr::mutate(team = team_info["Team"], .after = .data$Date)
+  names(schedule) <- tolower(names(schedule))
 
-  opponents <- resp |> httr2::resp_body_html() |>
-    rvest::html_element("table") |>
-    rvest::html_elements("img") |>
-    rvest::html_attr("alt")
+  canceled <- which(schedule$result == "Canceled")
 
   contests <- resp |> httr2::resp_body_html() |>
     rvest::html_element("table") |>
@@ -47,6 +44,12 @@ find_team_contests <- function(team_id = NULL) {
     stringr::str_subset("contests") |>
     stringr::str_extract("(\\d+)")
 
-  data.frame(date = date, team = rep(team_info["Team"], length(date)),
-                                     opponent = opponents, contest = contests)
+  if (length(canceled) > 0) {
+    for(i in seq_along(canceled)) {
+      contests <- append(contests, NA, after = canceled[i] - 1)
+    }
+  }
+
+  schedule |>
+    cbind(contests)
 }

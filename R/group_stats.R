@@ -71,18 +71,21 @@ group_stats <- function(teams = NULL,
     return(output)
   } else if (level == "match") {
     if (length(teams) > 1) cli::cli_abort("Enter single team for match-level data.")
-    contests <- find_team_contests(find_team_id(teams, year, sport))
-    purrr::map(contests$contest[1:3],
+    contests <- find_team_contests(find_team_id(teams, year, sport)) |>
+      dplyr::filter(!is.na(.data$contests)) |>
+      dplyr::pull(contests)
+    purrr::map(contests,
                        ~ player_match_stats(.x, teams, team_stats = FALSE, sport)) |>
       purrr::set_names(teams) |>
-      purrr::list_rbind(names_to = "Team")
+      purrr::list_rbind(names_to = "team")
   } else if (level == "pbp") {
     if (length(teams) > 1) cli::cli_abort("Enter single team for match-level data.")
-    contests <- find_team_contests(find_team_id(teams, year, sport))
-    purrr::map(contests$contest,
+    contests <- find_team_contests(find_team_id(teams, year, sport)) |>
+      dplyr::filter(!is.na(.data$contests))
+    purrr::map(contests$contests,
                ~ match_pbp(.x)) |>
       purrr::set_names(contests$date) |>
-      purrr::list_rbind(names_to = "Date")
+      purrr::list_rbind(names_to = "date")
   }
 
 }
