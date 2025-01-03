@@ -1,7 +1,7 @@
 suppressWarnings(final2024 <- match_pbp(contest = "6080706"))
 
 test_that("match_pbp() works", {
-  expect_equal(final2024$Set[nrow(final2024)],
+  expect_equal(final2024$set[nrow(final2024)],
                "4")
   expect_equal(nrow(final2024),
                1446)
