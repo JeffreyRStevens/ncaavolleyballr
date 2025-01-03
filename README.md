@@ -152,8 +152,8 @@ find_team_id("Nebraska", 2024) |>
 By default, these functions return information on women's teams, but
 they can be set to return men's information by setting `sport = "MVB"`.
 You can also aggregate data across conferences, divisions, or custom
-groups with `conference_player_stats()`, `division_player_stats()`, and
-`group_player_stats()`.
+groups with `conference_season_stats()`, `division_season_stats()`, and
+`group_stats()`.
 
 ### Match data
 
@@ -172,20 +172,20 @@ find_team_id("Penn St.", 2024) |>
 
 <div class="kable-table">
 
-|     | date       | team     | opponent       | contest |
-|:----|:-----------|:---------|:---------------|:--------|
-| 32  | 12/06/2024 | Penn St. | Delaware St.   | 6080734 |
-| 33  | 12/07/2024 | Penn St. | North Carolina | 6080733 |
-| 34  | 12/13/2024 | Penn St. | Marquette      | 6081048 |
-| 35  | 12/15/2024 | Penn St. | Creighton      | 6081042 |
-| 36  | 12/19/2024 | Penn St. | Nebraska       | 6080708 |
-| 37  | 12/22/2024 | Penn St. | Louisville     | 6080706 |
+|  | date | team | opponent | result | attendance | contests |
+|:---|:---|:---|:---|:---|:---|:---|
+| 32 | 12/06/2024 | Penn St. | Delaware St. 2024 NCAA Division I Women’s Volleyball Championship | W 3-0 | 2,516 | 6080734 |
+| 33 | 12/07/2024 | Penn St. | \#8 North Carolina 2024 NCAA Division I Women’s Volleyball Championship | W 3-1 | 2,470 | 6080733 |
+| 34 | 12/13/2024 | Penn St. | \#5 Marquette 2024 NCAA Division I Women’s Volleyball Championship | W 3-1 | 2,914 | 6081048 |
+| 35 | 12/15/2024 | Penn St. | \#2 Creighton 2024 NCAA Division I Women’s Volleyball Championship | W 3-2 | 3,558 | 6081042 |
+| 36 | 12/19/2024 | Penn St. | \#1 Nebraska @Louisville, KY (2024 NCAA Division I Women’s Volleyball Championship) | W 3-2 | 21,726 | 6080708 |
+| 37 | 12/22/2024 | Penn St. | @#1 Louisville 2024 NCAA Division I Women’s Volleyball Championship | W 3-1 | 21,860 | 6080706 |
 
 </div>
 
-From that, we can see that the contest ID is 6080706. If we pass this
-contest ID to the `player_match_stats()` function, we’ll get a list with
-two data frames—one for each team in the contest—that contain player
+From that, we can see that the contest ID is NA. If we pass this contest
+ID to the `player_match_stats()` function, we’ll get a list with two
+data frames—one for each team in the contest—that contain player
 statistics for the match. If we want to get just the Penn State player
 data, we can set `team = "Penn St."`.
 
@@ -195,56 +195,45 @@ player_match_stats(contest = "6080706", team = "Penn St.")
 
 <div class="kable-table">
 
-| Season | Team | Conference | Opponent Team | Opponent Conference | Location | Number | Player | P | S | Kills | Errors | TotalAttacks | HitPct | Assists | Aces | SErr | Digs | RetAtt | RErr | BlockSolos | BlockAssists | BErr | PTS | BHE |
-|:---|:---|:---|:---|:---|:---|---:|:---|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| 2024-2025 | Penn St. | Big Ten | Louisville | ACC | Home | 2 | Ava Falduto | L/DS | 4 | 0 | 0 | 0 | 0.000 | 2 | 2 | 1 | 14 | 24 | 0 | 0 | 0 | 0 | 2.0 | 0 |
-| 2024-2025 | Penn St. | Big Ten | Louisville | ACC | Home | 3 | Gillian Grimes | L/DS | 4 | 0 | 0 | 0 | 0.000 | 7 | 1 | 3 | 16 | 23 | 1 | 0 | 0 | 0 | 1.0 | 0 |
-| 2024-2025 | Penn St. | Big Ten | Louisville | ACC | Home | 8 | Camryn Hannah | OH | 4 | 19 | 9 | 42 | 0.238 | 0 | 1 | 4 | 3 | 9 | 2 | 1 | 1 | 0 | 21.5 | 0 |
-| 2024-2025 | Penn St. | Big Ten | Louisville | ACC | Home | 14 | Caroline Jurevicius | OH | 4 | 10 | 4 | 26 | 0.231 | 0 | 0 | 0 | 3 | 0 | 0 | 0 | 2 | 0 | 11.0 | 0 |
-| 2024-2025 | Penn St. | Big Ten | Louisville | ACC | Home | 44 | Maggie Mendelson | MB | 4 | 6 | 1 | 14 | 0.357 | 1 | 0 | 0 | 1 | 0 | 0 | 1 | 5 | 0 | 9.5 | 0 |
-| 2024-2025 | Penn St. | Big Ten | Louisville | ACC | Home | 24 | Quinn Menger | DS | 4 | 0 | 0 | 0 | 0.000 | 0 | 0 | 1 | 4 | 0 | 0 | 0 | 0 | 0 | 0.0 | 0 |
-| 2024-2025 | Penn St. | Big Ten | Louisville | ACC | Home | 9 | Jess Mruzik | OH | 4 | 29 | 6 | 73 | 0.315 | 1 | 1 | 1 | 14 | 22 | 1 | 1 | 4 | 2 | 33.0 | 1 |
-| 2024-2025 | Penn St. | Big Ten | Louisville | ACC | Home | 11 | Jocelyn Nathan | L/DS | 4 | 0 | 0 | 0 | 0.000 | 3 | 1 | 0 | 10 | 10 | 0 | 0 | 0 | 0 | 1.0 | 0 |
-| 2024-2025 | Penn St. | Big Ten | Louisville | ACC | Home | 21 | Izzy Starck | S | 4 | 0 | 2 | 7 | -0.286 | 55 | 1 | 3 | 13 | 0 | 0 | 0 | 1 | 0 | 1.5 | 0 |
-| 2024-2025 | Penn St. | Big Ten | Louisville | ACC | Home | 1 | Taylor Trammell | MB | 4 | 8 | 1 | 15 | 0.467 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 0 | 9.5 | 0 |
-| 2024-2025 | Penn St. | Big Ten | Louisville | ACC | Home | NA | TEAM |  | 0 | 0 | 0 | 0 | 0.000 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0.0 | 0 |
-| 2024-2025 | Penn St. | Big Ten | Louisville | ACC | Home | NA | Penn St. |  | 4 | 72 | 23 | 177 | 0.277 | 69 | 7 | 13 | 78 | 88 | 4 | 3 | 16 | 2 | 90.0 | 1 |
+| Season | Date | Team | Conference | Opponent Team | Opponent Conference | Location | Number | Player | P | S | Kills | Errors | TotalAttacks | HitPct | Assists | Aces | SErr | Digs | RetAtt | RErr | BlockSolos | BlockAssists | BErr | PTS | BHE |
+|:---|:---|:---|:---|:---|:---|:---|---:|:---|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 2024-2025 | 2024-12-22 | Penn St. | Big Ten | Louisville | ACC | Home | 2 | Ava Falduto | L/DS | 4 | 0 | 0 | 0 | 0.000 | 2 | 2 | 1 | 14 | 24 | 0 | 0 | 0 | 0 | 2.0 | 0 |
+| 2024-2025 | 2024-12-22 | Penn St. | Big Ten | Louisville | ACC | Home | 3 | Gillian Grimes | L/DS | 4 | 0 | 0 | 0 | 0.000 | 7 | 1 | 3 | 16 | 23 | 1 | 0 | 0 | 0 | 1.0 | 0 |
+| 2024-2025 | 2024-12-22 | Penn St. | Big Ten | Louisville | ACC | Home | 8 | Camryn Hannah | OH | 4 | 19 | 9 | 42 | 0.238 | 0 | 1 | 4 | 3 | 9 | 2 | 1 | 1 | 0 | 21.5 | 0 |
+| 2024-2025 | 2024-12-22 | Penn St. | Big Ten | Louisville | ACC | Home | 14 | Caroline Jurevicius | OH | 4 | 10 | 4 | 26 | 0.231 | 0 | 0 | 0 | 3 | 0 | 0 | 0 | 2 | 0 | 11.0 | 0 |
+| 2024-2025 | 2024-12-22 | Penn St. | Big Ten | Louisville | ACC | Home | 44 | Maggie Mendelson | MB | 4 | 6 | 1 | 14 | 0.357 | 1 | 0 | 0 | 1 | 0 | 0 | 1 | 5 | 0 | 9.5 | 0 |
+| 2024-2025 | 2024-12-22 | Penn St. | Big Ten | Louisville | ACC | Home | 24 | Quinn Menger | DS | 4 | 0 | 0 | 0 | 0.000 | 0 | 0 | 1 | 4 | 0 | 0 | 0 | 0 | 0 | 0.0 | 0 |
+| 2024-2025 | 2024-12-22 | Penn St. | Big Ten | Louisville | ACC | Home | 9 | Jess Mruzik | OH | 4 | 29 | 6 | 73 | 0.315 | 1 | 1 | 1 | 14 | 22 | 1 | 1 | 4 | 2 | 33.0 | 1 |
+| 2024-2025 | 2024-12-22 | Penn St. | Big Ten | Louisville | ACC | Home | 11 | Jocelyn Nathan | L/DS | 4 | 0 | 0 | 0 | 0.000 | 3 | 1 | 0 | 10 | 10 | 0 | 0 | 0 | 0 | 1.0 | 0 |
+| 2024-2025 | 2024-12-22 | Penn St. | Big Ten | Louisville | ACC | Home | 21 | Izzy Starck | S | 4 | 0 | 2 | 7 | -0.286 | 55 | 1 | 3 | 13 | 0 | 0 | 0 | 1 | 0 | 1.5 | 0 |
+| 2024-2025 | 2024-12-22 | Penn St. | Big Ten | Louisville | ACC | Home | 1 | Taylor Trammell | MB | 4 | 8 | 1 | 15 | 0.467 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 0 | 9.5 | 0 |
+| 2024-2025 | 2024-12-22 | Penn St. | Big Ten | Louisville | ACC | Home | NA | TEAM |  | 0 | 0 | 0 | 0 | 0.000 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0.0 | 0 |
+| 2024-2025 | 2024-12-22 | Penn St. | Big Ten | Louisville | ACC | Home | NA | Penn St. |  | 4 | 72 | 23 | 177 | 0.277 | 69 | 7 | 13 | 78 | 88 | 4 | 3 | 16 | 2 | 90.0 | 1 |
 
 </div>
 
 Play-by-play data are also available with `match_pbp()`. This returns a
-list with a data frame for each set. To extract individual set data
-frames, subset (for examples, for set 1 use `[["Set 1"]]`).
+data frame with all events and players.
 
 ``` r
-match_pbp(contest = "6080706")[["Set 1"]] |> 
-  head(20)
+match_pbp(contest = "6080706") |> 
+  head(10)
 ```
 
 <div class="kable-table">
 
-| Louisville | Score | Penn St. |
-|:---|:---|:---|
-| Match started |  |  |
-| Set started |  |  |
-|  |  | Sub in Gillian Grimes |
-|  |  | Sub out Maggie Mendelson |
-| Sub in Elena Scott |  |  |
-| Sub out Phekran PK Kong |  |  |
-| Payton Petersen serves |  |  |
-|  |  | Reception by Jocelyn Nathan |
-|  |  | Set by Izzy Starck |
-|  |  | Attack by Taylor Trammell |
-|  | 0-1 | \+ First ball kill by Taylor Trammell First ball kill by Taylor Trammell |
-|  |  | Sub in Maggie Mendelson |
-|  |  | Sub out Gillian Grimes |
-|  |  | Sub in Gillian Grimes |
-|  |  | Sub out Taylor Trammell |
-|  |  | Gillian Grimes serves |
-| Reception by Payton Petersen |  |  |
-| Set by Elle Glock |  |  |
-| Attack by Cara Cresse |  |  |
-| \+ First ball kill by Cara Cresse First ball kill by Cara Cresse | 1-1 |  |
+| set | away_team | home_team | score | team | event | player | description |
+|:---|:---|:---|:---|:---|:---|:---|:---|
+| 1 | Louisville | Penn St. | 0-0 | Louisville | Serve | Payton Petersen | Payton Petersen serves |
+| 1 | Louisville | Penn St. | 0-0 | Penn St. | Reception | Jocelyn Nathan | Reception by Jocelyn Nathan |
+| 1 | Louisville | Penn St. | 0-0 | Penn St. | Set | Izzy Starck | Set by Izzy Starck |
+| 1 | Louisville | Penn St. | 0-0 | Penn St. | Attack | Taylor Trammell | Attack by Taylor Trammell |
+| 1 | Louisville | Penn St. | 0-1 | Penn St. | First ball kill | Taylor Trammell | First ball kill by Taylor Trammell |
+| 1 | Louisville | Penn St. | 0-1 | Penn St. | Serve | Gillian Grimes | Gillian Grimes serves |
+| 1 | Louisville | Penn St. | 0-1 | Louisville | Reception | Payton Petersen | Reception by Payton Petersen |
+| 1 | Louisville | Penn St. | 0-1 | Louisville | Set | Elle Glock | Set by Elle Glock |
+| 1 | Louisville | Penn St. | 0-1 | Louisville | Attack | Cara Cresse | Attack by Cara Cresse |
+| 1 | Louisville | Penn St. | 1-1 | Louisville | First ball kill | Cara Cresse | First ball kill by Cara Cresse |
 
 </div>
 

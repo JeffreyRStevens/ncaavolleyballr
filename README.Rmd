@@ -69,7 +69,7 @@ find_team_id("Nebraska", 2024) |>
   player_season_stats()
 ```
 
-By default, these functions return information on women\'s teams, but they can be set to return men\'s information by setting `sport = "MVB"`. You can also aggregate data across conferences, divisions, or custom groups with `conference_player_stats()`, `division_player_stats()`, and `group_player_stats()`.
+By default, these functions return information on women\'s teams, but they can be set to return men\'s information by setting `sport = "MVB"`. You can also aggregate data across conferences, divisions, or custom groups with `conference_season_stats()`, `division_season_stats()`, and `group_stats()`.
 
 
 ### Match data
@@ -93,18 +93,11 @@ From that, we can see that the contest ID is `r psu2024[psu2024$opponent == "Lou
 player_match_stats(contest = "6080706", team = "Penn St.")
 ```
 
-Play-by-play data are also available with `match_pbp()`. This returns a list with a data frame for each set. To extract individual set data frames, subset (for examples, for set 1 use `[["Set 1"]]`).
+Play-by-play data are also available with `match_pbp()`. This returns a data frame with all events and players.
 
-```{r eval=FALSE}
-match_pbp(contest = "6080706")[["Set 1"]] |> 
-  head(20)
-```
-
-```{r echo=FALSE}
-match_pbp(contest = "6080706")[["Set 1"]] |> 
-  dplyr::mutate(`Penn St.` = gsub("\n", "", `Penn St.`),
-                Louisville = gsub("\n", "", Louisville)) |> 
-  head(20)
+```{r}
+match_pbp(contest = "6080706") |> 
+  head(10)
 ```
 
 ## Citation
