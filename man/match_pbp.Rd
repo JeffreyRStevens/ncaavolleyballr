@@ -11,9 +11,7 @@ match_pbp(contest = NULL)
 \code{\link[=find_team_contests]{find_team_contests()}} for a team and season.}
 }
 \value{
-Returns a list with as many data frames as there are sets. Each data frame
-has a column for events happening for each team, as well as a column for the
-score.
+Returns a data frame with a column for set number, events happening for each team, as well as a column for the score.
 }
 \description{
 The NCAA's page for a match/contest includes a tab called

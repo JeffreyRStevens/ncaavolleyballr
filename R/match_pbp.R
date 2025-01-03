@@ -7,9 +7,7 @@
 #' @inheritParams player_match_stats
 #'
 #' @returns
-#' Returns a list with as many data frames as there are sets. Each data frame
-#' has a column for events happening for each team, as well as a column for the
-#' score.
+#' Returns a data frame with a column for set number, events happening for each team, as well as a column for the score.
 #'
 #' @export
 #'
@@ -35,5 +33,6 @@ match_pbp <- function(contest = NULL) {
   sets <- 4:(3 + num_sets)
 
   purrr::lmap(sets, ~`[[`(pbp_all, .x)) |>
-    purrr::set_names(nm = paste0("Set ", 1:num_sets))
+    purrr::set_names(nm = 1:num_sets) |>
+    purrr::list_rbind(names_to = "Set")
 }
