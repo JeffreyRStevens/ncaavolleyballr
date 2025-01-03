@@ -32,7 +32,86 @@ match_pbp <- function(contest = NULL) {
     as.numeric()
   sets <- 4:(3 + num_sets)
 
-  purrr::lmap(sets, ~`[[`(pbp_all, .x)) |>
+  purrr::lmap(sets, ~ `[[`(pbp_all, .x) |> process_set()) |>
     purrr::set_names(nm = 1:num_sets) |>
     purrr::list_rbind(names_to = "Set")
+}
+
+process_set <- function(set_data) {
+  ignore_entries <- c("Match started", "Set started", "Facultative timeout", "Media timeout", "Set ended", "Match ended")
+  away_name <- names(set_data)[1]
+  home_name <- names(set_data)[3]
+  set_data$Score[1] <- "0-0"
+  test <- set_data |>
+    dplyr::mutate(dplyr::across(dplyr::everything(), ~ dplyr::na_if(.x, "")),
+                  away_team = away_name,
+                  home_team = home_name) |>
+    tidyr::fill("Score") |>
+    dplyr::rename("away" = 1, "home" = 3) |>
+    dplyr::mutate(team = ifelse(!is.na(.data$home), home_name, away_name),
+                  description = dplyr::coalesce(.data$away, .data$home),
+                  description = stringr::str_replace(.data$description, "\\+\n", ""),
+                  description = sub("\n.*", "", .data$description),
+                  description = stringr::str_squish(.data$description),
+                  description = sub(".*Kill by ", "Kill by ", .data$description),
+                  event = get_event(.data$description),
+                  player = get_player(.data$description)
+    ) |>
+    dplyr::filter(!.data$event %in% ignore_entries & !grepl("^Sub", .data$event) & !is.na(.data$event) & !grepl("^Team", .data$event) & !grepl("^End of", .data$event)) |>
+    dplyr::select("away_team", "home_team", score = "Score", "team", "event", "player", "description")
+}
+
+get_event <- function(event) {
+  dplyr::case_when(grepl("serves an ace", event) ~
+                     "Ace",
+                   grepl("service error", event) ~
+                     "Service error",
+                   grepl("serves", event) ~
+                     "Serve",
+                   grepl("block\\(over", event) ~
+                     "Block error",
+                   grepl("block\\(error", event) ~
+                     "Block error",
+                   grepl("reception\\(", event) ~
+                     "Reception",
+                   grepl("attack\\(", event) ~
+                     "Attack",
+                   grepl("dig\\(in", event) ~
+                     "Dig",
+                   grepl("set\\(in", event) ~
+                     "Set",
+                   grepl("sanction\\(", event) ~
+                     "Sanction",
+                   grepl("ballHandlingError", event) ~
+                     "Ball handling error",
+                   .default = stringr::str_split_fixed(event, n = 2, pattern = " by ")[, 1]
+  )
+}
+
+get_player <- function(event) {
+  dplyr::case_when(grepl("serves an ace", event) ~
+                     stringr::str_replace(event, " serves an ace", ""),
+                   grepl("service error", event) ~
+                     stringr::str_replace(event, " service error", ""),
+                   grepl("serves", event) ~
+                     stringr::str_replace(event, " serves", ""),
+                   grepl("block\\(over", event) ~
+                     sub("\\(.*", "", event),
+                   grepl("block\\(error", event) ~
+                     sub("\\(.*", "", event),
+                   grepl(" reception\\(", event) ~
+                     sub("\\(.*", "", event),
+                   grepl("attack\\(", event) ~
+                     sub("\\(.*", "", event),
+                   grepl("dig\\(in", event) ~
+                     sub("\\(.*", "", event),
+                   grepl("set\\(in", event) ~
+                     sub("\\(.*", "", event),
+                   grepl("sanction\\(", event) ~
+                     sub("\\(.*", "", event),
+                   grepl("ballHandlingError", event) ~
+                     sub("\\(.*", "", event),
+                   .default =
+                     stringr::str_split_fixed(event, n = 2, pattern = " by ")[, 2]
+  )
 }
