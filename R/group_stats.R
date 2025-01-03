@@ -79,9 +79,9 @@ group_stats <- function(teams = NULL,
   } else if (level == "pbp") {
     if (length(teams) > 1) cli::cli_abort("Enter single team for match-level data.")
     contests <- find_team_contests(find_team_id(teams, year, sport))
-    purrr::map(contests$contest[1:3],
+    purrr::map(contests$contest,
                ~ match_pbp(.x)) |>
-      purrr::set_names(contests$date[1:3]) |>
+      purrr::set_names(contests$date) |>
       purrr::list_rbind(names_to = "Date")
   }
 
