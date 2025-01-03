@@ -74,3 +74,8 @@ player_season_stats <- function(team_id,
       dplyr::arrange(.data$Number)
   }
 }
+
+team_player_stats <- function(...) {
+  lifecycle::deprecate_warn("0.2.0", "team_player_stats()", "player_season_stats()")
+  player_season_stats(...)
+}
