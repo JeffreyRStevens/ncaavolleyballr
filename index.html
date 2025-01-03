@@ -29,7 +29,7 @@
 
     <a class="navbar-brand me-2" href="index.html">ncaavolleyballr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,6 +39,7 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
+<li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
       </ul>
 <ul class="navbar-nav">
 <li class="nav-item"><form class="form-inline" role="search">
@@ -1363,7 +1364,7 @@
 </tbody>
 </table>
 </div>
-<p>Play-by-play data are also available with <code><a href="reference/match_pbp.html">match_pbp()</a></code>. This returns a list with a data frame for each set. To extract individual set data frames, subset with <code>[["Set 1"]]</code>.</p>
+<p>Play-by-play data are also available with <code><a href="reference/match_pbp.html">match_pbp()</a></code>. This returns a list with a data frame for each set. To extract individual set data frames, subset (for examples, for set 1 use <code>[["Set 1"]]</code>).</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/match_pbp.html">match_pbp</a></span><span class="op">(</span>contest <span class="op">=</span> <span class="st">"6080706"</span><span class="op">)</span><span class="op">[[</span><span class="st">"Set 1"</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span></span></code></pre></div>
@@ -1490,7 +1491,7 @@
 </h2>
 <p>To cite <a href="https://github.com/JeffreyRStevens/ncaavolleyballr" class="external-link">ncaavolleyballr</a>, use:</p>
 <blockquote>
-<p>Stevens, Jeffrey R. (2025). ncaavolleyballr: Extract data from NCAA women’s volleyball website. (version 0.1.0) <a href="https://github.com/JeffreyRStevens/ncaavolleyballr" class="external-link uri">https://github.com/JeffreyRStevens/ncaavolleyballr</a></p>
+<p>Stevens, Jeffrey R. (2025). ncaavolleyballr: Extract data from NCAA women’s volleyball website. (version 0.2.0) <a href="https://github.com/JeffreyRStevens/ncaavolleyballr" class="external-link uri">https://github.com/JeffreyRStevens/ncaavolleyballr</a></p>
 </blockquote>
 </div>
 <div class="section level2">
