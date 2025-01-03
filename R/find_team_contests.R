@@ -32,7 +32,8 @@ find_team_contests <- function(team_id = NULL) {
     rvest::html_element("table") |>
     rvest::html_table() |>
     dplyr::filter(.data$Date != "") |>
-    dplyr::pull(.data$Date)
+    dplyr::pull(.data$Date) |>
+    as.Date(format = "%m/%d/%Y")
 
   opponents <- resp |> httr2::resp_body_html() |>
     rvest::html_element("table") |>
