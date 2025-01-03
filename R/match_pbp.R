@@ -34,7 +34,7 @@ match_pbp <- function(contest = NULL) {
 
   purrr::lmap(sets, ~ `[[`(pbp_all, .x) |> process_set()) |>
     purrr::set_names(nm = 1:num_sets) |>
-    purrr::list_rbind(names_to = "Set")
+    purrr::list_rbind(names_to = "set")
 }
 
 process_set <- function(set_data) {
