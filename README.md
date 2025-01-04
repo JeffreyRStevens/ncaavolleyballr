@@ -242,7 +242,7 @@ match_pbp(contest = "6080706") |>
 To cite `{ncaavolleyballr}`, use:
 
 > Stevens, Jeffrey R. (2025). ncaavolleyballr: Extract data from NCAA
-> women's volleyball website. (version 0.2.0)
+> women's volleyball website. (version 0.3.0)
 > <https://github.com/JeffreyRStevens/ncaavolleyballr>
 
 ## Acknowledgments

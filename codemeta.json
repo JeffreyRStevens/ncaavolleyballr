@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/JeffreyRStevens/ncaavolleyballr",
   "issueTracker": "https://github.com/JeffreyRStevens/ncaavolleyballr/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -114,6 +114,18 @@
     },
     "6": {
       "@type": "SoftwareApplication",
+      "identifier": "lifecycle",
+      "name": "lifecycle",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=lifecycle"
+    },
+    "7": {
+      "@type": "SoftwareApplication",
       "identifier": "purrr",
       "name": "purrr",
       "provider": {
@@ -124,7 +136,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=purrr"
     },
-    "7": {
+    "8": {
       "@type": "SoftwareApplication",
       "identifier": "rlang",
       "name": "rlang",
@@ -136,7 +148,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=rlang"
     },
-    "8": {
+    "9": {
       "@type": "SoftwareApplication",
       "identifier": "rvest",
       "name": "rvest",
@@ -148,7 +160,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=rvest"
     },
-    "9": {
+    "10": {
       "@type": "SoftwareApplication",
       "identifier": "stringr",
       "name": "stringr",
@@ -160,7 +172,19 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=stringr"
     },
+    "11": {
+      "@type": "SoftwareApplication",
+      "identifier": "tidyr",
+      "name": "tidyr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=tidyr"
+    },
     "SystemRequirements": null
   },
-  "fileSize": "399.336KB"
+  "fileSize": "422.301KB"
 }
