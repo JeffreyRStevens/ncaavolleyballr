@@ -70,7 +70,6 @@ group_stats <- function(teams = NULL,
     output <- list(playerdata = playerdata, teamdata = teamdata)
     return(output)
   } else if (level == "match") {
-    if (length(teams) > 1) cli::cli_abort("Enter single team for match-level data.")
     contest_vec <- find_team_id(teams, year, sport)
     contests <- purrr::map(contest_vec, find_team_contests) |>
       purrr::list_rbind() |>
@@ -80,7 +79,6 @@ group_stats <- function(teams = NULL,
       purrr::set_names(contests$team) |>
       purrr::list_rbind(names_to = "team")
   } else if (level == "pbp") {
-    if (length(teams) > 1) cli::cli_abort("Enter single team for match-level data.")
     contest_vec <- find_team_id(teams, year, sport)
     contests <- purrr::map(contest_vec, find_team_contests) |>
       purrr::list_rbind() |>

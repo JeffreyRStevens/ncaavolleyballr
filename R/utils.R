@@ -57,3 +57,16 @@ get_team_info <- function(team_id = NULL) {
 most_recent_season <- function() {
   2024
 }
+
+#' Save data frames
+#'
+#' @keywords internal
+#'
+save_df <- function(x, label, group, year, division, conf, sport, path) {
+# save_df <- function(...) {
+  if (length(year) > 1) year <- paste0(min(year), "-", max(year))
+  if (group == "conf") confdiv <- tolower(gsub(" ", "", conf))
+  if (group == "div") confdiv <- paste0(group, division)
+  utils::write.csv(x,
+                   paste0(path, tolower(sport), "_", label, "_", confdiv, "_", year, ".csv"), row.names = FALSE)
+}

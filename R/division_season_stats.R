@@ -1,7 +1,7 @@
-#' Aggregate player statistics from a particular division and season
+#' Aggregate player season statistics for a NCAA division and seasons
 #'
 #' This is a wrapper around [group_stats()] that extracts
-#' all season data from players in all teams from the chosen division.
+#' season data from players in all teams in the chosen division.
 #' It aggregates all player data and team data into separate data frames and
 #' combines them into a list.
 #'
@@ -11,7 +11,7 @@
 #' @param path Character string of path to save statistics files.
 #'
 #' @return
-#' Returns data frame of player statistics
+#' Returns data frame of player and team season statistics.
 #'
 #' @export
 #'
@@ -27,7 +27,7 @@ division_season_stats <- function(year = NULL,
                                   division = 1,
                                   sport = "WVB",
                                   save = FALSE,
-                                  path = "") {
+                                  path = ".") {
   max_year <- most_recent_season()
   if (sport == "WVB") team_df <- ncaavolleyballr::wvb_teams
   else if (sport == "MVB") team_df <- ncaavolleyballr::mvb_teams
@@ -35,12 +35,12 @@ division_season_stats <- function(year = NULL,
   if (!division %in% 1:3) cli::cli_abort("Enter valid division as a number: 1, 2, 3.")
   if (is.null(year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
   if (!is.numeric(year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
-  if (!year %in% 2020:max_year) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
+  if (!all(year %in% 2020:max_year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
   if(!is.logical(save)) cli::cli_abort("`save` must be a logical (TRUE or FALSE).")
   if(!is.character(path)) cli::cli_abort("Enter valid path as a character string.")
 
   div_teams <- team_df |>
-    dplyr::filter(.data$div == division & .data$yr == year)
+    dplyr::filter(.data$div == division & .data$yr %in% year)
   teams <- div_teams$team_name
 
   output <- group_stats(teams = teams, year = year, sport = sport)
@@ -48,14 +48,9 @@ division_season_stats <- function(year = NULL,
   if (!grepl("/$", path)) path <- paste0(path, "/")
 
   if (save) {
-    utils::write.csv(output$playerdata,
-                     paste0(path, tolower(sport), "_playerdata_div", division, "_", year, ".csv"),
-                     row.names = FALSE)
-    utils::write.csv(output$teamdata,
-                     paste0(path, tolower(sport), "_teamdata_div", division, "_", year, ".csv"),
-                     row.names = FALSE)
+    save_df(x = output$playerdata, label = "playerseason", group = "div", year = year, division = division, sport = sport, path = path)
+    save_df(x = output$teamdata, label = "teamseason", group = "div", year = year, division = division, sport = sport, path = path)
   }
-
   return(output)
 }
 

@@ -1,7 +1,7 @@
-#' Aggregate player statistics from a particular conference and season
+#' Aggregate player season statistics for a NCAA conference and seasons
 #'
-#' This is a wrapper around [group_stats()] that extracts all season data from
-#' players in all teams from the chosen conference.
+#' This is a wrapper around [group_stats()] that extracts season data from
+#' players in all teams in the chosen conference.
 #' It aggregates all player data and team data into separate data frames and
 #' combines them into a list. Conferences names can be found in
 #' [ncaa_conferences].
@@ -9,8 +9,7 @@
 #' @param conf NCAA conference name.
 #' @inheritParams division_season_stats
 #'
-#' @return
-#' Returns list with data frames of player statistics and team statistics.
+#' @inherit division_season_stats return
 #'
 #' @export
 #'
@@ -26,11 +25,11 @@ conference_season_stats <- function(year = NULL,
                                     conf = NULL,
                                     sport = "WVB",
                                     save = FALSE,
-                                    path = "") {
+                                    path = ".") {
   max_year <- most_recent_season()
   if (is.null(year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
   if (!is.numeric(year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
-  if (!year %in% 2020:max_year) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
+  if (!all(year %in% 2020:max_year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
   if (sport == "WVB") team_df <- ncaavolleyballr::wvb_teams
   else if (sport == "MVB") team_df <- ncaavolleyballr::mvb_teams
   else cli::cli_abort("Enter valid sport (\"WVB\" or \"MVB\").")
@@ -40,7 +39,7 @@ conference_season_stats <- function(year = NULL,
   if(!is.character(path)) cli::cli_abort("Enter valid path as a character string.")
 
   conf_teams <- team_df |>
-    dplyr::filter(.data$conference == conf & .data$yr == year)
+    dplyr::filter(.data$conference == conf & .data$yr %in% year)
   teams <- conf_teams$team_name
 
   output <- group_stats(teams = teams, year = year, level = "season", sport = sport)
@@ -48,15 +47,9 @@ conference_season_stats <- function(year = NULL,
   if (!grepl("/$", path)) path <- paste0(path, "/")
 
   if (save) {
-    shortconf <- tolower(gsub(" ", "", conf))
-    utils::write.csv(output$playerdata,
-                     paste0(path, tolower(sport), "_playerdata_", shortconf, "_", year, ".csv"),
-                     row.names = FALSE)
-    utils::write.csv(output$teamdata,
-                     paste0(path, tolower(sport), "_teamdata_", shortconf, "_", year, ".csv"),
-                     row.names = FALSE)
+    save_df(x = output$playerdata, label = "playerseason", group = "conf", year = year, conf = conf, sport = sport, path = path)
+    save_df(x = output$teamdata, label = "teamseason", group = "conf", year = year, conf = conf, sport = sport, path = path)
   }
-
   return(output)
 }
 

@@ -48,7 +48,11 @@ group_stats(teams = "Nebraska", year = 2024, level = "pbp")
 }
 \seealso{
 Other functions that aggregate statistics: 
+\code{\link{conference_match_stats}()},
+\code{\link{conference_pbp_stats}()},
 \code{\link{conference_season_stats}()},
+\code{\link{division_match_stats}()},
+\code{\link{division_pbp_stats}()},
 \code{\link{division_season_stats}()}
 }
 \concept{functions that aggregate statistics}
