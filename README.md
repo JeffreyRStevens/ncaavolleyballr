@@ -152,8 +152,10 @@ find_team_id("Nebraska", 2024) |>
 By default, these functions return information on women's teams, but
 they can be set to return men's information by setting `sport = "MVB"`.
 You can also aggregate data across conferences, divisions, or custom
-groups with `conference_season_stats()`, `division_season_stats()`, and
-`group_stats()`.
+groups with `conference_season_stats()`, `division_season_stats()`,
+`conference_match_stats()`,
+`division_match_stats()`,`conference_pbp_stats()`,
+`division_pbp_stats()`, and `group_stats()`.
 
 ### Match data
 
