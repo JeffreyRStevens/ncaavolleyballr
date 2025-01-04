@@ -32,7 +32,7 @@ check_team_id <- function(team_id = NULL) {
   teams <- dplyr::bind_rows(ncaavolleyballr::wvb_teams, ncaavolleyballr::mvb_teams)
   if (is.null(team_id)) cli::cli_abort(paste0("Enter valid team ID as a character string."))
   if (!is.character(team_id)) cli::cli_abort("Enter valid team ID as a character string.")
-  if (!team_id %in% c(teams$team_id)) cli::cli_abort("Enter valid team ID. \"{team_id}\" was not found in the list of valid IDs.")
+  if (!all(team_id %in% c(teams$team_id))) cli::cli_abort("Enter valid team ID. \"{team_id}\" was not found in the list of valid IDs.")
 }
 
 

@@ -28,10 +28,10 @@ find_team_id <- function (team = NULL,
   else if (sport == "MVB") team_df <- ncaavolleyballr::mvb_teams
   else cli::cli_abort("Enter valid sport (\"WVB\" or \"MVB\").")
   if (is.null(team)) cli::cli_abort("Enter valid team name. Check `ncaa_teams` for names or search using `find_team_name()`.")
-  if (!team %in% team_df$team_name) cli::cli_abort("Enter valid team name. Check `ncaa_teams` for names or search using `find_team_name()`.")
+  if (!all(team %in% team_df$team_name)) cli::cli_abort("Enter valid team name. Check `ncaa_teams` for names or search using `find_team_name()`.")
   if (is.null(year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
   if (!is.numeric(year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
-  if (!year %in% 2020:max_year) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
+  if (!all(year %in% 2020:max_year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
 
-  team_df[team_df$team_name == team & team_df$yr == year, ]$team_id
+  team_df[team_df$team_name %in% team & team_df$yr %in% year, ]$team_id
 }

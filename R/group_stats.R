@@ -52,13 +52,13 @@ group_stats <- function(teams = NULL,
   }
   if (is.null(year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
   if (!is.numeric(year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
-  if (!year %in% 2020:max_year) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
+  if (!all(year %in% 2020:max_year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
   if (!level %in% c("season", "match", "pbp")) cli::cli_abort("Enter valid level: \"season\", \"match\" or \"pbp\"")
 
   if (level == "season") {
-    data <- purrr::map(teams,
-                       ~ player_season_stats(find_team_id(.x, year, sport))) |>
-      purrr::set_names(teams) |>
+    data <- purrr::map2(rep(teams, each = length(year)), rep(year, times = length(teams)),
+                       ~ player_season_stats(find_team_id(.x, .y, sport))) |>
+      purrr::set_names(rep(teams, each = length(year))) |>
       purrr::list_rbind(names_to = "Team")
     playerdata <- data |>
       dplyr::filter(!is.na(.data$Number))
@@ -71,23 +71,24 @@ group_stats <- function(teams = NULL,
     return(output)
   } else if (level == "match") {
     if (length(teams) > 1) cli::cli_abort("Enter single team for match-level data.")
-    contests <- find_team_contests(find_team_id(teams, year, sport)) |>
-      dplyr::filter(!is.na(.data$contests)) |>
-      dplyr::pull(contests)
-    purrr::map(contests,
-                       ~ player_match_stats(.x, teams, team_stats = FALSE, sport)) |>
-      purrr::set_names(teams) |>
+    contest_vec <- find_team_id(teams, year, sport)
+    contests <- purrr::map(contest_vec, find_team_contests) |>
+      purrr::list_rbind() |>
+      dplyr::filter(!is.na(.data$contests))
+    purrr::map2(contests$contests, contests$team,
+                       ~ player_match_stats(.x, .y, team_stats = FALSE, sport)) |>
+      purrr::set_names(contests$team) |>
       purrr::list_rbind(names_to = "team")
   } else if (level == "pbp") {
     if (length(teams) > 1) cli::cli_abort("Enter single team for match-level data.")
-    contests <- find_team_contests(find_team_id(teams, year, sport)) |>
+    contest_vec <- find_team_id(teams, year, sport)
+    contests <- purrr::map(contest_vec, find_team_contests) |>
+      purrr::list_rbind() |>
       dplyr::filter(!is.na(.data$contests))
-    purrr::map(contests$contests,
-               ~ match_pbp(.x)) |>
+    purrr::map(contests$contests, match_pbp) |>
       purrr::set_names(contests$date) |>
       purrr::list_rbind(names_to = "date")
   }
-
 }
 
 #' Aggregate player statistics
