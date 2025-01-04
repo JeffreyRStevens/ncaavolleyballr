@@ -29,7 +29,7 @@
 
     <a class="navbar-brand me-2" href="index.html">ncaavolleyballr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -912,7 +912,7 @@
 </tbody>
 </table>
 </div>
-<p>By default, these functions return information on women’s teams, but they can be set to return men’s information by setting <code>sport = "MVB"</code>. You can also aggregate data across conferences, divisions, or custom groups with <code><a href="reference/conference_player_stats.html">conference_player_stats()</a></code>, <code><a href="reference/division_player_stats.html">division_player_stats()</a></code>, and <code><a href="reference/group_player_stats.html">group_player_stats()</a></code>.</p>
+<p>By default, these functions return information on women’s teams, but they can be set to return men’s information by setting <code>sport = "MVB"</code>. You can also aggregate data across conferences, divisions, or custom groups with <code><a href="reference/conference_season_stats.html">conference_season_stats()</a></code>, <code><a href="reference/division_season_stats.html">division_season_stats()</a></code>, and <code><a href="reference/group_stats.html">group_stats()</a></code>.</p>
 </div>
 <div class="section level3">
 <h3 id="match-data">Match data<a class="anchor" aria-label="anchor" href="#match-data"></a>
@@ -923,66 +923,90 @@
 <span>  <span class="fu"><a href="reference/find_team_contests.html">find_team_contests</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
-<table class="table">
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+</colgroup>
 <thead><tr class="header">
 <th align="left"></th>
 <th align="left">date</th>
 <th align="left">team</th>
 <th align="left">opponent</th>
-<th align="left">contest</th>
+<th align="left">result</th>
+<th align="left">attendance</th>
+<th align="left">contests</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">32</td>
 <td align="left">12/06/2024</td>
 <td align="left">Penn St.</td>
-<td align="left">Delaware St.</td>
+<td align="left">Delaware St. 2024 NCAA Division I Women’s Volleyball Championship</td>
+<td align="left">W 3-0</td>
+<td align="left">2,516</td>
 <td align="left">6080734</td>
 </tr>
 <tr class="even">
 <td align="left">33</td>
 <td align="left">12/07/2024</td>
 <td align="left">Penn St.</td>
-<td align="left">North Carolina</td>
+<td align="left">#8 North Carolina 2024 NCAA Division I Women’s Volleyball Championship</td>
+<td align="left">W 3-1</td>
+<td align="left">2,470</td>
 <td align="left">6080733</td>
 </tr>
 <tr class="odd">
 <td align="left">34</td>
 <td align="left">12/13/2024</td>
 <td align="left">Penn St.</td>
-<td align="left">Marquette</td>
+<td align="left">#5 Marquette 2024 NCAA Division I Women’s Volleyball Championship</td>
+<td align="left">W 3-1</td>
+<td align="left">2,914</td>
 <td align="left">6081048</td>
 </tr>
 <tr class="even">
 <td align="left">35</td>
 <td align="left">12/15/2024</td>
 <td align="left">Penn St.</td>
-<td align="left">Creighton</td>
+<td align="left">#2 Creighton 2024 NCAA Division I Women’s Volleyball Championship</td>
+<td align="left">W 3-2</td>
+<td align="left">3,558</td>
 <td align="left">6081042</td>
 </tr>
 <tr class="odd">
 <td align="left">36</td>
 <td align="left">12/19/2024</td>
 <td align="left">Penn St.</td>
-<td align="left">Nebraska</td>
+<td align="left">#1 Nebraska @Louisville, KY (2024 NCAA Division I Women’s Volleyball Championship)</td>
+<td align="left">W 3-2</td>
+<td align="left">21,726</td>
 <td align="left">6080708</td>
 </tr>
 <tr class="even">
 <td align="left">37</td>
 <td align="left">12/22/2024</td>
 <td align="left">Penn St.</td>
-<td align="left">Louisville</td>
+<td align="left">@#1 Louisville 2024 NCAA Division I Women’s Volleyball Championship</td>
+<td align="left">W 3-1</td>
+<td align="left">21,860</td>
 <td align="left">6080706</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>From that, we can see that the contest ID is 6080706. If we pass this contest ID to the <code><a href="reference/player_match_stats.html">player_match_stats()</a></code> function, we’ll get a list with two data frames—one for each team in the contest—that contain player statistics for the match. If we want to get just the Penn State player data, we can set <code>team = "Penn St."</code>.</p>
+<p>From that, we can see that the contest ID is NA. If we pass this contest ID to the <code><a href="reference/player_match_stats.html">player_match_stats()</a></code> function, we’ll get a list with two data frames—one for each team in the contest—that contain player statistics for the match. If we want to get just the Penn State player data, we can set <code>team = "Penn St."</code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/player_match_stats.html">player_match_stats</a></span><span class="op">(</span>contest <span class="op">=</span> <span class="st">"6080706"</span>, team <span class="op">=</span> <span class="st">"Penn St."</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
+<col width="3%">
 <col width="3%">
 <col width="3%">
 <col width="3%">
@@ -1011,6 +1035,7 @@
 </colgroup>
 <thead><tr class="header">
 <th align="left">Season</th>
+<th align="left">Date</th>
 <th align="left">Team</th>
 <th align="left">Conference</th>
 <th align="left">Opponent Team</th>
@@ -1039,6 +1064,7 @@
 <tbody>
 <tr class="odd">
 <td align="left">2024-2025</td>
+<td align="left">2024-12-22</td>
 <td align="left">Penn St.</td>
 <td align="left">Big Ten</td>
 <td align="left">Louisville</td>
@@ -1066,6 +1092,7 @@
 </tr>
 <tr class="even">
 <td align="left">2024-2025</td>
+<td align="left">2024-12-22</td>
 <td align="left">Penn St.</td>
 <td align="left">Big Ten</td>
 <td align="left">Louisville</td>
@@ -1093,6 +1120,7 @@
 </tr>
 <tr class="odd">
 <td align="left">2024-2025</td>
+<td align="left">2024-12-22</td>
 <td align="left">Penn St.</td>
 <td align="left">Big Ten</td>
 <td align="left">Louisville</td>
@@ -1120,6 +1148,7 @@
 </tr>
 <tr class="even">
 <td align="left">2024-2025</td>
+<td align="left">2024-12-22</td>
 <td align="left">Penn St.</td>
 <td align="left">Big Ten</td>
 <td align="left">Louisville</td>
@@ -1147,6 +1176,7 @@
 </tr>
 <tr class="odd">
 <td align="left">2024-2025</td>
+<td align="left">2024-12-22</td>
 <td align="left">Penn St.</td>
 <td align="left">Big Ten</td>
 <td align="left">Louisville</td>
@@ -1174,6 +1204,7 @@
 </tr>
 <tr class="even">
 <td align="left">2024-2025</td>
+<td align="left">2024-12-22</td>
 <td align="left">Penn St.</td>
 <td align="left">Big Ten</td>
 <td align="left">Louisville</td>
@@ -1201,6 +1232,7 @@
 </tr>
 <tr class="odd">
 <td align="left">2024-2025</td>
+<td align="left">2024-12-22</td>
 <td align="left">Penn St.</td>
 <td align="left">Big Ten</td>
 <td align="left">Louisville</td>
@@ -1228,6 +1260,7 @@
 </tr>
 <tr class="even">
 <td align="left">2024-2025</td>
+<td align="left">2024-12-22</td>
 <td align="left">Penn St.</td>
 <td align="left">Big Ten</td>
 <td align="left">Louisville</td>
@@ -1255,6 +1288,7 @@
 </tr>
 <tr class="odd">
 <td align="left">2024-2025</td>
+<td align="left">2024-12-22</td>
 <td align="left">Penn St.</td>
 <td align="left">Big Ten</td>
 <td align="left">Louisville</td>
@@ -1282,6 +1316,7 @@
 </tr>
 <tr class="even">
 <td align="left">2024-2025</td>
+<td align="left">2024-12-22</td>
 <td align="left">Penn St.</td>
 <td align="left">Big Ten</td>
 <td align="left">Louisville</td>
@@ -1309,6 +1344,7 @@
 </tr>
 <tr class="odd">
 <td align="left">2024-2025</td>
+<td align="left">2024-12-22</td>
 <td align="left">Penn St.</td>
 <td align="left">Big Ten</td>
 <td align="left">Louisville</td>
@@ -1336,6 +1372,7 @@
 </tr>
 <tr class="even">
 <td align="left">2024-2025</td>
+<td align="left">2024-12-22</td>
 <td align="left">Penn St.</td>
 <td align="left">Big Ten</td>
 <td align="left">Louisville</td>
@@ -1364,122 +1401,132 @@
 </tbody>
 </table>
 </div>
-<p>Play-by-play data are also available with <code><a href="reference/match_pbp.html">match_pbp()</a></code>. This returns a list with a data frame for each set. To extract individual set data frames, subset (for examples, for set 1 use <code>[["Set 1"]]</code>).</p>
+<p>Play-by-play data are also available with <code><a href="reference/match_pbp.html">match_pbp()</a></code>. This returns a data frame with all events and players.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/match_pbp.html">match_pbp</a></span><span class="op">(</span>contest <span class="op">=</span> <span class="st">"6080706"</span><span class="op">)</span><span class="op">[[</span><span class="st">"Set 1"</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/match_pbp.html">match_pbp</a></span><span class="op">(</span>contest <span class="op">=</span> <span class="st">"6080706"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
 <table class="table">
 <colgroup>
-<col width="33%">
-<col width="33%">
-<col width="33%">
+<col width="12%">
+<col width="12%">
+<col width="12%">
+<col width="12%">
+<col width="12%">
+<col width="12%">
+<col width="12%">
+<col width="12%">
 </colgroup>
 <thead><tr class="header">
-<th align="left">Louisville</th>
-<th align="left">Score</th>
-<th align="left">Penn St.</th>
+<th align="left">set</th>
+<th align="left">away_team</th>
+<th align="left">home_team</th>
+<th align="left">score</th>
+<th align="left">team</th>
+<th align="left">event</th>
+<th align="left">player</th>
+<th align="left">description</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">Match started</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">Set started</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">Sub in Gillian Grimes</td>
-</tr>
-<tr class="even">
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">Sub out Maggie Mendelson</td>
-</tr>
-<tr class="odd">
-<td align="left">Sub in Elena Scott</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">Sub out Phekran PK Kong</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
+<td align="left">1</td>
+<td align="left">Louisville</td>
+<td align="left">Penn St.</td>
+<td align="left">0-0</td>
+<td align="left">Louisville</td>
+<td align="left">Serve</td>
+<td align="left">Payton Petersen</td>
 <td align="left">Payton Petersen serves</td>
-<td align="left"></td>
-<td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left"></td>
-<td align="left"></td>
+<td align="left">1</td>
+<td align="left">Louisville</td>
+<td align="left">Penn St.</td>
+<td align="left">0-0</td>
+<td align="left">Penn St.</td>
+<td align="left">Reception</td>
+<td align="left">Jocelyn Nathan</td>
 <td align="left">Reception by Jocelyn Nathan</td>
 </tr>
 <tr class="odd">
-<td align="left"></td>
-<td align="left"></td>
+<td align="left">1</td>
+<td align="left">Louisville</td>
+<td align="left">Penn St.</td>
+<td align="left">0-0</td>
+<td align="left">Penn St.</td>
+<td align="left">Set</td>
+<td align="left">Izzy Starck</td>
 <td align="left">Set by Izzy Starck</td>
 </tr>
 <tr class="even">
-<td align="left"></td>
-<td align="left"></td>
+<td align="left">1</td>
+<td align="left">Louisville</td>
+<td align="left">Penn St.</td>
+<td align="left">0-0</td>
+<td align="left">Penn St.</td>
+<td align="left">Attack</td>
+<td align="left">Taylor Trammell</td>
 <td align="left">Attack by Taylor Trammell</td>
 </tr>
 <tr class="odd">
-<td align="left"></td>
+<td align="left">1</td>
+<td align="left">Louisville</td>
+<td align="left">Penn St.</td>
 <td align="left">0-1</td>
-<td align="left">+ First ball kill by Taylor Trammell First ball kill by Taylor Trammell</td>
+<td align="left">Penn St.</td>
+<td align="left">First ball kill</td>
+<td align="left">Taylor Trammell</td>
+<td align="left">First ball kill by Taylor Trammell</td>
 </tr>
 <tr class="even">
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">Sub in Maggie Mendelson</td>
-</tr>
-<tr class="odd">
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">Sub out Gillian Grimes</td>
-</tr>
-<tr class="even">
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">Sub in Gillian Grimes</td>
-</tr>
-<tr class="odd">
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">Sub out Taylor Trammell</td>
-</tr>
-<tr class="even">
-<td align="left"></td>
-<td align="left"></td>
+<td align="left">1</td>
+<td align="left">Louisville</td>
+<td align="left">Penn St.</td>
+<td align="left">0-1</td>
+<td align="left">Penn St.</td>
+<td align="left">Serve</td>
+<td align="left">Gillian Grimes</td>
 <td align="left">Gillian Grimes serves</td>
 </tr>
 <tr class="odd">
+<td align="left">1</td>
+<td align="left">Louisville</td>
+<td align="left">Penn St.</td>
+<td align="left">0-1</td>
+<td align="left">Louisville</td>
+<td align="left">Reception</td>
+<td align="left">Payton Petersen</td>
 <td align="left">Reception by Payton Petersen</td>
-<td align="left"></td>
-<td align="left"></td>
 </tr>
 <tr class="even">
+<td align="left">1</td>
+<td align="left">Louisville</td>
+<td align="left">Penn St.</td>
+<td align="left">0-1</td>
+<td align="left">Louisville</td>
+<td align="left">Set</td>
+<td align="left">Elle Glock</td>
 <td align="left">Set by Elle Glock</td>
-<td align="left"></td>
-<td align="left"></td>
 </tr>
 <tr class="odd">
+<td align="left">1</td>
+<td align="left">Louisville</td>
+<td align="left">Penn St.</td>
+<td align="left">0-1</td>
+<td align="left">Louisville</td>
+<td align="left">Attack</td>
+<td align="left">Cara Cresse</td>
 <td align="left">Attack by Cara Cresse</td>
-<td align="left"></td>
-<td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left">+ First ball kill by Cara Cresse First ball kill by Cara Cresse</td>
+<td align="left">1</td>
+<td align="left">Louisville</td>
+<td align="left">Penn St.</td>
 <td align="left">1-1</td>
-<td align="left"></td>
+<td align="left">Louisville</td>
+<td align="left">First ball kill</td>
+<td align="left">Cara Cresse</td>
+<td align="left">First ball kill by Cara Cresse</td>
 </tr>
 </tbody>
 </table>
@@ -1491,7 +1538,7 @@
 </h2>
 <p>To cite <a href="https://github.com/JeffreyRStevens/ncaavolleyballr" class="external-link">ncaavolleyballr</a>, use:</p>
 <blockquote>
-<p>Stevens, Jeffrey R. (2025). ncaavolleyballr: Extract data from NCAA women’s volleyball website. (version 0.2.0) <a href="https://github.com/JeffreyRStevens/ncaavolleyballr" class="external-link uri">https://github.com/JeffreyRStevens/ncaavolleyballr</a></p>
+<p>Stevens, Jeffrey R. (2025). ncaavolleyballr: Extract data from NCAA women’s volleyball website. (version 0.3.0) <a href="https://github.com/JeffreyRStevens/ncaavolleyballr" class="external-link uri">https://github.com/JeffreyRStevens/ncaavolleyballr</a></p>
 </blockquote>
 </div>
 <div class="section level2">
