@@ -32,10 +32,10 @@ find_team_contests <- function(team_id = NULL) {
     rvest::html_element("table") |>
     rvest::html_table() |>
     dplyr::filter(.data$Date != "") |>
-    dplyr::mutate(team = team_info["Team"], .after = .data$Date)
+    dplyr::mutate(team = team_info["Team"], .after = "Date")
   names(schedule) <- tolower(names(schedule))
 
-  canceled <- which(schedule$result == "Canceled")
+  canceled <- which(schedule$result == "Canceled" | schedule$result == "Ppd")
 
   contests <- resp |> httr2::resp_body_html() |>
     rvest::html_element("table") |>
