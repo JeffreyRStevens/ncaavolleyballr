@@ -1,0 +1,89 @@
+#' Aggregate player statistics for a NCAA conference and seasons
+#'
+#' This is a wrapper around [group_stats()] that extracts season, match, or pbp
+#' data from players in all teams in the chosen conference. For season stats,
+#' it aggregates all player data and team data into separate data frames and
+#' combines them into a list. For match and pbp stats, it aggregates into a
+#' data frame.
+#' Conferences names can be found in
+#' [ncaa_conferences].
+#'
+#' @inheritParams division_stats
+#' @param conf NCAA conference name.
+#'
+#' @inherit group_stats return
+#'
+#' @export
+#'
+#' @family functions that aggregate statistics
+#'
+#' @examples
+#' \dontrun{
+#' conference_stats(year = 2024, conf = "Peach Belt", level = "season")
+#' conference_stats(year = 2023, conf = "Big West", level = "match", sport = "MVB")
+#' conference_stats(year = 2024, conf = "Peach Belt", level = "pbp", save = TRUE, path = "data/")
+#' }
+conference_stats <- function(year = NULL,
+                             conf = NULL,
+                             level = NULL,
+                             sport = "WVB",
+                             save = FALSE,
+                             path = ".") {
+  # check inputs
+  max_year <- most_recent_season()
+  if (is.null(year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
+  if (!is.numeric(year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
+  if (!all(year %in% 2020:max_year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
+  if (is.null(level)) cli::cli_abort("Enter valid level: \"season\", \"match\" or \"pbp\"")
+  if (!level %in% c("season", "match", "pbp")) cli::cli_abort("Enter valid level: \"season\", \"match\" or \"pbp\"")
+  if (sport == "WVB") team_df <- ncaavolleyballr::wvb_teams
+  else if (sport == "MVB") team_df <- ncaavolleyballr::mvb_teams
+  else cli::cli_abort("Enter valid sport (\"WVB\" or \"MVB\").")
+  if (is.null(conf)) cli::cli_abort("Enter valid conference.  Check `ncaa_conferences` for conference names.")
+  if (!conf %in% team_df$conference) cli::cli_abort("Enter valid conference.  Check `ncaa_conferences` for conference names.")
+  if(!is.logical(save)) cli::cli_abort("`save` must be a logical (TRUE or FALSE).")
+  if(!is.character(path)) cli::cli_abort("Enter valid path as a character string.")
+
+  # get vector of conference teams
+  conf_teams <- team_df |>
+    dplyr::filter(.data$conference == conf & .data$yr %in% year)
+  teams <- conf_teams$team_name
+
+  # get data on conference teams
+  output <- group_stats(teams = teams, year = year,
+                        level = level, sport = sport)
+
+  # remove / at end of path
+  if (!grepl("/$", path)) path <- paste0(path, "/")
+
+  # save data to files if requested
+  if (save) {
+    if (level == "season") {
+      save_df(x = output$playerdata, label = "playerseason", group = "conf",
+              year = year, conf = conf, sport = sport, path = path)
+      save_df(x = output$teamdata, label = "teamseason", group = "conf",
+              year = year, conf = conf, sport = sport, path = path)
+    } else if (level == "match") {
+      save_df(x = output, label = "playermatch", group = "conf",
+              year = year, conf = conf, sport = sport, path = path)
+    } else {
+      save_df(x = output, label = "pbp", group = "conf",
+              year = year, conf = conf, sport = sport, path = path)
+    }
+  }
+  return(output)
+}
+
+#' Aggregate player statistics from a particular conference and season
+#'
+#' @description
+#' `r lifecycle::badge("deprecated")`
+#'
+#' `conference_player_stats()` was renamed to `conference_stats()` to
+#' create a more consistent API.
+#' @keywords internal
+#' @export
+conference_player_stats <- function(...) {
+  lifecycle::deprecate_warn("0.3.0", "conference_player_stats()", "conference_stats()")
+  conference_stats(...)
+}
