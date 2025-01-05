@@ -45,21 +45,43 @@ player_match_stats <- function(contest = NULL,
     rvest::html_table()
   match_info <- match_all[[1]]
 
-  match_date <- match_info[5, 1] |>
-    dplyr::pull() |>
+  match_date_time <- match_info[5, 1] |>
+    dplyr::pull()
+  if (grepl("TBA", match_date_time)) {
+    match_date <- sub("TBA", "", match_date_time) |>
+      stringr::str_trim() |>
+      as.Date(format = "%m/%d/%Y")
+  } else {
+    match_date <- match_date_time |>
     as.Date(format = "%m/%d/%Y %H:%M %p")
+  }
   yr <- match_date |>
     format("%Y") |>
     as.numeric()
   season <- paste0(yr, "-", yr + 1)
 
   away_team <- match_info[3, 1] |>
-    dplyr::pull()
+    dplyr::pull() |>
+    fix_teams()
   away_conf <- team_df[team_df$team_name == away_team & team_df$yr == yr, ]$conference
+  if (length(away_conf) == 0) {
+    away_conf <- team_df[team_df$team_name == away_team & team_df$yr == (yr - 1), ]$conference
+  }
+  if (length(away_conf) == 0) {
+    away_conf <- NA
+  }
 
   home_team <- match_info[4, 1] |>
-    dplyr::pull()
+    dplyr::pull() |>
+    fix_teams()
+
   home_conf <- team_df[team_df$team_name == home_team & team_df$yr == yr, ]$conference
+  if (length(home_conf) == 0) {
+    home_conf <- team_df[team_df$team_name == home_team & team_df$yr == (yr - 1), ]$conference
+  }
+  if (length(home_conf) == 0) {
+    home_conf <- NA
+  }
 
 
   away_stats <- match_all[[4]] |>
