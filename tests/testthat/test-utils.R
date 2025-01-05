@@ -25,3 +25,24 @@ test_that("most_recent_season() works", {
   expect_equal(most_recent_season(),
                2024)
 })
+
+test_that("html_table_raw() works", {
+  team_id <- "585290"
+  url <- paste0("https://stats.ncaa.org/teams/", team_id)
+  resp <- request_url(url)
+
+  html_table <- resp |> httr2::resp_body_html() |>
+    rvest::html_element("table")
+
+  schedule <- html_table |> html_table_raw()
+  expect_equal(schedule$Date[1],
+               "<td>08/27/2024</td>")
+})
+
+test_that("fix_teams() works", {
+  expect_equal(fix_teams("x"),
+               "x")
+  expect_equal(fix_teams("Tex. A&M-Commerce"),
+               "East Texas A&M")
+})
+
