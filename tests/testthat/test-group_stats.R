@@ -13,6 +13,8 @@ test_that("group_stats() works at season level", {
                "Enter valid year between 2020-")
   expect_error(group_stats(teams = "Nebraska", year = "2024"),
                "Enter valid year between 2020-")
+  expect_error(group_stats(teams = "Nebraska", year = 2024, level = "xxx"),
+               "Enter valid level")
   expect_error(group_stats(teams = "Nebraska", year = 2024, sport = "VB"),
                "Enter valid sport")
 })
@@ -20,13 +22,9 @@ test_that("group_stats() works at season level", {
 test_that("group_stats() works at match level", {
   expect_equal(group_stats(teams = "Nebraska", year = 2024, level = "match")$Player[1],
                "Rebekah Allick")
-  # expect_equal(group_stats(teams = "UCLA", year = 2023, level = "match", sport = "MVB")$Player[1],
-  #              "Ethan Champlin")
 })
 
 test_that("group_stats() works at pbp level", {
   expect_equal(group_stats(teams = "Nebraska", year = 2024, level = "pbp")$home_team[1],
                "Kentucky")
-  # expect_equal(group_stats(teams = "UCLA", year = 2023, level = "pbp", sport = "MVB")$away_team[1],
-  #              "Fort Valley St.")
 })

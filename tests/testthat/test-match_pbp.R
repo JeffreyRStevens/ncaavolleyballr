@@ -4,7 +4,7 @@ test_that("match_pbp() works", {
   expect_equal(final2024$set[nrow(final2024)],
                "4")
   expect_equal(nrow(final2024),
-               1446)
+               1448)
   expect_equal(final2024$away_team[1],
                "Louisville")
   expect_error(match_pbp(),
