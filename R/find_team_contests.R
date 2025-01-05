@@ -21,35 +21,46 @@
 #' find_team_contests(team_id = find_team_id("UCLA", 2023, sport = "MVB"))
 #' }
 find_team_contests <- function(team_id = NULL) {
+  # check team_id
   check_team_id(team_id)
+  if (length(team_id) == 0) return() # skip teams with no team_id
+
+  # get team info and request URL
   team_info <- get_team_info(team_id)
-
   url <- paste0("https://stats.ncaa.org/teams/", team_id)
-
   resp <- request_url(url)
 
-  schedule <- resp |> httr2::resp_body_html() |>
-    rvest::html_element("table") |>
-    rvest::html_table() |>
-    dplyr::filter(.data$Date != "") |>
-    dplyr::mutate(team = team_info["Team"], .after = "Date")
+  html_table <- resp |> httr2::resp_body_html() |>
+    rvest::html_element("table")
+
+  schedule <- html_table |> html_table_raw() |>
+    dplyr::mutate(Team = team_info["Team"], .after = "Date") |>
+    dplyr::mutate(dplyr::across(dplyr::everything(),
+                                ~ sub("<td>", "", .x)),
+                  dplyr::across(dplyr::everything(),
+                                ~ sub("</td>", "", .x)),
+                  dplyr::across(dplyr::everything(),
+                                ~ sub("<td nowrap>", "", .x)),
+                  dplyr::across(dplyr::everything(),
+                                ~ sub("<td align=\"right\">", "", .x)),
+                  Opponent = sub(".*\\.gif\"> ", "", .data$Opponent),
+                  Opponent = sub(".*>\\#\\d", "", .data$Opponent),
+                  Opponent = sub("</a>.*", "", .data$Opponent),
+                  Opponent = sub("<br>.*", "", .data$Opponent),
+                  Opponent = stringr::str_trim(.data$Opponent),
+                  Opponent = sub("\\&amp;", "\\&", .data$Opponent),
+                  contest = stringr::str_extract(.data$Result, "(\\d+)(?=/box)"),
+                  Result = sub(".*box_score\">", "", .data$Result),
+                  dplyr::across(dplyr::everything(),
+                                ~ sub("</a>", "", .x)),
+                  dplyr::across(dplyr::everything(),
+                                stringr::str_trim),
+                  Attendance = suppressWarnings(as.numeric(gsub(",", "", .data$Attendance)))
+    )
   names(schedule) <- tolower(names(schedule))
 
-  canceled <- which(schedule$result == "Canceled" | schedule$result == "Ppd")
+  # skip teams with no data
+  if(nrow(schedule) == 0) return()
 
-  contests <- resp |> httr2::resp_body_html() |>
-    rvest::html_element("table") |>
-    rvest::html_elements("a") |>
-    rvest::html_attr("href") |>
-    stringr::str_subset("contests") |>
-    stringr::str_extract("(\\d+)")
-
-  if (length(canceled) > 0) {
-    for(i in seq_along(canceled)) {
-      contests <- append(contests, NA, after = canceled[i] - 1)
-    }
-  }
-
-  schedule |>
-    cbind(contests)
+  schedule
 }
