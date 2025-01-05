@@ -8,7 +8,7 @@
 #' sports, using the appropriate three letter sport code drawn from
 #' [ncaa_sports] (e.g., men's baseball is "MBA").
 #'
-#' @param year Year for fall of desired season.
+#' @param year Single numeric year for fall of desired season.
 #' @param division NCAA division (must be 1, 2, or 3).
 #' @param sport Three letter abbreviation for NCAA sport (must be upper case;
 #' for example "WVB" for women's volleyball and "MVB" for men's volleyball).

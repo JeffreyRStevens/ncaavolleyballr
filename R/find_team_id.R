@@ -8,6 +8,7 @@
 #'
 #' @param team Name of school. Must match name used by NCAA. Find exact team
 #' name with [find_team_name()].
+#' @param year Numeric vector of years for fall of desired seasons.
 #' @inheritParams get_teams
 #'
 #' @returns
@@ -23,6 +24,7 @@
 find_team_id <- function (team = NULL,
                           year = NULL,
                           sport = "WVB") {
+  # check inputs
   max_year <- most_recent_season()
   if (sport == "WVB") team_df <- ncaavolleyballr::wvb_teams
   else if (sport == "MVB") team_df <- ncaavolleyballr::mvb_teams
@@ -33,5 +35,6 @@ find_team_id <- function (team = NULL,
   if (!is.numeric(year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
   if (!all(year %in% 2020:max_year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
 
+  # extract team_id
   team_df[team_df$team_name %in% team & team_df$yr %in% year, ]$team_id
 }

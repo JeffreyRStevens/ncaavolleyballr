@@ -7,7 +7,7 @@
 get_teams(year = NULL, division = 1, sport = "WVB")
 }
 \arguments{
-\item{year}{Year for fall of desired season.}
+\item{year}{Single numeric year for fall of desired season.}
 
 \item{division}{NCAA division (must be 1, 2, or 3).}
 

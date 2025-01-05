@@ -10,7 +10,7 @@ find_team_id(team = NULL, year = NULL, sport = "WVB")
 \item{team}{Name of school. Must match name used by NCAA. Find exact team
 name with \code{\link[=find_team_name]{find_team_name()}}.}
 
-\item{year}{Year for fall of desired season.}
+\item{year}{Numeric vector of years for fall of desired seasons.}
 
 \item{sport}{Three letter abbreviation for NCAA sport (must be upper case;
 for example "WVB" for women's volleyball and "MVB" for men's volleyball).}
