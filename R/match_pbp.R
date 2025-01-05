@@ -16,33 +16,39 @@
 #' match_pbp(contest = "6080706")
 #' }
 match_pbp <- function(contest = NULL) {
+  # check input
   if (is.null(contest)) cli::cli_abort(paste0("Enter valid contest ID as a character string."))
   if (!is.character(contest)) cli::cli_abort("Enter valid contest ID as a character string.")
 
+  # get URL
   url <- paste0("https://stats.ncaa.org/contests/", contest, "/play_by_play")
 
+  ## get pbp HTML table
   pbp_all <- request_url(url) |>
     httr2::resp_body_html() |>
     rvest::html_elements("table") |>
     rvest::html_table()
   match_info <- pbp_all[[1]]
 
+  # calculate number of sets
   num_sets <- match_info[1, which(match_info[1, ] == "S") - 1] |>
     dplyr::pull() |>
     as.numeric()
   sets <- 4:(3 + num_sets)
 
+  # process pbp information for all sets
   purrr::lmap(sets, ~ `[[`(pbp_all, .x) |> process_set()) |>
     purrr::set_names(nm = 1:num_sets) |>
     purrr::list_rbind(names_to = "set")
 }
 
+# process set information in pbp table
 process_set <- function(set_data) {
   ignore_entries <- c("Match started", "Set started", "Facultative timeout", "Media timeout", "Set ended", "Match ended")
   away_name <- names(set_data)[1]
   home_name <- names(set_data)[3]
   set_data$Score[1] <- "0-0"
-  test <- set_data |>
+  set_data |>
     dplyr::mutate(dplyr::across(dplyr::everything(), ~ dplyr::na_if(.x, "")),
                   away_team = away_name,
                   home_team = home_name) |>
@@ -57,10 +63,11 @@ process_set <- function(set_data) {
                   event = get_event(.data$description),
                   player = get_player(.data$description)
     ) |>
-    dplyr::filter(!.data$event %in% ignore_entries & !grepl("^Sub", .data$event) & !is.na(.data$event) & !grepl("^Team", .data$event) & !grepl("^End of", .data$event)) |>
+    dplyr::filter(!.data$event %in% ignore_entries & !grepl("^Sub", .data$event) & !is.na(.data$event) & !grepl("^Team", .data$event) & !grepl("^End of", .data$event) & !grepl("challengeOutcome", .data$event)) |>
     dplyr::select("away_team", "home_team", score = "Score", "team", "event", "player", "description")
 }
 
+# extract event information from description
 get_event <- function(event) {
   dplyr::case_when(grepl("serves an ace", event) ~
                      "Ace",
@@ -84,10 +91,13 @@ get_event <- function(event) {
                      "Sanction",
                    grepl("ballHandlingError", event) ~
                      "Ball handling error",
+                   grepl("challengeRequest", event) ~
+                     "Challenge request",
                    .default = stringr::str_split_fixed(event, n = 2, pattern = " by ")[, 1]
   )
 }
 
+# extract player information from description
 get_player <- function(event) {
   dplyr::case_when(grepl("serves an ace", event) ~
                      stringr::str_replace(event, " serves an ace", ""),
@@ -111,6 +121,8 @@ get_player <- function(event) {
                      sub("\\(.*", "", event),
                    grepl("ballHandlingError", event) ~
                      sub("\\(.*", "", event),
+                   grepl("challengeRequest", event) ~
+                     NA,
                    .default =
                      stringr::str_split_fixed(event, n = 2, pattern = " by ")[, 2]
   )

@@ -16,6 +16,7 @@
 #' @param teams Character vector of team names to aggregate.
 #' @param level Character string defining whether to aggregate "season",
 #' "match", or play-by-play ("pbp") data.
+#' @inheritParams find_team_id
 #' @inheritParams get_teams
 #'
 #' @returns
@@ -40,6 +41,7 @@ group_stats <- function(teams = NULL,
                         year = NULL,
                         level = "season",
                         sport = "WVB") {
+  # check inputs
   max_year <- most_recent_season()
   if (sport == "WVB") team_df <- ncaavolleyballr::wvb_teams
   else if (sport == "MVB") team_df <- ncaavolleyballr::mvb_teams
@@ -55,9 +57,10 @@ group_stats <- function(teams = NULL,
   if (!all(year %in% 2020:max_year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
   if (!level %in% c("season", "match", "pbp")) cli::cli_abort("Enter valid level: \"season\", \"match\" or \"pbp\"")
 
+  # group season-level stats
   if (level == "season") {
     data <- purrr::map2(rep(teams, each = length(year)), rep(year, times = length(teams)),
-                       ~ player_season_stats(find_team_id(.x, .y, sport))) |>
+                        ~ player_season_stats(find_team_id(.x, .y, sport))) |>
       purrr::set_names(rep(teams, each = length(year))) |>
       purrr::list_rbind(names_to = "Team")
     playerdata <- data |>
@@ -70,23 +73,24 @@ group_stats <- function(teams = NULL,
     output <- list(playerdata = playerdata, teamdata = teamdata)
     return(output)
   } else if (level == "match") {
+    # group match level stats
     contest_vec <- find_team_id(teams, year, sport)
     contests <- purrr::map(contest_vec, find_team_contests) |>
       purrr::list_rbind() |>
-      dplyr::filter(!is.na(.data$contests))
-    purrr::map2(contests$contests, contests$team,
-                       ~ player_match_stats(.x, .y, team_stats = FALSE, sport)) |>
+      dplyr::filter(!is.na(.data$contest))
+    purrr::map2(contests$contest, contests$team,
+                ~ player_match_stats(.x, .y, team_stats = FALSE, sport)) |>
       purrr::set_names(contests$team) |>
       purrr::list_rbind(names_to = "team")
   } else if (level == "pbp") {
+    # group php stats
     contest_vec <- find_team_id(teams, year, sport)
     contests <- purrr::map(contest_vec, find_team_contests) |>
       purrr::list_rbind() |>
-      dplyr::filter(!is.na(.data$contests))
-    purrr::map(contests$contests, match_pbp) |>
+      dplyr::filter(!is.na(.data$contest))
+    purrr::map(contests$contest, match_pbp) |>
       purrr::set_names(contests$date) |>
-      purrr::list_rbind(names_to = "date")
-  }
+      purrr::list_rbind(names_to = "date")}
 }
 
 #' Aggregate player statistics

@@ -9,7 +9,7 @@ group_stats(teams = NULL, year = NULL, level = "season", sport = "WVB")
 \arguments{
 \item{teams}{Character vector of team names to aggregate.}
 
-\item{year}{Year for fall of desired season.}
+\item{year}{Numeric vector of years for fall of desired seasons.}
 
 \item{level}{Character string defining whether to aggregate "season",
 "match", or play-by-play ("pbp") data.}
@@ -48,11 +48,7 @@ group_stats(teams = "Nebraska", year = 2024, level = "pbp")
 }
 \seealso{
 Other functions that aggregate statistics: 
-\code{\link{conference_match_stats}()},
-\code{\link{conference_pbp_stats}()},
-\code{\link{conference_season_stats}()},
-\code{\link{division_match_stats}()},
-\code{\link{division_pbp_stats}()},
-\code{\link{division_season_stats}()}
+\code{\link{conference_stats}()},
+\code{\link{division_stats}()}
 }
 \concept{functions that aggregate statistics}
