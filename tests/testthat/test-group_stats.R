@@ -4,9 +4,9 @@ test_that("group_stats() works at season level", {
   expect_equal(group_stats(teams = "UCLA", year = 2023, sport = "MVB")$playerdata$Player[1],
                "Hideharu Nakamura")
   expect_error(group_stats(),
-               "Enter valid vector of teams.")
+               "Enter valid team name.")
   expect_error(group_stats(teams = c("UNL", "UCLA"), year = 2024),
-               "Team name was not found.")
+               "Enter valid team name")
   expect_error(group_stats(teams = "Nebraska"),
                "Enter valid year between 2020-")
   expect_error(group_stats(teams = "Nebraska", year = 2002),

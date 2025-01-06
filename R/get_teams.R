@@ -31,24 +31,23 @@
 get_teams <- function(year = NULL,
                       division = 1,
                       sport = "WVB") {
-  max_year <- most_recent_season()
-  if (is.null(year)) cli::cli_abort(paste0("Enter valid year between 2002-", max_year, "."))
-  if (!is.numeric(year)) cli::cli_abort(paste0("Enter valid year between 2002-", max_year, "."))
-  if (year < 2002) stop(paste0("Enter valid year between 2002-", max_year, "."))
-  if (!division %in% 1:3) cli::cli_abort("Enter valid division as a number: 1, 2, 3.")
-  if (!is.character(sport)) cli::cli_abort("Enter valid sport as a three-letter character string.")
-  if (!sport %in% ncaavolleyballr::ncaa_sports$code) cli::cli_abort("Enter valid sport code from `ncaa_sports`.")
+  # check inputs
+  check_year(year)
+  check_match("division", division, 1:3)
+  check_sport(sport, vb_only = FALSE)
 
+  # increment year for NCAA website
   url_year <- year + 1
 
+  # get and request URL
   url <- paste0("http://stats.ncaa.org/team/inst_team_list?academic_year=",
                 url_year,
                 "&conf_id=-1",
                 "&division=", division,
                 "&sport_code=", sport)
-
   resp <- request_url(url)
 
+  # create HTML table
   data_read <- resp |>
     httr2::resp_body_html()
 
@@ -98,6 +97,7 @@ get_teams <- function(year = NULL,
       rvest::html_elements("a") |>
       rvest::html_text()
 
+    # assemble data frame
     data <- data.frame(team_url = team_urls,
                        team_name = team_names,
                        div = division,

@@ -30,18 +30,11 @@ conference_stats <- function(year = NULL,
                              save = FALSE,
                              path = ".") {
   # check inputs
-  max_year <- most_recent_season()
-  if (is.null(year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
-  if (!is.numeric(year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
-  if (!all(year %in% 2020:max_year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
-  if (is.null(level)) cli::cli_abort("Enter valid level: \"season\", \"match\" or \"pbp\"")
-  if (!level %in% c("season", "match", "pbp")) cli::cli_abort("Enter valid level: \"season\", \"match\" or \"pbp\"")
-  if (sport == "WVB") team_df <- ncaavolleyballr::wvb_teams
-  else if (sport == "MVB") team_df <- ncaavolleyballr::mvb_teams
-  else cli::cli_abort("Enter valid sport (\"WVB\" or \"MVB\").")
-  if (is.null(conf)) cli::cli_abort("Enter valid conference.  Check `ncaa_conferences` for conference names.")
-  if (!conf %in% team_df$conference) cli::cli_abort("Enter valid conference.  Check `ncaa_conferences` for conference names.")
-  if(!is.logical(save)) cli::cli_abort("`save` must be a logical (TRUE or FALSE).")
+  check_year(year)
+  check_match("level", level, c("season", "match", "pbp"))
+  team_df <- check_sport(sport, vb_only = TRUE)
+  check_confdiv(group = "conf", value = conf, teams = team_df)
+  check_logical("save", save)
   if(!is.character(path)) cli::cli_abort("Enter valid path as a character string.")
 
   # get vector of conference teams

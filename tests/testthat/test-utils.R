@@ -18,7 +18,7 @@ test_that("check_team_id() works", {
 test_that("get_team_info() works", {
   expect_silent(get_team_info(team_id = "585290"))
   expect_equal(get_team_info(team_id = "585290"),
-               c(Year = "2024", Team = "Nebraska", Conference = "Big Ten"))
+               c(Year = "2024", Team = "Nebraska", Conference = "Big Ten", Season = "2024-2025"))
 })
 
 test_that("most_recent_season() works", {

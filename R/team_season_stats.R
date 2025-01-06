@@ -24,17 +24,17 @@
 #' team_season_stats(team_id = find_team_id("UCLA", 2023, sport = "MVB"))
 #' }
 team_season_stats <- function(team_id = NULL) {
+  # check input
   check_team_id(team_id)
+
+  # get team info and request URL
   teams <- dplyr::bind_rows(ncaavolleyballr::wvb_teams, ncaavolleyballr::mvb_teams)
-  team <- teams[which(teams == team_id), ]$team_name
-  conference <- teams[which(teams == team_id), ]$conference
-  yr <- teams[which(teams == team_id), ]$yr
-  team_info <- c(Year = yr, Team = team, Conference = conference)
-
+  team_info <- get_team_info(team_id)
+  
   url <- paste0("https://stats.ncaa.org/teams/", team_id)
-
   resp <- request_url(url)
 
+  # extract arena info
   arena <- resp |> httr2::resp_body_html() |>
     rvest::html_element(".mb-0") |>
     rvest::html_text() |>
@@ -43,6 +43,7 @@ team_season_stats <- function(team_id = NULL) {
   arena <- arena[!arena %in% c("Name:", "Capacity:", "Year Built:", "")]
   names(arena) <- c("Arena name", "Capacity", "Year built")
 
+  # extract coach info
   coach <- resp |> httr2::resp_body_html() |>
     rvest::html_elements(".mb-0") |>
     rvest::html_text()
@@ -59,6 +60,7 @@ team_season_stats <- function(team_id = NULL) {
   coach <- coach[!coach %in% c("Name:", "Alma Mater:", "Seasons:", "")]
   names(coach) <- c("Name", "Alma mater", "Seasons", "Record")
 
+  # extract record info
   record <- resp |> httr2::resp_body_html() |>
     rvest::html_elements(".row") |>
     rvest::html_elements("span") |>
@@ -67,6 +69,7 @@ team_season_stats <- function(team_id = NULL) {
   record <- record[-1]
   names(record) <- c("Overall record", "Overall streak", "Conference record", "Conference streak", "Home record", "Home streak", "Road record", "Road streak", "Neutral record", "Neutral streak", "Non-division record", "Non-division streak")
 
+  # extract schedule info
   schedule <- resp |> httr2::resp_body_html() |>
     rvest::html_element("table") |>
     rvest::html_table() |>

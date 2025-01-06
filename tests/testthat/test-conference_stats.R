@@ -5,8 +5,6 @@ test_that("conference_stats() works", {
                "Enter valid year between 2020-")
   expect_error(conference_stats(year = "2024"),
                "Enter valid year between 2020-")
-  expect_error(conference_stats(year = 2024),
-               "Enter valid level:")
   expect_error(conference_stats(year = 2024, level = "season"),
                "Enter valid conference.")
   expect_error(conference_stats(year = 2024, conf = "Big Conf", level = "season", sport = "MVB"),

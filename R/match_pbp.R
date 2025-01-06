@@ -17,8 +17,7 @@
 #' }
 match_pbp <- function(contest = NULL) {
   # check input
-  if (is.null(contest)) cli::cli_abort(paste0("Enter valid contest ID as a character string."))
-  if (!is.character(contest)) cli::cli_abort("Enter valid contest ID as a character string.")
+  check_contest(contest)
 
   # get URL
   url <- paste0("https://stats.ncaa.org/contests/", contest, "/play_by_play")

@@ -26,16 +26,14 @@
 #' player_season_stats(team_id = find_team_id("UCLA", 2023, sport = "MVB"))
 #' }
 player_season_stats <- function(team_id,
-                              team_stats = TRUE) {
+                                team_stats = TRUE) {
+  # check inputs
   check_team_id(team_id)
-  if(!is.logical(team_stats)) cli::cli_abort("`team_stats` must be a logical (TRUE or FALSE).")
+  check_logical("team_stats", team_stats)
 
+  # get team info and request URL
   teams <- dplyr::bind_rows(ncaavolleyballr::wvb_teams, ncaavolleyballr::mvb_teams)
-  team <- teams[which(teams == team_id), ]$team_name
-  conference <- teams[which(teams == team_id), ]$conference
-  yr <- teams[which(teams == team_id), ]$yr
-  season <- paste0(yr, "-", yr + 1)
-
+  team_info <- get_team_info(team_id)
   url <- paste0("https://stats.ncaa.org/teams/", team_id, "/season_to_date_stats")
 
   player_stats <- request_url(url) |>
@@ -45,12 +43,14 @@ player_season_stats <- function(team_id,
     dplyr::rename("Number" = "#") |>
     dplyr::mutate(Number = suppressWarnings(as.numeric(.data$Number)))
 
+  # remove team stats if requested
   if (!team_stats) {
     player_stats <- player_stats |>
       dplyr::filter(!.data$Player %in% c("TEAM", "Totals", "Opponent Totals"))
   }
 
-  if (yr == 2024) {
+  # combine player stats and roster data
+  if (team_info["Year"] == "2024") {
     url2 <- paste0("https://stats.ncaa.org/teams/", team_id, "/roster")
     roster <- request_url(url2) |>
       httr2::resp_body_html() |>
@@ -64,13 +64,15 @@ player_season_stats <- function(team_id,
       dplyr::relocate("Hometown":"High School", .after = "Ht") |>
       dplyr::mutate(dplyr::across("Player":"Ht", as.character),
                     dplyr::across("GP":dplyr::last_col(), ~ suppressWarnings(as.numeric(gsub(",", "", .x))))) |>
-      dplyr::mutate(Season = season, Team = team, Conference = conference, .before = 1) |>
+      dplyr::mutate(Season = team_info["Season"], Team = team_info["Team"],
+                    Conference = team_info["Conference"], .before = 1) |>
       dplyr::arrange(.data$Number)
   } else {
     player_stats |>
       dplyr::mutate(dplyr::across("Player":"Ht", as.character),
                     dplyr::across("GP":dplyr::last_col(), ~ suppressWarnings(as.numeric(gsub(",", "", .x))))) |>
-      dplyr::mutate(Season = season, Team = team, Conference = conference, .before = 1) |>
+      dplyr::mutate(Season = team_info["Season"], Team = team_info["Team"],
+                    Conference = team_info["Conference"], .before = 1) |>
       dplyr::arrange(.data$Number)
   }
 }

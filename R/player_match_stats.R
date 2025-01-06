@@ -27,24 +27,21 @@ player_match_stats <- function(contest = NULL,
                                team = NULL,
                                team_stats = TRUE,
                                sport = "WVB") {
-  if (is.null(contest)) cli::cli_abort(paste0("Enter valid contest ID as a character string."))
-  if (!is.character(contest)) cli::cli_abort("Enter valid contest ID as a character string.")
-  if (sport == "WVB") team_df <- ncaavolleyballr::wvb_teams
-  else if (sport == "MVB") team_df <- ncaavolleyballr::mvb_teams
-  else cli::cli_abort("Enter valid sport (\"WVB\" or \"MVB\").")
-  if (!is.null(team)) {
-    if (!team %in% team_df$team_name) cli::cli_abort("Enter valid team name. Check `ncaa_teams` for names or search using `find_team_name()`.")
-  }
-  if(!is.logical(team_stats)) cli::cli_abort("`team_stats` must be a logical (TRUE or FALSE).")
+  # check inputs
+  check_contest(contest)
+  team_df <- check_sport(sport, vb_only = TRUE)
+  if (!is.null(team)) check_team_name(team, teams = team_df)
+  check_logical("team_stats", team_stats)
 
+  # get and request URL
   url <- paste0("https://stats.ncaa.org/contests/", contest, "/individual_stats")
-
   match_all <- request_url(url) |>
     httr2::resp_body_html() |>
     rvest::html_elements("table") |>
     rvest::html_table()
   match_info <- match_all[[1]]
 
+  # extract date
   match_date_time <- match_info[5, 1] |>
     dplyr::pull()
   if (grepl("TBA", match_date_time)) {
@@ -60,6 +57,7 @@ player_match_stats <- function(contest = NULL,
     as.numeric()
   season <- paste0(yr, "-", yr + 1)
 
+  # extract home and away teams and conferences
   away_team <- match_info[3, 1] |>
     dplyr::pull() |>
     fix_teams()
@@ -83,7 +81,7 @@ player_match_stats <- function(contest = NULL,
     home_conf <- NA
   }
 
-
+  # extract stats for home and away teams
   away_stats <- match_all[[4]] |>
     dplyr::mutate(Season = season, Date = match_date, Team = away_team, Conference = away_conf,
                   `Opponent Team` = home_team, `Opponent Conference` = home_conf,
@@ -107,6 +105,7 @@ player_match_stats <- function(contest = NULL,
   stats_list <- list(away_team = away_stats, home_stats = home_stats) |>
     purrr::set_names(away_team, home_team)
 
+  # subset a single team's data when requested
   if (is.null(team)) {
     return(stats_list)
   } else {

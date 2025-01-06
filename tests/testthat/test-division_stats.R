@@ -7,8 +7,6 @@ test_that("division_stats() works", {
                "Enter valid year between 2020-")
   expect_error(division_stats(year = "2024"),
                "Enter valid year between 2020-")
-  expect_error(division_stats(year = 2024),
-               "Enter valid level: ")
   expect_error(division_stats(year = 2024, level = "xxx"),
                "Enter valid level:")
   expect_error(division_stats(year = 2024, level = "season", sport = "VB"),
