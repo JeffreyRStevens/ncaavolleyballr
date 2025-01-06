@@ -4,7 +4,7 @@
 \alias{check_match}
 \title{Checks if value is matched in vector}
 \usage{
-check_match(name, value, vec)
+check_match(name = NULL, value = NULL, vec = NULL)
 }
 \arguments{
 \item{name}{Argument name.}

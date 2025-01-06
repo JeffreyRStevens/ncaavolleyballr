@@ -4,7 +4,7 @@
 \alias{check_team_name}
 \title{Checks if team name is valid}
 \usage{
-check_team_name(team, teams)
+check_team_name(team = NULL, teams = NULL)
 }
 \arguments{
 \item{team}{Team name}

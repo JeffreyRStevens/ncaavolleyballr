@@ -4,7 +4,7 @@
 \alias{check_logical}
 \title{Checks if a logical input is valid}
 \usage{
-check_logical(name, value)
+check_logical(name = NULL, value = NULL)
 }
 \arguments{
 \item{name}{Argument name.}

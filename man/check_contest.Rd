@@ -4,7 +4,7 @@
 \alias{check_contest}
 \title{Checks if contest ID is valid}
 \usage{
-check_contest(contest)
+check_contest(contest = NULL)
 }
 \arguments{
 \item{contest}{Contest ID}

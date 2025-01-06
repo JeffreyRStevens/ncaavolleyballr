@@ -4,7 +4,7 @@
 \alias{check_confdiv}
 \title{Checks if division or conference is valid}
 \usage{
-check_confdiv(group, value, teams)
+check_confdiv(group = NULL, value = NULL, teams = NULL)
 }
 \arguments{
 \item{group}{Character string for group ("div" or "conf").}

@@ -16,15 +16,18 @@ most_recent_season <- function() {
 #'
 #' @keywords internal
 #'
-check_confdiv <- function(group, value, teams) {
+check_confdiv <- function(group = NULL, value = NULL, teams = NULL) {
+  if (is.null(group)) cli::cli_abort("Enter valid group: conf or div.")
   if (group == "conf") {
     if (is.null(value)) cli::cli_abort("Enter valid conference.  Check `ncaa_conferences` for conference names.")
     if (!value %in% teams$conference) cli::cli_abort("Enter valid conference.  Check `ncaa_conferences` for conference names.")
   } else if(group == "div") {
+    if (is.null(value)) cli::cli_abort("Enter valid division as a number: 1, 2, 3.")
     if (!value %in% 1:3) cli::cli_abort("Enter valid division as a number: 1, 2, 3.")
   } else {
     cli::cli_abort("Enter valid group: div or conf")
   }
+  if (is.null(teams)) cli::cli_abort("Enter valid `teams`.")
 }
 
 
@@ -34,7 +37,7 @@ check_confdiv <- function(group, value, teams) {
 #'
 #' @keywords internal
 #'
-check_contest <- function(contest) {
+check_contest <- function(contest = NULL) {
   if (is.null(contest)) cli::cli_abort(paste0("Enter valid contest ID as a character string."))
   if (!is.character(contest)) cli::cli_abort("Enter valid contest ID as a character string.")
 }
@@ -47,7 +50,9 @@ check_contest <- function(contest) {
 #'
 #' @keywords internal
 #'
-check_logical <- function(name, value) {
+check_logical <- function(name = NULL, value = NULL) {
+  if (is.null(name)) cli::cli_abort(paste0("Enter valid `name`."))
+  if (is.null(value)) cli::cli_abort(paste0("Enter valid `value`."))
   if(!is.logical(value)) cli::cli_abort("`{name}` must be a logical (TRUE or FALSE).")
 }
 
@@ -60,7 +65,10 @@ check_logical <- function(name, value) {
 #'
 #' @keywords internal
 #'
-check_match <- function(name, value, vec) {
+check_match <- function(name = NULL, value = NULL, vec = NULL) {
+  if (is.null(name)) cli::cli_abort(paste0("Enter valid `name`."))
+  if (is.null(value)) cli::cli_abort(paste0("Enter valid `value`."))
+  if (is.null(vec)) cli::cli_abort(paste0("Enter valid `vec`."))
   if (!value %in% vec) cli::cli_abort("Enter valid {name}: {vec}.")
 }
 
@@ -108,7 +116,7 @@ check_team_id <- function(team_id = NULL) {
 #'
 #' @keywords internal
 #'
-check_team_name <- function(team, teams) {
+check_team_name <- function(team = NULL, teams = NULL) {
   if (is.null(team)) cli::cli_abort("Enter valid team name. Check `ncaa_teams` for names or search using `find_team_name()`.")
   if (!all(team %in% teams$team_name)) cli::cli_abort("Enter valid team name. Check `ncaa_teams` for names or search using `find_team_name()`.")
 }
@@ -122,14 +130,14 @@ check_team_name <- function(team, teams) {
 #'
 #' @keywords internal
 #'
-check_year <- function(year, single = FALSE) {
+check_year <- function(year = NULL, single = FALSE) {
   max_year <- most_recent_season()
   if (is.null(year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
   if (!is.numeric(year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
+  if (!all(year %in% 2020:max_year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
   if (single) {
     if (length(year) > 1) cli::cli_abort("Enter a single year.")
   }
-  if (!all(year %in% 2020:max_year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
 }
 
 
@@ -233,7 +241,7 @@ request_url <- function(url, timeout = 5) {
 #' @keywords internal
 #'
 save_df <- function(x, label, group, year, division, conf, sport, path) {
-# save_df <- function(...) {
+  # save_df <- function(...) {
   if (length(year) > 1) year <- paste0(min(year), "-", max(year))
   if (group == "conf") confdiv <- tolower(gsub(" ", "", conf))
   if (group == "div") confdiv <- paste0(group, division)

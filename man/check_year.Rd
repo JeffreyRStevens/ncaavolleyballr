@@ -4,7 +4,7 @@
 \alias{check_year}
 \title{Checks if year is valid}
 \usage{
-check_year(year, single = FALSE)
+check_year(year = NULL, single = FALSE)
 }
 \arguments{
 \item{year}{Year.}
