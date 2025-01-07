@@ -28,3 +28,8 @@ test_that("group_stats() works at pbp level", {
   expect_equal(group_stats(teams = "Nebraska", year = 2024, level = "pbp")$home_team[1],
                "Kentucky")
 })
+
+test_that("group_player_stats() is deprecated", {
+  rlang::local_options(lifecycle_verbosity = "warning")
+  expect_warning(group_player_stats(teams = "Nebraska", year = 2024))
+})

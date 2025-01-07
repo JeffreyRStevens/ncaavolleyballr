@@ -23,3 +23,8 @@ test_that("player_season_stats() works", {
   expect_error(player_season_stats(team_id = "558878", team_stats = 1),
                "`team_stats` must be a logical")
 })
+
+test_that("team_player_stats() is deprecated", {
+  rlang::local_options(lifecycle_verbosity = "warning")
+  expect_warning(team_player_stats(team_id = "585290"))
+})

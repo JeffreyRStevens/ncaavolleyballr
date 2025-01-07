@@ -3,6 +3,7 @@ test_that("find_team_contests() works", {
                "5362360")
   expect_error(find_team_contests(),
                "Enter valid team ID as a character string")
+  expect_null(find_team_contests(character(0)))
   expect_error(find_team_contests(team_id = 585290),
                "Enter valid team ID as a character string")
   expect_error(find_team_contests(team_id = "Nebraska"),

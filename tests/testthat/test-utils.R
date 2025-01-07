@@ -14,6 +14,8 @@ test_that("check_confdiv() works", {
                "Enter valid conference")
   expect_error(check_confdiv(group = "div"),
                "Enter valid division")
+  expect_error(check_confdiv(group = "xxx"),
+               "Enter valid group:")
   expect_error(check_confdiv(group = "conf", value = "xxx"),
                "Enter valid conference")
   expect_error(check_confdiv(group = "div", value = "xxx"),
@@ -125,4 +127,3 @@ test_that("fix_teams() works", {
   expect_equal(fix_teams("Tex. A&M-Commerce"),
                "East Texas A&M")
 })
-
