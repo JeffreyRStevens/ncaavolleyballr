@@ -36,12 +36,21 @@ player_season_stats <- function(team_id,
   team_info <- get_team_info(team_id)
   url <- paste0("https://stats.ncaa.org/teams/", team_id, "/season_to_date_stats")
 
-  player_stats <- request_url(url) |>
+  table <- request_url(url) |>
     httr2::resp_body_html() |>
     rvest::html_element("table") |>
-    rvest::html_table() |>
-    dplyr::rename("Number" = "#") |>
-    dplyr::mutate(Number = suppressWarnings(as.numeric(.data$Number)))
+    rvest::html_table()
+  if (nrow(table) == 0 | !"Player" %in% colnames(table)) {
+    cli::cli_warn("No {team_info['Year']} season stats available for {team_info['Team']}.")
+    return(invisible())
+  } else {#if ("Player" %in% colnames(table)) {
+    player_stats <- table |>
+      dplyr::rename("Number" = "#") |>
+      dplyr::mutate(Number = suppressWarnings(as.numeric(.data$Number)))
+  } #else {
+  #   cli::cli_warn("No {team_info['Year']} season stats available for {team_info['Team']}.")
+  #   return(invisible())
+  # }
 
   # remove team stats if requested
   if (!team_stats) {

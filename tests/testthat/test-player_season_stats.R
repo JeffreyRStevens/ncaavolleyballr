@@ -22,6 +22,10 @@ test_that("player_season_stats() works", {
                "Enter valid team ID. ")
   expect_error(player_season_stats(team_id = "558878", team_stats = 1),
                "`team_stats` must be a logical")
+  expect_warning(player_season_stats(team_id = find_team_id("Vanderbilt", 2024)),
+                 "No 2024 season stats available for Vanderbilt")
+  expect_warning(player_season_stats(team_id = find_team_id("Saint Augustine's", 2024)),
+                 "No 2024 season stats available for Saint Augustine's")
 })
 
 test_that("team_player_stats() is deprecated", {
