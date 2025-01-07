@@ -152,10 +152,8 @@ find_team_id("Nebraska", 2024) |>
 By default, these functions return information on women's teams, but
 they can be set to return men's information by setting `sport = "MVB"`.
 You can also aggregate data across conferences, divisions, or custom
-groups with `conference_season_stats()`, `division_season_stats()`,
-`conference_match_stats()`,
-`division_match_stats()`,`conference_pbp_stats()`,
-`division_pbp_stats()`, and `group_stats()`.
+groups with `conference_stats()`, `division_stats()`, and
+`group_stats()`.
 
 ### Match data
 
@@ -174,20 +172,20 @@ find_team_id("Penn St.", 2024) |>
 
 <div class="kable-table">
 
-|  | date | team | opponent | result | attendance | contests |
-|:---|:---|:---|:---|:---|:---|:---|
-| 32 | 12/06/2024 | Penn St. | Delaware St. 2024 NCAA Division I Women’s Volleyball Championship | W 3-0 | 2,516 | 6080734 |
-| 33 | 12/07/2024 | Penn St. | \#8 North Carolina 2024 NCAA Division I Women’s Volleyball Championship | W 3-1 | 2,470 | 6080733 |
-| 34 | 12/13/2024 | Penn St. | \#5 Marquette 2024 NCAA Division I Women’s Volleyball Championship | W 3-1 | 2,914 | 6081048 |
-| 35 | 12/15/2024 | Penn St. | \#2 Creighton 2024 NCAA Division I Women’s Volleyball Championship | W 3-2 | 3,558 | 6081042 |
-| 36 | 12/19/2024 | Penn St. | \#1 Nebraska @Louisville, KY (2024 NCAA Division I Women’s Volleyball Championship) | W 3-2 | 21,726 | 6080708 |
-| 37 | 12/22/2024 | Penn St. | @#1 Louisville 2024 NCAA Division I Women’s Volleyball Championship | W 3-1 | 21,860 | 6080706 |
+| date       | team     | opponent       | result | attendance | contest |
+|:-----------|:---------|:---------------|:-------|-----------:|:--------|
+| 12/06/2024 | Penn St. | Delaware St.   | W 3-0  |       2516 | 6080734 |
+| 12/07/2024 | Penn St. | North Carolina | W 3-1  |       2470 | 6080733 |
+| 12/13/2024 | Penn St. | Marquette      | W 3-1  |       2914 | 6081048 |
+| 12/15/2024 | Penn St. | Creighton      | W 3-2  |       3558 | 6081042 |
+| 12/19/2024 | Penn St. | Nebraska       | W 3-2  |      21726 | 6080708 |
+| 12/22/2024 | Penn St. | Louisville     | W 3-1  |      21860 | 6080706 |
 
 </div>
 
-From that, we can see that the contest ID is NA. If we pass this contest
-ID to the `player_match_stats()` function, we’ll get a list with two
-data frames—one for each team in the contest—that contain player
+From that, we can see that the contest ID is 6080706. If we pass this
+contest ID to the `player_match_stats()` function, we’ll get a list with
+two data frames—one for each team in the contest—that contain player
 statistics for the match. If we want to get just the Penn State player
 data, we can set `team = "Penn St."`.
 
@@ -251,7 +249,13 @@ To cite `{ncaavolleyballr}`, use:
 
 Many thanks to [Bill Petti](https://github.com/BillPetti) for making the
 code for NCAA stats extraction freely available in the
-[`{baseballr}`](https://billpetti.github.io/baseballr/) package.
+[`{baseballr}`](https://billpetti.github.io/baseballr/) package. And
+thank you to [Tyler Widdison](https://github.com/widbuntu) for
+[inspiring me to extract the play-by-play
+data](https://github.com/JeffreyRStevens/ncaavolleyballr/issues/1)
+(check out his
+[`{ncaavolleyballR}`](https://github.com/tyler-widdison/ncaavolleyballR)
+package for some similar functionality).
 
 The volleyball background in the logo was designed by
 [Freepik](https://www.freepik.com/free-vector/volleyball-grey-gradient_59539214.htm).

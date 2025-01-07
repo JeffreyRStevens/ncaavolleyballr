@@ -69,7 +69,7 @@ find_team_id("Nebraska", 2024) |>
   player_season_stats()
 ```
 
-By default, these functions return information on women\'s teams, but they can be set to return men\'s information by setting `sport = "MVB"`. You can also aggregate data across conferences, divisions, or custom groups with `conference_season_stats()`, `division_season_stats()`, `conference_match_stats()`, `division_match_stats()`,`conference_pbp_stats()`, `division_pbp_stats()`, and `group_stats()`.
+By default, these functions return information on women\'s teams, but they can be set to return men\'s information by setting `sport = "MVB"`. You can also aggregate data across conferences, divisions, or custom groups with `conference_stats()`, `division_stats()`, and `group_stats()`.
 
 
 ### Match data
@@ -111,6 +111,6 @@ To cite `{ncaavolleyballr}`, use:
 
 ## Acknowledgments
 
-Many thanks to [Bill Petti](https://github.com/BillPetti) for making the code for NCAA stats extraction freely available in the [`{baseballr}`](https://billpetti.github.io/baseballr/) package.
+Many thanks to [Bill Petti](https://github.com/BillPetti) for making the code for NCAA stats extraction freely available in the [`{baseballr}`](https://billpetti.github.io/baseballr/) package. And thank you to [Tyler Widdison](https://github.com/widbuntu) for [inspiring me to extract the play-by-play data](https://github.com/JeffreyRStevens/ncaavolleyballr/issues/1) (check out his [`{ncaavolleyballR}`](https://github.com/tyler-widdison/ncaavolleyballR) package for some similar functionality).
 
 The volleyball background in the logo was designed by [Freepik](https://www.freepik.com/free-vector/volleyball-grey-gradient_59539214.htm).
