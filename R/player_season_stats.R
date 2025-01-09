@@ -29,6 +29,10 @@ player_season_stats <- function(team_id,
                                 team_stats = TRUE) {
   # check inputs
   check_team_id(team_id)
+  if (length(team_id) == 0) {
+    cli::cli_warn("No season stats available for this team.")
+    return(invisible())
+  }
   check_logical("team_stats", team_stats)
 
   # get team info and request URL
