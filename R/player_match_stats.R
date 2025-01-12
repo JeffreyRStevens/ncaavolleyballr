@@ -100,6 +100,10 @@ player_match_stats <- function(contest = NULL,
       dplyr::filter(.data$Number != "")
     home_stats <- home_stats |>
       dplyr::filter(.data$Number != "")
+    if (nrow(home_stats) == 0 | nrow(away_stats) == 0 | !"Player" %in% colnames(home_stats) | !"Player" %in% colnames(away_stats)) {
+      cli::cli_warn("No player match stats available for {home_team} and {away_team}.")
+      return(invisible())
+    }
   }
 
   stats_list <- list(away_team = away_stats, home_stats = home_stats) |>
