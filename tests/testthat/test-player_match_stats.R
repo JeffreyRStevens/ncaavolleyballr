@@ -1,11 +1,12 @@
-suppressWarnings(final2024 <- player_match_stats(contest = "6080706"))
-suppressWarnings(final2024b <- player_match_stats(contest = "6080706",
-                                                  team_stats = FALSE))
-suppressWarnings(hawaii2023 <- player_match_stats(contest = "4475421",
-                                                  team = "Hawaii",
-                                                  sport = "MVB"))
 
 test_that("player_match_stats() works", {
+  skip_on_cran()
+  suppressWarnings(final2024 <- player_match_stats(contest = "6080706"))
+  suppressWarnings(final2024b <- player_match_stats(contest = "6080706",
+                                                    team_stats = FALSE))
+  suppressWarnings(hawaii2023 <- player_match_stats(contest = "4475421",
+                                                    team = "Hawaii",
+                                                    sport = "MVB"))
   expect_equal(final2024$Louisville$Player[1],
                "Nayelis Cabello")
   expect_equal(final2024$Louisville$Assists[1],
@@ -20,6 +21,9 @@ test_that("player_match_stats() works", {
                12)
   expect_equal(nrow(hawaii2023),
                11)
+})
+
+test_that("player_match_stats() errors trigger correctly", {
   expect_error(player_match_stats(),
                "Enter valid contest ID as a character string")
   expect_error(player_match_stats(contest = 585290),

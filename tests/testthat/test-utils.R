@@ -109,6 +109,7 @@ test_that("most_recent_season() works", {
 })
 
 test_that("html_table_raw() works", {
+  skip_on_cran()
   team_id <- "585290"
   url <- paste0("https://stats.ncaa.org/teams/", team_id)
   resp <- request_url(url)

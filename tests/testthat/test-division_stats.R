@@ -1,4 +1,4 @@
-test_that("division_stats() works", {
+test_that("division_stats() errors trigger correctly", {
   expect_error(division_stats(division = 2002),
                "Enter valid division as a number: 1, 2, 3")
   expect_error(division_stats(),

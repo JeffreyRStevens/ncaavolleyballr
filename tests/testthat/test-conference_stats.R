@@ -1,4 +1,4 @@
-test_that("conference_stats() works", {
+test_that("conference_stats() errors trigger correctly", {
   expect_error(conference_stats(),
                "Enter valid year between 2020-")
   expect_error(conference_stats(year = 2002),
