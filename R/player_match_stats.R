@@ -17,6 +17,8 @@
 #'
 #' @export
 #'
+#' @family functions that extract player statistics
+#'
 #' @examples
 #' \dontrun{
 #' player_match_stats(contest = "6080706")
@@ -30,7 +32,7 @@ player_match_stats <- function(contest = NULL,
   # check inputs
   check_contest(contest)
   team_df <- check_sport(sport, vb_only = TRUE)
-  if (!is.null(team)) check_team_name(team, teams = team_df)
+  if (!is.null(team)) check_team_name(team = team, teams = team_df)
   check_logical("team_stats", team_stats)
 
   # get and request URL

@@ -36,7 +36,6 @@ team_season_stats(team = "UCLA", sport = "MVB")
 }
 \seealso{
 Other functions that extract team statistics: 
-\code{\link{player_season_stats}()},
 \code{\link{team_match_stats}()},
 \code{\link{team_season_info}()}
 }
