@@ -117,7 +117,7 @@ check_team_id <- function(team_id = NULL) {
 #' @keywords internal
 #'
 check_team_name <- function(team = NULL, teams = NULL) {
-  if (is.null(team)) cli::cli_abort("Enter valid team name. Check `ncaa_teams` for names or search using `find_team_name()`.")
+  if (is.null(team)) cli::cli_abort("Enter valid team name.")
   if (!all(team %in% teams$team_name)) cli::cli_abort("Enter valid team name. Check `ncaa_teams` for names or search using `find_team_name()`.")
 }
 
@@ -160,11 +160,8 @@ fix_teams <- function(x) {
 #'
 get_team_info <- function(team_id = NULL) {
   teams <- dplyr::bind_rows(ncaavolleyballr::wvb_teams, ncaavolleyballr::mvb_teams)
-  team <- teams[which(teams == team_id), ]$team_name
-  conference <- teams[which(teams == team_id), ]$conference
-  yr <- teams[which(teams == team_id), ]$yr
-  season <- paste0(yr, "-", yr + 1)
-  c(Year = yr, Team = team, Conference = conference, Season = season)
+  teams[which(teams$team_id %in% team_id), ] |>
+    dplyr::mutate(season = paste0(.data$yr, "-", .data$yr + 1))
 }
 
 
