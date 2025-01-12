@@ -69,7 +69,7 @@ group_stats <- function(teams = NULL,
       purrr::list_rbind() |>
       dplyr::filter(!is.na(.data$contest))
     purrr::map2(contests$contest, contests$team,
-                ~ player_match_stats(.x, .y, team_stats = FALSE, sport)) |>
+                ~ player_match_stats(.x, .y, team_stats = FALSE, sport = sport)) |>
       purrr::set_names(contests$team) |>
       purrr::list_rbind(names_to = "team")
   } else if (level == "pbp") {

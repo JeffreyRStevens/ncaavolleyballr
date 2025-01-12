@@ -34,7 +34,7 @@ find_team_contests <- function(team_id = NULL) {
     rvest::html_element("table")
 
   schedule <- html_table |> html_table_raw() |>
-    dplyr::mutate(Team = team_info["Team"], .after = "Date") |>
+    dplyr::mutate(Team = team_info$team_name[1], .after = "Date") |>
     dplyr::mutate(dplyr::across(dplyr::everything(),
                                 ~ sub("<td>", "", .x)),
                   dplyr::across(dplyr::everything(),
