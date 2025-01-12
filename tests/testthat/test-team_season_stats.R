@@ -1,4 +1,4 @@
-test_that("team_season_sta works", {
+test_that("team_season_stats() works", {
   skip_on_cran()
   expect_silent(nebseasons <- team_season_stats(team = "Nebraska"))
   expect_equal(nebseasons[nebseasons$Year == "2001-02", ]$S,

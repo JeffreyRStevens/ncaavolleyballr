@@ -98,9 +98,11 @@ test_that("check_year() works", {
 })
 
 test_that("get_team_info() works", {
-  expect_silent(get_team_info(team_id = "585290"))
-  expect_equal(get_team_info(team_id = "585290"),
-               c(Year = "2024", Team = "Nebraska", Conference = "Big Ten", Season = "2024-2025"))
+  expect_silent(nebteam <- get_team_info(team_id = "585290"))
+  expect_equal(nebteam$team_name[1],
+               "Nebraska")
+  expect_equal(nebteam$season[1],
+               "2024-2025")
 })
 
 test_that("most_recent_season() works", {
