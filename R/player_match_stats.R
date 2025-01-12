@@ -31,7 +31,7 @@ player_match_stats <- function(contest = NULL,
                                sport = "WVB") {
   # check inputs
   check_contest(contest)
-  team_df <- check_sport(sport, vb_only = TRUE)
+  team_df <- check_sport(sport = sport, vb_only = TRUE)
   if (!is.null(team)) check_team_name(team = team, teams = team_df)
   check_logical("team_stats", team_stats)
 
