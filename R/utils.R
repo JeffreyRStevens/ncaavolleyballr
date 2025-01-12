@@ -147,7 +147,8 @@ check_year <- function(year = NULL, single = FALSE) {
 #' @keywords internal
 #'
 fix_teams <- function(x) {
-  sub("Tex. A&M-Commerce", "East Texas A&M", x)
+  sub("Tex. A&M-Commerce", "East Texas A&M", x) |>
+    sub("Saint Francis \\(PA\\)", "Saint Francis", x = _)
 }
 
 
