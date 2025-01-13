@@ -2,8 +2,8 @@ pandoc: 3.1.11
 pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
-  ncaavolleyr: ncaavolleyr.html
-last_built: 2025-01-12T23:33Z
+  ncaavolleyballr: ncaavolleyballr.html
+last_built: 2025-01-13T00:29Z
 urls:
   reference: https://jeffreyrstevens.github.io/ncaavolleyballr/reference
   article: https://jeffreyrstevens.github.io/ncaavolleyballr/articles
