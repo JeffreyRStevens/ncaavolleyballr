@@ -41,8 +41,15 @@ remotes::install_github("JeffreyRStevens/ncaavolleyballr")
 library(ncaavolleyballr)
 ```
 
+A suite of functions can be used to extract season, match, and
+play-by-play data for teams and players. See the [Getting Started
+vignette](https://jeffreyrstevens.github.io/ncaavolleyballr/articles/ncaavolleyballr.html)
+for a more thorough description of the functions.
+
+### Season data
+
 The NCAA uses a unique team ID for each women's and men's volleyball
-team and each season. So first you will need to get that ID with the
+team and season. So first you will need to get that ID with the
 `find_team_id()`. For instance, to find the ID for Penn State's 2024
 season:
 
@@ -51,78 +58,8 @@ find_team_id("Penn St.", 2024)
 #> [1] "585406"
 ```
 
-### Season data
-
-With this team ID, you can now extract team information about the arena,
-coach, record, and schedule with `team_season_stats()`.
-
-``` r
-team_info <- find_team_id("Penn St.", 2024) |> 
-  team_season_stats()
-team_info$arena
-#> Arena name   Capacity Year built 
-#> "Rec Hall"    "5,812"     "1928"
-team_info$coach
-#>                      Name                Alma mater                   Seasons 
-#> "Katie Schumacher-Cawley"         "Penn St. - 2002"                      "12" 
-#>                    Record 
-#>                 "209-165"
-team_info$record
-#>      Overall record      Overall streak   Conference record   Conference streak 
-#>      "35-2 (0.946)"       "Streak: W12"      "19-1 (0.950)"        "Streak: W7" 
-#>         Home record         Home streak         Road record         Road streak 
-#>      "20-0 (1.000)"       "Streak: W24"      "13-2 (0.867)"        "Streak: W3" 
-#>      Neutral record      Neutral streak Non-division record Non-division streak 
-#>       "2-0 (1.000)"        "Streak: W3"       "0-0 (0.000)"         "Streak: 0"
-team_info$schedule
-```
-
-<div class="kable-table">
-
-| Date | Opponent | Result | Attendance |
-|:---|:---|:---|:---|
-| 08/30/2024 | @ Tennessee | W 3-1 | 6,193 |
-| 09/01/2024 | @ Temple | W 3-0 | 583 |
-| 09/03/2024 | Louisville | W 3-0 | 3,865 |
-| 09/06/2024 | @ Kentucky | W 3-2 | 3,344 |
-| 09/07/2024 | Ball St. @Lexington, KY | W 3-0 | 145 |
-| 09/13/2024 | Duke | W 3-0 | 3,152 |
-| 09/14/2024 | Princeton | W 3-0 | 2,827 |
-| 09/14/2024 | St. John’s (NY) | W 3-0 | 2,827 |
-| 09/18/2024 | @ Pittsburgh | L 0-3 | 11,800 |
-| 09/20/2024 | James Madison | W 3-0 | 2,408 |
-| 09/22/2024 | Yale | W 3-1 | 2,178 |
-| 09/25/2024 | @ Purdue | W 3-0 | 2,415 |
-| 09/29/2024 | Michigan St. | W 3-1 | 2,605 |
-| 10/03/2024 | Maryland | W 3-1 | 2,209 |
-| 10/04/2024 | Oregon | W 3-0 | 4,606 |
-| 10/11/2024 | @ Michigan St. | W 3-0 | 4,170 |
-| 10/13/2024 | @ Indiana | W 3-1 | 1,813 |
-| 10/18/2024 | @ Ohio St. | W 3-2 | 3,436 |
-| 10/20/2024 | Minnesota | W 3-0 | 4,316 |
-| 10/24/2024 | @ UCLA | W 3-2 | 721 |
-| 10/26/2024 | @ Southern California | W 3-1 | 2,256 |
-| 10/30/2024 | Michigan | W 3-0 | 2,320 |
-| 11/01/2024 | Iowa | W 3-1 | 3,215 |
-| 11/08/2024 | @ Northwestern | W 3-1 | 4,908 |
-| 11/09/2024 | @ Wisconsin | L 0-3 | 7,229 |
-| 11/15/2024 | Illinois | W 3-0 | 3,425 |
-| 11/17/2024 | @ Maryland | W 3-1 | 1,938 |
-| 11/21/2024 | Purdue | W 3-0 | 2,610 |
-| 11/24/2024 | Washington | W 3-1 | 3,200 |
-| 11/27/2024 | @ Rutgers | W 3-0 | 3,128 |
-| 11/29/2024 | Nebraska | W 3-1 | 6,597 |
-| 12/06/2024 | Delaware St. 2024 NCAA Division I Women’s Volleyball Championship | W 3-0 | 2,516 |
-| 12/07/2024 | \#8 North Carolina 2024 NCAA Division I Women’s Volleyball Championship | W 3-1 | 2,470 |
-| 12/13/2024 | \#5 Marquette 2024 NCAA Division I Women’s Volleyball Championship | W 3-1 | 2,914 |
-| 12/15/2024 | \#2 Creighton 2024 NCAA Division I Women’s Volleyball Championship | W 3-2 | 3,558 |
-| 12/19/2024 | \#1 Nebraska @Louisville, KY (2024 NCAA Division I Women’s Volleyball Championship) | W 3-2 | 21,726 |
-| 12/22/2024 | @#1 Louisville 2024 NCAA Division I Women’s Volleyball Championship | W 3-1 | 21,860 |
-
-</div>
-
-There is also roster and overall season performance data on individual
-players with the `player_season_stats()`.
+With this team ID, you can now extract overall season performance data
+for the team’s players with the `player_season_stats()`.
 
 ``` r
 find_team_id("Penn St.", 2024) |> 
@@ -154,12 +91,6 @@ find_team_id("Penn St.", 2024) |>
 | 2024-2025 | Penn St. | Big Ten | NA | Opponent Totals | \- | \- | \- | NA | NA | NA | NA | 135 | 1535 | 710 | 4593 | 0.180 | 1458 | 140 | 281 | 1716 | 2853 | 203 | 52 | 449 | 68 | 1951.5 | 5 | 37 |
 
 </div>
-
-By default, these functions return information on women's teams, but
-they can be set to return men's information by setting `sport = "MVB"`.
-You can also aggregate data across conferences, divisions, or custom
-groups with `conference_stats()`, `division_stats()`, and
-`group_stats()`.
 
 ### Match data
 
@@ -218,6 +149,8 @@ player_match_stats(contest = "6080706", team = "Penn St.")
 
 </div>
 
+### Play-by-play data
+
 Play-by-play data are also available with `match_pbp()`. This returns a
 data frame with all events and players.
 
@@ -242,6 +175,14 @@ match_pbp(contest = "6080706") |>
 | 1 | Louisville | Penn St. | 1-1 | Louisville | First ball kill | Cara Cresse | First ball kill by Cara Cresse |
 
 </div>
+
+### Other functionality
+
+By default, these functions return information on women's teams, but
+they can be set to return men's information by setting `sport = "MVB"`.
+You can also aggregate data across conferences, divisions, or custom
+groups with `conference_stats()`, `division_stats()`, and
+`group_stats()`.
 
 ## Citation
 

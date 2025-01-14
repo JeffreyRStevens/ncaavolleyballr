@@ -7,19 +7,18 @@ output:
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r, include = FALSE}
+#| label: setup
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
+library(ncaavolleyballr)
 ```
 
 # ncaavolleyballr <a href="https://jeffreyrstevens.github.io/ncaavolleyballr/"><img src="man/figures/logo.png" align="right" height="139" alt="ncaavolleyballr website" /></a>
 
-```{r echo=FALSE}
-library(ncaavolleyballr)
-```
 
 <!-- badges: start -->
 [![Project Status: WIP - Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
@@ -34,6 +33,7 @@ Inspired by the NCAA data extraction functions from the [`{baseballr}`](https://
 You can install developmental versions from [GitHub](https://github.com/) with:
 
 ```{r eval = FALSE}
+#| label: installpackage
 # install.packages("remotes")
 remotes::install_github("JeffreyRStevens/ncaavolleyballr")
 ```
@@ -41,36 +41,29 @@ remotes::install_github("JeffreyRStevens/ncaavolleyballr")
 ## Usage
 
 ```{r eval=FALSE}
+#| label: loadpackage
 library(ncaavolleyballr)
 ```
 
-The NCAA uses a unique team ID for each women\'s and men\'s volleyball team and each season. So first you will need to get that ID with the `find_team_id()`. For instance, to find the ID for Penn State\'s 2024 season:
-```{r}
-find_team_id("Penn St.", 2024)
-```
+A suite of functions can be used to extract season, match, and play-by-play data for teams and players. See the [Getting Started vignette](https://jeffreyrstevens.github.io/ncaavolleyballr/articles/ncaavolleyballr.html) for a more thorough description of the functions.
 
 
 ### Season data
 
-With this team ID, you can now extract team information about the arena, coach, record, and schedule with `team_season_stats()`.
+The NCAA uses a unique team ID for each women\'s and men\'s volleyball team and season. So first you will need to get that ID with the `find_team_id()`. For instance, to find the ID for Penn State\'s 2024 season:
 
 ```{r}
-team_info <- find_team_id("Penn St.", 2024) |> 
-  team_season_stats()
-team_info$arena
-team_info$coach
-team_info$record
-team_info$schedule
+#| label: findteamid
+find_team_id("Penn St.", 2024)
 ```
 
-There is also roster and overall season performance data on individual players with the `player_season_stats()`. 
+With this team ID, you can now extract overall season performance data for the team's players with the `player_season_stats()`. 
 
 ```{r}
+#| label: playerseasonstats
 find_team_id("Penn St.", 2024) |> 
   player_season_stats()
 ```
-
-By default, these functions return information on women\'s teams, but they can be set to return men\'s information by setting `sport = "MVB"`. You can also aggregate data across conferences, divisions, or custom groups with `conference_stats()`, `division_stats()`, and `group_stats()`.
 
 
 ### Match data
@@ -78,12 +71,14 @@ By default, these functions return information on women\'s teams, but they can b
 The NCAA also uses a unique contest ID for each women\'s and men\'s volleyball match. The easiest way to get that ID is with `find_team_contest()`, which returns the contest ID for all matches in a particular season (using the Team ID provided by `find_team_id()`). For instance, to find the contest ID for 2024 National Championship match between Louisville and Penn State:
 
 ```{r}
+#| label: findteamcontests
 find_team_id("Penn St.", 2024) |> 
   find_team_contests() |> 
   tail()
 ```
 
 ```{r echo=FALSE}
+#| label: findcontestspennst
 psu2024 <- find_team_contests(find_team_id("Penn St.", 2024))
 ```
 
@@ -91,15 +86,24 @@ psu2024 <- find_team_contests(find_team_id("Penn St.", 2024))
 From that, we can see that the contest ID is `r psu2024[psu2024$opponent == "Louisville", ]$contest[2]`. If we pass this contest ID to the `player_match_stats()` function, we'll get a list with two data frames---one for each team in the contest---that contain player statistics for the match. If we want to get just the Penn State player data, we can set `team = "Penn St."`.
 
 ```{r}
+#| label: playermatchstats
 player_match_stats(contest = "6080706", team = "Penn St.")
 ```
+
+### Play-by-play data
 
 Play-by-play data are also available with `match_pbp()`. This returns a data frame with all events and players.
 
 ```{r}
+#| label: matchpbp
 match_pbp(contest = "6080706") |> 
   head(10)
 ```
+
+### Other functionality
+
+By default, these functions return information on women\'s teams, but they can be set to return men\'s information by setting `sport = "MVB"`. You can also aggregate data across conferences, divisions, or custom groups with `conference_stats()`, `division_stats()`, and `group_stats()`.
+
 
 ## Citation
 
