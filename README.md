@@ -16,12 +16,14 @@ coverage](https://codecov.io/gh/JeffreyRStevens/ncaavolleyballr/graph/badge.svg)
 
 Inspired by the NCAA data extraction functions from the
 [`{baseballr}`](https://billpetti.github.io/baseballr/) package, the
-goal of `{ncaavolleyballr}` is to extract women's and men's volleyball
-information from the NCAA website. The functions in this package can
-extract team records/schedules and player statistics for the 2020-2024
-NCAA women's and men's divisions I, II, and III volleyball teams.
-Functions can aggregate statistics for teams, conferences, divisions, or
-custom groups of teams.
+goal of
+[`{ncaavolleyballr}`](https://jeffreyrstevens.github.io/ncaavolleyballr/)
+is to extract women's and men's volleyball information from the NCAA
+website. The functions in this package can extract team
+records/schedules and player statistics for the 2020-2024 NCAA women's
+and men's divisions I, II, and III volleyball teams. Functions can
+aggregate statistics for teams, conferences, divisions, or custom groups
+of teams.
 
 ## Installation
 
@@ -39,39 +41,39 @@ remotes::install_github("JeffreyRStevens/ncaavolleyballr")
 library(ncaavolleyballr)
 ```
 
-### Season data
-
 The NCAA uses a unique team ID for each women's and men's volleyball
 team and each season. So first you will need to get that ID with the
-`find_team_id()`. For instance, to find the ID for University of
-Nebraska's 2024 season:
+`find_team_id()`. For instance, to find the ID for Penn State's 2024
+season:
 
 ``` r
-find_team_id("Nebraska", 2024)
-#> [1] "585290"
+find_team_id("Penn St.", 2024)
+#> [1] "585406"
 ```
+
+### Season data
 
 With this team ID, you can now extract team information about the arena,
 coach, record, and schedule with `team_season_stats()`.
 
 ``` r
-team_info <- find_team_id("Nebraska", 2024) |> 
+team_info <- find_team_id("Penn St.", 2024) |> 
   team_season_stats()
 team_info$arena
-#>                  Arena name                    Capacity 
-#> "Bob Devaney Sports Center"                     "7,907" 
-#>                  Year built 
-#>                      "1975"
+#> Arena name   Capacity Year built 
+#> "Rec Hall"    "5,812"     "1928"
 team_info$coach
-#>               Name         Alma mater            Seasons             Record 
-#>        "John Cook" "San Diego - 1979"               "32"          "883-176"
+#>                      Name                Alma mater                   Seasons 
+#> "Katie Schumacher-Cawley"         "Penn St. - 2002"                      "12" 
+#>                    Record 
+#>                 "209-165"
 team_info$record
 #>      Overall record      Overall streak   Conference record   Conference streak 
-#>      "33-3 (0.917)"        "Streak: L1"      "19-1 (0.950)"        "Streak: L1" 
+#>      "35-2 (0.946)"       "Streak: W12"      "19-1 (0.950)"        "Streak: W7" 
 #>         Home record         Home streak         Road record         Road streak 
-#>      "22-0 (1.000)"       "Streak: W45"      "10-2 (0.833)"        "Streak: W1" 
+#>      "20-0 (1.000)"       "Streak: W24"      "13-2 (0.867)"        "Streak: W3" 
 #>      Neutral record      Neutral streak Non-division record Non-division streak 
-#>       "1-1 (0.500)"        "Streak: L1"       "0-0 (0.000)"         "Streak: 0"
+#>       "2-0 (1.000)"        "Streak: W3"       "0-0 (0.000)"         "Streak: 0"
 team_info$schedule
 ```
 
@@ -79,42 +81,43 @@ team_info$schedule
 
 | Date | Opponent | Result | Attendance |
 |:---|:---|:---|:---|
-| 08/27/2024 | Kentucky @Louisville, KY | W 3-1 | 9,280 |
-| 08/30/2024 | A&M-Corpus Christi | W 3-0 | 8,956 |
-| 08/31/2024 | TCU | W 3-1 | 8,695 |
-| 09/03/2024 | @ SMU | L 0-3 | 6,773 |
-| 09/05/2024 | The Citadel | W 3-0 | 8,607 |
-| 09/07/2024 | Montana St. | W 3-0 | 8,456 |
-| 09/10/2024 | Creighton | W 3-2 | 8,924 |
-| 09/13/2024 | Arizona St. | W 3-0 | 8,772 |
-| 09/14/2024 | Wichita St. | W 3-0 | 8,541 |
-| 09/18/2024 | Stanford | W 3-0 | 8,952 |
-| 09/22/2024 | @ Louisville | W 3-0 | 14,126 |
-| 09/27/2024 | UCLA | W 3-1 | 8,846 |
-| 09/29/2024 | Southern California | W 3-0 | 8,689 |
-| 10/03/2024 | @ Illinois | W 3-0 | 4,352 |
-| 10/06/2024 | Iowa | W 3-0 | 8,667 |
-| 10/11/2024 | Purdue | W 3-2 | 8,715 |
-| 10/12/2024 | Rutgers | W 3-0 | 8,500 |
-| 10/18/2024 | @ Michigan St. | W 3-0 | 8,291 |
-| 10/19/2024 | @ Ohio St. | W 3-0 | 4,156 |
-| 10/25/2024 | Illinois | W 3-0 | 8,551 |
-| 10/26/2024 | Michigan | W 3-1 | 8,517 |
-| 11/01/2024 | @ Wisconsin | W 3-0 | 7,229 |
-| 11/03/2024 | @ Northwestern | W 3-0 | 6,003 |
-| 11/07/2024 | @ Oregon | W 3-0 | 8,566 |
-| 11/09/2024 | @ Washington | W 3-0 | 9,768 |
-| 11/14/2024 | Minnesota | W 3-1 | 8,703 |
-| 11/16/2024 | Indiana | W 3-0 | 8,727 |
-| 11/20/2024 | @ Iowa | W 3-0 | 3,933 |
-| 11/23/2024 | Wisconsin | W 3-0 | 9,009 |
-| 11/29/2024 | @ Penn St. | L 1-3 | 6,597 |
-| 11/30/2024 | @ Maryland | W 3-1 | 13,071 |
-| 12/06/2024 | Florida A&M 2024 NCAA Division I Women’s Volleyball Championship | W 3-0 | 8,702 |
-| 12/07/2024 | \#8 Miami (FL) 2024 NCAA Division I Women’s Volleyball Championship | W 3-0 | 8,684 |
-| 12/13/2024 | \#5 Dayton 2024 NCAA Division I Women’s Volleyball Championship | W 3-1 | 8,725 |
-| 12/15/2024 | \#2 Wisconsin 2024 NCAA Division I Women’s Volleyball Championship | W 3-0 | 8,743 |
-| 12/19/2024 | \#1 Penn St. @Louisville, KY (2024 NCAA Division I Women’s Volleyball Championship) | L 2-3 | 21,726 |
+| 08/30/2024 | @ Tennessee | W 3-1 | 6,193 |
+| 09/01/2024 | @ Temple | W 3-0 | 583 |
+| 09/03/2024 | Louisville | W 3-0 | 3,865 |
+| 09/06/2024 | @ Kentucky | W 3-2 | 3,344 |
+| 09/07/2024 | Ball St. @Lexington, KY | W 3-0 | 145 |
+| 09/13/2024 | Duke | W 3-0 | 3,152 |
+| 09/14/2024 | Princeton | W 3-0 | 2,827 |
+| 09/14/2024 | St. John’s (NY) | W 3-0 | 2,827 |
+| 09/18/2024 | @ Pittsburgh | L 0-3 | 11,800 |
+| 09/20/2024 | James Madison | W 3-0 | 2,408 |
+| 09/22/2024 | Yale | W 3-1 | 2,178 |
+| 09/25/2024 | @ Purdue | W 3-0 | 2,415 |
+| 09/29/2024 | Michigan St. | W 3-1 | 2,605 |
+| 10/03/2024 | Maryland | W 3-1 | 2,209 |
+| 10/04/2024 | Oregon | W 3-0 | 4,606 |
+| 10/11/2024 | @ Michigan St. | W 3-0 | 4,170 |
+| 10/13/2024 | @ Indiana | W 3-1 | 1,813 |
+| 10/18/2024 | @ Ohio St. | W 3-2 | 3,436 |
+| 10/20/2024 | Minnesota | W 3-0 | 4,316 |
+| 10/24/2024 | @ UCLA | W 3-2 | 721 |
+| 10/26/2024 | @ Southern California | W 3-1 | 2,256 |
+| 10/30/2024 | Michigan | W 3-0 | 2,320 |
+| 11/01/2024 | Iowa | W 3-1 | 3,215 |
+| 11/08/2024 | @ Northwestern | W 3-1 | 4,908 |
+| 11/09/2024 | @ Wisconsin | L 0-3 | 7,229 |
+| 11/15/2024 | Illinois | W 3-0 | 3,425 |
+| 11/17/2024 | @ Maryland | W 3-1 | 1,938 |
+| 11/21/2024 | Purdue | W 3-0 | 2,610 |
+| 11/24/2024 | Washington | W 3-1 | 3,200 |
+| 11/27/2024 | @ Rutgers | W 3-0 | 3,128 |
+| 11/29/2024 | Nebraska | W 3-1 | 6,597 |
+| 12/06/2024 | Delaware St. 2024 NCAA Division I Women’s Volleyball Championship | W 3-0 | 2,516 |
+| 12/07/2024 | \#8 North Carolina 2024 NCAA Division I Women’s Volleyball Championship | W 3-1 | 2,470 |
+| 12/13/2024 | \#5 Marquette 2024 NCAA Division I Women’s Volleyball Championship | W 3-1 | 2,914 |
+| 12/15/2024 | \#2 Creighton 2024 NCAA Division I Women’s Volleyball Championship | W 3-2 | 3,558 |
+| 12/19/2024 | \#1 Nebraska @Louisville, KY (2024 NCAA Division I Women’s Volleyball Championship) | W 3-2 | 21,726 |
+| 12/22/2024 | @#1 Louisville 2024 NCAA Division I Women’s Volleyball Championship | W 3-1 | 21,860 |
 
 </div>
 
@@ -122,7 +125,7 @@ There is also roster and overall season performance data on individual
 players with the `player_season_stats()`.
 
 ``` r
-find_team_id("Nebraska", 2024) |> 
+find_team_id("Penn St.", 2024) |> 
   player_season_stats()
 ```
 
@@ -130,22 +133,25 @@ find_team_id("Nebraska", 2024) |>
 
 | Season | Team | Conference | Number | Player | Yr | Pos | Ht | Hometown | High School | GP | GS | S | Kills | Errors | Total Attacks | Hit Pct | Assists | Aces | SErr | Digs | RetAtt | RErr | Block Solos | Block Assists | BErr | PTS | BHE | Trpl Dbl |
 |:---|:---|:---|---:|:---|:---|:---|:---|:---|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| 2024-2025 | Nebraska | Big Ten | 2 | Bergen Reilly | So | S | 6-1 | Sioux Falls, SD | O’Gorman | 36 | 36 | 122 | 81 | 14 | 175 | 0.383 | 1352 | 21 | 37 | 348 | 4 | NA | 3 | 59 | 8 | 134.5 | NA | NA |
-| 2024-2025 | Nebraska | Big Ten | 5 | Rebekah Allick | Jr | MB | 6-4 | Lincoln, NE | Waverly | 35 | 34 | 109 | 198 | 57 | 395 | 0.357 | 9 | NA | NA | 34 | 5 | 1 | 19 | 137 | 13 | 285.5 | NA | NA |
-| 2024-2025 | Nebraska | Big Ten | 6 | Laney Choboy | So | L/DS | 5-3 | Raleigh, NC | Leesville Road | 36 | 0 | 121 | 0 | 0 | 3 | 0.000 | 36 | NA | 1 | 185 | 311 | 10 | NA | NA | NA | NA | NA | NA |
-| 2024-2025 | Nebraska | Big Ten | 7 | Maisie Boesiger | Jr | L/DS | 5-6 | Firth, NE | Norris | 9 | 0 | 13 | 0 | 0 | 0 | NA | NA | NA | NA | 6 | 1 | NA | NA | NA | NA | NA | NA | NA |
-| 2024-2025 | Nebraska | Big Ten | 8 | Lexi Rodriguez | Sr | L/DS | 5-5 | Sterling, IL | Sterling | 36 | 0 | 122 | 0 | 0 | 8 | 0.000 | 127 | 17 | 23 | 473 | 431 | 16 | NA | NA | NA | 17.0 | NA | NA |
-| 2024-2025 | Nebraska | Big Ten | 9 | Kennedi Orr | Sr | S | 6-0 | Eagan, MN | Eagan | 35 | 0 | 112 | 0 | 0 | 1 | 0.000 | 2 | 10 | 23 | 63 | NA | NA | NA | NA | NA | 10.0 | NA | NA |
-| 2024-2025 | Nebraska | Big Ten | 10 | Olivia Mauch | Fr | L/DS | 5-6 | Bennington, NE | Bennington | 36 | 4 | 122 | 0 | 0 | 0 | NA | 13 | 21 | 18 | 196 | 412 | 17 | NA | NA | NA | 21.0 | NA | NA |
-| 2024-2025 | Nebraska | Big Ten | 11 | Leyla Blackwell | Sr | MB | 6-4 | San Diego, CA | La Jolla | 13 | 4 | 23 | 54 | 11 | 103 | 0.417 | 4 | NA | NA | 4 | 5 | NA | 2 | 27 | 1 | 69.5 | NA | NA |
-| 2024-2025 | Nebraska | Big Ten | 12 | Taylor Landfair | Sr | OH | 6-5 | Plainfield, IL | Plainfield Central | 33 | 20 | 88 | 219 | 90 | 600 | 0.215 | 3 | 1 | 3 | 44 | 73 | 3 | 1 | 49 | 3 | 245.5 | 1 | NA |
-| 2024-2025 | Nebraska | Big Ten | 13 | Merritt Beason | Sr | OH | 6-4 | Gardendale, AL | Gardendale | 36 | 36 | 122 | 339 | 133 | 883 | 0.233 | 16 | 30 | 37 | 150 | 17 | 1 | 6 | 104 | 8 | 427.0 | NA | NA |
-| 2024-2025 | Nebraska | Big Ten | 15 | Andi Jackson | So | MB | 6-3 | Brighton, CO | Brighton | 34 | 34 | 114 | 299 | 73 | 515 | 0.439 | 2 | 1 | 5 | 26 | 2 | NA | 12 | 122 | 4 | 373.0 | NA | NA |
-| 2024-2025 | Nebraska | Big Ten | 22 | Lindsay Krause | Sr | OH | 6-4 | Papillion, NE | Skutt Catholic | 24 | 12 | 50 | 120 | 43 | 336 | 0.229 | 2 | 15 | 12 | 33 | 54 | 3 | 3 | 23 | 3 | 149.5 | NA | NA |
-| 2024-2025 | Nebraska | Big Ten | 27 | Harper Murray | So | OH | 6-2 | Ann Arbor, MI | Skyline | 36 | 36 | 121 | 411 | 130 | 1095 | 0.257 | 30 | 39 | 34 | 294 | 598 | 23 | 5 | 60 | 10 | 485.0 | NA | NA |
-| 2024-2025 | Nebraska | Big Ten | NA | TEAM | \- | \- | \- | NA | NA | NA | NA | NA | NA | NA | NA | NA | NA | NA | NA | NA | NA | 7 | NA | NA | NA | NA | NA | NA |
-| 2024-2025 | Nebraska | Big Ten | NA | Totals | \- | \- | \- | NA | NA | NA | NA | 122 | 1721 | 551 | 4114 | 0.284 | 1596 | 155 | 193 | 1856 | 1920 | 81 | 51 | 581 | 50 | 2217.5 | 1 | 36 |
-| 2024-2025 | Nebraska | Big Ten | NA | Opponent Totals | \- | \- | \- | NA | NA | NA | NA | 122 | 1376 | 749 | 4377 | 0.143 | 1321 | 81 | 342 | 1539 | 2748 | 155 | 34 | 375 | 49 | 1678.5 | 1 | 36 |
+| 2024-2025 | Penn St. | Big Ten | 1 | Taylor Trammell | Sr | MB | 6-2 | Lexington, KY | Henry Clay | 37 | 37 | 130 | 260 | 48 | 480 | 0.442 | 3 | 1 | 5 | 25 | 14 | 4 | 11 | 124 | 7 | 334.0 | NA | NA |
+| 2024-2025 | Penn St. | Big Ten | 2 | Ava Falduto | Fr | L/DS | 5-7 | Elmhurst, IL | IC Catholic Prep | 37 | 3 | 135 | 0 | 0 | 7 | 0.000 | 70 | 39 | 43 | 310 | 543 | 21 | NA | NA | NA | 39.0 | NA | NA |
+| 2024-2025 | Penn St. | Big Ten | 3 | Gillian Grimes | Jr | L/DS | 5-6 | Westchester, IL | Nazareth Academy | 37 | 0 | 135 | 4 | 0 | 11 | 0.364 | 163 | 38 | 55 | 529 | 551 | 29 | NA | NA | NA | 42.0 | NA | NA |
+| 2024-2025 | Penn St. | Big Ten | 4 | Karis Willow | So | OH | 6-4 | Arlington, OH | Liberty Benton | 2 | 0 | 2 | 2 | 2 | 6 | 0.000 | NA | NA | NA | NA | 5 | NA | NA | NA | NA | 2.0 | NA | NA |
+| 2024-2025 | Penn St. | Big Ten | 5 | Jordan Hopp | Sr | MB | 6-2 | Alliance, NE | Alliance | 10 | 0 | 19 | 12 | 7 | 31 | 0.161 | NA | NA | NA | 2 | 1 | NA | 2 | 18 | NA | 23.0 | NA | NA |
+| 2024-2025 | Penn St. | Big Ten | 6 | Kate Lally | So | DS | 5-9 | State College, PA | State College | 3 | 0 | 3 | 0 | 0 | 0 | NA | NA | NA | NA | NA | NA | NA | NA | NA | NA | NA | NA | NA |
+| 2024-2025 | Penn St. | Big Ten | 8 | Camryn Hannah | Sr | OH | 6-2 | Lansing, IL | Marist | 37 | 4 | 133 | 480 | 179 | 1052 | 0.286 | 4 | 28 | 67 | 113 | 129 | 9 | 9 | 31 | 3 | 532.5 | NA | NA |
+| 2024-2025 | Penn St. | Big Ten | 9 | Jess Mruzik | Sr | OH | 6-1 | Livonia, MI | Farmington Hills Mercy | 37 | 37 | 130 | 565 | 178 | 1497 | 0.259 | 51 | 32 | 55 | 313 | 693 | 35 | 17 | 51 | 5 | 639.5 | 1 | NA |
+| 2024-2025 | Penn St. | Big Ten | 10 | Anjelina Starck | Sr | OH | 6-2 | Colorado Springs, CO | Rampart | 29 | 24 | 92 | 24 | 15 | 94 | 0.096 | 19 | 7 | 1 | 146 | 293 | 18 | NA | 6 | NA | 34.0 | NA | NA |
+| 2024-2025 | Penn St. | Big Ten | 11 | Jocelyn Nathan | So | L/DS | 5-6 | Wilmington, DE | Wilmington Friends School | 22 | 10 | 59 | 0 | 0 | 0 | NA | 10 | 7 | 7 | 69 | 146 | 10 | NA | NA | NA | 7.0 | NA | NA |
+| 2024-2025 | Penn St. | Big Ten | 14 | Caroline Jurevicius | Fr | RS | 6-2 | Cleveland, OH | Notre Dame-Cathedral Latin | 36 | 31 | 123 | 248 | 105 | 580 | 0.247 | 6 | NA | 4 | 54 | NA | NA | 3 | 78 | 2 | 290.0 | NA | NA |
+| 2024-2025 | Penn St. | Big Ten | 19 | Alexa Markley | Jr | OH | 6-2 | Peachtree City, GA | McIntosh | 11 | 2 | 21 | 23 | 8 | 61 | 0.246 | NA | NA | 1 | 7 | 4 | 1 | 1 | 9 | 1 | 28.5 | NA | NA |
+| 2024-2025 | Penn St. | Big Ten | 21 | Izzy Starck | Fr | S | 6-1 | Viera, FL | Viera | 37 | 37 | 135 | 112 | 37 | 280 | 0.268 | 1483 | 19 | 43 | 342 | 5 | 1 | 1 | 98 | 5 | 181.0 | 3 | NA |
+| 2024-2025 | Penn St. | Big Ten | 23 | Catherine Burke | So | MB | 6-3 | Glenview, IL | Loyola Academy | 4 | 0 | 4 | 0 | 0 | 4 | 0.000 | NA | NA | 1 | NA | NA | NA | NA | 2 | NA | 1.0 | NA | NA |
+| 2024-2025 | Penn St. | Big Ten | 24 | Quinn Menger | Sr | DS | 5-9 | Powhatan, VA | St. Catherine’s School | 37 | 1 | 122 | 0 | 0 | 2 | 0.000 | 17 | 28 | 27 | 38 | NA | NA | NA | NA | NA | 28.0 | NA | NA |
+| 2024-2025 | Penn St. | Big Ten | 44 | Maggie Mendelson | Jr | MB | 6-5 | North Ogden, UT | Fremont | 37 | 36 | 127 | 242 | 69 | 568 | 0.305 | 15 | 4 | 15 | 46 | 25 | 1 | 18 | 128 | 7 | 328.0 | NA | NA |
+| 2024-2025 | Penn St. | Big Ten | NA | TEAM | \- | \- | \- | NA | NA | NA | NA | NA | NA | NA | NA | NA | NA | NA | NA | NA | NA | 11 | NA | NA | NA | NA | NA | NA |
+| 2024-2025 | Penn St. | Big Ten | NA | Totals | \- | \- | \- | NA | NA | NA | NA | 135 | 1972 | 648 | 4673 | 0.283 | 1841 | 203 | 324 | 1994 | 2420 | 140 | 62 | 545 | 30 | 2509.5 | 4 | 37 |
+| 2024-2025 | Penn St. | Big Ten | NA | Opponent Totals | \- | \- | \- | NA | NA | NA | NA | 135 | 1535 | 710 | 4593 | 0.180 | 1458 | 140 | 281 | 1716 | 2853 | 203 | 52 | 449 | 68 | 1951.5 | 5 | 37 |
 
 </div>
 
@@ -239,7 +245,9 @@ match_pbp(contest = "6080706") |>
 
 ## Citation
 
-To cite `{ncaavolleyballr}`, use:
+To cite
+[`{ncaavolleyballr}`](https://jeffreyrstevens.github.io/ncaavolleyballr/),
+use:
 
 > Stevens, Jeffrey R. (2025). ncaavolleyballr: Extract data from NCAA
 > women's volleyball website. (version 0.3.0)

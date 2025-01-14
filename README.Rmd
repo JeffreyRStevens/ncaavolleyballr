@@ -27,7 +27,7 @@ library(ncaavolleyballr)
 [![Codecov test coverage](https://codecov.io/gh/JeffreyRStevens/ncaavolleyballr/graph/badge.svg)](https://app.codecov.io/gh/JeffreyRStevens/ncaavolleyballr)
 <!-- badges: end -->
 
-Inspired by the NCAA data extraction functions from the [`{baseballr}`](https://billpetti.github.io/baseballr/) package, the goal of `{ncaavolleyballr}` is to extract women\'s and men\'s volleyball information from the NCAA website. The functions in this package can extract team records/schedules and player statistics for the 2020-`r ncaavolleyballr:::most_recent_season()` NCAA women\'s and men\'s divisions I, II, and III volleyball teams. Functions can aggregate statistics for teams, conferences, divisions, or custom groups of teams.
+Inspired by the NCAA data extraction functions from the [`{baseballr}`](https://billpetti.github.io/baseballr/) package, the goal of [`{ncaavolleyballr}`](https://jeffreyrstevens.github.io/ncaavolleyballr/) is to extract women\'s and men\'s volleyball information from the NCAA website. The functions in this package can extract team records/schedules and player statistics for the 2020-`r ncaavolleyballr:::most_recent_season()` NCAA women\'s and men\'s divisions I, II, and III volleyball teams. Functions can aggregate statistics for teams, conferences, divisions, or custom groups of teams.
 
 ## Installation
 
@@ -44,17 +44,18 @@ remotes::install_github("JeffreyRStevens/ncaavolleyballr")
 library(ncaavolleyballr)
 ```
 
-### Season data
-
-The NCAA uses a unique team ID for each women\'s and men\'s volleyball team and each season. So first you will need to get that ID with the `find_team_id()`. For instance, to find the ID for University of Nebraska\'s 2024 season:
+The NCAA uses a unique team ID for each women\'s and men\'s volleyball team and each season. So first you will need to get that ID with the `find_team_id()`. For instance, to find the ID for Penn State\'s 2024 season:
 ```{r}
-find_team_id("Nebraska", 2024)
+find_team_id("Penn St.", 2024)
 ```
+
+
+### Season data
 
 With this team ID, you can now extract team information about the arena, coach, record, and schedule with `team_season_stats()`.
 
 ```{r}
-team_info <- find_team_id("Nebraska", 2024) |> 
+team_info <- find_team_id("Penn St.", 2024) |> 
   team_season_stats()
 team_info$arena
 team_info$coach
@@ -65,7 +66,7 @@ team_info$schedule
 There is also roster and overall season performance data on individual players with the `player_season_stats()`. 
 
 ```{r}
-find_team_id("Nebraska", 2024) |> 
+find_team_id("Penn St.", 2024) |> 
   player_season_stats()
 ```
 
@@ -102,7 +103,7 @@ match_pbp(contest = "6080706") |>
 
 ## Citation
 
-To cite `{ncaavolleyballr}`, use:
+To cite [`{ncaavolleyballr}`](https://jeffreyrstevens.github.io/ncaavolleyballr/), use:
 
 > Stevens, Jeffrey R. (2025). ncaavolleyballr: Extract data from NCAA women\'s volleyball website.
 > (version 0.3.0)

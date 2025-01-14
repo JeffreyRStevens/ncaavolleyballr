@@ -1,17 +1,19 @@
 
-#' Extract arena, coach, record, and schedule information for a particular team
-#' and season
+#' Extract teams statistics for season statistics from 2001-2024
 #'
-#' The NCAA's main page for a team includes a tab called "Schedule/Results".
-#' This function extracts information about the team's venue, coach, and
-#' records, as well as the table of the schedule and results. This returns a
-#' list, so you can subset specific components with `$` (e.g., for coach
-#' information from an object called `output`, use `output$coach`).
+#' The NCAA's main page for a team includes a tab called "Game By Game"
+#' and a section called "Career Totals". Though the page only shows one
+#' season's worth of information, this function extracts season summary stats
+#' starting with 2001. We have included the conference starting with 2020
+#' (conference data for previous seasons is not currently available).
 #'
-#' @inheritParams player_season_stats
+#' @inheritParams find_team_id
+#' @param opponent Logical indicating whether to include team's stats
+#' (FALSE) or opponent's stats (TRUE). Default is set to FALSE, returning
+#' team stats.
 #'
 #' @returns
-#' Returns a list that includes arena, coach, schedule, and record information.
+#' Returns a data frame of summary team statistics for each season.
 #'
 #' @export
 #'
@@ -19,62 +21,55 @@
 #'
 #' @examples
 #' \dontrun{
-#' team_season_stats(team_id = "585290")
-#' team_season_stats(team_id = find_team_id("Nebraska", 2024))
-#' team_season_stats(team_id = find_team_id("UCLA", 2023, sport = "MVB"))
+#' team_season_stats(team = "Nebraska")
+#' team_season_stats(team = "Nebraska", opponent = TRUE)
+#' team_season_stats(team = "UCLA", sport = "MVB")
 #' }
-team_season_stats <- function(team_id = NULL) {
+team_season_stats <- function(team = NULL,
+                              opponent = FALSE,
+                              sport = "WVB") {
   # check input
-  check_team_id(team_id)
+  team_df <- check_sport(sport, vb_only = TRUE)
+  check_team_name(team, teams = team_df)
+  check_logical("opponent", opponent)
 
   # get team info and request URL
-  teams <- dplyr::bind_rows(ncaavolleyballr::wvb_teams, ncaavolleyballr::mvb_teams)
-  team_info <- get_team_info(team_id)
-  
-  url <- paste0("https://stats.ncaa.org/teams/", team_id)
-  resp <- request_url(url)
+  team_ids <- find_team_id(team, 2020:most_recent_season(), sport = sport)
+  team_info <- get_team_info(team_ids) |>
+    dplyr::mutate(yr2 = as.character(.data$yr + 1) |> stringr::str_sub(start = 3L, end = 4L)) |>
+    tidyr::unite("year", "yr":"yr2", sep = "-") |>
+    dplyr::select(Year = "year", Team = "team_name", Conference = "conference")
+  team_id <- team_ids[length(team_ids)]
+  team_url <- paste0("https://stats.ncaa.org/teams/", team_id)
+  resp <- request_url(team_url)
 
-  # extract arena info
-  arena <- resp |> httr2::resp_body_html() |>
-    rvest::html_element(".mb-0") |>
-    rvest::html_text() |>
-    stringr::str_split_1("\n      \n") |>
-    stringr::str_trim()
-  arena <- arena[!arena %in% c("Name:", "Capacity:", "Year Built:", "")]
-  names(arena) <- c("Arena name", "Capacity", "Year built")
+  # extract season summary info
+  gbg_page <- resp |> httr2::resp_body_html() |>
+    rvest::html_elements(".nav-link") |>
+    rvest::html_attr("href") |>
+    stringr::str_subset("/players/\\d+")
+  gbg_url <- paste0("https://stats.ncaa.org/", gbg_page)
 
-  # extract coach info
-  coach <- resp |> httr2::resp_body_html() |>
-    rvest::html_elements(".mb-0") |>
-    rvest::html_text()
-  if (coach[8] == "Primary Venue:") {
-    coach <- coach[19]
-  } else {
-    coach <- coach[8]
-  }
-  coach <- coach |>
-    stringr::str_split_1("\n          \n") |>
-    stringr::str_squish() |>
-    stringr::str_trim() |>
-    stringr::str_replace(" Record:", "")
-  coach <- coach[!coach %in% c("Name:", "Alma Mater:", "Seasons:", "")]
-  names(coach) <- c("Name", "Alma mater", "Seasons", "Record")
-
-  # extract record info
-  record <- resp |> httr2::resp_body_html() |>
-    rvest::html_elements(".row") |>
-    rvest::html_elements("span") |>
-    rvest::html_text() |>
-    stringr::str_trim()
-  record <- record[-1]
-  names(record) <- c("Overall record", "Overall streak", "Conference record", "Conference streak", "Home record", "Home streak", "Road record", "Road streak", "Neutral record", "Neutral streak", "Non-division record", "Non-division streak")
-
-  # extract schedule info
-  schedule <- resp |> httr2::resp_body_html() |>
+  table <- request_url(gbg_url) |>
+    httr2::resp_body_html() |>
     rvest::html_element("table") |>
     rvest::html_table() |>
-    dplyr::filter(.data$Date != "")
+    dplyr::mutate(Year = dplyr::na_if(.data$Year, "")) |>
+    tidyr::fill("Year")
 
-  output <- list(team_info = team_info, arena = arena, coach = coach, record = record, schedule = schedule)
-  return(output)
+  # return team or opponent summary info
+  if(!opponent) {
+    team_info |>
+      dplyr::right_join(table, by = dplyr::join_by("Year", "Team")) |>
+      dplyr::filter(.data$Team != "Defensive") |>
+      dplyr::mutate(dplyr::across("S":dplyr::last_col(), ~ suppressWarnings(as.numeric(gsub(",", "", .x))))) |>
+      dplyr::arrange("Year")
+  } else {
+    team_info |>
+      dplyr::right_join(table, by = dplyr::join_by("Year", "Team")) |>
+      dplyr::filter(.data$Team == "Defensive") |>
+      dplyr::mutate(Team = "Opponent",
+                    dplyr::across("S":dplyr::last_col(), ~ suppressWarnings(as.numeric(gsub(",", "", .x)))))
+  }
+
 }

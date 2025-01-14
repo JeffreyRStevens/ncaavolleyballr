@@ -1,10 +1,17 @@
 test_that("team_season_stats() works", {
-  expect_silent(neb2024 <- team_season_stats(team_id = "585290"))
-  names(neb2024$record) <- NULL
-  expect_equal(neb2024$record[1],
-               "33-3 (0.917)")
-  expect_error(team_season_stats(team_id = 585290),
-               "Enter valid team ID as a character string")
-  expect_error(team_season_stats(team_id = "Nebraska"),
-               "Enter valid team ID. ")
+  skip_on_cran()
+  expect_silent(nebseasons <- team_season_stats(team = "Nebraska"))
+  expect_equal(nebseasons[nebseasons$Year == "2001-02", ]$S,
+               108)
+})
+
+test_that("team_season_stats() errors trigger correctly", {
+  expect_error(team_season_stats(),
+               "Enter valid team name.")
+  expect_error(team_season_stats(team = "UNL"),
+               "Enter valid team name.")
+  expect_error(team_season_stats(team = "Nebraska", opponent = "TRUE"),
+               "`opponent` must be a logical")
+  expect_error(team_season_stats(team = "Nebraska", sport = "VB"),
+               "Enter valid sport")
 })

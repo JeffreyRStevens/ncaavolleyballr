@@ -10,3 +10,5 @@
 ^docs$
 ^pkgdown$
 ^codemeta\.json$
+^vignettes/\.quarto$
+^vignettes/*_files$

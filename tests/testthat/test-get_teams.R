@@ -1,4 +1,4 @@
-test_that("get_teams() work", {
+test_that("get_teams() errors trigger correctly", {
   expect_error(get_teams(),
                "Enter valid year between 2020-")
   expect_error(get_teams(year = "xxx"),

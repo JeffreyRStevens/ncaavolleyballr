@@ -17,7 +17,9 @@ reference:
   - get_teams
 - title: Extract team and player statistics
   contents:
+  - team_season_info
   - team_season_stats
+  - team_match_stats
   - player_season_stats
   - player_match_stats
   - match_pbp

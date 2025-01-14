@@ -17,6 +17,8 @@
 #'
 #' @export
 #'
+#' @family functions that extract player statistics
+#'
 #' @examples
 #' \dontrun{
 #' player_match_stats(contest = "6080706")
@@ -29,8 +31,8 @@ player_match_stats <- function(contest = NULL,
                                sport = "WVB") {
   # check inputs
   check_contest(contest)
-  team_df <- check_sport(sport, vb_only = TRUE)
-  if (!is.null(team)) check_team_name(team, teams = team_df)
+  team_df <- check_sport(sport = sport, vb_only = TRUE)
+  if (!is.null(team)) check_team_name(team = team, teams = team_df)
   check_logical("team_stats", team_stats)
 
   # get and request URL
@@ -100,6 +102,10 @@ player_match_stats <- function(contest = NULL,
       dplyr::filter(.data$Number != "")
     home_stats <- home_stats |>
       dplyr::filter(.data$Number != "")
+    if (nrow(home_stats) == 0 | nrow(away_stats) == 0 | !"Player" %in% colnames(home_stats) | !"Player" %in% colnames(away_stats)) {
+      cli::cli_warn("No player match stats available for {home_team} and {away_team}.")
+      return(invisible())
+    }
   }
 
   stats_list <- list(away_team = away_stats, home_stats = home_stats) |>
