@@ -4,7 +4,13 @@
 \alias{group_stats}
 \title{Aggregate player statistics and play-by-play information}
 \usage{
-group_stats(teams = NULL, year = NULL, level = "season", sport = "WVB")
+group_stats(
+  teams = NULL,
+  year = NULL,
+  level = "season",
+  unique = TRUE,
+  sport = "WVB"
+)
 }
 \arguments{
 \item{teams}{Character vector of team names to aggregate.}
@@ -13,6 +19,9 @@ group_stats(teams = NULL, year = NULL, level = "season", sport = "WVB")
 
 \item{level}{Character string defining whether to aggregate "season",
 "match", or play-by-play ("pbp") data.}
+
+\item{unique}{Logical indicating whether to only process unique contests
+(TRUE) or whether to process duplicated contests (FALSE). Default is TRUE.}
 
 \item{sport}{Three letter abbreviation for NCAA sport (must be upper case;
 for example "WVB" for women's volleyball and "MVB" for men's volleyball).}

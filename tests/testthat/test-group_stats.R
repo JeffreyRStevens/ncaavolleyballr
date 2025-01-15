@@ -31,6 +31,8 @@ test_that("group_stats() errors trigger correctly", {
                "Enter valid year between 2020-")
   expect_error(group_stats(teams = "Nebraska", year = 2024, level = "xxx"),
                "Enter valid level")
+  expect_error(group_stats(teams = "Nebraska", year = 2024,  unique = 1),
+               "`unique` must be a logical")
   expect_error(group_stats(teams = "Nebraska", year = 2024, sport = "VB"),
                "Enter valid sport")
 })

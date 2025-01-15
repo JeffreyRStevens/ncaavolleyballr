@@ -16,6 +16,8 @@
 #' @param teams Character vector of team names to aggregate.
 #' @param level Character string defining whether to aggregate "season",
 #' "match", or play-by-play ("pbp") data.
+#' @param unique Logical indicating whether to only process unique contests
+#' (TRUE) or whether to process duplicated contests (FALSE). Default is TRUE.
 #' @inheritParams find_team_id
 #' @inheritParams get_teams
 #'
@@ -40,12 +42,14 @@
 group_stats <- function(teams = NULL,
                         year = NULL,
                         level = "season",
+                        unique = TRUE,
                         sport = "WVB") {
   # check inputs
   team_df <- check_sport(sport, vb_only = TRUE)
   check_team_name(team = teams, teams = team_df)
   check_year(year)
   check_match("level", level, c("season", "match", "pbp"))
+  check_logical("unique", unique)
 
   # group season-level stats
   if (level == "season") {
@@ -68,6 +72,7 @@ group_stats <- function(teams = NULL,
     contests <- purrr::map(contest_vec, find_team_contests) |>
       purrr::list_rbind() |>
       dplyr::filter(!is.na(.data$contest))
+    if (unique) contests <- dplyr::slice_head(contests, by = "contest", n = 1)
     purrr::map2(contests$contest, contests$team,
                 ~ player_match_stats(.x, .y, team_stats = FALSE, sport = sport)) |>
       purrr::set_names(contests$team) |>
@@ -78,6 +83,7 @@ group_stats <- function(teams = NULL,
     contests <- purrr::map(contest_vec, find_team_contests) |>
       purrr::list_rbind() |>
       dplyr::filter(!is.na(.data$contest))
+    if (unique) contests <- dplyr::slice_head(contests, by = "contest", n = 1)
     purrr::map(contests$contest, match_pbp) |>
       purrr::set_names(contests$date) |>
       purrr::list_rbind(names_to = "date")}
