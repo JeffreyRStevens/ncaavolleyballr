@@ -78,7 +78,13 @@ using <code><a href="find_team_name.html">find_team_name()</a></code>.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">group_stats</span><span class="op">(</span>teams <span class="op">=</span> <span class="cn">NULL</span>, year <span class="op">=</span> <span class="cn">NULL</span>, level <span class="op">=</span> <span class="st">"season"</span>, sport <span class="op">=</span> <span class="st">"WVB"</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">group_stats</span><span class="op">(</span></span>
+<span>  teams <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  year <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  level <span class="op">=</span> <span class="st">"season"</span>,</span>
+<span>  unique <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  sport <span class="op">=</span> <span class="st">"WVB"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -96,6 +102,11 @@ using <code><a href="find_team_name.html">find_team_name()</a></code>.</p>
 <dt id="arg-level">level<a class="anchor" aria-label="anchor" href="#arg-level"></a></dt>
 <dd><p>Character string defining whether to aggregate "season",
 "match", or play-by-play ("pbp") data.</p></dd>
+
+
+<dt id="arg-unique">unique<a class="anchor" aria-label="anchor" href="#arg-unique"></a></dt>
+<dd><p>Logical indicating whether to only process unique contests
+(TRUE) or whether to process duplicated contests (FALSE). Default is TRUE.</p></dd>
 
 
 <dt id="arg-sport">sport<a class="anchor" aria-label="anchor" href="#arg-sport"></a></dt>
