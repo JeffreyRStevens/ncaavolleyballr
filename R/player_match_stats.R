@@ -103,7 +103,7 @@ player_match_stats <- function(contest = NULL,
     home_stats <- home_stats |>
       dplyr::filter(.data$Number != "")
     if (nrow(home_stats) == 0 | nrow(away_stats) == 0 | !"Player" %in% colnames(home_stats) | !"Player" %in% colnames(away_stats)) {
-      cli::cli_warn("No player match stats available for {home_team} and {away_team}.")
+      cli::cli_warn("No player match stats available for {home_team} and {away_team} (contest {contest}).")
       return(invisible())
     }
   }
@@ -115,7 +115,7 @@ player_match_stats <- function(contest = NULL,
   if (is.null(team)) {
     return(stats_list)
   } else {
-    if (!team %in% c(away_team, home_team)) cli::cli_abort("Enter valid team: \"{away_team}\" or \"{home_team}\"")
+    if (!team %in% c(away_team, home_team)) cli::cli_abort("Enter valid team for contest {contest}: \"{away_team}\" or \"{home_team}\".")
     return(stats_list[[team]])
   }
 }

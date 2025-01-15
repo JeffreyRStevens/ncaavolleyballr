@@ -30,7 +30,7 @@ player_season_stats <- function(team_id,
   # check inputs
   check_team_id(team_id)
   if (length(team_id) == 0) {
-    cli::cli_warn("No season stats available for this team.")
+    cli::cli_warn("No season stats available for team ID {team_id}.")
     return(invisible())
   }
   check_logical("team_stats", team_stats)
@@ -45,7 +45,7 @@ player_season_stats <- function(team_id,
     rvest::html_element("table") |>
     rvest::html_table()
   if (nrow(table) == 0 | !"Player" %in% colnames(table)) {
-    cli::cli_warn("No {team_info$yr[1]} season stats available for {team_info$team_name[1]}.")
+    cli::cli_warn("No {team_info$yr[1]} season stats available for {team_info$team_name[1]} (team ID {team_id}).")
     return(invisible())
   } else {#if ("Player" %in% colnames(table)) {
     player_stats <- table |>
