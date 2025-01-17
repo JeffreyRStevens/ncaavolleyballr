@@ -26,8 +26,8 @@ statistics.}
 for example "WVB" for women's volleyball and "MVB" for men's volleyball).}
 }
 \value{
-By default, returns list with two data frames: home and away team match
-statistics. If team is specified, only single data frame is returned.
+By default, returns data frame that includes both home and away team match
+statistics. If team is specified, only that team's data are returned.
 }
 \description{
 The NCAA's page for a match/contest includes a tab called

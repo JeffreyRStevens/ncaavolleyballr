@@ -7,18 +7,14 @@ test_that("player_match_stats() works", {
   suppressWarnings(hawaii2023 <- player_match_stats(contest = "4475421",
                                                     team = "Hawaii",
                                                     sport = "MVB"))
-  expect_equal(final2024$Louisville$Player[1],
+  expect_equal(final2024$Player[1],
                "Nayelis Cabello")
-  expect_equal(final2024$Louisville$Assists[1],
+  expect_equal(final2024$Assists[1],
                31)
-  expect_equal(final2024b$`Penn St.`$Player[1],
-               "Ava Falduto")
-  expect_equal(final2024b$`Penn St.`$Assists[1],
-               2)
-  expect_equal(nrow(final2024$Louisville),
-               14)
-  expect_equal(nrow(final2024b$Louisville),
-               12)
+  expect_equal(nrow(final2024),
+               26)
+  expect_equal(nrow(final2024b),
+               22)
   expect_equal(nrow(hawaii2023),
                11)
 })

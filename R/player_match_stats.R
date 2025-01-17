@@ -12,8 +12,8 @@
 #' @inheritParams player_season_stats
 #'
 #' @returns
-#' By default, returns list with two data frames: home and away team match
-#' statistics. If team is specified, only single data frame is returned.
+#' By default, returns data frame that includes both home and away team match
+#' statistics. If team is specified, only that team's data are returned.
 #'
 #' @export
 #'
@@ -122,7 +122,7 @@ player_match_stats <- function(contest = NULL,
 
   # subset a single team's data when requested
   if (is.null(team)) {
-    return(stats_list)
+    return(purrr::list_rbind(stats_list))
   } else {
     if (!team %in% c(away_team, home_team)) cli::cli_abort("Enter valid team for contest {contest}: \"{away_team}\" or \"{home_team}\".")
     return(stats_list[[team]])
