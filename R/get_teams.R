@@ -45,7 +45,15 @@ get_teams <- function(year = NULL,
                 "&conf_id=-1",
                 "&division=", division,
                 "&sport_code=", sport)
-  resp <- request_url(url)
+  resp <- tryCatch(
+    error = function(cnd) {
+      cli::cli_warn("No website available.")
+    },
+    request_url(url)
+  )
+  if (length(resp) == 1) {
+    if (grepl(pattern = "No website available", resp)) return(invisible())
+  }
 
   # create HTML table
   data_read <- resp |>

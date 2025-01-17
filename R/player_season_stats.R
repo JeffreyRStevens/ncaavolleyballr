@@ -36,14 +36,23 @@ player_season_stats <- function(team_id,
   check_logical("team_stats", team_stats)
 
   # get team info and request URL
-  # teams <- dplyr::bind_rows(ncaavolleyballr::wvb_teams, ncaavolleyballr::mvb_teams)
   team_info <- get_team_info(team_id)
   url <- paste0("https://stats.ncaa.org/teams/", team_id, "/season_to_date_stats")
 
-  table <- request_url(url) |>
-    httr2::resp_body_html() |>
-    rvest::html_element("table") |>
-    rvest::html_table()
+  table <- tryCatch(
+    error = function(cnd) {
+      cli::cli_warn("No website available for team ID {team_id}.")
+    },
+    request_url(url) |>
+      httr2::resp_body_html() |>
+      rvest::html_element("table") |>
+      rvest::html_table()
+  )
+  if (length(table) == 1) {
+    if (grepl(pattern = "No website available for team ID", table)) return(invisible())
+  }
+
+
   if (nrow(table) == 0 | !"Player" %in% colnames(table)) {
     cli::cli_warn("No {team_info$yr[1]} season stats available for {team_info$team_name[1]} (team ID {team_id}).")
     return(invisible())

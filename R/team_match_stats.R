@@ -33,7 +33,15 @@ team_match_stats <- function(team_id = NULL,
   # get team info and request URL
   team_info <- get_team_info(team_id) #|>
   team_url <- paste0("https://stats.ncaa.org/teams/", team_id)
-  resp <- request_url(team_url)
+  resp <- tryCatch(
+    error = function(cnd) {
+      cli::cli_warn("No website available for team ID {team_id}.")
+    },
+    request_url(team_url)
+  )
+  if (length(resp) == 1) {
+    if (grepl(pattern = "No website available for team ID", resp)) return(invisible())
+  }
 
   # extract arena info
   gbg_page <- resp |> httr2::resp_body_html() |>
@@ -42,13 +50,20 @@ team_match_stats <- function(team_id = NULL,
     stringr::str_subset("/players/\\d+")
   gbg_url <- paste0("https://stats.ncaa.org/", gbg_page)
 
-  tables <- request_url(gbg_url) |>
-    httr2::resp_body_html() |>
-    rvest::html_elements("table") |>
-    rvest::html_table()
-  # team <- tables[[1]]$Team[1]
+  table <- tryCatch(
+    error = function(cnd) {
+      cli::cli_warn("No website available for team ID {team_id}.")
+    },
+    request_url(gbg_url) |>
+      httr2::resp_body_html() |>
+      rvest::html_elements("table") |>
+      rvest::html_table()
+  )
+  if (length(table) == 1) {
+    if (grepl(pattern = "No website available for team ID", table)) return(invisible())
+  }
 
-  matches <- tables[[2]] |>
+  matches <- table[[2]] |>
     dplyr::mutate(Date = dplyr::na_if(.data$Date, ""),
                   team_opp = ifelse(.data$Opponent == "Defensive Totals", "Opponent", "Team"),
                   Opponent = dplyr::na_if(.data$Opponent, "Defensive Totals"),

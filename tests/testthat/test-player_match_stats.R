@@ -37,3 +37,8 @@ test_that("player_match_stats() errors trigger correctly", {
   expect_error(player_match_stats(contest = "6080706", sport = "VB"),
                "Enter valid sport")
 })
+
+test_that("player_match_stats() warnings trigger correctly", {
+  expect_warning(player_match_stats(contest = "5675914", team = "Franklin"),
+               "No website available for contest")
+})

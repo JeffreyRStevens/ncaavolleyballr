@@ -37,10 +37,19 @@ player_match_stats <- function(contest = NULL,
 
   # get and request URL
   url <- paste0("https://stats.ncaa.org/contests/", contest, "/individual_stats")
-  match_all <- request_url(url) |>
+
+  match_all <- tryCatch(
+    error = function(cnd) {
+      cli::cli_warn("No website available for contest {contest}.")
+    },
+  request_url(url) |>
     httr2::resp_body_html() |>
     rvest::html_elements("table") |>
     rvest::html_table()
+  )
+  if (length(match_all) == 1) {
+    if (grepl(pattern = "No website available for contest", match_all)) return(invisible())
+  }
   match_info <- match_all[[1]]
 
   # extract date

@@ -28,7 +28,16 @@ find_team_contests <- function(team_id = NULL) {
   # get team info and request URL
   team_info <- get_team_info(team_id)
   url <- paste0("https://stats.ncaa.org/teams/", team_id)
-  resp <- request_url(url)
+
+  resp <- tryCatch(
+    error = function(cnd) {
+      cli::cli_warn("No website available for team ID {team_id}.")
+    },
+    request_url(url)
+  )
+  if (length(resp) == 1) {
+    if (grepl(pattern = "No website available for team ID", resp)) return(invisible())
+  }
 
   html_table <- resp |> httr2::resp_body_html() |>
     rvest::html_element("table")

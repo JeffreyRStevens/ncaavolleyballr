@@ -16,3 +16,8 @@ test_that("match_pbp() errors trigger correctly", {
   expect_error(match_pbp(contest = 585290),
                "Enter valid contest ID as a character string")
 })
+
+test_that("match_pbp() warnings trigger correctly", {
+  expect_warning(match_pbp(contest = "5675914"),
+                 "No website available for contest")
+})

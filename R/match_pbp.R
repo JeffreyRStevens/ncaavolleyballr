@@ -23,10 +23,19 @@ match_pbp <- function(contest = NULL) {
   url <- paste0("https://stats.ncaa.org/contests/", contest, "/play_by_play")
 
   ## get pbp HTML table
-  pbp_all <- request_url(url) |>
-    httr2::resp_body_html() |>
-    rvest::html_elements("table") |>
-    rvest::html_table()
+  pbp_all <- tryCatch(
+    error = function(cnd) {
+      cli::cli_warn("No website available for contest {contest}.")
+    },
+    request_url(url) |>
+      httr2::resp_body_html() |>
+      rvest::html_elements("table") |>
+      rvest::html_table()
+  )
+  if (length(pbp_all) == 1) {
+    if (grepl(pattern = "No website available for contest", pbp_all)) return(invisible())
+  }
+
   match_info <- pbp_all[[1]]
 
   # calculate number of sets

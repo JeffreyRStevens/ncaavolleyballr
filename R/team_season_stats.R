@@ -41,7 +41,15 @@ team_season_stats <- function(team = NULL,
     dplyr::select(Year = "year", Team = "team_name", Conference = "conference")
   team_id <- team_ids[length(team_ids)]
   team_url <- paste0("https://stats.ncaa.org/teams/", team_id)
-  resp <- request_url(team_url)
+  resp <- tryCatch(
+    error = function(cnd) {
+      cli::cli_warn("No website available for team ID {team_id}.")
+    },
+    request_url(team_url)
+  )
+  if (length(resp) == 1) {
+    if (grepl(pattern = "No website available for team ID", resp)) return(invisible())
+  }
 
   # extract season summary info
   gbg_page <- resp |> httr2::resp_body_html() |>
@@ -50,12 +58,20 @@ team_season_stats <- function(team = NULL,
     stringr::str_subset("/players/\\d+")
   gbg_url <- paste0("https://stats.ncaa.org/", gbg_page)
 
-  table <- request_url(gbg_url) |>
-    httr2::resp_body_html() |>
-    rvest::html_element("table") |>
-    rvest::html_table() |>
-    dplyr::mutate(Year = dplyr::na_if(.data$Year, "")) |>
-    tidyr::fill("Year")
+  table <- tryCatch(
+    error = function(cnd) {
+      cli::cli_warn("No website available for team ID {team_id}.")
+    },
+    request_url(gbg_url) |>
+      httr2::resp_body_html() |>
+      rvest::html_element("table") |>
+      rvest::html_table() |>
+      dplyr::mutate(Year = dplyr::na_if(.data$Year, "")) |>
+      tidyr::fill("Year")
+  )
+  if (length(table) == 1) {
+    if (grepl(pattern = "No website available for team ID", table)) return(invisible())
+  }
 
   # return team or opponent summary info
   if(!opponent) {
