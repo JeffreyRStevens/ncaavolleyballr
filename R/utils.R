@@ -21,7 +21,7 @@ check_confdiv <- function(group = NULL, value = NULL, teams = NULL) {
   if (group == "conf") {
     if (is.null(value)) cli::cli_abort("Enter valid conference.  Check `ncaa_conferences` for conference names.")
     if (!value %in% teams$conference) cli::cli_abort("Enter valid conference.  Check `ncaa_conferences` for conference names.")
-  } else if(group == "div") {
+  } else if (group == "div") {
     if (is.null(value)) cli::cli_abort("Enter valid division as a number: 1, 2, 3.")
     if (!value %in% 1:3) cli::cli_abort("Enter valid division as a number: 1, 2, 3.")
   } else {
@@ -53,7 +53,7 @@ check_contest <- function(contest = NULL) {
 check_logical <- function(name = NULL, value = NULL) {
   if (is.null(name)) cli::cli_abort(paste0("Enter valid `name`."))
   if (is.null(value)) cli::cli_abort(paste0("Enter valid `value`."))
-  if(!is.logical(value)) cli::cli_abort("`{name}` must be a logical (TRUE or FALSE).")
+  if (!is.logical(value)) cli::cli_abort("`{name}` must be a logical (TRUE or FALSE).")
 }
 
 
@@ -278,7 +278,7 @@ table_fill <- function(cells, trim = TRUE) {
     rowspan[is.na(rowspan)] <- 1
     colspan <- as.integer(rvest::html_attr(row, "colspan", default = NA_character_))
     colspan[is.na(colspan)] <- 1
-    text <- row #html_text(row)
+    text <- row
     if (isTRUE(trim)) {
       text <- gsub("^[[:space:]\u00a0]+|[[:space:]\u00a0]+$", "", text)
     }
@@ -337,5 +337,3 @@ table_fill <- function(cells, trim = TRUE) {
   values <- lapply(values, `[`, seq_len(width))
   matrix(unlist(values), ncol = width, byrow = TRUE)
 }
-
-

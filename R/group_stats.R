@@ -86,7 +86,8 @@ group_stats <- function(teams = NULL,
     if (unique) contests <- dplyr::slice_head(contests, by = "contest", n = 1)
     purrr::map(contests$contest, match_pbp) |>
       purrr::set_names(contests$date) |>
-      purrr::list_rbind(names_to = "date")}
+      purrr::list_rbind(names_to = "date")
+    }
 }
 
 #' Aggregate player statistics

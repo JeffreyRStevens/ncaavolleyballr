@@ -39,10 +39,12 @@ find_team_contests <- function(team_id = NULL) {
     if (grepl(pattern = "No website available for team ID", resp)) return(invisible())
   }
 
-  html_table <- resp |> httr2::resp_body_html() |>
+  html_table <- resp |>
+    httr2::resp_body_html() |>
     rvest::html_element("table")
 
-  schedule <- html_table |> html_table_raw() |>
+  schedule <- html_table |>
+    html_table_raw() |>
     dplyr::mutate(Team = team_info$team_name[1], .after = "Date") |>
     dplyr::mutate(dplyr::across(dplyr::everything(),
                                 ~ sub("<td>", "", .x)),
@@ -69,7 +71,7 @@ find_team_contests <- function(team_id = NULL) {
   names(schedule) <- tolower(names(schedule))
 
   # skip teams with no data
-  if(nrow(schedule) == 0) return()
+  if (nrow(schedule) == 0) return()
 
   schedule
 }

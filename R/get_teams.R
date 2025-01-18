@@ -85,7 +85,7 @@ get_teams <- function(year = NULL,
   conference_df <- data.frame(conference = conference_names,
                               conference_id = conference_ids)
 
-  conferences_team_df <- lapply(conference_df$conference_id, function(x){
+  conferences_team_df <- lapply(conference_df$conference_id, function(x) {
     conf_team_urls <- paste0("http://stats.ncaa.org/team/inst_team_list?academic_year=",
                              url_year,
                              "&conf_id=", x,
@@ -112,7 +112,7 @@ get_teams <- function(year = NULL,
                        yr = year,
                        conference_id = x)
     data <- data |>
-      dplyr::left_join(conference_df, by = c("conference_id"))
+      dplyr::left_join(conferences_team_df, by = c("conference_id"))
     Sys.sleep(5)
     return(data)
   }) |>

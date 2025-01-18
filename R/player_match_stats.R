@@ -36,16 +36,17 @@ player_match_stats <- function(contest = NULL,
   check_logical("team_stats", team_stats)
 
   # get and request URL
-  url <- paste0("https://stats.ncaa.org/contests/", contest, "/individual_stats")
+  url <- paste0("https://stats.ncaa.org/contests/", contest,
+                "/individual_stats")
 
   match_all <- tryCatch(
     error = function(cnd) {
       cli::cli_warn("No website available for contest {contest}.")
     },
-  request_url(url) |>
-    httr2::resp_body_html() |>
-    rvest::html_elements("table") |>
-    rvest::html_table()
+    request_url(url) |>
+      httr2::resp_body_html() |>
+      rvest::html_elements("table") |>
+      rvest::html_table()
   )
   if (length(match_all) == 1) {
     if (grepl(pattern = "No website available for contest", match_all)) return(invisible())
@@ -61,7 +62,7 @@ player_match_stats <- function(contest = NULL,
       as.Date(format = "%m/%d/%Y")
   } else {
     match_date <- match_date_time |>
-    as.Date(format = "%m/%d/%Y %H:%M %p")
+      as.Date(format = "%m/%d/%Y %H:%M %p")
   }
   yr <- match_date |>
     format("%Y") |>
@@ -94,15 +95,17 @@ player_match_stats <- function(contest = NULL,
 
   # extract stats for home and away teams
   away_stats <- match_all[[4]] |>
-    dplyr::mutate(Season = season, Date = match_date, Team = away_team, Conference = away_conf,
-                  `Opponent Team` = home_team, `Opponent Conference` = home_conf,
-                  Location = "Away", .before = 1) |>
+    dplyr::mutate(Season = season, Date = match_date, Team = away_team,
+                  Conference = away_conf, `Opponent Team` = home_team,
+                  `Opponent Conference` = home_conf, Location = "Away",
+                  .before = 1) |>
     dplyr::rename("Number" = "#", "Player" = "Name") |>
     dplyr::mutate(Number = suppressWarnings(as.numeric(.data$Number)))
   home_stats <- match_all[[5]] |>
-    dplyr::mutate(Season = season, Date = match_date, Team = home_team, Conference = home_conf,
-                  `Opponent Team` = away_team, `Opponent Conference` = away_conf,
-                  Location = "Home", .before = 1) |>
+    dplyr::mutate(Season = season, Date = match_date, Team = home_team,
+                  Conference = home_conf, `Opponent Team` = away_team,
+                  `Opponent Conference` = away_conf, Location = "Home",
+                  .before = 1) |>
     dplyr::rename("Number" = "#", "Player" = "Name") |>
     dplyr::mutate(Number = suppressWarnings(as.numeric(.data$Number)))
 
@@ -111,7 +114,10 @@ player_match_stats <- function(contest = NULL,
       dplyr::filter(.data$Number != "")
     home_stats <- home_stats |>
       dplyr::filter(.data$Number != "")
-    if (nrow(home_stats) == 0 | nrow(away_stats) == 0 | !"Player" %in% colnames(home_stats) | !"Player" %in% colnames(away_stats)) {
+    if (nrow(home_stats) == 0 ||
+        nrow(away_stats) == 0 ||
+        !"Player" %in% colnames(home_stats) ||
+        !"Player" %in% colnames(away_stats)) {
       cli::cli_warn("No player match stats available for {home_team} and {away_team} (contest {contest}).")
       return(invisible())
     }

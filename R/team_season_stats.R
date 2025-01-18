@@ -36,7 +36,8 @@ team_season_stats <- function(team = NULL,
   # get team info and request URL
   team_ids <- find_team_id(team, 2020:most_recent_season(), sport = sport)
   team_info <- get_team_info(team_ids) |>
-    dplyr::mutate(yr2 = as.character(.data$yr + 1) |> stringr::str_sub(start = 3L, end = 4L)) |>
+    dplyr::mutate(yr2 = as.character(.data$yr + 1) |>
+                    stringr::str_sub(start = 3L, end = 4L)) |>
     tidyr::unite("year", "yr":"yr2", sep = "-") |>
     dplyr::select(Year = "year", Team = "team_name", Conference = "conference")
   team_id <- team_ids[length(team_ids)]
@@ -52,7 +53,8 @@ team_season_stats <- function(team = NULL,
   }
 
   # extract season summary info
-  gbg_page <- resp |> httr2::resp_body_html() |>
+  gbg_page <- resp |>
+    httr2::resp_body_html() |>
     rvest::html_elements(".nav-link") |>
     rvest::html_attr("href") |>
     stringr::str_subset("/players/\\d+")
@@ -74,18 +76,20 @@ team_season_stats <- function(team = NULL,
   }
 
   # return team or opponent summary info
-  if(!opponent) {
+  if (!opponent) {
     team_info |>
       dplyr::right_join(table, by = dplyr::join_by("Year", "Team")) |>
       dplyr::filter(.data$Team != "Defensive") |>
-      dplyr::mutate(dplyr::across("S":dplyr::last_col(), ~ suppressWarnings(as.numeric(gsub(",", "", .x))))) |>
+      dplyr::mutate(dplyr::across("S":dplyr::last_col(),
+                                  ~ suppressWarnings(as.numeric(gsub(",", "", .x))))) |>
       dplyr::arrange("Year")
   } else {
     team_info |>
       dplyr::right_join(table, by = dplyr::join_by("Year", "Team")) |>
       dplyr::filter(.data$Team == "Defensive") |>
       dplyr::mutate(Team = "Opponent",
-                    dplyr::across("S":dplyr::last_col(), ~ suppressWarnings(as.numeric(gsub(",", "", .x)))))
+                    dplyr::across("S":dplyr::last_col(),
+                                  ~ suppressWarnings(as.numeric(gsub(",", "", .x)))))
   }
 
 }

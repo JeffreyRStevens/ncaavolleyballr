@@ -21,9 +21,9 @@
 #' @examples
 #' find_team_id(team = "Nebraska", year = 2024)
 #' find_team_id(team = "UCLA", year = 2023, sport = "MVB")
-find_team_id <- function (team = NULL,
-                          year = NULL,
-                          sport = "WVB") {
+find_team_id <- function(team = NULL,
+                         year = NULL,
+                         sport = "WVB") {
   # check inputs
   team_df <- check_sport(sport, vb_only = TRUE)
   check_team_name(team, teams = team_df)

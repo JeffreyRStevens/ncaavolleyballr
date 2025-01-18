@@ -1,20 +1,24 @@
 test_that("group_stats() works at season level", {
   skip_on_cran()
-  expect_equal(group_stats(teams = c("Nebraska", "UCLA"), year = 2024)$playerdata$Player[1],
+  expect_equal(group_stats(teams = c("Nebraska", "UCLA"),
+                           year = 2024)$playerdata$Player[1],
                "Bergen Reilly")
-  expect_equal(group_stats(teams = "UCLA", year = 2023, sport = "MVB")$playerdata$Player[1],
+  expect_equal(group_stats(teams = "UCLA", year = 2023,
+                           sport = "MVB")$playerdata$Player[1],
                "Hideharu Nakamura")
 })
 
 test_that("group_stats() works at match level", {
   skip_on_cran()
-  expect_equal(group_stats(teams = "Nebraska", year = 2024, level = "match")$Player[1],
+  expect_equal(group_stats(teams = "Nebraska", year = 2024,
+                           level = "match")$Player[1],
                "Rebekah Allick")
 })
 
 test_that("group_stats() works at pbp level", {
   skip_on_cran()
-  expect_equal(group_stats(teams = "Nebraska", year = 2024, level = "pbp")$home_team[1],
+  expect_equal(group_stats(teams = "Nebraska", year = 2024,
+                           level = "pbp")$home_team[1],
                "Kentucky")
 })
 

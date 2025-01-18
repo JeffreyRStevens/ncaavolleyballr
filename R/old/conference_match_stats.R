@@ -20,10 +20,10 @@
 #' conference_match_stats(year = 2024, conf = "Big Ten", save = TRUE, path = "data/")
 #' }
 conference_match_stats <- function(year = NULL,
-                                    conf = NULL,
-                                    sport = "WVB",
-                                    save = FALSE,
-                                    path = ".") {
+                                   conf = NULL,
+                                   sport = "WVB",
+                                   save = FALSE,
+                                   path = ".") {
   # check inputs
   max_year <- most_recent_season()
   if (is.null(year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
@@ -34,8 +34,8 @@ conference_match_stats <- function(year = NULL,
   else cli::cli_abort("Enter valid sport (\"WVB\" or \"MVB\").")
   if (is.null(conf)) cli::cli_abort("Enter valid conference.  Check `ncaa_conferences` for conference names.")
   if (!conf %in% team_df$conference) cli::cli_abort("Enter valid conference.  Check `ncaa_conferences` for conference names.")
-  if(!is.logical(save)) cli::cli_abort("`save` must be a logical (TRUE or FALSE).")
-  if(!is.character(path)) cli::cli_abort("Enter valid path as a character string.")
+  if (!is.logical(save)) cli::cli_abort("`save` must be a logical (TRUE or FALSE).")
+  if (!is.character(path)) cli::cli_abort("Enter valid path as a character string.")
 
   # get vector of conference teams
   conf_teams <- team_df |>
@@ -43,12 +43,14 @@ conference_match_stats <- function(year = NULL,
   teams <- conf_teams$team_name
 
   # get match-level data on conference teams
-  output <- group_stats(teams = teams, year = year, level = "match", sport = sport)
+  output <- group_stats(teams = teams, year = year, level = "match",
+                        sport = sport)
 
   if (!grepl("/$", path)) path <- paste0(path, "/")
 
   if (save) {
-    save_df(x = output, label = "playermatch", group = "conf", year = year, conf = conf, sport = sport, path = path)
+    save_df(x = output, label = "playermatch", group = "conf", year = year,
+            conf = conf, sport = sport, path = path)
   }
   return(output)
 }

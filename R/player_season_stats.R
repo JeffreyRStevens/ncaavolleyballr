@@ -37,7 +37,8 @@ player_season_stats <- function(team_id,
 
   # get team info and request URL
   team_info <- get_team_info(team_id)
-  url <- paste0("https://stats.ncaa.org/teams/", team_id, "/season_to_date_stats")
+  url <- paste0("https://stats.ncaa.org/teams/", team_id,
+                "/season_to_date_stats")
 
   table <- tryCatch(
     error = function(cnd) {
@@ -53,7 +54,7 @@ player_season_stats <- function(team_id,
   }
 
 
-  if (nrow(table) == 0 | !"Player" %in% colnames(table)) {
+  if (nrow(table) == 0 || !"Player" %in% colnames(table)) {
     cli::cli_warn("No {team_info$yr[1]} season stats available for {team_info$team_name[1]} (team ID {team_id}).")
     return(invisible())
   } else {#if ("Player" %in% colnames(table)) {
@@ -82,14 +83,16 @@ player_season_stats <- function(team_id,
                      by = dplyr::join_by("Number", "Player" == "Name")) |>
       dplyr::relocate("Hometown":"High School", .after = "Ht") |>
       dplyr::mutate(dplyr::across("Player":"Ht", as.character),
-                    dplyr::across("GP":dplyr::last_col(), ~ suppressWarnings(as.numeric(gsub(",", "", .x))))) |>
+                    dplyr::across("GP":dplyr::last_col(),
+                                  ~ suppressWarnings(as.numeric(gsub(",", "", .x))))) |>
       dplyr::mutate(Season = team_info$season[1], Team = team_info$team_name[1],
                     Conference = team_info$conference[1], .before = 1) |>
       dplyr::arrange(.data$Number)
   } else {
     player_stats |>
       dplyr::mutate(dplyr::across("Player":"Ht", as.character),
-                    dplyr::across("GP":dplyr::last_col(), ~ suppressWarnings(as.numeric(gsub(",", "", .x))))) |>
+                    dplyr::across("GP":dplyr::last_col(),
+                                  ~ suppressWarnings(as.numeric(gsub(",", "", .x))))) |>
       dplyr::mutate(Season = team_info$season[1], Team = team_info$team_name[1],
                     Conference = team_info$conference[1], .before = 1) |>
       dplyr::arrange(.data$Number)

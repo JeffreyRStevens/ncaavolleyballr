@@ -64,7 +64,7 @@ Before we get to stats, we can extract information about a team's season with `t
 
 ```{r}
 #| label: teamseasoninfo
-(neb2024team <- find_team_id("Nebraska", 2024) |> 
+(neb2024team <- find_team_id("Nebraska", 2024) |>
    team_season_info())
 ```
 
@@ -72,10 +72,10 @@ This returns a list, so you can subset specific components with `$`. For instanc
 
 ```{r}
 #| label: meanattendance
-neb2024team$schedule |> 
-  dplyr::pull(Attendance) |> 
-  sub(",", "", x = _) |> 
-  as.numeric() |> 
+neb2024team$schedule |>
+  dplyr::pull(Attendance) |>
+  sub(",", "", x = _) |>
+  as.numeric() |>
   mean()
 ```
 
@@ -102,7 +102,12 @@ Here's a table describing the different team statistics returned.
 ```{r}
 #| label: stat-table
 data.frame(Stat = colnames(team_season_stats(team = "Nebraska"))[4:20],
-           Description = c("Sets played", "Kills", "Attack errors", "Attacks", "Hit percentage [(kills-errors)/attacks]", "Assists", "Ace serves", "Service errors", "Digs", "Reception attempts", "Reception errors", "Solo blocks", "Block assists", "Block errors", "Points", "Ball handling errors", "Triple doubles"))
+           Description = c("Sets played", "Kills", "Attack errors", "Attacks", 
+                           "Hit percentage [(kills-errors)/attacks]", "Assists",
+                           "Ace serves", "Service errors", "Digs", 
+                           "Reception attempts", "Reception errors", 
+                           "Solo blocks", "Block assists", "Block errors", 
+                           "Points", "Ball handling errors", "Triple doubles"))
 ```
 
 
@@ -112,7 +117,7 @@ The NCAA's main page for a team includes a tab called "Team Statistics" (e.g., [
 
 ```{r}
 #| label: playerseasonstats
-find_team_id("Nebraska", 2024) |> 
+find_team_id("Nebraska", 2024) |>
   player_season_stats()
 ```
 
@@ -120,7 +125,7 @@ This returns all players, along with TEAM, opponent, and overall team summaries.
 
 ```{r}
 #| label: playerseasonstats-teamstats
-find_team_id("Nebraska", 2024) |> 
+find_team_id("Nebraska", 2024) |>
   player_season_stats(team_stats = FALSE)
 ```
 
@@ -129,7 +134,13 @@ This returns all of the stats included by `team_season_stats()`, plus GP and GS,
 ```{r eval=FALSE, echo=FALSE}
 #| label: stats-table2
 data.frame(Stat = names(player_season_stats(find_team_id("Nebraska", 2024)))[11:29],
-           Description = c("Games played", "Games started", "Sets played", "Kills", "Attack errors", "Attacks", "Kill percentage [(kills-errors)/attacks]", "Assists", "Ace serves", "Service errors", "Digs", "Reception attempts", "Reception errors", "Solo blocks", "Block assists", "Block errors", "Points", "Ball handling errors", "Triple doubles"))
+           Description = c("Games played", "Games started", "Sets played", 
+                           "Kills", "Attack errors", "Attacks", 
+                           "Kill percentage [(kills-errors)/attacks]", 
+                           "Assists", "Ace serves", "Service errors", "Digs", 
+                           "Reception attempts", "Reception errors", 
+                           "Solo blocks", "Block assists", "Block errors", 
+                           "Points", "Ball handling errors", "Triple doubles"))
 ```
 
 
@@ -143,7 +154,7 @@ To get overall match stats for a team in a particular season, use `team_match_st
 
 ```{r}
 #| label: teammatchstats
-find_team_id(team = "Nebraska", year = 2024) |> 
+find_team_id(team = "Nebraska", year = 2024) |>
   team_match_stats()
 ```
 
@@ -154,7 +165,7 @@ Similarly, you can get match stats for each player in a single match. But to do 
 
 ```{r}
 #| label: findteamcontests
-(neb2024contests <- find_team_id(team = "Nebraska", year = 2024) |> 
+(neb2024contests <- find_team_id(team = "Nebraska", year = 2024) |>
   find_team_contests())
 ```
 
@@ -180,7 +191,7 @@ Play-by-play data for matches are also available on the NCAA's website, if you k
 
 ```{r}
 #| label: matchpbp
-match_pbp(contest = "6080708") |> 
+match_pbp(contest = "6080708") |>
   head(20) # cut this off, because it has 1525 rows!
 ```
 

@@ -20,10 +20,10 @@
 #' conference_pbp_stats(year = 2024, conf = "Big Ten", save = TRUE, path = "data/")
 #' }
 conference_pbp_stats <- function(year = NULL,
-                                    conf = NULL,
-                                    sport = "WVB",
-                                    save = FALSE,
-                                    path = ".") {
+                                 conf = NULL,
+                                 sport = "WVB",
+                                 save = FALSE,
+                                 path = ".") {
   # check inputs
   max_year <- most_recent_season()
   if (is.null(year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))

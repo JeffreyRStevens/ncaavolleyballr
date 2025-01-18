@@ -1,12 +1,14 @@
 test_that("connections to internet resources fail gracefully", {
   skip_on_cran()
   skip_on_ci()
-  suppressMessages(expect_error(request_url("http://httpbin.org/status/404"), "HTTP 404 Not Found."))
+  suppressMessages(expect_error(request_url("http://httpbin.org/status/404"),
+                                "HTTP 404 Not Found."))
   expect_silent(request_url("http://httpbin.org/"))
 })
 
 test_that("check_confdiv() works", {
-  expect_silent(check_confdiv(group = "conf", value = "Big Ten", teams = wvb_teams))
+  expect_silent(check_confdiv(group = "conf", value = "Big Ten",
+                              teams = wvb_teams))
   expect_silent(check_confdiv(group = "div", value = 1, teams = wvb_teams))
   expect_error(check_confdiv(),
                "Enter valid group")
@@ -116,7 +118,8 @@ test_that("html_table_raw() works", {
   url <- paste0("https://stats.ncaa.org/teams/", team_id)
   resp <- request_url(url)
 
-  html_table <- resp |> httr2::resp_body_html() |>
+  html_table <- resp |>
+    httr2::resp_body_html() |>
     rvest::html_element("table")
 
   schedule <- html_table |> html_table_raw()

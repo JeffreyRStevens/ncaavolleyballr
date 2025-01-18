@@ -36,7 +36,7 @@ division_stats <- function(year = NULL,
   check_year(year)
   check_match("level", level, c("season", "match", "pbp"))
   check_logical("save", save)
-  if(!is.character(path)) cli::cli_abort("Enter valid path as a character string.")
+  if (!is.character(path)) cli::cli_abort("Enter valid path as a character string.")
 
   # get vector of division teams
   div_teams <- team_df |>

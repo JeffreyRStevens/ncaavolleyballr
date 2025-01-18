@@ -29,9 +29,11 @@ test_that("player_season_stats() errors trigger correctly", {
 
 test_that("player_season_stats() warnings trigger correctly", {
   skip_on_cran()
-  expect_warning(player_season_stats(team_id = find_team_id("Vanderbilt", 2024)),
+  expect_warning(player_season_stats(team_id =
+                                       find_team_id("Vanderbilt", 2024)),
                  "No 2024 season stats available for Vanderbilt")
-  expect_warning(player_season_stats(team_id = find_team_id("Saint Augustine's", 2024)),
+  expect_warning(player_season_stats(team_id =
+                                       find_team_id("Saint Augustine's", 2024)),
                  "No 2024 season stats available for Saint Augustine's")
 })
 

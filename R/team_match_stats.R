@@ -28,7 +28,6 @@ team_match_stats <- function(team_id = NULL,
   # check input
   check_team_id(team_id)
   check_logical("opponent", opponent)
-  team_df <- check_sport(sport, vb_only = TRUE)
 
   # get team info and request URL
   team_info <- get_team_info(team_id) #|>
@@ -44,7 +43,8 @@ team_match_stats <- function(team_id = NULL,
   }
 
   # extract arena info
-  gbg_page <- resp |> httr2::resp_body_html() |>
+  gbg_page <- resp |>
+    httr2::resp_body_html() |>
     rvest::html_elements(".nav-link") |>
     rvest::html_attr("href") |>
     stringr::str_subset("/players/\\d+")
@@ -75,7 +75,7 @@ team_match_stats <- function(team_id = NULL,
     tidyr::fill("Date", "Opponent", "Result") |>
     dplyr::mutate(dplyr::across("S":dplyr::last_col(), ~ suppressWarnings(as.numeric(gsub(",", "", .x)))))
 
-  if(!opponent) {
+  if (!opponent) {
     matches |>
       dplyr::filter(.data$team_opp == "Team") |>
       dplyr::select(!"team_opp")

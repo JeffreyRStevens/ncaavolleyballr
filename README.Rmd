@@ -50,7 +50,7 @@ A suite of functions can be used to extract season, match, and play-by-play data
 
 ### Season data
 
-The NCAA uses a unique team ID for each women\'s and men\'s volleyball team and season. So first you will need to get that ID with the `find_team_id()`. For instance, to find the ID for Penn State\'s 2024 season:
+The NCAA uses a unique team ID for each women\'s and men\'s volleyball team and season. So to access a team's season data, first you will need to get that ID with the `find_team_id()`. For instance, to find the ID for Penn State\'s 2024 season:
 
 ```{r}
 #| label: findteamid

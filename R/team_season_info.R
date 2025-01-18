@@ -28,7 +28,6 @@ team_season_info <- function(team_id = NULL) {
   check_team_id(team_id)
 
   # get team info and request URL
-  teams <- dplyr::bind_rows(ncaavolleyballr::wvb_teams, ncaavolleyballr::mvb_teams)
   team_info <- get_team_info(team_id)
 
   url <- paste0("https://stats.ncaa.org/teams/", team_id)
@@ -43,7 +42,8 @@ team_season_info <- function(team_id = NULL) {
   }
 
   # extract arena info
-  arena <- resp |> httr2::resp_body_html() |>
+  arena <- resp |>
+    httr2::resp_body_html() |>
     rvest::html_element(".mb-0") |>
     rvest::html_text() |>
     stringr::str_split_1("\n      \n") |>
@@ -52,7 +52,8 @@ team_season_info <- function(team_id = NULL) {
   names(arena) <- c("Arena name", "Capacity", "Year built")
 
   # extract coach info
-  coach <- resp |> httr2::resp_body_html() |>
+  coach <- resp |>
+    httr2::resp_body_html() |>
     rvest::html_elements(".mb-0") |>
     rvest::html_text()
   if (coach[8] == "Primary Venue:") {
@@ -69,20 +70,27 @@ team_season_info <- function(team_id = NULL) {
   names(coach) <- c("Name", "Alma mater", "Seasons", "Record")
 
   # extract record info
-  record <- resp |> httr2::resp_body_html() |>
+  record <- resp |>
+    httr2::resp_body_html() |>
     rvest::html_elements(".row") |>
     rvest::html_elements("span") |>
     rvest::html_text() |>
     stringr::str_trim()
   record <- record[-1]
-  names(record) <- c("Overall record", "Overall streak", "Conference record", "Conference streak", "Home record", "Home streak", "Road record", "Road streak", "Neutral record", "Neutral streak", "Non-division record", "Non-division streak")
+  names(record) <- c("Overall record", "Overall streak", "Conference record",
+                     "Conference streak", "Home record", "Home streak",
+                     "Road record", "Road streak", "Neutral record",
+                     "Neutral streak", "Non-division record",
+                     "Non-division streak")
 
   # extract schedule info
-  schedule <- resp |> httr2::resp_body_html() |>
+  schedule <- resp |>
+    httr2::resp_body_html() |>
     rvest::html_element("table") |>
     rvest::html_table() |>
     dplyr::filter(.data$Date != "")
 
-  output <- list(team_info = team_info, arena = arena, coach = coach, record = record, schedule = schedule)
+  output <- list(team_info = team_info, arena = arena, coach = coach,
+                 record = record, schedule = schedule)
   return(output)
 }

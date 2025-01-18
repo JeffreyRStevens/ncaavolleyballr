@@ -7,7 +7,8 @@
 #' @inheritParams player_match_stats
 #'
 #' @returns
-#' Returns a data frame with a column for set number, events happening for each team, as well as a column for the score.
+#' Returns a data frame with a column for set number, events happening for each
+#' team, as well as a column for the score.
 #'
 #' @export
 #'
@@ -55,7 +56,8 @@ match_pbp <- function(contest = NULL) {
 
 # process set information in pbp table
 process_set <- function(set_data) {
-  ignore_entries <- c("Match started", "Set started", "Facultative timeout", "Media timeout", "Set ended", "Match ended")
+  ignore_entries <- c("Match started", "Set started", "Facultative timeout",
+                      "Media timeout", "Set ended", "Match ended")
   away_name <- names(set_data)[1]
   home_name <- names(set_data)[3]
   set_data$Score[1] <- "0-0"
@@ -74,8 +76,13 @@ process_set <- function(set_data) {
                   event = get_event(.data$description),
                   player = get_player(.data$description)
     ) |>
-    dplyr::filter(!.data$event %in% ignore_entries & !grepl("^Sub", .data$event) & !is.na(.data$event) & !grepl("^Team", .data$event) & !grepl("^End of", .data$event) & !grepl("challengeOutcome", .data$event)) |>
-    dplyr::select("away_team", "home_team", score = "Score", "team", "event", "player", "description")
+    dplyr::filter(!.data$event %in% ignore_entries
+                  & !grepl("^Sub", .data$event)
+                  & !is.na(.data$event) & !grepl("^Team", .data$event)
+                  & !grepl("^End of", .data$event)
+                  & !grepl("challengeOutcome", .data$event)) |>
+    dplyr::select("away_team", "home_team", score = "Score", "team", "event",
+                  "player", "description")
 }
 
 # extract event information from description
