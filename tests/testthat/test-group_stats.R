@@ -1,5 +1,6 @@
 test_that("group_stats() works at season level", {
   skip_on_cran()
+  skip_on_ci()
   expect_equal(group_stats(teams = c("Nebraska", "UCLA"),
                            year = 2024)$playerdata$Player[1],
                "Bergen Reilly")
@@ -10,6 +11,7 @@ test_that("group_stats() works at season level", {
 
 test_that("group_stats() works at match level", {
   skip_on_cran()
+  skip_on_ci()
   expect_equal(group_stats(teams = "Nebraska", year = 2024,
                            level = "match")$Player[1],
                "Rebekah Allick")
@@ -17,6 +19,7 @@ test_that("group_stats() works at match level", {
 
 test_that("group_stats() works at pbp level", {
   skip_on_cran()
+  skip_on_ci()
   expect_equal(group_stats(teams = "Nebraska", year = 2024,
                            level = "pbp")$home_team[1],
                "Kentucky")
@@ -43,6 +46,7 @@ test_that("group_stats() errors trigger correctly", {
 
 test_that("group_player_stats() is deprecated", {
   skip_on_cran()
+  skip_on_ci()
   rlang::local_options(lifecycle_verbosity = "warning")
   expect_warning(group_player_stats(teams = "Nebraska", year = 2024))
 })

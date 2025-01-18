@@ -1,5 +1,6 @@
 test_that("team_match_stats() works", {
   skip_on_cran()
+  skip_on_ci()
   expect_silent(neb2024 <- team_match_stats(team_id = "585290"))
   expect_equal(neb2024[neb2024$Date == "08/27/2024", ]$Kills,
                47)

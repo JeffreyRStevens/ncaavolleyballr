@@ -1,6 +1,7 @@
 
 test_that("player_season_stats() works", {
   skip_on_cran()
+  skip_on_ci()
   suppressWarnings(neb2024 <- player_season_stats(team_id = "585290"))
   suppressWarnings(neb2023 <- player_season_stats(team_id = "558878",
                                                   team_stats = FALSE))

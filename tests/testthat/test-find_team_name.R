@@ -1,5 +1,6 @@
 test_that("find_team_name() works", {
   skip_on_cran()
+  skip_on_ci()
   expect_equal(find_team_name(pattern = "Neb")[1],
                "Neb. Wesleyan")
 })

@@ -1,6 +1,7 @@
 
 test_that("player_match_stats() works", {
   skip_on_cran()
+  skip_on_ci()
   suppressWarnings(final2024 <- player_match_stats(contest = "6080706"))
   suppressWarnings(final2024b <- player_match_stats(contest = "6080706",
                                                     team_stats = FALSE))

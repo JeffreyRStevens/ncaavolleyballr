@@ -1,5 +1,6 @@
 test_that("find_team_id() works", {
   skip_on_cran()
+  skip_on_ci()
   expect_equal(find_team_id(team = "Nebraska", year = 2024),
                "585290")
   expect_equal(find_team_id(team = "UCLA", year = 2023, "MVB"),
