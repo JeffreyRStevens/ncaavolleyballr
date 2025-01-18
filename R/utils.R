@@ -228,8 +228,18 @@ request_url <- function(url, timeout = 5) {
     return(invisible(NULL))
   }
   # Perform request and record response
+  set.seed(Sys.time())
+  company <- sample(c(0:9, LETTERS),
+                    size = sample(6:12, size = 1),
+                    replace = TRUE) |>
+    paste0(collapse = "")
+  user <- sample(c(0:9, LETTERS),
+                    size = sample(6:15, size = 1),
+                    replace = TRUE) |>
+    paste0(collapse = "")
+
   response <- httr2::request(url) |>
-    httr2::req_user_agent("Sample Company Name AdminContact@<sample company domain>.com") |>
+    httr2::req_user_agent(paste0(company, " ", tolower(user), "@", tolower(company), ".com")) |>
     httr2::req_perform()
   # Check status of response and return if status is OK
   httr2::resp_check_status(response)
