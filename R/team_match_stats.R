@@ -28,6 +28,7 @@ team_match_stats <- function(team_id = NULL,
   # check input
   check_team_id(team_id)
   check_logical("opponent", opponent)
+  check_sport(sport, vb_only = TRUE)
 
   # get team info and request URL
   team_info <- get_team_info(team_id) #|>
