@@ -34,6 +34,9 @@ match_pbp <- function(contest = NULL) {
   )
   if (length(pbp_all) == 1) {
     if (grepl(pattern = "No website available for contest", pbp_all)) return(invisible())
+  } else if (length(pbp_all) < 6) {
+    cli::cli_warn("Set information not available for contest {contest}.")
+    return(invisible())
   }
 
   match_info <- pbp_all[[1]]
