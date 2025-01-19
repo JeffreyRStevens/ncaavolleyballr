@@ -65,17 +65,3 @@ division_stats <- function(year = NULL,
   }
   return(output)
 }
-
-#' Aggregate player statistics from a particular division and season
-#'
-#' @description
-#' `r lifecycle::badge("deprecated")`
-#'
-#' `division_player_stats()` was renamed to `division_stats()` to
-#' create a more consistent API.
-#' @keywords internal
-#' @export
-division_player_stats <- function(...) {
-  lifecycle::deprecate_warn("0.4.0", "division_player_stats()", "division_stats()")
-  division_stats(...)
-}

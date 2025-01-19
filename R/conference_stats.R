@@ -64,17 +64,3 @@ conference_stats <- function(year = NULL,
   }
   return(output)
 }
-
-#' Aggregate player statistics from a particular conference and season
-#'
-#' @description
-#' `r lifecycle::badge("deprecated")`
-#'
-#' `conference_player_stats()` was renamed to `conference_stats()` to
-#' create a more consistent API.
-#' @keywords internal
-#' @export
-conference_player_stats <- function(...) {
-  lifecycle::deprecate_warn("0.3.0", "conference_player_stats()", "conference_stats()")
-  conference_stats(...)
-}

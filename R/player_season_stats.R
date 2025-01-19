@@ -96,17 +96,3 @@ player_season_stats <- function(team_id,
       dplyr::arrange(.data$Number)
   }
 }
-
-#' Extract player statistics from a particular team and season
-#'
-#' @description
-#' `r lifecycle::badge("deprecated")`
-#'
-#' `team_player_stats()` was renamed to `player_season_stats()` to create a more
-#' consistent API.
-#' @keywords internal
-#' @export
-team_player_stats <- function(...) {
-  lifecycle::deprecate_warn("0.2.0", "team_player_stats()", "player_season_stats()")
-  player_season_stats(...)
-}

@@ -37,9 +37,3 @@ test_that("player_season_stats() warnings trigger correctly", {
                                        find_team_id("Saint Augustine's", 2024)),
                  "No 2024 season stats available for Saint Augustine's")
 })
-
-test_that("team_player_stats() is deprecated", {
-  skip_on_cran()
-  rlang::local_options(lifecycle_verbosity = "warning")
-  expect_warning(team_player_stats(team_id = "585290"))
-})
