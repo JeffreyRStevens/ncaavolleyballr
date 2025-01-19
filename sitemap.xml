@@ -15,9 +15,7 @@
 <url><loc>https://jeffreyrstevens.github.io/ncaavolleyballr/reference/check_team_id.html</loc></url>
 <url><loc>https://jeffreyrstevens.github.io/ncaavolleyballr/reference/check_team_name.html</loc></url>
 <url><loc>https://jeffreyrstevens.github.io/ncaavolleyballr/reference/check_year.html</loc></url>
-<url><loc>https://jeffreyrstevens.github.io/ncaavolleyballr/reference/conference_player_stats.html</loc></url>
 <url><loc>https://jeffreyrstevens.github.io/ncaavolleyballr/reference/conference_stats.html</loc></url>
-<url><loc>https://jeffreyrstevens.github.io/ncaavolleyballr/reference/division_player_stats.html</loc></url>
 <url><loc>https://jeffreyrstevens.github.io/ncaavolleyballr/reference/division_stats.html</loc></url>
 <url><loc>https://jeffreyrstevens.github.io/ncaavolleyballr/reference/find_team_contests.html</loc></url>
 <url><loc>https://jeffreyrstevens.github.io/ncaavolleyballr/reference/find_team_id.html</loc></url>
@@ -41,7 +39,6 @@
 <url><loc>https://jeffreyrstevens.github.io/ncaavolleyballr/reference/request_url.html</loc></url>
 <url><loc>https://jeffreyrstevens.github.io/ncaavolleyballr/reference/save_df.html</loc></url>
 <url><loc>https://jeffreyrstevens.github.io/ncaavolleyballr/reference/team_match_stats.html</loc></url>
-<url><loc>https://jeffreyrstevens.github.io/ncaavolleyballr/reference/team_player_stats.html</loc></url>
 <url><loc>https://jeffreyrstevens.github.io/ncaavolleyballr/reference/team_season_info.html</loc></url>
 <url><loc>https://jeffreyrstevens.github.io/ncaavolleyballr/reference/team_season_stats.html</loc></url>
 <url><loc>https://jeffreyrstevens.github.io/ncaavolleyballr/reference/wvb_teams.html</loc></url>
