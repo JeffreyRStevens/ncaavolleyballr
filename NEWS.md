@@ -1,3 +1,25 @@
+# ncaavolleyballr 0.4.0
+
+* Update status to active and lifecycle to stable.
+
+* Create `team_season_info()`, `team_season_stats()`, and `team_match_stats()` functions to output team-related information.
+
+* Create `division_stats()` and `conference_stats()` to aggregate season, match, and play-by-play statistics over divisions and conferences.
+
+* Create vignette to help Get Started.
+
+* Update logo.
+
+* Remove duplication of match and play-by-play stats in `group_stats()`.
+
+* Create more descriptive warnings when teams or matches are missing.
+
+* Improve handling of seasons and matches with no data. These cases are skipped with a warning instead of stopping with an error.
+
+* Create suite of functions to check argument input
+
+* Skip all URL request tests on CRAN and CI
+
 # ncaavolleyballr 0.3.0
 
 * Improve output of `match_pbp()` to parse events and players.

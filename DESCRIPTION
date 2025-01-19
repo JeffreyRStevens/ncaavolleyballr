@@ -1,7 +1,7 @@
 Package: ncaavolleyballr
 Type: Package
 Title: Extract Data from NCAA Women's and Men's Volleyball Website
-Version: 0.3.0
+Version: 0.4.0
 Authors@R: 
     person("Jeffrey R.", "Stevens", , "jeffrey.r.stevens@protonmail.com", 
     role = c("aut", "cre", "cph"),
@@ -23,6 +23,7 @@ Imports:
     curl,
     dplyr,
     httr2,
+    lifecycle,
     purrr,
     rlang,
     rvest,
@@ -32,7 +33,6 @@ Imports:
     xml2
 Suggests: 
     knitr,
-    lifecycle,
     quarto,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
