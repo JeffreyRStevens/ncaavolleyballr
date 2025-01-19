@@ -22,7 +22,7 @@ The NCAA has a lot of sports stats available at <https://stats.ncaa.org>. This p
 
 ## Finding teams
 
-The NCAA uses a unique team ID for each women\'s and men\'s volleyball team and each season. So first you will need to get that ID with the `find_team_id()`.  I'll use Nebraska 🌽 to illustrate the functions in [`{ncaavolleyballr}`](https://jeffreyrstevens.github.io/ncaavolleyballr/). 
+The NCAA uses a unique team ID for each women\'s and men\'s volleyball team and each season. So first you will need to get that ID with the `find_team_id()`.  I\'ll use Nebraska to illustrate the functions in [`{ncaavolleyballr}`](https://jeffreyrstevens.github.io/ncaavolleyballr/). 
 
 However, before we find the team ID, we first have to know the exact team name that the NCAA uses to reference each team. Is Nebraska's team name Nebraska, Neb., University of Nebraska-Lincoln, UNL, or something else? We can use `find_team_name()` to get a vector of teams that match a pattern.
 
