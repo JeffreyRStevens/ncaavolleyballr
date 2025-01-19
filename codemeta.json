@@ -2,13 +2,13 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "ncaavolleyballr",
-  "description": "Extracts team records/schedules and player statistics for the 2020-2024 NCAA women's and men's divisions I, II, and III volleyball teams. Functions can aggregate statistics for teams, conferences, divisions, or custom groups of teams.",
+  "description": "Extracts team records/schedules and player statistics for the 2020-2024 National Collegiate Athletic Association (NCAA) women's and men's divisions I, II, and III volleyball teams. Functions can aggregate statistics for teams, conferences, divisions, or custom groups of teams.",
   "name": "ncaavolleyballr: Extract Data from NCAA Women's and Men's Volleyball Website",
   "relatedLink": "https://jeffreyrstevens.github.io/ncaavolleyballr/",
   "codeRepository": "https://github.com/JeffreyRStevens/ncaavolleyballr",
   "issueTracker": "https://github.com/JeffreyRStevens/ncaavolleyballr/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -43,6 +43,30 @@
     }
   ],
   "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "knitr",
+      "name": "knitr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=knitr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "quarto",
+      "name": "quarto",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=quarto"
+    },
     {
       "@type": "SoftwareApplication",
       "identifier": "testthat",
@@ -174,6 +198,18 @@
     },
     "11": {
       "@type": "SoftwareApplication",
+      "identifier": "tibble",
+      "name": "tibble",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=tibble"
+    },
+    "12": {
+      "@type": "SoftwareApplication",
       "identifier": "tidyr",
       "name": "tidyr",
       "provider": {
@@ -184,7 +220,35 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=tidyr"
     },
+    "13": {
+      "@type": "SoftwareApplication",
+      "identifier": "xml2",
+      "name": "xml2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=xml2"
+    },
     "SystemRequirements": null
   },
-  "fileSize": "422.301KB"
+  "fileSize": "664.904KB",
+  "citation": [
+    {
+      "@type": "SoftwareSourceCode",
+      "datePublished": "2025",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": ["Jeffrey", "R."],
+          "familyName": "Stevens"
+        }
+      ],
+      "name": "Extract Data from NCAA Women's and Men's Volleyball Website",
+      "url": "https://github.com/JeffreyRStevens/ncaavolleyballr",
+      "description": "R package version 0.4.0"
+    }
+  ]
 }
