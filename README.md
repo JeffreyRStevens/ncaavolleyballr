@@ -205,7 +205,10 @@ thank you to [Tyler Widdison](https://github.com/widbuntu) for
 data](https://github.com/JeffreyRStevens/ncaavolleyballr/issues/1)
 (check out his
 [`{ncaavolleyballR}`](https://github.com/tyler-widdison/ncaavolleyballR)
-package for some similar functionality).
+package for some similar functionality). Code from
+[`{baseballr}`](https://billpetti.github.io/baseballr/) and
+[`{rvest}`](https://rvest.tidyverse.org/) (both licensed under an MIT
+license) have been incorporated and modified in this package.
 
 The volleyball background in the logo was designed by
 [Freepik](https://www.freepik.com/free-vector/volleyball-grey-gradient_59539214.htm).
