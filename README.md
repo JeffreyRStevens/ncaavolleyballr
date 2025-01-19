@@ -190,9 +190,9 @@ To cite
 [`{ncaavolleyballr}`](https://jeffreyrstevens.github.io/ncaavolleyballr/),
 use:
 
-> Stevens, Jeffrey R. (2025). ncaavolleyballr: Extract data from NCAA
-> women's volleyball website. (version 0.3.0)
-> <https://github.com/JeffreyRStevens/ncaavolleyballr>
+Stevens JR (2025). *Extract Data from NCAA Women’s and Men’s Volleyball
+Website*. R package version 0.3.0,
+<https://github.com/JeffreyRStevens/ncaavolleyballr>.
 
 ## Acknowledgments
 

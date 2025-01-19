@@ -117,9 +117,9 @@ By default, these functions return information on women\'s teams, but they can b
 
 To cite [`{ncaavolleyballr}`](https://jeffreyrstevens.github.io/ncaavolleyballr/), use:
 
-> Stevens, Jeffrey R. (2025). ncaavolleyballr: Extract data from NCAA women\'s volleyball website.
-> (version 0.3.0)
-> <https://github.com/JeffreyRStevens/ncaavolleyballr>
+```{r echo=FALSE, results='asis'}
+print(readCitationFile("inst/CITATION"), style = "text")
+```
 
 
 ## Acknowledgments
