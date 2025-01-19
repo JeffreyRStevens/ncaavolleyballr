@@ -29,7 +29,7 @@ using find_team_name()."><meta property="og:image" content="https://jeffreyrstev
 
     <a class="navbar-brand me-2" href="../index.html">ncaavolleyballr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -129,14 +129,43 @@ statistics and play-by-play information respectively.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu">group_stats</span><span class="op">(</span>teams <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Louisville"</span>, <span class="st">"Nebraska"</span>, <span class="st">"Penn St."</span>, <span class="st">"Pittsburgh"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>year <span class="op">=</span> <span class="fl">2024</span>, level <span class="op">=</span> <span class="st">"season"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">group_stats</span><span class="op">(</span>teams <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"UCLA"</span>, <span class="st">"Long Beach St."</span><span class="op">)</span>, year <span class="op">=</span> <span class="fl">2023</span>,</span></span>
-<span class="r-in"><span>level <span class="op">=</span> <span class="st">"season"</span>, sport <span class="op">=</span> <span class="st">"MVB"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">group_stats</span><span class="op">(</span>teams <span class="op">=</span> <span class="st">"Nebraska"</span>, year <span class="op">=</span> <span class="fl">2024</span>, level <span class="op">=</span> <span class="st">"match"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">group_stats</span><span class="op">(</span>teams <span class="op">=</span> <span class="st">"Nebraska"</span>, year <span class="op">=</span> <span class="fl">2024</span>, level <span class="op">=</span> <span class="st">"pbp"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $playerdata</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 60 × 29</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Season    Team       Conference Number Player      Yr    Pos   Ht    Hometown</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2024-2025 Louisville ACC             3 Kamden Sch… So    L/DS  5-6   Villa H…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2024-2025 Louisville ACC             4 Charitie L… Jr    OH    5-9   Dallas,…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2024-2025 Louisville ACC             5 Elle Glock  Jr    S     6-1   Wahoo, …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2024-2025 Louisville ACC             6 Sofia Mald… Sr    OH    6-0   Guadala…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2024-2025 Louisville ACC             8 Nayelis Ca… Fr    S     6-0   Clermon…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2024-2025 Louisville ACC            10 Phekran PK… Sr    MB    6-3   Sioux F…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2024-2025 Louisville ACC            11 Hannah She… Jr    MB    6-1   Silver …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2024-2025 Louisville ACC            12 Jessica Dr… So    L/DS  5-6   Cincinn…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2024-2025 Louisville ACC            13 Cara Cresse Sr    MB    6-6   Ft. Way…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2024-2025 Louisville ACC            14 Anna DeBeer Sr    OH    6-0   Louisvi…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 50 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 20 more variables: `High School` &lt;chr&gt;, GP &lt;dbl&gt;, GS &lt;dbl&gt;, S &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   Kills &lt;dbl&gt;, Errors &lt;dbl&gt;, `Total Attacks` &lt;dbl&gt;, `Hit Pct` &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   Assists &lt;dbl&gt;, Aces &lt;dbl&gt;, SErr &lt;dbl&gt;, Digs &lt;dbl&gt;, RetAtt &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   RErr &lt;dbl&gt;, `Block Solos` &lt;dbl&gt;, `Block Assists` &lt;dbl&gt;, BErr &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   PTS &lt;dbl&gt;, BHE &lt;dbl&gt;, `Trpl Dbl` &lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $teamdata</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 20</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Season   Team  Conference     S Kills Errors `Total Attacks` `Hit Pct` Assists</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 2024-20… Loui… ACC          127  <span style="text-decoration: underline;">1</span>707    600            <span style="text-decoration: underline;">4</span>096     0.27     <span style="text-decoration: underline;">1</span>588</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 2024-20… Nebr… Big Ten      122  <span style="text-decoration: underline;">1</span>721    551            <span style="text-decoration: underline;">4</span>114     0.284    <span style="text-decoration: underline;">1</span>596</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> 2024-20… Penn… Big Ten      135  <span style="text-decoration: underline;">1</span>972    648            <span style="text-decoration: underline;">4</span>673     0.283    <span style="text-decoration: underline;">1</span>841</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> 2024-20… Pitt… ACC          117  <span style="text-decoration: underline;">1</span>647    447            <span style="text-decoration: underline;">3</span>619     0.332    <span style="text-decoration: underline;">1</span>542</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 11 more variables: Aces &lt;dbl&gt;, SErr &lt;dbl&gt;, Digs &lt;dbl&gt;, RetAtt &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   RErr &lt;dbl&gt;, `Block Solos` &lt;dbl&gt;, `Block Assists` &lt;dbl&gt;, BErr &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   PTS &lt;dbl&gt;, BHE &lt;dbl&gt;, `Trpl Dbl` &lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

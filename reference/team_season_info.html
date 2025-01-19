@@ -15,7 +15,7 @@ information from an object called output, use output$coach)."><meta property="og
 
     <a class="navbar-brand me-2" href="../index.html">ncaavolleyballr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,11 +82,47 @@ information from an object called <code>output</code>, use <code>output$coach</c
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu">team_season_info</span><span class="op">(</span>team_id <span class="op">=</span> <span class="st">"585290"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">team_season_info</span><span class="op">(</span>team_id <span class="op">=</span> <span class="fu"><a href="find_team_id.html">find_team_id</a></span><span class="op">(</span><span class="st">"Nebraska"</span>, <span class="fl">2024</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">team_season_info</span><span class="op">(</span>team_id <span class="op">=</span> <span class="fu"><a href="find_team_id.html">find_team_id</a></span><span class="op">(</span><span class="st">"UCLA"</span>, <span class="fl">2023</span>, sport <span class="op">=</span> <span class="st">"MVB"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $team_info</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      team_id team_name conference_id conference div   yr    season</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1466  585290  Nebraska           827    Big Ten   1 2024 2024-2025</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $arena</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  Arena name                    Capacity </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> "Bob Devaney Sports Center"                     "7,907" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  Year built </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      "1975" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $coach</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Name         Alma mater            Seasons             Record </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        "John Cook" "San Diego - 1979"               "32"          "883-176" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $record</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      Overall record      Overall streak   Conference record   Conference streak </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      "33-3 (0.917)"        "Streak: L1"      "19-1 (0.950)"        "Streak: L1" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         Home record         Home streak         Road record         Road streak </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      "22-0 (1.000)"       "Streak: W45"      "10-2 (0.833)"        "Streak: W1" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      Neutral record      Neutral streak Non-division record Non-division streak </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "1-1 (0.500)"        "Streak: L1"       "0-0 (0.000)"         "Streak: 0" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $schedule</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 36 × 4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Date       Opponent                 Result Attendance</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 08/27/2024 Kentucky @Louisville, KY W 3-1  9,280     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 08/30/2024 A&amp;M-Corpus Christi       W 3-0  8,956     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 08/31/2024 TCU                      W 3-1  8,695     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 09/03/2024 @ SMU                    L 0-3  6,773     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 09/05/2024 The Citadel              W 3-0  8,607     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 09/07/2024 Montana St.              W 3-0  8,456     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 09/10/2024 Creighton                W 3-2  8,924     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 09/13/2024 Arizona St.              W 3-0  8,772     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 09/14/2024 Wichita St.              W 3-0  8,541     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 09/18/2024 Stanford                 W 3-0  8,952     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 26 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

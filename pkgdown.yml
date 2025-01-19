@@ -3,7 +3,7 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   ncaavolleyballr: ncaavolleyballr.html
-last_built: 2025-01-18T19:49Z
+last_built: 2025-01-19T20:44Z
 urls:
   reference: https://jeffreyrstevens.github.io/ncaavolleyballr/reference
   article: https://jeffreyrstevens.github.io/ncaavolleyballr/articles

@@ -19,7 +19,7 @@ ncaa_conferences."><meta property="og:image" content="https://jeffreyrstevens.gi
 
     <a class="navbar-brand me-2" href="../index.html">ncaavolleyballr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -119,11 +119,43 @@ statistics and play-by-play information respectively.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu">conference_stats</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2024</span>, conf <span class="op">=</span> <span class="st">"Peach Belt"</span>, level <span class="op">=</span> <span class="st">"season"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">conference_stats</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2023</span>, conf <span class="op">=</span> <span class="st">"Big West"</span>, level <span class="op">=</span> <span class="st">"match"</span>, sport <span class="op">=</span> <span class="st">"MVB"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">conference_stats</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2024</span>, conf <span class="op">=</span> <span class="st">"Peach Belt"</span>, level <span class="op">=</span> <span class="st">"pbp"</span>, save <span class="op">=</span> <span class="cn">TRUE</span>, path <span class="op">=</span> <span class="st">"data/"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $playerdata</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 81 × 29</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Season    Team    Conference Number Player         Yr    Pos   Ht    Hometown</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2024-2025 Augusta Peach Belt      2 Marah Zenner   Sr    S     5-5   <span style="color: #949494;">""</span>      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2024-2025 Augusta Peach Belt      3 Rylie Harris   Sr    L/DS  5-5   <span style="color: #949494;">""</span>      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2024-2025 Augusta Peach Belt      4 Giulia Rodrig… Sr    DS    5-3   <span style="color: #949494;">"</span>Boca R…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2024-2025 Augusta Peach Belt      5 Mia Saavedra   So    S     5-10  <span style="color: #949494;">""</span>      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2024-2025 Augusta Peach Belt      7 Mikayla Kline  So    OH    5-10  <span style="color: #949494;">""</span>      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2024-2025 Augusta Peach Belt      8 Sophia Kruczko Sr    RS    6-3   <span style="color: #949494;">""</span>      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2024-2025 Augusta Peach Belt      9 Lauren Posa    Jr    RS    6-1   <span style="color: #949494;">""</span>      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2024-2025 Augusta Peach Belt     10 Abigail Levin… Jr    OH    5-11  <span style="color: #949494;">""</span>      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2024-2025 Augusta Peach Belt     13 Jada Sugutura… Sr    MH    6-1   <span style="color: #949494;">""</span>      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2024-2025 Augusta Peach Belt     14 Libby NIckels  Fr    L/DS  5-1   <span style="color: #949494;">""</span>      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 71 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 20 more variables: `High School` &lt;chr&gt;, GP &lt;dbl&gt;, GS &lt;dbl&gt;, S &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   Kills &lt;dbl&gt;, Errors &lt;dbl&gt;, `Total Attacks` &lt;dbl&gt;, `Hit Pct` &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   Assists &lt;dbl&gt;, Aces &lt;dbl&gt;, SErr &lt;dbl&gt;, Digs &lt;dbl&gt;, RetAtt &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   RErr &lt;dbl&gt;, `Block Solos` &lt;dbl&gt;, `Block Assists` &lt;dbl&gt;, BErr &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   PTS &lt;dbl&gt;, BHE &lt;dbl&gt;, `Trpl Dbl` &lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $teamdata</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 20</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Season   Team  Conference     S Kills Errors `Total Attacks` `Hit Pct` Assists</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 2024-20… Augu… Peach Belt   108  <span style="text-decoration: underline;">1</span>374    618            <span style="text-decoration: underline;">4</span>155     0.182    <span style="text-decoration: underline;">1</span>258</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 2024-20… Flag… Peach Belt   101  <span style="text-decoration: underline;">1</span>243    477            <span style="text-decoration: underline;">3</span>486     0.22     <span style="text-decoration: underline;">1</span>152</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> 2024-20… Geor… Peach Belt   106  <span style="text-decoration: underline;">1</span>056    572            <span style="text-decoration: underline;">3</span>647     0.133     984</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> 2024-20… Land… Peach Belt   103  <span style="text-decoration: underline;">1</span>288    448            <span style="text-decoration: underline;">3</span>758     0.224    <span style="text-decoration: underline;">1</span>162</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> 2024-20… USC … Peach Belt    78   984    453            <span style="text-decoration: underline;">2</span>903     0.183     917</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 11 more variables: Aces &lt;dbl&gt;, SErr &lt;dbl&gt;, Digs &lt;dbl&gt;, RetAtt &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   RErr &lt;dbl&gt;, `Block Solos` &lt;dbl&gt;, `Block Assists` &lt;dbl&gt;, BErr &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   PTS &lt;dbl&gt;, BHE &lt;dbl&gt;, `Trpl Dbl` &lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

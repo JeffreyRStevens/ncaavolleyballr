@@ -29,7 +29,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ncaavolleyballr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,7 +84,7 @@
 <p>The NCAA has a lot of sports stats available at <a href="https://stats.ncaa.org" class="external-link uri">https://stats.ncaa.org</a>. This package focuses on volleyball, though some of the functions can be used for other sports (e.g., <code><a href="../reference/get_teams.html">get_teams()</a></code>). The sport code for selecting women’s volleyball is “WVB” and men’s is “MVB”. Once you pick one of those, you can access season, match, and play-by-play stats for players and teams.</p>
 <section class="level2"><h2 id="finding-teams">Finding teams<a class="anchor" aria-label="anchor" href="#finding-teams"></a>
 </h2>
-<p>The NCAA uses a unique team ID for each women's and men's volleyball team and each season. So first you will need to get that ID with the <code><a href="../reference/find_team_id.html">find_team_id()</a></code>. I’ll use Nebraska 🌽 to illustrate the functions in <a href="https://jeffreyrstevens.github.io/ncaavolleyballr/"><code>{ncaavolleyballr}</code></a>.</p>
+<p>The NCAA uses a unique team ID for each women's and men's volleyball team and each season. So first you will need to get that ID with the <code><a href="../reference/find_team_id.html">find_team_id()</a></code>. I'll use Nebraska to illustrate the functions in <a href="https://jeffreyrstevens.github.io/ncaavolleyballr/"><code>{ncaavolleyballr}</code></a>.</p>
 <p>However, before we find the team ID, we first have to know the exact team name that the NCAA uses to reference each team. Is Nebraska’s team name Nebraska, Neb., University of Nebraska-Lincoln, UNL, or something else? We can use <code><a href="../reference/find_team_name.html">find_team_name()</a></code> to get a vector of teams that match a pattern.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="downlit sourceCode r">
@@ -119,7 +119,7 @@
 <p>Before we get to stats, we can extract information about a team’s season with <code><a href="../reference/team_season_info.html">team_season_info()</a></code>, The NCAA’s main page for a team and year includes a tab called “Schedule/Results”. The <code><a href="../reference/team_season_stats.html">team_season_stats()</a></code> function extracts information about the team’s venue, coach, and records, as well as the table of the schedule and results.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="op">(</span><span class="va">neb2024team</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/find_team_id.html">find_team_id</a></span><span class="op">(</span><span class="st">"Nebraska"</span>, <span class="fl">2024</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">neb2024team</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/find_team_id.html">find_team_id</a></span><span class="op">(</span><span class="st">"Nebraska"</span>, <span class="fl">2024</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>   <span class="fu"><a href="../reference/team_season_info.html">team_season_info</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $team_info</span></span>
 <span><span class="co">#&gt;      team_id team_name conference_id conference div   yr    season</span></span>
@@ -162,10 +162,10 @@
 <p>This returns a list, so you can subset specific components with <code>$</code>. For instance, if we wanted to calculate average attendance per game:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">neb2024team</span><span class="op">$</span><span class="va">schedule</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">Attendance</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">sub</a></span><span class="op">(</span><span class="st">","</span>, <span class="st">""</span>, x <span class="op">=</span> <span class="va">_</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<code class="sourceCode R"><span><span class="va">neb2024team</span><span class="op">$</span><span class="va">schedule</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">Attendance</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">sub</a></span><span class="op">(</span><span class="st">","</span>, <span class="st">""</span>, x <span class="op">=</span> <span class="va">_</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 8765.333</span></span></code></pre></div>
 </div>
@@ -1148,7 +1148,12 @@
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>Stat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="fu"><a href="../reference/team_season_stats.html">team_season_stats</a></span><span class="op">(</span>team <span class="op">=</span> <span class="st">"Nebraska"</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fl">4</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span>,</span>
-<span>           Description <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sets played"</span>, <span class="st">"Kills"</span>, <span class="st">"Attack errors"</span>, <span class="st">"Attacks"</span>, <span class="st">"Hit percentage [(kills-errors)/attacks]"</span>, <span class="st">"Assists"</span>, <span class="st">"Ace serves"</span>, <span class="st">"Service errors"</span>, <span class="st">"Digs"</span>, <span class="st">"Reception attempts"</span>, <span class="st">"Reception errors"</span>, <span class="st">"Solo blocks"</span>, <span class="st">"Block assists"</span>, <span class="st">"Block errors"</span>, <span class="st">"Points"</span>, <span class="st">"Ball handling errors"</span>, <span class="st">"Triple doubles"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>           Description <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sets played"</span>, <span class="st">"Kills"</span>, <span class="st">"Attack errors"</span>, <span class="st">"Attacks"</span>, </span>
+<span>                           <span class="st">"Hit percentage [(kills-errors)/attacks]"</span>, <span class="st">"Assists"</span>,</span>
+<span>                           <span class="st">"Ace serves"</span>, <span class="st">"Service errors"</span>, <span class="st">"Digs"</span>, </span>
+<span>                           <span class="st">"Reception attempts"</span>, <span class="st">"Reception errors"</span>, </span>
+<span>                           <span class="st">"Solo blocks"</span>, <span class="st">"Block assists"</span>, <span class="st">"Block errors"</span>, </span>
+<span>                           <span class="st">"Points"</span>, <span class="st">"Ball handling errors"</span>, <span class="st">"Triple doubles"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="table caption-top">
@@ -1235,7 +1240,7 @@
 <p>The NCAA’s main page for a team includes a tab called “Team Statistics” (e.g., <a href="https://stats.ncaa.org/teams/585290/season_to_date_stats" class="external-link">Nebraska 2024</a>). The <code><a href="../reference/player_season_stats.html">player_season_stats()</a></code> function extracts the table of player summary statistics for a particular season, as well as team and opponent statistics (though these can be omitted).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/find_team_id.html">find_team_id</a></span><span class="op">(</span><span class="st">"Nebraska"</span>, <span class="fl">2024</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/find_team_id.html">find_team_id</a></span><span class="op">(</span><span class="st">"Nebraska"</span>, <span class="fl">2024</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/player_season_stats.html">player_season_stats</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
@@ -1807,7 +1812,7 @@
 <p>This returns all players, along with TEAM, opponent, and overall team summaries. To only include player stats, set <code>team_stats = FALSE</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/find_team_id.html">find_team_id</a></span><span class="op">(</span><span class="st">"Nebraska"</span>, <span class="fl">2024</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/find_team_id.html">find_team_id</a></span><span class="op">(</span><span class="st">"Nebraska"</span>, <span class="fl">2024</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/player_season_stats.html">player_season_stats</a></span><span class="op">(</span>team_stats <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
@@ -2292,7 +2297,7 @@
 <p>To get overall match stats for a team in a particular season, use <code><a href="../reference/team_match_stats.html">team_match_stats()</a></code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/find_team_id.html">find_team_id</a></span><span class="op">(</span>team <span class="op">=</span> <span class="st">"Nebraska"</span>, year <span class="op">=</span> <span class="fl">2024</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/find_team_id.html">find_team_id</a></span><span class="op">(</span>team <span class="op">=</span> <span class="st">"Nebraska"</span>, year <span class="op">=</span> <span class="fl">2024</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/team_match_stats.html">team_match_stats</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
@@ -3205,7 +3210,7 @@
 <p>Similarly, you can get match stats for each player in a single match. But to do this, you must know the NCAA’s contest ID for the particular match or matches that you’re interested in. Use the <code><a href="../reference/find_team_contests.html">find_team_contests()</a></code> function to return a data frame of all of the matches for a particular team and season, along with the contest IDs.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="op">(</span><span class="va">neb2024contests</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/find_team_id.html">find_team_id</a></span><span class="op">(</span>team <span class="op">=</span> <span class="st">"Nebraska"</span>, year <span class="op">=</span> <span class="fl">2024</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">neb2024contests</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/find_team_id.html">find_team_id</a></span><span class="op">(</span>team <span class="op">=</span> <span class="st">"Nebraska"</span>, year <span class="op">=</span> <span class="fl">2024</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/find_team_contests.html">find_team_contests</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
@@ -4643,7 +4648,7 @@
 <p>Play-by-play data for matches are also available on the NCAA’s website, if you know the contest ID. The <code><a href="../reference/match_pbp.html">match_pbp()</a></code> function extracts relevant events within a match.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/match_pbp.html">match_pbp</a></span><span class="op">(</span>contest <span class="op">=</span> <span class="st">"6080708"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/match_pbp.html">match_pbp</a></span><span class="op">(</span>contest <span class="op">=</span> <span class="st">"6080708"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span> <span class="co"># cut this off, because it has 1525 rows!</span></span></code></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
