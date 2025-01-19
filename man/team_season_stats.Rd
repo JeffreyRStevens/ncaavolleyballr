@@ -28,10 +28,8 @@ starting with 2001. We have included the conference starting with 2020
 (conference data for previous seasons is not currently available).
 }
 \examples{
-\dontrun{
+\donttest{
 team_season_stats(team = "Nebraska")
-team_season_stats(team = "Nebraska", opponent = TRUE)
-team_season_stats(team = "UCLA", sport = "MVB")
 }
 }
 \seealso{

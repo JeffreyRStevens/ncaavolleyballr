@@ -24,10 +24,8 @@ This function extracts the table of player statistics for the season, as
 well as team and opponent statistics (though these can be omitted).
 }
 \examples{
-\dontrun{
+\donttest{
 player_season_stats(team_id = "585290")
-player_season_stats(team_id = find_team_id("Nebraska", 2024), team_stats = FALSE)
-player_season_stats(team_id = find_team_id("UCLA", 2023, sport = "MVB"))
 }
 }
 \seealso{

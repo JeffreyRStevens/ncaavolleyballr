@@ -15,10 +15,8 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' find_team_contests(team_id = "585290")
-#' find_team_contests(team_id = find_team_id("Nebraska", 2024))
-#' find_team_contests(team_id = find_team_id("UCLA", 2023, sport = "MVB"))
 #' }
 find_team_contests <- function(team_id = NULL) {
   # check team_id

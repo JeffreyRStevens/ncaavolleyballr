@@ -17,10 +17,8 @@
 #' @family functions that extract team statistics
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' team_match_stats(team_id = "585290")
-#' team_match_stats(team_id = find_team_id("Nebraska", 2024), opponent = TRUE)
-#' team_match_stats(team_id = "573670", sport = "MVB")
 #' }
 team_match_stats <- function(team_id = NULL,
                              opponent = FALSE,

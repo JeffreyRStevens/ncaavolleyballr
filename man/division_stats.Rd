@@ -44,8 +44,6 @@ data frame.
 \examples{
 \dontrun{
 division_stats(year = 2024, level = "season")
-division_stats(year = 2023, division = 3, level = "match", sport = "MVB")
-division_stats(year = 2024, level = "pbp", save = TRUE, path = "data/")
 }
 }
 \seealso{

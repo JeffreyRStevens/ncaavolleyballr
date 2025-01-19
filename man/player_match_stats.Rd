@@ -37,10 +37,8 @@ match statistics for both home and away teams, as well as team statistics
 team's statistics will be returned.
 }
 \examples{
-\dontrun{
+\donttest{
 player_match_stats(contest = "6080706")
-player_match_stats(contest = "6080706", team = "Louisville")
-player_match_stats(contest = "4475421", team_stats = FALSE, sport = "MVB")
 }
 }
 \seealso{

@@ -22,10 +22,8 @@ list, so you can subset specific components with \code{$} (e.g., for coach
 information from an object called \code{output}, use \code{output$coach}).
 }
 \examples{
-\dontrun{
+\donttest{
 team_season_info(team_id = "585290")
-team_season_info(team_id = find_team_id("Nebraska", 2024))
-team_season_info(team_id = find_team_id("UCLA", 2023, sport = "MVB"))
 }
 }
 \seealso{

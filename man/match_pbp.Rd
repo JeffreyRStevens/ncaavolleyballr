@@ -11,7 +11,8 @@ match_pbp(contest = NULL)
 \code{\link[=find_team_contests]{find_team_contests()}} for a team and season.}
 }
 \value{
-Returns a data frame with a column for set number, events happening for each team, as well as a column for the score.
+Returns a data frame of set number, teams, score, event, and player responsible
+for the event.
 }
 \description{
 The NCAA's page for a match/contest includes a tab called
@@ -19,7 +20,7 @@ The NCAA's page for a match/contest includes a tab called
 for each set.
 }
 \examples{
-\dontrun{
+\donttest{
 match_pbp(contest = "6080706")
 }
 }

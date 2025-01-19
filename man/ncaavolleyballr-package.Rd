@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Extracts team records/schedules and player statistics for the 2020-2024 NCAA women's and men's divisions I, II, and III volleyball teams. Functions can aggregate statistics for teams, conferences, divisions, or custom groups of teams.
+Extracts team records/schedules and player statistics for the 2020-2024 National Collegiate Athletic Association (NCAA) women's and men's divisions I, II, and III volleyball teams. Functions can aggregate statistics for teams, conferences, divisions, or custom groups of teams.
 }
 \seealso{
 Useful links:

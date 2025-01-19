@@ -20,10 +20,8 @@
 #' @family functions that extract team statistics
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' team_season_stats(team = "Nebraska")
-#' team_season_stats(team = "Nebraska", opponent = TRUE)
-#' team_season_stats(team = "UCLA", sport = "MVB")
 #' }
 team_season_stats <- function(team = NULL,
                               opponent = FALSE,

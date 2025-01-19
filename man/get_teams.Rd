@@ -34,6 +34,5 @@ This function is a modification of the \code{ncaa_teams()} function from the
 \examples{
 \dontrun{
 get_teams(year = 2024)
-get_teams(year = 2023, division = 3, sport = "MVB")
 }
 }

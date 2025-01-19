@@ -18,10 +18,8 @@
 #' @family functions that extract team statistics
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' team_season_info(team_id = "585290")
-#' team_season_info(team_id = find_team_id("Nebraska", 2024))
-#' team_season_info(team_id = find_team_id("UCLA", 2023, sport = "MVB"))
 #' }
 team_season_info <- function(team_id = NULL) {
   # check input

@@ -44,10 +44,8 @@ Conferences names can be found in
 \link{ncaa_conferences}.
 }
 \examples{
-\dontrun{
+\donttest{
 conference_stats(year = 2024, conf = "Peach Belt", level = "season")
-conference_stats(year = 2023, conf = "Big West", level = "match", sport = "MVB")
-conference_stats(year = 2024, conf = "Peach Belt", level = "pbp", save = TRUE, path = "data/")
 }
 }
 \seealso{

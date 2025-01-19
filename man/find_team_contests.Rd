@@ -21,9 +21,7 @@ contest IDs for each NCAA contest (volleyball match) for each team and
 season.
 }
 \examples{
-\dontrun{
+\donttest{
 find_team_contests(team_id = "585290")
-find_team_contests(team_id = find_team_id("Nebraska", 2024))
-find_team_contests(team_id = find_team_id("UCLA", 2023, sport = "MVB"))
 }
 }

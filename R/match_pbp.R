@@ -7,13 +7,13 @@
 #' @inheritParams player_match_stats
 #'
 #' @returns
-#' Returns a data frame with a column for set number, events happening for each
-#' team, as well as a column for the score.
+#' Returns a data frame of set number, teams, score, event, and player responsible
+#' for the event.
 #'
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' match_pbp(contest = "6080706")
 #' }
 match_pbp <- function(contest = NULL) {

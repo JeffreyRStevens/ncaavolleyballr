@@ -26,7 +26,6 @@
 #' @examples
 #' \dontrun{
 #' get_teams(year = 2024)
-#' get_teams(year = 2023, division = 3, sport = "MVB")
 #' }
 get_teams <- function(year = NULL,
                       division = 1,

@@ -31,13 +31,9 @@
 #' @family functions that aggregate statistics
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' group_stats(teams = c("Louisville", "Nebraska", "Penn St.", "Pittsburgh"),
 #' year = 2024, level = "season")
-#' group_stats(teams = c("UCLA", "Long Beach St."), year = 2023,
-#' level = "season", sport = "MVB")
-#' group_stats(teams = "Nebraska", year = 2024, level = "match")
-#' group_stats(teams = "Nebraska", year = 2024, level = "pbp")
 #' }
 group_stats <- function(teams = NULL,
                         year = NULL,

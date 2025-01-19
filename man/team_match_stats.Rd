@@ -27,10 +27,8 @@ This function extracts the team's summary statistics for each match of the
 season.
 }
 \examples{
-\dontrun{
+\donttest{
 team_match_stats(team_id = "585290")
-team_match_stats(team_id = find_team_id("Nebraska", 2024), opponent = TRUE)
-team_match_stats(team_id = "573670", sport = "MVB")
 }
 }
 \seealso{

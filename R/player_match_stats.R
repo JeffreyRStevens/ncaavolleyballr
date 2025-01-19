@@ -20,10 +20,8 @@
 #' @family functions that extract player statistics
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' player_match_stats(contest = "6080706")
-#' player_match_stats(contest = "6080706", team = "Louisville")
-#' player_match_stats(contest = "4475421", team_stats = FALSE, sport = "MVB")
 #' }
 player_match_stats <- function(contest = NULL,
                                team = NULL,
