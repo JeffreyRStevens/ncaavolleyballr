@@ -50,19 +50,27 @@ A suite of functions can be used to extract season, match, and play-by-play data
 
 ### Season data
 
-The NCAA uses a unique team ID for each women\'s and men\'s volleyball team and season. So to access a team's season data, first you will need to get that ID with the `find_team_id()`. For instance, to find the ID for Penn State\'s 2024 season:
+The NCAA uses a unique team ID for each women\'s and men\'s volleyball team and season. So to access a team\'s season data, first you will need to get that ID with the `find_team_id()`. For instance, to find the ID for Penn State\'s 2024 season:
 
 ```{r}
 #| label: findteamid
 find_team_id("Penn St.", 2024)
 ```
 
-With this team ID, you can now extract overall season performance data for the team's players with the `player_season_stats()`. 
+With this team ID, you can now extract overall season performance data for the team\'s players with the `player_season_stats()`. 
 
-```{r}
+```{r eval=FALSE}
 #| label: playerseasonstats
 find_team_id("Penn St.", 2024) |> 
   player_season_stats()
+```
+
+```{r echo=FALSE}
+#| label: playerseasonstatsecho
+find_team_id("Penn St.", 2024) |> 
+  player_season_stats() |> 
+  dplyr::mutate(`High School` = gsub("\u00A0", "", `High School`),
+                `High School` = gsub("'", "\\\\'", `High School`))
 ```
 
 
@@ -83,7 +91,7 @@ psu2024 <- find_team_contests(find_team_id("Penn St.", 2024))
 ```
 
 
-From that, we can see that the contest ID is `r psu2024[psu2024$opponent == "Louisville", ]$contest[2]`. If we pass this contest ID to the `player_match_stats()` function, we'll get a list with two data frames---one for each team in the contest---that contain player statistics for the match. If we want to get just the Penn State player data, we can set `team = "Penn St."`.
+From that, we can see that the contest ID is `r psu2024[psu2024$opponent == "Louisville", ]$contest[2]`. If we pass this contest ID to the `player_match_stats()` function, we\'ll get a list with two data frames (one for each team in the contest) that contain player statistics for the match. If we want to get just the Penn State player data, we can set `team = "Penn St."`.
 
 ```{r}
 #| label: playermatchstats
