@@ -346,7 +346,6 @@ request_url <- function(url, timeout = 5) {
     return(invisible(NULL))
   }
   # Perform request and record response
-  set.seed(Sys.time())
   company <- sample(c(0:9, LETTERS),
                     size = sample(6:12, size = 1),
                     replace = TRUE) |>
