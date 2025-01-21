@@ -2,7 +2,7 @@
 #'
 #' This is a convenience function to find NCAA team names in
 #' [ncaa_teams]. Once the proper team name is found, it can be
-#' passed to [find_team_id()] or [group_player_stats()].
+#' passed to [find_team_id()] or [group_stats()].
 #'
 #' @param pattern Character string of pattern you want to find in the vector
 #' of team names.
