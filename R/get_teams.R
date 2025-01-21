@@ -23,10 +23,6 @@
 #'
 #' @export
 #'
-#' @examples
-#' \dontrun{
-#' get_teams(year = 2024)
-#' }
 get_teams <- function(year = NULL,
                       division = 1,
                       sport = "WVB") {

@@ -41,11 +41,6 @@ it aggregates all player data and team data into separate data frames and
 combines them into a list. For match and pbp stats, it aggregates into a
 data frame.
 }
-\examples{
-\dontrun{
-division_stats(year = 2024, level = "season")
-}
-}
 \seealso{
 Other functions that aggregate statistics: 
 \code{\link{conference_stats}()},

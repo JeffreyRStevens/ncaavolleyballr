@@ -18,10 +18,6 @@
 #'
 #' @family functions that aggregate statistics
 #'
-#' @examples
-#' \dontrun{
-#' division_stats(year = 2024, level = "season")
-#' }
 division_stats <- function(year = NULL,
                            division = 1,
                            level = NULL,
