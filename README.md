@@ -192,7 +192,7 @@ To cite
 use:
 
 Stevens JR (2025). *Extract Data from NCAA Women’s and Men’s Volleyball
-Website*. R package version 0.4.0,
+Website*. R package version 0.4.1,
 <https://github.com/JeffreyRStevens/ncaavolleyballr>.
 
 ## Acknowledgments

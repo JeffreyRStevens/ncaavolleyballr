@@ -1,3 +1,9 @@
+# ncaavolleyballr 0.4.1
+
+* Remove examples from `division_stats()` and `get_teams()` documentation.
+
+* Remove deprecated `group_player_stats()`.
+
 # ncaavolleyballr 0.4.0
 
 * Update status to active and lifecycle to stable.
