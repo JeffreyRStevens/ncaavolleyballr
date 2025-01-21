@@ -9,8 +9,9 @@ Authors@R:
 Maintainer: Jeffrey R. Stevens <jeffrey.r.stevens@protonmail.com>
 Description: Extracts team records/schedules and player statistics for the 
     2020-2024 National Collegiate Athletic Association (NCAA) women's and men's
-    divisions I, II, and III volleyball teams. Functions can aggregate 
-    statistics for teams, conferences, divisions, or custom groups of teams.
+    divisions I, II, and III volleyball teams from <https://stats.ncaa.org>. 
+    Functions can aggregate statistics for teams, conferences, divisions, or 
+    custom groups of teams.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
