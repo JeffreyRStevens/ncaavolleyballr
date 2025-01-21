@@ -43,10 +43,3 @@ test_that("group_stats() errors trigger correctly", {
   expect_error(group_stats(teams = "Nebraska", year = 2024, sport = "VB"),
                "Enter valid sport")
 })
-
-test_that("group_player_stats() is deprecated", {
-  skip_on_cran()
-  skip_on_ci()
-  rlang::local_options(lifecycle_verbosity = "warning")
-  expect_warning(group_player_stats(teams = "Nebraska", year = 2024))
-})

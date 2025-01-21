@@ -85,17 +85,3 @@ group_stats <- function(teams = NULL,
       purrr::list_rbind(names_to = "date")
     }
 }
-
-#' Aggregate player statistics
-#'
-#' @description
-#' `r lifecycle::badge("deprecated")`
-#'
-#' `group_player_stats()` was renamed to `group_stats()` to allow an expanded
-#' functionality.
-#' @keywords internal
-#' @export
-group_player_stats <- function(...) {
-  lifecycle::deprecate_warn("0.3.0", "group_player_stats()", "group_stats()")
-  group_stats(...)
-}

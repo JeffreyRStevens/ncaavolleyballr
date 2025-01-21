@@ -16,7 +16,7 @@ Returns a character vector of team names that include the submitted pattern.
 \description{
 This is a convenience function to find NCAA team names in
 \link{ncaa_teams}. Once the proper team name is found, it can be
-passed to \code{\link[=find_team_id]{find_team_id()}} or \code{\link[=group_player_stats]{group_player_stats()}}.
+passed to \code{\link[=find_team_id]{find_team_id()}} or \code{\link[=group_stats]{group_stats()}}.
 }
 \examples{
 find_team_name(pattern = "Neb")
