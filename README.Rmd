@@ -25,12 +25,18 @@ library(ncaavolleyballr)
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable) 
 [![Codecov test coverage](https://codecov.io/gh/JeffreyRStevens/ncaavolleyballr/graph/badge.svg)](https://app.codecov.io/gh/JeffreyRStevens/ncaavolleyballr)
 
+[![CRAN status](https://www.r-pkg.org/badges/version/ncaavolleyballr)](https://CRAN.R-project.org/package=ncaavolleyballr)
 <!-- badges: end -->
 
 Inspired by the NCAA data extraction functions from the [`{baseballr}`](https://billpetti.github.io/baseballr/) package, the goal of [`{ncaavolleyballr}`](https://jeffreyrstevens.github.io/ncaavolleyballr/) is to extract women\'s and men\'s volleyball information from the NCAA website. The functions in this package can extract team records/schedules and player statistics for the 2020-`r ncaavolleyballr:::most_recent_season()` NCAA women\'s and men\'s divisions I, II, and III volleyball teams. Functions can aggregate statistics for teams, conferences, divisions, or custom groups of teams.
 
 ## Installation
 
+You can install the stable released version of flashr from [CRAN](https://cran.r-project.org/package=ncaavolleyballr) with:
+
+```{r eval = FALSE}
+install.packages("ncaavolleyballr")
+```
 You can install developmental versions from [GitHub](https://github.com/) with:
 
 ```{r eval = FALSE}

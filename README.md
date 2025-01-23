@@ -13,6 +13,8 @@ stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://
 [![Codecov test
 coverage](https://codecov.io/gh/JeffreyRStevens/ncaavolleyballr/graph/badge.svg)](https://app.codecov.io/gh/JeffreyRStevens/ncaavolleyballr)
 
+[![CRAN
+status](https://www.r-pkg.org/badges/version/ncaavolleyballr)](https://CRAN.R-project.org/package=ncaavolleyballr)
 <!-- badges: end -->
 
 Inspired by the NCAA data extraction functions from the
@@ -27,6 +29,13 @@ aggregate statistics for teams, conferences, divisions, or custom groups
 of teams.
 
 ## Installation
+
+You can install the stable released version of flashr from
+[CRAN](https://cran.r-project.org/package=ncaavolleyballr) with:
+
+``` r
+install.packages("ncaavolleyballr")
+```
 
 You can install developmental versions from
 [GitHub](https://github.com/) with:
