@@ -12,9 +12,13 @@
 #'
 #' @export
 #'
+#' @note
+#' This function **requires internet connectivity** as it checks the
+#' [NCAA website](https://stats.ncaa.org) for information.
+#'
 #' @family search functions
 #'
-#' @examples
+#' @examplesIf interactive()
 #' find_team_name(pattern = "Neb")
 find_team_name <- function(pattern = NULL) {
   if (is.null(pattern)) cli::cli_abort("Enter valid pattern as a character string.")

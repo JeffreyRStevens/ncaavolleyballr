@@ -19,8 +19,12 @@ The NCAA's page for a match/contest includes a tab called
 "Play By Play". This function extracts the tables of play-by-play information
 for each set.
 }
-\examples{
-\donttest{
-match_pbp(contest = "6080706")
+\note{
+This function \strong{requires internet connectivity} as it checks the
+\href{https://stats.ncaa.org}{NCAA website} for information.
 }
+\examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+match_pbp(contest = "6080706")
+\dontshow{\}) # examplesIf}
 }

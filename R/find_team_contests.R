@@ -14,10 +14,12 @@
 #'
 #' @export
 #'
-#' @examples
-#' \donttest{
+#' @note
+#' This function **requires internet connectivity** as it checks the
+#' [NCAA website](https://stats.ncaa.org) for information.
+#'
+#' @examplesIf interactive()
 #' find_team_contests(team_id = "585290")
-#' }
 find_team_contests <- function(team_id = NULL) {
   # check team_id
   check_team_id(team_id)

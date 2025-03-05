@@ -14,6 +14,9 @@
 #' for example "WVB" for women's volleyball and "MVB" for men's volleyball).
 #'
 #' @note
+#' This function **requires internet connectivity** as it checks the
+#' [NCAA website](https://stats.ncaa.org) for information.
+#'
 #' This function is a modification of the `ncaa_teams()` function from the
 #' [`{baseballr}`](https://billpetti.github.io/baseballr/) package.
 #'

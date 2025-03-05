@@ -27,10 +27,14 @@ season's worth of information, this function extracts season summary stats
 starting with 2001. We have included the conference starting with 2020
 (conference data for previous seasons is not currently available).
 }
-\examples{
-\donttest{
-team_season_stats(team = "Nebraska")
+\note{
+This function \strong{requires internet connectivity} as it checks the
+\href{https://stats.ncaa.org}{NCAA website} for information.
 }
+\examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+team_season_stats(team = "Nebraska")
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other functions that extract team statistics: 

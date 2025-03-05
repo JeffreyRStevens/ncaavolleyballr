@@ -28,6 +28,9 @@ sports, using the appropriate three letter sport code drawn from
 \link{ncaa_sports} (e.g., men's baseball is "MBA").
 }
 \note{
+This function \strong{requires internet connectivity} as it checks the
+\href{https://stats.ncaa.org}{NCAA website} for information.
+
 This function is a modification of the \code{ncaa_teams()} function from the
 \href{https://billpetti.github.io/baseballr/}{\code{{baseballr}}} package.
 }

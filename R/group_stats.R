@@ -28,13 +28,15 @@
 #'
 #' @export
 #'
+#' @note
+#' This function **requires internet connectivity** as it checks the
+#' [NCAA website](https://stats.ncaa.org) for information.
+#'
 #' @family functions that aggregate statistics
 #'
-#' @examples
-#' \donttest{
+#' @examplesIf interactive()
 #' group_stats(teams = c("Louisville", "Nebraska", "Penn St.", "Pittsburgh"),
 #' year = 2024, level = "season")
-#' }
 group_stats <- function(teams = NULL,
                         year = NULL,
                         level = "season",

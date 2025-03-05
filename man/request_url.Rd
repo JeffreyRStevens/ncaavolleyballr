@@ -14,4 +14,8 @@ request_url(url, timeout = 5)
 \description{
 Submit URL request, check, and return response
 }
+\note{
+This function \strong{requires internet connectivity} as it checks the
+\href{https://stats.ncaa.org}{NCAA website} for information.
+}
 \keyword{internal}

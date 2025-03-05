@@ -17,12 +17,14 @@
 #'
 #' @export
 #'
+#' @note
+#' This function **requires internet connectivity** as it checks the
+#' [NCAA website](https://stats.ncaa.org) for information.
+#'
 #' @family functions that extract player statistics
 #'
-#' @examples
-#' \donttest{
+#' @examplesIf interactive()
 #' player_match_stats(contest = "6080706")
-#' }
 player_match_stats <- function(contest = NULL,
                                team = NULL,
                                team_stats = TRUE,

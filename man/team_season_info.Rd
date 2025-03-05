@@ -21,10 +21,14 @@ records, as well as the table of the schedule and results. This returns a
 list, so you can subset specific components with \code{$} (e.g., for coach
 information from an object called \code{output}, use \code{output$coach}).
 }
-\examples{
-\donttest{
-team_season_info(team_id = "585290")
+\note{
+This function \strong{requires internet connectivity} as it checks the
+\href{https://stats.ncaa.org}{NCAA website} for information.
 }
+\examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+team_season_info(team_id = "585290")
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other functions that extract team statistics: 

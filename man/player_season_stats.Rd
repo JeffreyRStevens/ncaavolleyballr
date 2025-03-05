@@ -23,10 +23,14 @@ The NCAA's main page for a team includes a tab called "Team Statistics".
 This function extracts the table of player statistics for the season, as
 well as team and opponent statistics (though these can be omitted).
 }
-\examples{
-\donttest{
-player_season_stats(team_id = "585290")
+\note{
+This function \strong{requires internet connectivity} as it checks the
+\href{https://stats.ncaa.org}{NCAA website} for information.
 }
+\examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+player_season_stats(team_id = "585290")
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other functions that extract player statistics: 

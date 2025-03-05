@@ -36,10 +36,14 @@ match statistics for both home and away teams, as well as team statistics
 (though these can be omitted). If a particular team is specified, only that
 team's statistics will be returned.
 }
-\examples{
-\donttest{
-player_match_stats(contest = "6080706")
+\note{
+This function \strong{requires internet connectivity} as it checks the
+\href{https://stats.ncaa.org}{NCAA website} for information.
 }
+\examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+player_match_stats(contest = "6080706")
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other functions that extract player statistics: 

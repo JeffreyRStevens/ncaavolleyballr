@@ -16,9 +16,13 @@
 #'
 #' @export
 #'
+#' @note
+#' This function **requires internet connectivity** as it checks the
+#' [NCAA website](https://stats.ncaa.org) for information.
+#'
 #' @family search functions
 #'
-#' @examples
+#' @examplesIf interactive()
 #' find_team_id(team = "Nebraska", year = 2024)
 #' find_team_id(team = "UCLA", year = 2023, sport = "MVB")
 find_team_id <- function(team = NULL,

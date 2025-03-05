@@ -15,12 +15,14 @@
 #'
 #' @export
 #'
+#' @note
+#' This function **requires internet connectivity** as it checks the
+#' [NCAA website](https://stats.ncaa.org) for information.
+#'
 #' @family functions that aggregate statistics
 #'
-#' @examples
-#' \donttest{
+#' @examplesIf interactive()
 #' conference_stats(year = 2024, conf = "Peach Belt", level = "season")
-#' }
 conference_stats <- function(year = NULL,
                              conf = NULL,
                              level = NULL,

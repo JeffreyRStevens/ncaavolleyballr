@@ -17,12 +17,14 @@
 #'
 #' @export
 #'
+#' @note
+#' This function **requires internet connectivity** as it checks the
+#' [NCAA website](https://stats.ncaa.org) for information.
+#'
 #' @family functions that extract team statistics
 #'
-#' @examples
-#' \donttest{
+#' @examplesIf interactive()
 #' team_season_stats(team = "Nebraska")
-#' }
 team_season_stats <- function(team = NULL,
                               opponent = FALSE,
                               sport = "WVB") {

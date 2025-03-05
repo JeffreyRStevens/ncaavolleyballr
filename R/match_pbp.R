@@ -12,10 +12,12 @@
 #'
 #' @export
 #'
-#' @examples
-#' \donttest{
+#' @note
+#' This function **requires internet connectivity** as it checks the
+#' [NCAA website](https://stats.ncaa.org) for information.
+#'
+#' @examplesIf interactive()
 #' match_pbp(contest = "6080706")
-#' }
 match_pbp <- function(contest = NULL) {
   # check input
   check_contest(contest)

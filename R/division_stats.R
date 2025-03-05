@@ -16,6 +16,10 @@
 #'
 #' @export
 #'
+#' @note
+#' This function **requires internet connectivity** as it checks the
+#' [NCAA website](https://stats.ncaa.org) for information.
+#'
 #' @family functions that aggregate statistics
 #'
 division_stats <- function(year = NULL,

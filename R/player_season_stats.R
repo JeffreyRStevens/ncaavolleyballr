@@ -17,12 +17,14 @@
 #'
 #' @export
 #'
+#' @note
+#' This function **requires internet connectivity** as it checks the
+#' [NCAA website](https://stats.ncaa.org) for information.
+#'
 #' @family functions that extract player statistics
 #'
-#' @examples
-#' \donttest{
+#' @examplesIf interactive()
 #' player_season_stats(team_id = "585290")
-#' }
 player_season_stats <- function(team_id,
                                 team_stats = TRUE) {
   # check inputs

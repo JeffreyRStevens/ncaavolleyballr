@@ -20,8 +20,12 @@ This function returns a data frame of dates, opponent team names, and
 contest IDs for each NCAA contest (volleyball match) for each team and
 season.
 }
-\examples{
-\donttest{
-find_team_contests(team_id = "585290")
+\note{
+This function \strong{requires internet connectivity} as it checks the
+\href{https://stats.ncaa.org}{NCAA website} for information.
 }
+\examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+find_team_contests(team_id = "585290")
+\dontshow{\}) # examplesIf}
 }

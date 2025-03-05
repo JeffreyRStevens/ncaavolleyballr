@@ -45,11 +45,15 @@ to the function. For match or play-by-play data for a team, pass a single
 team name and year. Team names can be found in \link{ncaa_teams} or by
 using \code{\link[=find_team_name]{find_team_name()}}.
 }
+\note{
+This function \strong{requires internet connectivity} as it checks the
+\href{https://stats.ncaa.org}{NCAA website} for information.
+}
 \examples{
-\donttest{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 group_stats(teams = c("Louisville", "Nebraska", "Penn St.", "Pittsburgh"),
 year = 2024, level = "season")
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other functions that aggregate statistics: 

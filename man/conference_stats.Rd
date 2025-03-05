@@ -43,10 +43,14 @@ data frame.
 Conferences names can be found in
 \link{ncaa_conferences}.
 }
-\examples{
-\donttest{
-conference_stats(year = 2024, conf = "Peach Belt", level = "season")
+\note{
+This function \strong{requires internet connectivity} as it checks the
+\href{https://stats.ncaa.org}{NCAA website} for information.
 }
+\examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+conference_stats(year = 2024, conf = "Peach Belt", level = "season")
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other functions that aggregate statistics: 

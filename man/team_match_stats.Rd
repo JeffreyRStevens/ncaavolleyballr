@@ -26,10 +26,14 @@ and a section called "Game by Game Stats".
 This function extracts the team's summary statistics for each match of the
 season.
 }
-\examples{
-\donttest{
-team_match_stats(team_id = "585290")
+\note{
+This function \strong{requires internet connectivity} as it checks the
+\href{https://stats.ncaa.org}{NCAA website} for information.
 }
+\examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+team_match_stats(team_id = "585290")
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other functions that extract team statistics: 

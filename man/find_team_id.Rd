@@ -25,9 +25,15 @@ from \link{wvb_teams} or \link{mvb_teams} using the team name.
 Team names can be found in \link{ncaa_teams} or searched with
 \code{\link[=find_team_name]{find_team_name()}}.
 }
+\note{
+This function \strong{requires internet connectivity} as it checks the
+\href{https://stats.ncaa.org}{NCAA website} for information.
+}
 \examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 find_team_id(team = "Nebraska", year = 2024)
 find_team_id(team = "UCLA", year = 2023, sport = "MVB")
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other search functions: 

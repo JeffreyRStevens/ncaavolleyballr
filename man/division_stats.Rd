@@ -41,6 +41,10 @@ it aggregates all player data and team data into separate data frames and
 combines them into a list. For match and pbp stats, it aggregates into a
 data frame.
 }
+\note{
+This function \strong{requires internet connectivity} as it checks the
+\href{https://stats.ncaa.org}{NCAA website} for information.
+}
 \seealso{
 Other functions that aggregate statistics: 
 \code{\link{conference_stats}()},
