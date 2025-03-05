@@ -39,7 +39,7 @@ well as team and opponent statistics (though these can be omitted)."><meta prope
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Extract player statistics from a particular team and season</h1>
-      <small class="dont-index">Source: <a href="https://github.com/JeffreyRStevens/ncaavolleyballr/blob/v0.4.1/R/player_season_stats.R" class="external-link"><code>R/player_season_stats.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/JeffreyRStevens/ncaavolleyballr/blob/main/R/player_season_stats.R" class="external-link"><code>R/player_season_stats.R</code></a></small>
       <div class="d-none name"><code>player_season_stats.Rd</code></div>
     </div>
 
@@ -75,6 +75,11 @@ statistics.</p></dd>
 were added in 2024.</p>
     </div>
     <div class="section level2">
+    <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
+    <p>This function <strong>requires internet connectivity</strong> as it checks the
+<a href="https://stats.ncaa.org" class="external-link">NCAA website</a> for information.</p>
+    </div>
+    <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Other functions that extract player statistics:
 <code><a href="player_match_stats.html">player_match_stats</a>()</code></p></div>
@@ -82,33 +87,9 @@ were added in 2024.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># interactive()</span></span></span>
 <span class="r-in"><span><span class="fu">player_season_stats</span><span class="op">(</span>team_id <span class="op">=</span> <span class="st">"585290"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 16 × 29</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Season    Team     Conference Number Player        Yr    Pos   Ht    Hometown</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2024-2025 Nebraska Big Ten         2 Bergen Reilly So    S     6-1   Sioux F…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2024-2025 Nebraska Big Ten         5 Rebekah Alli… Jr    MB    6-4   Lincoln…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2024-2025 Nebraska Big Ten         6 Laney Choboy  So    L/DS  5-3   Raleigh…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2024-2025 Nebraska Big Ten         7 Maisie Boesi… Jr    L/DS  5-6   Firth, …</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2024-2025 Nebraska Big Ten         8 Lexi Rodrigu… Sr    L/DS  5-5   Sterlin…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2024-2025 Nebraska Big Ten         9 Kennedi Orr   Sr    S     6-0   Eagan, …</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2024-2025 Nebraska Big Ten        10 Olivia Mauch  Fr    L/DS  5-6   Benning…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2024-2025 Nebraska Big Ten        11 Leyla Blackw… Sr    MB    6-4   San Die…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2024-2025 Nebraska Big Ten        12 Taylor Landf… Sr    OH    6-5   Plainfi…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2024-2025 Nebraska Big Ten        13 Merritt Beas… Sr    OH    6-4   Gardend…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> 2024-2025 Nebraska Big Ten        15 Andi Jackson  So    MB    6-3   Brighto…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> 2024-2025 Nebraska Big Ten        22 Lindsay Krau… Sr    OH    6-4   Papilli…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> 2024-2025 Nebraska Big Ten        27 Harper Murray So    OH    6-2   Ann Arb…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> 2024-2025 Nebraska Big Ten        <span style="color: #BB0000;">NA</span> TEAM          -     -     -     <span style="color: #BB0000;">NA</span>      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> 2024-2025 Nebraska Big Ten        <span style="color: #BB0000;">NA</span> Totals        -     -     -     <span style="color: #BB0000;">NA</span>      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> 2024-2025 Nebraska Big Ten        <span style="color: #BB0000;">NA</span> Opponent Tot… -     -     -     <span style="color: #BB0000;">NA</span>      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 20 more variables: `High School` &lt;chr&gt;, GP &lt;dbl&gt;, GS &lt;dbl&gt;, S &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   Kills &lt;dbl&gt;, Errors &lt;dbl&gt;, `Total Attacks` &lt;dbl&gt;, `Hit Pct` &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   Assists &lt;dbl&gt;, Aces &lt;dbl&gt;, SErr &lt;dbl&gt;, Digs &lt;dbl&gt;, RetAtt &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   RErr &lt;dbl&gt;, `Block Solos` &lt;dbl&gt;, `Block Assists` &lt;dbl&gt;, BErr &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   PTS &lt;dbl&gt;, BHE &lt;dbl&gt;, `Trpl Dbl` &lt;dbl&gt;</span></span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
