@@ -1,21 +1,20 @@
 ---
 title: "Get started"
+output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Get started}
-  %\VignetteEngine{quarto::html}
+  %\VignetteIndexEntry{ncaavolleyballr}
+  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
-knitr:
-  opts_chunk:
-    collapse: true
-    comment: '#>'
-format:
-  html:
-    df-print: kable
-engine: knitr
 ---
 
-```{r}
-#| label: setup
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
 library(ncaavolleyballr)
 ```
 

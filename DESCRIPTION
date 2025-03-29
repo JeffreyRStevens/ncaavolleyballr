@@ -34,10 +34,9 @@ Imports:
     xml2
 Suggests: 
     knitr,
-    quarto,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 URL: https://github.com/JeffreyRStevens/ncaavolleyballr, https://jeffreyrstevens.github.io/ncaavolleyballr/
 BugReports: https://github.com/JeffreyRStevens/ncaavolleyballr/issues
-VignetteBuilder: 
-    quarto
+VignetteBuilder: knitr
