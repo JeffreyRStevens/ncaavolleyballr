@@ -1,0 +1,218 @@
+---
+title: "Get started"
+vignette: >
+  %\VignetteIndexEntry{Get started}
+  %\VignetteEngine{quarto::html}
+  %\VignetteEncoding{UTF-8}
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: '#>'
+format:
+  html:
+    df-print: kable
+engine: knitr
+---
+
+```{r}
+#| label: setup
+library(ncaavolleyballr)
+```
+
+The NCAA has a lot of sports stats available at <https://stats.ncaa.org>. This package focuses on volleyball, though some of the functions can be used for other sports (e.g., `get_teams()`). The sport code for selecting women's volleyball is "WVB" and men's is "MVB". Once you pick one of those, you can access season, match, and play-by-play stats for players and teams.
+
+## Finding teams
+
+The NCAA uses a unique team ID for each women\'s and men\'s volleyball team and each season. So first you will need to get that ID with the `find_team_id()`.  I\'ll use Nebraska to illustrate the functions in [`{ncaavolleyballr}`](https://jeffreyrstevens.github.io/ncaavolleyballr/).
+
+However, before we find the team ID, we first have to know the exact team name that the NCAA uses to reference each team. Is Nebraska's team name Nebraska, Neb., University of Nebraska-Lincoln, UNL, or something else? We can use `find_team_name()` to get a vector of teams that match a pattern.
+
+```{r}
+#| label: findteamname
+find_team_name("Neb")
+```
+
+Looks like it's "Nebraska". So now we can pass that to `find_team_id()` along with the year that we're interested in. This function queries two data sets that ship with this package: `wvb_teams` and `mvb_teams`. These two data sets are simply the output of the `get_teams()` function being applied to sports "WVB" and "MVB" respectively.  The `get_teams()` function can be applied to other sports to get the list of all of their team IDs. But since we've already done that for men's and women's volleyball, you won't need to use `get_teams()`.
+
+OK, let's find Nebraska's team ID for 2024.
+
+```{r}
+#| label: findteamid
+find_team_id("Nebraska", 2024)
+```
+
+We'll need this team ID to access all of the team's statistics. You can either assign the output to an object or just add it to the top of your pipeline.
+
+You can also pass vectors of team names and years to find team IDs for multiple teams and years.
+
+```{r}
+#| label: findteamid-vector
+find_team_id("Nebraska", 2020:2024)
+find_team_id(c("Nebraska", "Wisconsin"), 2024)
+find_team_id(c("Nebraska", "Wisconsin"), 2020:2024)
+```
+
+Note these are processed per year, so the last example are the teams ID's for Nebraska and Wisconsin in 2020 then 2021, etc.
+
+
+## Season stats
+
+Now that we have the team ID, we can use it to access season summary statistics for a particular team and year (e.g., [Nebraska 2024](https://stats.ncaa.org/teams/585290/)).
+
+### Team season information
+
+Before we get to stats, we can extract information about a team's season with `team_season_info()`, The NCAA's main page for a team and year includes a tab called "Schedule/Results". The `team_season_stats()` function extracts information about the team's venue, coach, and records, as well as the table of the schedule and results.
+
+```{r}
+#| label: teamseasoninfo
+(neb2024team <- find_team_id("Nebraska", 2024) |>
+   team_season_info())
+```
+
+This returns a list, so you can subset specific components with `$`. For instance, if we wanted to calculate average attendance per game:
+
+```{r}
+#| label: meanattendance
+neb2024team$schedule |>
+  dplyr::pull(Attendance) |>
+  sub(",", "", x = _) |>
+  as.numeric() |>
+  mean()
+```
+
+Wow, Nebraska volleyball attracted more attendees per game than the [2021 Oakland Athletics professional baseball team](https://www.baseball-reference.com/teams/OAK/2021.shtml)!
+
+### Team season stats
+
+The NCAA makes team season summary stats available since. We have included the conference starting with 2020 (conference data for previous seasons is not currently available).
+
+```{r}
+#| label: teamseasonstats
+team_season_stats(team = "Nebraska")
+```
+
+By default, the teams's stats are returned. To return the opposing teams stats, set `opponents = TRUE`.
+
+```{r}
+#| label: teamseasonstats-opponent
+team_season_stats(team = "Nebraska", opponent = TRUE)
+```
+
+Here's a table describing the different team statistics returned.
+
+```{r}
+#| label: stat-table
+data.frame(Stat = colnames(team_season_stats(team = "Nebraska"))[4:20],
+           Description = c("Sets played", "Kills", "Attack errors", "Attacks",
+                           "Hit percentage [(kills-errors)/attacks]", "Assists",
+                           "Ace serves", "Service errors", "Digs",
+                           "Reception attempts", "Reception errors",
+                           "Solo blocks", "Block assists", "Block errors",
+                           "Points", "Ball handling errors", "Triple doubles"))
+```
+
+
+### Player season stats
+
+The NCAA's main page for a team includes a tab called "Team Statistics" (e.g., [Nebraska 2024](https://stats.ncaa.org/teams/585290/season_to_date_stats)). The `player_season_stats()` function extracts the table of player summary statistics for a particular season, as well as team and opponent statistics (though these can be omitted).
+
+```{r}
+#| label: playerseasonstats
+find_team_id("Nebraska", 2024) |>
+  player_season_stats()
+```
+
+This returns all players, along with TEAM, opponent, and overall team summaries. To only include player stats, set `team_stats = FALSE`.
+
+```{r}
+#| label: playerseasonstats-teamstats
+find_team_id("Nebraska", 2024) |>
+  player_season_stats(team_stats = FALSE)
+```
+
+This returns all of the stats included by `team_season_stats()`, plus GP and GS, which are Games Played and Games Started, respectively.
+
+```{r eval=FALSE, echo=FALSE}
+#| label: stats-table2
+data.frame(Stat = names(player_season_stats(find_team_id("Nebraska", 2024)))[11:29],
+           Description = c("Games played", "Games started", "Sets played",
+                           "Kills", "Attack errors", "Attacks",
+                           "Kill percentage [(kills-errors)/attacks]",
+                           "Assists", "Ace serves", "Service errors", "Digs",
+                           "Reception attempts", "Reception errors",
+                           "Solo blocks", "Block assists", "Block errors",
+                           "Points", "Ball handling errors", "Triple doubles"))
+```
+
+
+## Match stats
+
+In addition to overall season summary stats, the NCAA provides match-level data for both teams and individual players.
+
+### Team match stats
+
+To get overall match stats for a team in a particular season, use `team_match_stats()`.
+
+```{r}
+#| label: teammatchstats
+find_team_id(team = "Nebraska", year = 2024) |>
+  team_match_stats()
+```
+
+
+### Player match stats
+
+Similarly, you can get match stats for each player in a single match. But to do this, you must know the NCAA's contest ID for the particular match or matches that you're interested in. Use the `find_team_contests()` function to return a data frame of all of the matches for a particular team and season, along with the contest IDs.
+
+```{r}
+#| label: findteamcontests
+(neb2024contests <- find_team_id(team = "Nebraska", year = 2024) |>
+  find_team_contests())
+```
+
+Once we have the contest IDs, we can grab one and pass it to `player_match_stats()`.
+
+```{r}
+#| label: playermatchstats
+player_match_stats(contest = "6080708")
+```
+
+This returns a list with two elements---one for each team. If we just want to return a single team's match stats, we can specify this with the `team` argument. Also, by default, the team stats are included in the output, but we can remove these with `team_stats = FALSE`.
+
+
+```{r}
+#| label: playermatchstats-team-teamstats
+player_match_stats(contest = "6080708", team = "Nebraska", team_stats = FALSE)
+```
+
+
+## Play-by-play data
+
+Play-by-play data for matches are also available on the NCAA's website, if you know the contest ID. The `match_pbp()` function extracts relevant events within a match.
+
+```{r}
+#| label: matchpbp
+match_pbp(contest = "6080708") |>
+  head(20) # cut this off, because it has 1525 rows!
+```
+
+
+## Aggregating data
+
+Though the season, match, and play-by-play data are useful at the individual level, they can be more useful when aggregated. The `group_stats()` function aggregates season, match, and play-by-play data over multiple teams and/or years by applying the `player_season_stats()`,  `player_match_stats()`, or `match_pbp()` across teams and years.
+
+```{r}
+#| label: groupstats-season
+group_stats(teams = c("Nebraska", "Wisconsin"), year = 2023:2024, level = "season")
+```
+
+We don't have other examples, because these take a while to run.
+
+There are also convenience functions `conference_stats()` and `division_stats()` that automatically extract data for a particular conference or NCAA division.
+
+```{r}
+#| label: conferencestats
+conference_stats(year = 2024, conf = "Big Ten", level = "season")
+```
+
+Well, that covers most of the functionality of [`{ncaavolleyballr}`](https://jeffreyrstevens.github.io/ncaavolleyballr/). If you find any bugs or have any questions, please reach out.
