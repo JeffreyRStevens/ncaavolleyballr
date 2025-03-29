@@ -349,7 +349,7 @@ request_url <- function(url, timeout = 5) {
     message("No internet connection.")
     return(invisible(NULL))
   }
-  # Perform request and record response
+  # Create random company and user name
   company <- sample(c(0:9, LETTERS),
                     size = sample(6:12, size = 1),
                     replace = TRUE) |>
@@ -359,6 +359,7 @@ request_url <- function(url, timeout = 5) {
                     replace = TRUE) |>
     paste0(collapse = "")
 
+  # Perform request and record response
   response <- httr2::request(url) |>
     httr2::req_user_agent(paste0(company, " ", tolower(user), "@", tolower(company), ".com")) |>
     httr2::req_perform()
