@@ -335,7 +335,6 @@ html_table_raw <- function(x,
 #' Submit URL request, check, and return response
 #'
 #' @param url URL for request.
-#' @param timeout Numeric of maximum number of seconds to wait for timeout.
 #'
 #' @note
 #' This function **requires internet connectivity** as it checks the
@@ -343,7 +342,7 @@ html_table_raw <- function(x,
 #'
 #' @keywords internal
 #'
-request_url <- function(url, timeout = 5) {
+request_url <- function(url) {
   # First check internet connection
   if (!curl::has_internet()) {
     message("No internet connection.")

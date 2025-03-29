@@ -4,12 +4,10 @@
 \alias{request_url}
 \title{Submit URL request, check, and return response}
 \usage{
-request_url(url, timeout = 5)
+request_url(url)
 }
 \arguments{
 \item{url}{URL for request.}
-
-\item{timeout}{Numeric of maximum number of seconds to wait for timeout.}
 }
 \description{
 Submit URL request, check, and return response
