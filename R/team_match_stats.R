@@ -37,7 +37,7 @@ team_match_stats <- function(team_id = NULL,
     error = function(cnd) {
       cli::cli_warn("No website available for team ID {team_id}.")
     },
-    request_url(team_url)
+    request_url(url = team_url)
   )
   if (length(resp) == 1) {
     if (grepl(pattern = "No website available for team ID", resp)) return(invisible())

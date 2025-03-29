@@ -46,7 +46,7 @@ team_season_stats <- function(team = NULL,
     error = function(cnd) {
       cli::cli_warn("No website available for team ID {team_id}.")
     },
-    request_url(team_url)
+    request_url(url = team_url)
   )
   if (length(resp) == 1) {
     if (grepl(pattern = "No website available for team ID", resp)) return(invisible())
@@ -64,7 +64,7 @@ team_season_stats <- function(team = NULL,
     error = function(cnd) {
       cli::cli_warn("No website available for team ID {team_id}.")
     },
-    request_url(gbg_url) |>
+    request_url(url = gbg_url) |>
       httr2::resp_body_html() |>
       rvest::html_element("table") |>
       rvest::html_table() |>

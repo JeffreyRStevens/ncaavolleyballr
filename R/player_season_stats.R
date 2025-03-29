@@ -44,7 +44,7 @@ player_season_stats <- function(team_id,
     error = function(cnd) {
       cli::cli_warn("No website available for team ID {team_id}.")
     },
-    request_url(url) |>
+    request_url(url = url) |>
       httr2::resp_body_html() |>
       rvest::html_element("table") |>
       rvest::html_table()
@@ -72,13 +72,17 @@ player_season_stats <- function(team_id,
   # combine player stats and roster data
   if (team_info$yr[1] == "2024") {
     url2 <- paste0("https://stats.ncaa.org/teams/", team_id, "/roster")
-    roster <- request_url(url2) |>
-      httr2::resp_body_html() |>
-      rvest::html_element("table") |>
-      rvest::html_table() |>
-      dplyr::select("Number" = "#", "Name", "Hometown", "High School") |>
-      dplyr::mutate(Number = suppressWarnings(as.numeric(.data$Number)))
-
+    roster <- tryCatch(
+      error = function(cnd) {
+        cli::cli_warn("No website available for team ID {team_id}.")
+      },
+      request_url(url = url2) |>
+        httr2::resp_body_html() |>
+        rvest::html_element("table") |>
+        rvest::html_table() |>
+        dplyr::select("Number" = "#", "Name", "Hometown", "High School") |>
+        dplyr::mutate(Number = suppressWarnings(as.numeric(.data$Number)))
+    )
     dplyr::left_join(player_stats, roster,
                      by = dplyr::join_by("Number", "Player" == "Name")) |>
       dplyr::relocate("Hometown":"High School", .after = "Ht") |>

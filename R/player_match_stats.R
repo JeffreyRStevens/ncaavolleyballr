@@ -43,7 +43,7 @@ player_match_stats <- function(contest = NULL,
     error = function(cnd) {
       cli::cli_warn("No website available for contest {contest}.")
     },
-    request_url(url) |>
+    request_url(url = url) |>
       httr2::resp_body_html() |>
       rvest::html_elements("table") |>
       rvest::html_table()

@@ -47,7 +47,7 @@ get_teams <- function(year = NULL,
     error = function(cnd) {
       cli::cli_warn("No website available.")
     },
-    request_url(url)
+    request_url(url = url)
   )
   if (length(resp) == 1) {
     if (grepl(pattern = "No website available", resp)) return(invisible())
@@ -89,7 +89,15 @@ get_teams <- function(year = NULL,
                              "&conf_id=", x,
                              "&division=", division,
                              "&sport_code=", sport)
-    resp <- request_url(url = conf_team_urls)
+    resp <- tryCatch(
+      error = function(cnd) {
+        cli::cli_warn("No website available.")
+      },
+      request_url(url = conf_team_urls)
+    )
+    if (length(resp) == 1) {
+      if (grepl(pattern = "No website available", resp)) return(invisible())
+    }
 
     team_urls <- resp |>
       httr2::resp_body_html() |>
