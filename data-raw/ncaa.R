@@ -90,7 +90,7 @@ sport <- c("Baseball", "Field Hockey", "Football", "Men's Archery",
            "Women's Sailing", "Women's Sand Volleyball", "Women's Skiing",
            "Women's Slow Pitch Softball", "Women's Soccer", "Women's Squash",
            "Women's Swimming", "Women's Tennis", "Women's Track, Indoor",
-           "Women’s Triathlon", "Women's Track, Outdoor", "Women's Volleyball",
+           "Women's Triathlon", "Women's Track, Outdoor", "Women's Volleyball",
            "Women's Water Polo", "Women's Water Skiing", "Women's Wrestling"
 )
 
