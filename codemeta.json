@@ -8,13 +8,19 @@
   "codeRepository": "https://github.com/JeffreyRStevens/ncaavolleyballr",
   "issueTracker": "https://github.com/JeffreyRStevens/ncaavolleyballr/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.4.2 (2024-10-31)",
+  "runtimePlatform": "R version 4.4.3 (2025-02-28)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
   "author": [
     {
       "@type": "Person",
@@ -57,15 +63,15 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "quarto",
-      "name": "quarto",
+      "identifier": "rmarkdown",
+      "name": "rmarkdown",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=quarto"
+      "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
     },
     {
       "@type": "SoftwareApplication",
@@ -86,7 +92,7 @@
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
-      "version": ">= 4.1"
+      "version": ">= 4.2"
     },
     "2": {
       "@type": "SoftwareApplication",
@@ -234,7 +240,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "1181.021KB",
+  "fileSize": "751.17KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -248,7 +254,7 @@
       ],
       "name": "Extract Data from NCAA Women's and Men's Volleyball Website",
       "url": "https://github.com/JeffreyRStevens/ncaavolleyballr",
-      "description": "R package version 0.4.1"
+      "description": "R package version 0.4.2"
     }
   ]
 }

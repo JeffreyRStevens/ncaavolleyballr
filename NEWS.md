@@ -1,8 +1,22 @@
+# ncaavolleyballr 0.4.2
+
+* Increase minimum R version to 4.2
+
+* Wrap all URL requests in `tryCatch()` to ensure internet connection problems fail gracefully.
+
+* Change examples to interactive only and note functions that require internet activity.
+
+* Skip testing on CRAN for tests requiring internet connections.
+
+* Switch vignette to pre-built Rmd file.
+
+
 # ncaavolleyballr 0.4.1
 
 * Remove examples from `division_stats()` and `get_teams()` documentation.
 
 * Remove deprecated `group_player_stats()`.
+
 
 # ncaavolleyballr 0.4.0
 
@@ -25,6 +39,7 @@
 * Create suite of functions to check argument input
 
 * Skip all URL request tests on CRAN and CI
+
 
 # ncaavolleyballr 0.3.0
 
@@ -49,6 +64,7 @@
 * Add match-level functions `find_team_contests()`, `player_match_stats()`, and `test match_pbp()` for extracting match/contest IDs, player statistics, and play-by-play information.
 
 * **DEPRECATION**: `team_player_stats()` has been renamed `player_season_stats()`.
+
 
 # ncaavolleyballr 0.1.0
 
