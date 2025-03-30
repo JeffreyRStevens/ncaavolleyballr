@@ -27,12 +27,17 @@ test_that("player_match_stats() errors trigger correctly", {
                "Enter valid contest ID as a character string")
   expect_error(player_match_stats(contest = "6080706", team = "Neb"),
                "Enter valid team name. ")
-  expect_error(player_match_stats(contest = "6080706", team = "Nebraska"),
-               "Enter valid team for contest ")
   expect_error(player_match_stats(contest = "6080706",  team_stats = 1),
                "`team_stats` must be a logical")
   expect_error(player_match_stats(contest = "6080706", sport = "VB"),
                "Enter valid sport")
+})
+
+test_that("player_match_stats() errors trigger correctly when internet is required", {
+  skip_on_cran()
+  skip_on_ci()
+  expect_error(player_match_stats(contest = "6080706", team = "Nebraska"),
+               "Enter valid team for contest ")
 })
 
 test_that("player_match_stats() warnings trigger correctly", {
