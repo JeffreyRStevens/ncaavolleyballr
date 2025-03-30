@@ -1,14 +1,11 @@
-## Resubmission
-This is a resubmission. In this version, I have:
+## Update
+This update is in response to an email that CRAN checks produced errors and notes. To address this issues, I have done the following:
 
-* Provided a link to the <https://stats.ncaa.org> webservices to the description field
-of the DESCRIPTION file.
+* Updated the minimum R version dependency to 4.2
 
-* Removed the group_player_stats() function, so it no longer requires a \value in the .Rd file because it has been removed.
+* Wrapped all URL requests with tryCatch() to produce messages instead of errors if there is a problem with the website.
 
-* Removed examples from division_stats.Rd and get_teams.Rd to avoid having to use \dontrun{}.
-
-* Removed set.seed() from R/utils.R.
+These changes have resulted in the package passing the Win Builder check.
 
 
 ## R CMD check results
