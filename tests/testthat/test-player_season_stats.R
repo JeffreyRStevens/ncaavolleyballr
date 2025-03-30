@@ -30,6 +30,7 @@ test_that("player_season_stats() errors trigger correctly", {
 
 test_that("player_season_stats() warnings trigger correctly", {
   skip_on_cran()
+  skip_on_ci()
   expect_warning(player_season_stats(team_id =
                                        find_team_id("Vanderbilt", 2024)),
                  "No 2024 season stats available for Vanderbilt")

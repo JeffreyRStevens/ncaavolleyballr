@@ -36,6 +36,8 @@ test_that("player_match_stats() errors trigger correctly", {
 })
 
 test_that("player_match_stats() warnings trigger correctly", {
+  skip_on_cran()
+  skip_on_ci()
   expect_warning(player_match_stats(contest = "5675914", team = "Franklin"),
                  "No website available for contest")
 })

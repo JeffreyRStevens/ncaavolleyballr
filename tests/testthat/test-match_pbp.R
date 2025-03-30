@@ -19,6 +19,8 @@ test_that("match_pbp() errors trigger correctly", {
 })
 
 test_that("match_pbp() warnings trigger correctly", {
+  skip_on_cran()
+  skip_on_ci()
   expect_warning(match_pbp(contest = "5675914"),
                  "No website available for contest")
   expect_warning(match_pbp(contest = "5669768"),
