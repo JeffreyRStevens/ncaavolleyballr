@@ -12,6 +12,8 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/ncaavolleyballr)](https://CRAN.R-project.org/package=ncaavolleyballr)
+[![Total
+Downloads](https://cranlogs.r-pkg.org/badges/grand-total/ncaavolleyballr)](https://CRAN.R-project.org/package=ncaavolleyballr)
 [![Codecov test
 coverage](https://codecov.io/gh/JeffreyRStevens/ncaavolleyballr/graph/badge.svg)](https://app.codecov.io/gh/JeffreyRStevens/ncaavolleyballr)
 <!-- badges: end -->
