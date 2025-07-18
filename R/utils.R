@@ -1,5 +1,3 @@
-
-
 #' Assigns most recent season
 #'
 #' @keywords internal
@@ -17,13 +15,27 @@ most_recent_season <- function() {
 #' @keywords internal
 #'
 check_confdiv <- function(group = NULL, value = NULL, teams = NULL) {
-  if (is.null(group)) cli::cli_abort("Enter valid group: conf or div.")
+  if (is.null(group)) {
+    cli::cli_abort("Enter valid group: conf or div.")
+  }
   if (group == "conf") {
-    if (is.null(value)) cli::cli_abort("Enter valid conference.  Check `ncaa_conferences` for conference names.")
-    if (!value %in% teams$conference) cli::cli_abort("Enter valid conference.  Check `ncaa_conferences` for conference names.")
+    if (is.null(value)) {
+      cli::cli_abort(
+        "Enter valid conference.  Check `ncaa_conferences` for conference names."
+      )
+    }
+    if (!value %in% teams$conference) {
+      cli::cli_abort(
+        "Enter valid conference.  Check `ncaa_conferences` for conference names."
+      )
+    }
   } else if (group == "div") {
-    if (is.null(value)) cli::cli_abort("Enter valid division as a number: 1, 2, 3.")
-    if (!value %in% 1:3) cli::cli_abort("Enter valid division as a number: 1, 2, 3.")
+    if (is.null(value)) {
+      cli::cli_abort("Enter valid division as a number: 1, 2, 3.")
+    }
+    if (!value %in% 1:3) {
+      cli::cli_abort("Enter valid division as a number: 1, 2, 3.")
+    }
   } else {
     cli::cli_abort("Enter valid group: div or conf")
   }
@@ -38,8 +50,12 @@ check_confdiv <- function(group = NULL, value = NULL, teams = NULL) {
 #' @keywords internal
 #'
 check_contest <- function(contest = NULL) {
-  if (is.null(contest)) cli::cli_abort(paste0("Enter valid contest ID as a character string."))
-  if (!is.character(contest)) cli::cli_abort("Enter valid contest ID as a character string.")
+  if (is.null(contest)) {
+    cli::cli_abort(paste0("Enter valid contest ID as a character string."))
+  }
+  if (!is.character(contest)) {
+    cli::cli_abort("Enter valid contest ID as a character string.")
+  }
 }
 
 
@@ -51,9 +67,15 @@ check_contest <- function(contest = NULL) {
 #' @keywords internal
 #'
 check_logical <- function(name = NULL, value = NULL) {
-  if (is.null(name)) cli::cli_abort(paste0("Enter valid `name`."))
-  if (is.null(value)) cli::cli_abort(paste0("Enter valid `value`."))
-  if (!is.logical(value)) cli::cli_abort("`{name}` must be a logical (TRUE or FALSE).")
+  if (is.null(name)) {
+    cli::cli_abort(paste0("Enter valid `name`."))
+  }
+  if (is.null(value)) {
+    cli::cli_abort(paste0("Enter valid `value`."))
+  }
+  if (!is.logical(value)) {
+    cli::cli_abort("`{name}` must be a logical (TRUE or FALSE).")
+  }
 }
 
 
@@ -66,9 +88,15 @@ check_logical <- function(name = NULL, value = NULL) {
 #' @keywords internal
 #'
 check_match <- function(name = NULL, value = NULL, vec = NULL) {
-  if (is.null(name)) cli::cli_abort(paste0("Enter valid `name`."))
-  if (is.null(value)) cli::cli_abort(paste0("Enter valid `value`."))
-  if (is.null(vec)) cli::cli_abort(paste0("Enter valid `vec`."))
+  if (is.null(name)) {
+    cli::cli_abort(paste0("Enter valid `name`."))
+  }
+  if (is.null(value)) {
+    cli::cli_abort(paste0("Enter valid `value`."))
+  }
+  if (is.null(vec)) {
+    cli::cli_abort(paste0("Enter valid `vec`."))
+  }
   if (!value %in% vec) cli::cli_abort("Enter valid {name}: {vec}.")
 }
 
@@ -82,14 +110,22 @@ check_match <- function(name = NULL, value = NULL, vec = NULL) {
 #' @keywords internal
 #'
 check_sport <- function(sport, vb_only = TRUE) {
-  if (!is.character(sport)) cli::cli_abort("Enter valid sport as a three-letter character string.")
+  if (!is.character(sport)) {
+    cli::cli_abort("Enter valid sport as a three-letter character string.")
+  }
   team_df <- NULL
   if (vb_only) {
-    if (sport == "WVB") team_df <- ncaavolleyballr::wvb_teams
-    else if (sport == "MVB") team_df <- ncaavolleyballr::mvb_teams
-    else cli::cli_abort("Enter valid sport (\"WVB\" or \"MVB\").")
+    if (sport == "WVB") {
+      team_df <- ncaavolleyballr::wvb_teams
+    } else if (sport == "MVB") {
+      team_df <- ncaavolleyballr::mvb_teams
+    } else {
+      cli::cli_abort("Enter valid sport (\"WVB\" or \"MVB\").")
+    }
   } else {
-    if (!sport %in% ncaavolleyballr::ncaa_sports$code) cli::cli_abort("Enter valid sport code from `ncaa_sports`.")
+    if (!sport %in% ncaavolleyballr::ncaa_sports$code) {
+      cli::cli_abort("Enter valid sport code from `ncaa_sports`.")
+    }
   }
   team_df
 }
@@ -102,10 +138,21 @@ check_sport <- function(sport, vb_only = TRUE) {
 #' @keywords internal
 #'
 check_team_id <- function(team_id = NULL) {
-  teams <- dplyr::bind_rows(ncaavolleyballr::wvb_teams, ncaavolleyballr::mvb_teams)
-  if (is.null(team_id)) cli::cli_abort(paste0("Enter valid team ID as a character string."))
-  if (!is.character(team_id)) cli::cli_abort("Enter valid team ID as a character string.")
-  if (!all(team_id %in% c(teams$team_id))) cli::cli_abort("Enter valid team ID. \"{team_id}\" was not found in the list of valid IDs.")
+  teams <- dplyr::bind_rows(
+    ncaavolleyballr::wvb_teams,
+    ncaavolleyballr::mvb_teams
+  )
+  if (is.null(team_id)) {
+    cli::cli_abort(paste0("Enter valid team ID as a character string."))
+  }
+  if (!is.character(team_id)) {
+    cli::cli_abort("Enter valid team ID as a character string.")
+  }
+  if (!all(team_id %in% c(teams$team_id))) {
+    cli::cli_abort(
+      "Enter valid team ID. \"{team_id}\" was not found in the list of valid IDs."
+    )
+  }
 }
 
 
@@ -117,8 +164,14 @@ check_team_id <- function(team_id = NULL) {
 #' @keywords internal
 #'
 check_team_name <- function(team = NULL, teams = NULL) {
-  if (is.null(team)) cli::cli_abort("Enter valid team name.")
-  if (!all(team %in% teams$team_name)) cli::cli_abort("Enter valid team name. Check `ncaa_teams` for names or search using `find_team_name()`.")
+  if (is.null(team)) {
+    cli::cli_abort("Enter valid team name.")
+  }
+  if (!all(team %in% teams$team_name)) {
+    cli::cli_abort(
+      "Enter valid team name. Check `ncaa_teams` for names or search using `find_team_name()`."
+    )
+  }
 }
 
 
@@ -132,9 +185,15 @@ check_team_name <- function(team = NULL, teams = NULL) {
 #'
 check_year <- function(year = NULL, single = FALSE) {
   max_year <- most_recent_season()
-  if (is.null(year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
-  if (!is.numeric(year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
-  if (!all(year %in% 2020:max_year)) cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
+  if (is.null(year)) {
+    cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
+  }
+  if (!is.numeric(year)) {
+    cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
+  }
+  if (!all(year %in% 2020:max_year)) {
+    cli::cli_abort(paste0("Enter valid year between 2020-", max_year, "."))
+  }
   if (single) {
     if (length(year) > 1) cli::cli_abort("Enter a single year.")
   }
@@ -150,7 +209,9 @@ fix_teams <- function(x) {
   sub("Tex. A&M-Commerce", "East Texas A&M", x) |>
     sub("Saint Francis \\(PA\\)", "Saint Francis", x = _) |>
     sub("1347", "Saint Rose", x = _) |>
-    sub("1064", "Eastern Nazarene", x = _)
+    sub("1064", "Eastern Nazarene", x = _) |>
+    sub("UAH", "Alabama Huntsville", x = _) |>
+    sub("UT Permian Basin", "Tex. Permian Basin", x = _)
 }
 
 
@@ -161,7 +222,10 @@ fix_teams <- function(x) {
 #' @keywords internal
 #'
 get_team_info <- function(team_id = NULL) {
-  teams <- dplyr::bind_rows(ncaavolleyballr::wvb_teams, ncaavolleyballr::mvb_teams)
+  teams <- dplyr::bind_rows(
+    ncaavolleyballr::wvb_teams,
+    ncaavolleyballr::mvb_teams
+  )
   teams[which(teams$team_id %in% team_id), ] |>
     dplyr::mutate(season = paste0(.data$yr, "-", .data$yr + 1))
 }
@@ -174,12 +238,14 @@ get_team_info <- function(team_id = NULL) {
 #'
 #' @keywords internal
 #'
-html_table_raw <- function(x,
-                           header = NA,
-                           trim = TRUE,
-                           dec = ".",
-                           na.strings = "NA",
-                           convert = TRUE) {
+html_table_raw <- function(
+  x,
+  header = NA,
+  trim = TRUE,
+  dec = ".",
+  na.strings = "NA",
+  convert = TRUE
+) {
   compact <- function(.x) {
     Filter(length, .x)
   }
@@ -202,8 +268,8 @@ html_table_raw <- function(x,
   }
 
   dw_add <- function(dw, col, rowspan, colspan, text) {
-    dw$col <-     c(dw$col, col)
-    dw$text <-    c(dw$text, text)
+    dw$col <- c(dw$col, col)
+    dw$text <- c(dw$text, text)
     dw$rowspan <- c(dw$rowspan, rowspan)
     dw$colspan <- c(dw$colspan, colspan)
     dw
@@ -213,8 +279,8 @@ html_table_raw <- function(x,
     dw$rowspan <- dw$rowspan - 1L
     keep <- dw$rowspan > 0L
 
-    dw$col <-     dw$col[keep]
-    dw$text <-    dw$text[keep]
+    dw$col <- dw$col[keep]
+    dw$text <- dw$text[keep]
     dw$rowspan <- dw$rowspan[keep]
     dw$colspan <- dw$colspan[keep]
     dw
@@ -234,9 +300,17 @@ html_table_raw <- function(x,
         next
       }
 
-      rowspan <- as.integer(rvest::html_attr(row, "rowspan", default = NA_character_))
+      rowspan <- as.integer(rvest::html_attr(
+        row,
+        "rowspan",
+        default = NA_character_
+      ))
       rowspan[is.na(rowspan)] <- 1
-      colspan <- as.integer(rvest::html_attr(row, "colspan", default = NA_character_))
+      colspan <- as.integer(rvest::html_attr(
+        row,
+        "colspan",
+        default = NA_character_
+      ))
       colspan[is.na(colspan)] <- 1
       text <- row
       if (isTRUE(trim)) {
@@ -246,7 +320,7 @@ html_table_raw <- function(x,
       vals <- rep(NA_character_, width)
       col <- 1
       j <- 1
-      while(j <= length(row)) {
+      while (j <= length(row)) {
         if (col %in% dw$col) {
           cell <- dw_find(dw, col)
           cell_text <- cell$text
@@ -266,7 +340,7 @@ html_table_raw <- function(x,
       }
 
       # Add any downward cells after last <td>
-      for(j in seq(col - 1L, width)) {
+      for (j in seq(col - 1L, width)) {
         if (j %in% dw$col) {
           cell <- dw_find(dw, j)
           vals[j:(j + cell$colspan - 1L)] <- cell$text
@@ -297,7 +371,6 @@ html_table_raw <- function(x,
     values <- lapply(values, `[`, seq_len(width))
     matrix(unlist(values), ncol = width, byrow = TRUE)
   }
-
 
   ns <- xml2::xml_ns(x)
   rows <- xml2::xml_find_all(x, ".//tr", ns = ns)
@@ -349,18 +422,29 @@ request_url <- function(url) {
     return(invisible(NULL))
   }
   # Create random company and user name
-  company <- sample(c(0:9, LETTERS),
-                    size = sample(6:12, size = 1),
-                    replace = TRUE) |>
+  company <- sample(
+    c(0:9, LETTERS),
+    size = sample(6:12, size = 1),
+    replace = TRUE
+  ) |>
     paste0(collapse = "")
-  user <- sample(c(0:9, LETTERS),
-                    size = sample(6:15, size = 1),
-                    replace = TRUE) |>
+  user <- sample(
+    c(0:9, LETTERS),
+    size = sample(6:15, size = 1),
+    replace = TRUE
+  ) |>
     paste0(collapse = "")
 
   # Perform request and record response
   response <- httr2::request(url) |>
-    httr2::req_user_agent(paste0(company, " ", tolower(user), "@", tolower(company), ".com")) |>
+    httr2::req_user_agent(paste0(
+      company,
+      " ",
+      tolower(user),
+      "@",
+      tolower(company),
+      ".com"
+    )) |>
     httr2::req_perform()
   # Check status of response and return if status is OK
   httr2::resp_check_status(response)
@@ -373,9 +457,18 @@ request_url <- function(url) {
 #'
 save_df <- function(x, label, group, year, division, conf, sport, path) {
   # save_df <- function(...) {
-  if (length(year) > 1) year <- paste0(min(year), "-", max(year))
-  if (group == "conf") confdiv <- tolower(gsub(" ", "", conf))
-  if (group == "div") confdiv <- paste0(group, division)
-  utils::write.csv(x,
-                   paste0(path, tolower(sport), "_", label, "_", confdiv, "_", year, ".csv"), row.names = FALSE)
+  if (length(year) > 1) {
+    year <- paste0(min(year), "-", max(year))
+  }
+  if (group == "conf") {
+    confdiv <- tolower(gsub(" ", "", conf))
+  }
+  if (group == "div") {
+    confdiv <- paste0(group, division)
+  }
+  utils::write.csv(
+    x,
+    paste0(path, tolower(sport), "_", label, "_", confdiv, "_", year, ".csv"),
+    row.names = FALSE
+  )
 }
