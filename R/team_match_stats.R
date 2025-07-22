@@ -16,7 +16,9 @@
 #' @note
 #' This function **requires internet connectivity** as it checks the
 #' [NCAA website](https://stats.ncaa.org) for information.
-#' It also **requires [Google Chrome](https://www.google.com/chrome/)**.
+#' It also uses the [`{chromote}`](https://rstudio.github.io/chromote/) package
+#' and **requires [Google Chrome](https://www.google.com/chrome/)** to be
+#' installed.
 #'
 #' @family functions that extract team statistics
 #'
@@ -81,7 +83,7 @@ team_match_stats <- function(team_id = NULL, sport = "WVB") {
 
   table[[table_num]] |>
     dplyr::select("Date":"BHE") |>
-    dplyr::filter("Date" != "Totals" & "Date" != "Defensive Totals") |>
+    dplyr::filter(.data$Date != "Totals" & .data$Date != "Defensive Totals") |>
     dplyr::mutate(
       Team = team_info$team_name[1],
       Conference = team_info$conference[1],
