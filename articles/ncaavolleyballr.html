@@ -384,7 +384,9 @@ match-level data for both teams and individual players.</p>
 <h3 id="team-match-stats">Team match stats<a class="anchor" aria-label="anchor" href="#team-match-stats"></a>
 </h3>
 <p>To get overall match stats for a team in a particular season, use
-<code><a href="../reference/team_match_stats.html">team_match_stats()</a></code>.</p>
+<code><a href="../reference/team_match_stats.html">team_match_stats()</a></code>. Note that to run this function relies
+on the <a href="https://rstudio.github.io/chromote/" class="external-link"><code>{chromote}</code></a>
+package, so you must have Google Chrome installed on your computer.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/find_team_id.html">find_team_id</a></span><span class="op">(</span>team <span class="op">=</span> <span class="st">"Nebraska"</span>, year <span class="op">=</span> <span class="fl">2024</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/team_match_stats.html">team_match_stats</a></span><span class="op">(</span><span class="op">)</span></span>
