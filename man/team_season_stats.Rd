@@ -2,7 +2,7 @@
 % Please edit documentation in R/team_season_stats.R
 \name{team_season_stats}
 \alias{team_season_stats}
-\title{Extract teams statistics for season statistics from 2001-2024}
+\title{Extract teams statistics for season statistics from 2020-2024}
 \usage{
 team_season_stats(team = NULL, opponent = FALSE, sport = "WVB")
 }
@@ -22,14 +22,15 @@ Returns a data frame of summary team statistics for each season.
 }
 \description{
 The NCAA's main page for a team includes a tab called "Game By Game"
-and a section called "Career Totals". Though the page only shows one
-season's worth of information, this function extracts season summary stats
-starting with 2001. We have included the conference starting with 2020
-(conference data for previous seasons is not currently available).
+and a section called "Career Totals". This function extracts season summary
+stats.
 }
 \note{
 This function \strong{requires internet connectivity} as it checks the
 \href{https://stats.ncaa.org}{NCAA website} for information.
+
+Due to changes in the NCAA website, statistics from before 2020 are no
+longer available.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
