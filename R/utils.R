@@ -405,6 +405,26 @@ html_table_raw <- function(
 }
 
 
+#' Submit URL request via live browser
+#'
+#' @param url URL for request.
+#'
+#' @note
+#' This function **requires internet connectivity** as it checks the
+#' [NCAA website](https://stats.ncaa.org) for information.
+#'
+#' @keywords internal
+#'
+request_live_url <- function(url) {
+  # First check internet connection
+  if (!curl::has_internet()) {
+    message("No internet connection.")
+    return(invisible(NULL))
+  }
+  rvest::read_html_live(url)
+}
+
+
 #' Submit URL request, check, and return response
 #'
 #' @param url URL for request.
