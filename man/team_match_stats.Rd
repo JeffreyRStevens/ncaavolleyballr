@@ -4,15 +4,11 @@
 \alias{team_match_stats}
 \title{Extract team summary statistics for all matches in a particular season}
 \usage{
-team_match_stats(team_id = NULL, opponent = FALSE, sport = "WVB")
+team_match_stats(team_id = NULL, sport = "WVB")
 }
 \arguments{
 \item{team_id}{Team ID determined by NCAA for season. To find ID, use
 \code{\link[=find_team_id]{find_team_id()}}.}
-
-\item{opponent}{Logical indicating whether to include team's stats
-(FALSE) or opponent's stats (TRUE). Default is set to FALSE, returning
-team stats.}
 
 \item{sport}{Three letter abbreviation for NCAA sport (must be upper case;
 for example "WVB" for women's volleyball and "MVB" for men's volleyball).}
@@ -29,6 +25,7 @@ season.
 \note{
 This function \strong{requires internet connectivity} as it checks the
 \href{https://stats.ncaa.org}{NCAA website} for information.
+It also \strong{requires \href{https://www.google.com/chrome/}{Google Chrome}}.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
