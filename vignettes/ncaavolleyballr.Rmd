@@ -318,7 +318,7 @@ In addition to overall season summary stats, the NCAA provides match-level data 
 
 ### Team match stats
 
-To get overall match stats for a team in a particular season, use `team_match_stats()`.
+To get overall match stats for a team in a particular season, use `team_match_stats()`. Note that to run this function relies on the [`{chromote}`](https://rstudio.github.io/chromote/) package, so you must have Google Chrome installed on your computer.
 
 
 ``` r
