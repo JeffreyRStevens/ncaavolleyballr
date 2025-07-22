@@ -90,6 +90,9 @@ single_season_stats <- function(team_id, opponent) {
     table <- dplyr::filter(table, .data$Player == "Totals")
   } else {
     table <- dplyr::filter(table, .data$Player == "Opponent Totals")
+    team_info <- team_info |>
+      dplyr::mutate("Team" = paste0(.data$Team, " Opponents")) |>
+      dplyr::select(!"Conference")
   }
   team_info |>
     dplyr::bind_cols(table) |>

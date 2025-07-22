@@ -60,10 +60,9 @@ team_match_stats <- function(team_id = NULL, sport = "WVB") {
       rvest::html_elements("table") |>
       rvest::html_table()
   )
-  if (length(table) == 1) {
-    if (grepl(pattern = "No website available for team ID", table)) {
-      return(invisible())
-    }
+  if (length(table) <= 1) {
+    cli::cli_warn("No match info available for team ID {team_id}.")
+    return(invisible())
   }
 
   if (names(table[[2]][1]) == "Date" & nrow(table[[2]]) > 2) {
