@@ -81,7 +81,7 @@ team_match_stats <- function(team_id = NULL, sport = "WVB") {
 
   table[[table_num]] |>
     dplyr::select("Date":"BHE") |>
-    dplyr::filter("Date" != "Totals" & "Date" != "Defensive Totals") |>
+    dplyr::filter(.data$Date != "Totals" & .data$Date != "Defensive Totals") |>
     dplyr::mutate(
       Team = team_info$team_name[1],
       Conference = team_info$conference[1],
