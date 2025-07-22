@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ncaavolleyballr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,6 +38,11 @@
       <small>Source: <a href="https://github.com/JeffreyRStevens/ncaavolleyballr/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.4.3" id="ncaavolleyballr-043">ncaavolleyballr 0.4.3<a class="anchor" aria-label="anchor" href="#ncaavolleyballr-043"></a></h2>
+<ul><li><p>NCAA’s game-by-game website introduced a loading page that disrupted team_season_stats() and team_match_stats(). team_season_stats() now gets the info from a different page. team_match_stats() now uses the rvest::read_live_html() function, which requires the {chromote} package and access to Google Chrome.</p></li>
+<li><p>Catch contests with too many sets and return warning instead of error</p></li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.4.2" id="ncaavolleyballr-042">ncaavolleyballr 0.4.2<a class="anchor" aria-label="anchor" href="#ncaavolleyballr-042"></a></h2><p class="text-muted">CRAN release: 2025-03-30</p>
 <ul><li><p>Increase minimum R version to 4.2</p></li>
