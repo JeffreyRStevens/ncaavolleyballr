@@ -8,13 +8,13 @@
   "codeRepository": "https://github.com/JeffreyRStevens/ncaavolleyballr",
   "issueTracker": "https://github.com/JeffreyRStevens/ncaavolleyballr/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.4.3 (2025-02-28)",
+  "runtimePlatform": "R version 4.5.1 (2025-06-13)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -49,6 +49,18 @@
     }
   ],
   "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "chromote",
+      "name": "chromote",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=chromote"
+    },
     {
       "@type": "SoftwareApplication",
       "identifier": "knitr",
@@ -240,7 +252,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "751.17KB",
+  "fileSize": "919.502KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -254,7 +266,7 @@
       ],
       "name": "Extract Data from NCAA Women's and Men's Volleyball Website",
       "url": "https://github.com/JeffreyRStevens/ncaavolleyballr",
-      "description": "R package version 0.4.2"
+      "description": "R package version 0.4.3"
     }
   ]
 }
