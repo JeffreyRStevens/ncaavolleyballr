@@ -1,3 +1,5 @@
+# ncaavolleyballr (development version)
+
 # ncaavolleyballr 0.4.3
 
 * NCAA's game-by-game website introduced a loading page that disrupted team_season_stats() and team_match_stats(). team_season_stats() now gets the info from a different page. team_match_stats() now uses the rvest::read_live_html() function, which requires the {chromote} package and access to Google Chrome.
