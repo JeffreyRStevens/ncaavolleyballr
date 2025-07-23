@@ -30,7 +30,7 @@ team_match_stats <- function(team_id = NULL, sport = "WVB") {
   check_sport(sport, vb_only = TRUE)
 
   # get team info and request URL
-  team_info <- get_team_info(team_id) #|>
+  team_info <- get_team_info(team_id)
   team_url <- paste0("https://stats.ncaa.org/teams/", team_id)
   resp <- tryCatch(
     error = function(cnd) {
@@ -83,6 +83,7 @@ team_match_stats <- function(team_id = NULL, sport = "WVB") {
   table[[table_num]] |>
     dplyr::select("Date":"BHE") |>
     dplyr::filter(.data$Date != "Totals" & .data$Date != "Defensive Totals") |>
+    dplyr::mutate(Season = team_info$season[1], .before = 1) |>
     dplyr::mutate(
       Team = team_info$team_name[1],
       Conference = team_info$conference[1],
