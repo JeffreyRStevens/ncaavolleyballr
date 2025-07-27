@@ -50,37 +50,25 @@ team_match_stats <- function(team_id = NULL, sport = "WVB") {
     rvest::html_elements(".nav-link") |>
     rvest::html_attr("href") |>
     stringr::str_subset("/players/\\d+")
-  gbg_url <- paste0("https://stats.ncaa.org/", gbg_page)
+  gbg_url <- paste0("https://stats.ncaa.org", gbg_page)
+  gbg_num <- sub("/players/", "", gbg_page)
+  gbg_id <- paste0("#game_log_", gbg_num, "_player")
 
   table <- tryCatch(
     error = function(cnd) {
-      cli::cli_warn("No website available for team ID {team_id}.")
+      cli::cli_warn("No match info available for team ID {team_id}.")
+      return(invisible())
     },
     request_live_url(gbg_url) |>
-      rvest::html_elements("table") |>
+      rvest::html_elements(gbg_id) |>
       rvest::html_table()
   )
-  if (length(table) <= 1) {
+  if (length(table) == 0) {
     cli::cli_warn("No match info available for team ID {team_id}.")
     return(invisible())
   }
 
-  if (names(table[[2]][1]) == "Date" & nrow(table[[2]]) > 2) {
-    table_num <- 2
-  } else if (names(table[[3]][1]) == "Date" & nrow(table[[3]]) > 2) {
-    table_num <- 3
-  } else if (names(table[[4]][1]) == "Date" & nrow(table[[4]]) > 2) {
-    table_num <- 4
-  } else if (names(table[[5]][1]) == "Date" & nrow(table[[5]]) > 2) {
-    table_num <- 5
-  } else {
-    cli::cli_warn(
-      "No {team_info$yr[1]} season stats available for {team_info$team_name[1]} (team ID {team_id})."
-    )
-    return(invisible())
-  }
-
-  table[[table_num]] |>
+  table[[1]] |>
     dplyr::select("Date":"BHE") |>
     dplyr::filter(.data$Date != "Totals" & .data$Date != "Defensive Totals") |>
     dplyr::mutate(Season = team_info$season[1], .before = 1) |>
