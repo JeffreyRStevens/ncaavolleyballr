@@ -33,10 +33,10 @@ team_match_stats <- function(team_id = NULL, sport = "WVB") {
   team_info <- get_team_info(team_id)
   team_url <- paste0("https://stats.ncaa.org/teams/", team_id)
   resp <- tryCatch(
+    request_url(url = team_url),
     error = function(cnd) {
       cli::cli_warn("No website available for team ID {team_id}.")
-    },
-    request_url(url = team_url)
+    }
   )
   if (length(resp) == 1) {
     if (grepl(pattern = "No website available for team ID", resp)) {
@@ -55,16 +55,18 @@ team_match_stats <- function(team_id = NULL, sport = "WVB") {
   gbg_id <- paste0("#game_log_", gbg_num, "_player")
 
   table <- tryCatch(
+    request_live_url(gbg_url) |>
+      rvest::html_elements(gbg_id) |>
+      rvest::html_table(),
     error = function(cnd) {
       cli::cli_warn("No match info available for team ID {team_id}.")
       return(invisible())
-    },
-    request_live_url(gbg_url) |>
-      rvest::html_elements(gbg_id) |>
-      rvest::html_table()
+    }
   )
   if (length(table) == 0) {
+    # if (!grepl(pattern = "No match info available for team ID", table)) {
     cli::cli_warn("No match info available for team ID {team_id}.")
+    # }
     return(invisible())
   }
 
