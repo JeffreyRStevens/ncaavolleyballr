@@ -4,6 +4,7 @@ test_that("connections to internet resources fail gracefully", {
   suppressMessages(expect_error(request_url("http://httpbin.org/status/404"),
                                 "HTTP 404 Not Found."))
   expect_silent(request_url("http://httpbin.org/"))
+  expect_silent(request_live_url("http://httpbin.org/"))
 })
 
 test_that("check_confdiv() works", {

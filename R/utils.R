@@ -421,7 +421,12 @@ request_live_url <- function(url) {
     message("No internet connection.")
     return(invisible(NULL))
   }
-  rvest::read_html_live(url)
+  tryCatch(
+    rvest::read_html_live(url),
+    error = function(cnd) {
+      cli::cli_warn("Cannot open connection to {url}.")
+    }
+  )
 }
 
 
