@@ -32,14 +32,14 @@ conference_stats <- function(
   # check inputs
   check_year(year)
   check_match(
-    "level",
-    level,
-    c("teamseason", "season", "teammatch", "playermatch", "match", "pbp")
+    name = "level",
+    value = level,
+    vec = c("teamseason", "season", "teammatch", "playermatch", "match", "pbp")
   )
   team_df <- check_sport(sport, vb_only = TRUE)
   check_confdiv(group = "conf", value = conf, teams = team_df)
   check_logical("save", save)
-  if (!is.character(path)) {
+  if (!is.character(path) | length(path) > 1) {
     cli::cli_abort("Enter valid path as a character string.")
   }
 

@@ -1,4 +1,3 @@
-
 #' Extract player statistics from a particular team and season
 #'
 #' The NCAA's main page for a team includes a tab called "Team Statistics".
@@ -25,8 +24,7 @@
 #'
 #' @examplesIf interactive()
 #' player_season_stats(team_id = "585290")
-player_season_stats <- function(team_id,
-                                team_stats = TRUE) {
+player_season_stats <- function(team_id, team_stats = TRUE) {
   # check inputs
   check_team_id(team_id)
   if (length(team_id) == 0) {
@@ -34,11 +32,17 @@ player_season_stats <- function(team_id,
     return(invisible())
   }
   check_logical("team_stats", team_stats)
+  if (length(team_stats) > 1) {
+    cli::cli_abort("Enter single value for `team_stats`")
+  }
 
   # get team info and request URL
   team_info <- get_team_info(team_id)
-  url <- paste0("https://stats.ncaa.org/teams/", team_id,
-                "/season_to_date_stats")
+  url <- paste0(
+    "https://stats.ncaa.org/teams/",
+    team_id,
+    "/season_to_date_stats"
+  )
 
   table <- tryCatch(
     error = function(cnd) {
@@ -50,14 +54,18 @@ player_season_stats <- function(team_id,
       rvest::html_table()
   )
   if (length(table) == 1) {
-    if (grepl(pattern = "No website available for team ID", table)) return(invisible())
+    if (grepl(pattern = "No website available for team ID", table)) {
+      return(invisible())
+    }
   }
 
-
   if (nrow(table) == 0 || !"Player" %in% colnames(table)) {
-    cli::cli_warn("No {team_info$yr[1]} season stats available for {team_info$team_name[1]} (team ID {team_id}).")
+    cli::cli_warn(
+      "No {team_info$yr[1]} season stats available for {team_info$team_name[1]} (team ID {team_id})."
+    )
     return(invisible())
-  } else {#if ("Player" %in% colnames(table)) {
+  } else {
+    #if ("Player" %in% colnames(table)) {
     player_stats <- table |>
       dplyr::rename("Number" = "#") |>
       dplyr::mutate(Number = suppressWarnings(as.numeric(.data$Number)))
@@ -83,22 +91,41 @@ player_season_stats <- function(team_id,
         dplyr::select("Number" = "#", "Name", "Hometown", "High School") |>
         dplyr::mutate(Number = suppressWarnings(as.numeric(.data$Number)))
     )
-    dplyr::left_join(player_stats, roster,
-                     by = dplyr::join_by("Number", "Player" == "Name")) |>
+    dplyr::left_join(
+      player_stats,
+      roster,
+      by = dplyr::join_by("Number", "Player" == "Name")
+    ) |>
       dplyr::relocate("Hometown":"High School", .after = "Ht") |>
-      dplyr::mutate(dplyr::across("Player":"Ht", as.character),
-                    dplyr::across("GP":dplyr::last_col(),
-                                  ~ suppressWarnings(as.numeric(gsub(",", "", .x))))) |>
-      dplyr::mutate(Season = team_info$season[1], Team = team_info$team_name[1],
-                    Conference = team_info$conference[1], .before = 1) |>
+      dplyr::mutate(
+        dplyr::across("Player":"Ht", as.character),
+        dplyr::across(
+          "GP":dplyr::last_col(),
+          ~ suppressWarnings(as.numeric(gsub(",", "", .x)))
+        )
+      ) |>
+      dplyr::mutate(
+        Season = team_info$season[1],
+        Team = team_info$team_name[1],
+        Conference = team_info$conference[1],
+        .before = 1
+      ) |>
       dplyr::arrange(.data$Number)
   } else {
     player_stats |>
-      dplyr::mutate(dplyr::across("Player":"Ht", as.character),
-                    dplyr::across("GP":dplyr::last_col(),
-                                  ~ suppressWarnings(as.numeric(gsub(",", "", .x))))) |>
-      dplyr::mutate(Season = team_info$season[1], Team = team_info$team_name[1],
-                    Conference = team_info$conference[1], .before = 1) |>
+      dplyr::mutate(
+        dplyr::across("Player":"Ht", as.character),
+        dplyr::across(
+          "GP":dplyr::last_col(),
+          ~ suppressWarnings(as.numeric(gsub(",", "", .x)))
+        )
+      ) |>
+      dplyr::mutate(
+        Season = team_info$season[1],
+        Team = team_info$team_name[1],
+        Conference = team_info$conference[1],
+        .before = 1
+      ) |>
       dplyr::arrange(.data$Number)
   }
 }

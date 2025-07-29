@@ -16,7 +16,10 @@ most_recent_season <- function() {
 #'
 check_confdiv <- function(group = NULL, value = NULL, teams = NULL) {
   if (is.null(group)) {
-    cli::cli_abort("Enter valid group: conf or div.")
+    cli::cli_abort("Enter valid group: conf or division.")
+  }
+  if (length(group) > 1 || length(value) > 1) {
+    cli::cli_abort("Enter single value for {group}.")
   }
   if (group == "conf") {
     if (is.null(value)) {
@@ -29,7 +32,7 @@ check_confdiv <- function(group = NULL, value = NULL, teams = NULL) {
         "Enter valid conference.  Check `ncaa_conferences` for conference names."
       )
     }
-  } else if (group == "div") {
+  } else if (group == "division") {
     if (is.null(value)) {
       cli::cli_abort("Enter valid division as a number: 1, 2, 3.")
     }
@@ -37,7 +40,7 @@ check_confdiv <- function(group = NULL, value = NULL, teams = NULL) {
       cli::cli_abort("Enter valid division as a number: 1, 2, 3.")
     }
   } else {
-    cli::cli_abort("Enter valid group: div or conf")
+    cli::cli_abort("Enter valid group: division or conf")
   }
   if (is.null(teams)) cli::cli_abort("Enter valid `teams`.")
 }
@@ -71,7 +74,7 @@ check_logical <- function(name = NULL, value = NULL) {
     cli::cli_abort(paste0("Enter valid `name`."))
   }
   if (is.null(value)) {
-    cli::cli_abort(paste0("Enter valid `value`."))
+    cli::cli_abort(paste0("Enter valid `{name}` value (TRUE or FALSE)."))
   }
   if (!is.logical(value)) {
     cli::cli_abort("`{name}` must be a logical (TRUE or FALSE).")
@@ -92,10 +95,13 @@ check_match <- function(name = NULL, value = NULL, vec = NULL) {
     cli::cli_abort(paste0("Enter valid `name`."))
   }
   if (is.null(value)) {
-    cli::cli_abort(paste0("Enter valid `value`."))
+    cli::cli_abort(paste0("Enter valid {name}."))
   }
   if (is.null(vec)) {
     cli::cli_abort(paste0("Enter valid `vec`."))
+  }
+  if (length(value) > 1) {
+    cli::cli_abort("Enter single value for {name}.")
   }
   if (!value %in% vec) cli::cli_abort("Enter valid {name}: {vec}.")
 }
@@ -109,9 +115,15 @@ check_match <- function(name = NULL, value = NULL, vec = NULL) {
 #'
 #' @keywords internal
 #'
-check_sport <- function(sport, vb_only = TRUE) {
+check_sport <- function(sport = NULL, vb_only = TRUE) {
+  if (is.null(sport)) {
+    cli::cli_abort(paste0("Enter valid `sport`."))
+  }
   if (!is.character(sport)) {
     cli::cli_abort("Enter valid sport as a three-letter character string.")
+  }
+  if (length(sport) > 1) {
+    cli::cli_abort("Enter single value for `sport`.")
   }
   team_df <- NULL
   if (vb_only) {
