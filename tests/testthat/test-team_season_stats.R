@@ -63,3 +63,10 @@ test_that("team_season_stats() errors trigger correctly", {
     "Enter valid sport"
   )
 })
+
+test_that("team_season_stats() warnings trigger correctly", {
+  expect_warning(
+    team_season_stats(team = "Georgetown"),
+    "No season stats available"
+  )
+})

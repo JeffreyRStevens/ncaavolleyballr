@@ -54,8 +54,15 @@ team_match_stats <- function(team_id = NULL, sport = "WVB") {
   gbg_num <- sub("/players/", "", gbg_page)
   gbg_id <- paste0("#game_log_", gbg_num, "_player")
 
+  live_url <- tryCatch(
+    request_live_url(gbg_url),
+    error = function(cnd) {
+      cli::cli_warn("No website available for team ID {team_id}.")
+      return(invisible())
+    }
+  )
   table <- tryCatch(
-    request_live_url(gbg_url) |>
+    live_url |>
       rvest::html_elements(gbg_id) |>
       rvest::html_table(),
     error = function(cnd) {
@@ -63,10 +70,10 @@ team_match_stats <- function(team_id = NULL, sport = "WVB") {
       return(invisible())
     }
   )
+  live_url$session$close()
+
   if (length(table) == 0) {
-    # if (!grepl(pattern = "No match info available for team ID", table)) {
     cli::cli_warn("No match info available for team ID {team_id}.")
-    # }
     return(invisible())
   }
 
