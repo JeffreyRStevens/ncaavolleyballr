@@ -71,6 +71,7 @@ team_match_stats <- function(team_id = NULL, sport = "WVB") {
     }
   )
   live_url$session$close()
+  rm(live_url)
 
   if (length(table) == 0) {
     cli::cli_warn("No match info available for team ID {team_id}.")
