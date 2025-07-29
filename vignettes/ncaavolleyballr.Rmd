@@ -125,56 +125,24 @@ The NCAA makes team season summary stats available since. We have included the c
 
 ``` r
 team_season_stats(team = "Nebraska")
-#>       Year     Team Conference   S Kills Errors Total Attacks Hit Pct Assists Aces SErr Digs RetAtt
-#> 1  2001-02 Nebraska       <NA> 108  1790    532          4130   0.305    1575  162   NA 1833     NA
-#> 2  2002-03 Nebraska       <NA> 103  1747    481          3927   0.322    1532  169   NA 1642     NA
-#> 3  2003-04 Nebraska       <NA> 117  1915    720          4806   0.249    1748  225   NA 1941     NA
-#> 4  2004-05 Nebraska       <NA> 106  1823    610          4322   0.281    1657  166   NA 1846     NA
-#> 5  2005-06 Nebraska       <NA> 116  1986    581          4367   0.322    1823  162   NA 1731     NA
-#> 6  2006-07 Nebraska       <NA> 115  2001    637          4605   0.296    1863  175   NA 1942     NA
-#> 7  2007-08 Nebraska       <NA> 103  1829    506          4051   0.327    1691  187   NA 1687     NA
-#> 8  2008-09 Nebraska       <NA> 118  1714    590          4166   0.270    1578  154   NA 1734     NA
-#> 9  2009-10 Nebraska       <NA> 115  1685    618          4160   0.256    1568  130   NA 1837     NA
-#> 10 2010-11 Nebraska       <NA> 108  1609    528          3812   0.284    1501  127  148 1698     NA
-#> 11 2011-12 Nebraska       <NA> 113  1532    504          3866   0.266    1426   91  161 1696     NA
-#> 12 2012-13 Nebraska       <NA> 123  1728    509          4171   0.292    1617  139  217 1767     NA
-#> 13 2013-14 Nebraska       <NA> 119  1710    593          4132   0.270    1597  115  241 1714     NA
-#> 14 2014-15 Nebraska       <NA> 118  1564    599          4089   0.236    1476  118  220 1699     NA
-#> 15 2015-16 Nebraska       <NA> 129  1873    589          4690   0.274    1730  140  232 2049     NA
-#> 16 2016-17 Nebraska       <NA> 117  1688    533          4026   0.287    1558  142  215 1785     NA
-#> 17 2017-18 Nebraska       <NA> 125  1777    575          4267   0.282    1632  184  236 1904     NA
-#> 18 2018-19 Nebraska       <NA> 133  1772    582          4491   0.265    1651  215  285 2100     NA
-#> 19 2019-20 Nebraska       <NA> 119  1641    567          4029   0.267    1526  125  238 1802   2087
-#> 20 2020-21 Nebraska       <NA>  66   925    323          2229   0.270     847  104  131  957   1155
-#> 21 2021-22 Nebraska       <NA> 121  1677    667          4551   0.222    1548  181  241 2054   2164
-#> 22 2022-23 Nebraska       <NA> 109  1461    519          3866   0.244    1331  128  261 1721   1824
-#> 23 2023-24 Nebraska       <NA> 121  1676    597          3959   0.273    1553  143  309 1666   2018
-#> 24 2024-25 Nebraska       <NA> 122  1721    551          4114   0.284    1596  155  193 1856   1920
-#>    RErr Block Solos Block Assists BErr    PTS BHE Trpl Dbl
-#> 1    NA         116           670   NA     NA  NA        1
-#> 2    NA          81           626   NA     NA  NA        1
-#> 3    NA          80           582   NA     NA  NA        1
-#> 4    NA          89           675   NA     NA  NA        1
-#> 5    NA          66           823   NA     NA  NA        1
-#> 6    NA          94           531   NA     NA  NA        1
-#> 7    NA          90           397   NA     NA  NA        1
-#> 8    NA          78           451   NA     NA  NA        1
-#> 9    NA          75           398   NA     NA  NA        1
-#> 10   77          73           510   79 2064.0  11       NA
-#> 11   95          52           484   77 1917.0  18       NA
-#> 12   94          79           477   68 2184.5  15       NA
-#> 13   82          69           538   96 2163.0  20       NA
-#> 14   93          72           543   64 2025.5  23       NA
-#> 15   79          55           605   67 2370.5  24       NA
-#> 16   69          57           546   59 2160.0  19       NA
-#> 17   80          61           479   68 2261.5  22       NA
-#> 18  124          56           601   99 2343.5  14       NA
-#> 19  126          50           470   66 1940.0  11       10
-#> 20   71          21           269   40 1184.5  12       19
-#> 21  105          38           530   54 2161.0   8       34
-#> 22   77          33           537   47 1890.5  25       32
-#> 23  104          39           574   43 2145.0  15       35
-#> 24   81          51           581   50 2217.5   1       36
+#>    Season     Team Conference   S MS Kills Errors Total Attacks Hit Pct Assists
+#> 1 2020-21 Nebraska    Big Ten  66 NA   925    323          2229   0.270     847
+#> 2 2021-22 Nebraska    Big Ten 121 NA  1677    667          4551   0.222    1548
+#> 3 2022-23 Nebraska    Big Ten 109 NA  1461    519          3866   0.244    1331
+#> 4 2023-24 Nebraska    Big Ten 121 NA  1676    597          3959   0.273    1553
+#> 5 2024-25 Nebraska    Big Ten 122 NA  1721    551          4114   0.284    1596
+#>   Aces SErr Digs RErr Block Solos Block Assists BErr    TB    PTS BHE Trpl Dbl
+#> 1  104  131  957   71          21           269   40 155.5 1184.5  12       19
+#> 2  181  241 2054  105          38           530   54    NA 2161.0   8       34
+#> 3  128  261 1721   77          33           537   47 301.5 1890.5  25       32
+#> 4  143  309 1666  104          39           574   43    NA 2145.0  15       35
+#> 5  155  193 1856   81          51           581   50    NA 2217.5   1       36
+#>   SrvAtt RetAtt Dbl Dbl
+#> 1     NA     NA      NA
+#> 2   2836     NA      NA
+#> 3     NA   1824      NA
+#> 4     NA   2018      35
+#> 5     NA   1920      NA
 ```
 
 By default, the teams's stats are returned. To return the opposing teams stats, set `opponents = TRUE`.
@@ -182,38 +150,24 @@ By default, the teams's stats are returned. To return the opposing teams stats, 
 
 ``` r
 team_season_stats(team = "Nebraska", opponent = TRUE)
-#>       Year     Team Conference   S Kills Errors Total Attacks Hit Pct Assists Aces SErr Digs RetAtt
-#> 1  2010-11 Opponent       <NA> 108  1235    679          3833   0.145    1174   77  174 1480     NA
-#> 2  2011-12 Opponent       <NA> 113  1305    724          3998   0.145    1234   95  195 1599     NA
-#> 3  2012-13 Opponent       <NA> 123  1543    697          4316   0.196    1452   94  209 1688     NA
-#> 4  2013-14 Opponent       <NA> 119  1438    684          4119   0.183    1371   82  226 1592     NA
-#> 5  2014-15 Opponent       <NA> 118  1507    746          4246   0.179    1405   93  226 1645     NA
-#> 6  2015-16 Opponent       <NA> 129  1577    760          4756   0.172    1494   79  237 1916     NA
-#> 7  2016-17 Opponent       <NA> 117  1309    708          4102   4.587    1243   69  236 1573     NA
-#> 8  2017-18 Opponent       <NA> 125  1368    701          4335   0.154    1276   80  278 1634     NA
-#> 9  2018-19 Opponent       <NA> 133  1460    780          4719   0.144    1376  124  296 1905     NA
-#> 10 2019-20 Opponent       <NA> 119  1344    703          4205   0.152    1243  126  252 1581   2532
-#> 11 2020-21 Opponent       <NA>  66   739    365          2226   0.168     679   71  160  831   1424
-#> 12 2021-22 Opponent       <NA> 121  1349    693          4418   0.148    1269  105  267 1886   2595
-#> 13 2022-23 Opponent       <NA> 109  1198    689          3988   0.128    1114   77  297 1575   2337
-#> 14 2023-24 Opponent       <NA> 121  1264    713          4009   0.137    1188  104  325 1402   2552
-#> 15 2024-25 Opponent       <NA> 122  1376    749          4377   0.143    1321   81  342 1539   2748
-#>    RErr Block Solos Block Assists BErr    PTS BHE Trpl Dbl
-#> 1   127          33           322   59 1506.0  23       NA
-#> 2    91          28           294   59 1575.0  29       NA
-#> 3   139          50           362   69 1868.0  35       NA
-#> 4   115          46           398   70 1765.0  22       NA
-#> 5   118          40           417   74 1848.5  39       NA
-#> 6   140          53           387   89 1902.5  40       NA
-#> 7   142          40           355   59 1595.5  22       NA
-#> 8   184          60           357   66 1686.5  25       NA
-#> 9   215          39           388   59 1817.0  41       NA
-#> 10  125          45           341   66 1595.5  34       10
-#> 11  104          16           236   26  944.0   6       19
-#> 12  181          49           503   52 1754.5  16       34
-#> 13  128          29           370   51 1489.0  24       32
-#> 14  143          42           430   58 1625.0  17       35
-#> 15  155          34           375   49 1678.5   1       36
+#>    Season               Team   S MS Kills Errors Total Attacks Hit Pct Assists
+#> 1 2020-21 Nebraska Opponents  66 NA   739    365          2226   0.168     679
+#> 2 2021-22 Nebraska Opponents 121 NA  1349    693          4418   0.148    1269
+#> 3 2022-23 Nebraska Opponents 109 NA  1198    689          3988   0.128    1114
+#> 4 2023-24 Nebraska Opponents 121 NA  1264    713          4009   0.137    1188
+#> 5 2024-25 Nebraska Opponents 122 NA  1376    749          4377   0.143    1321
+#>   Aces SErr Digs RErr Block Solos Block Assists BErr  TB    PTS BHE Trpl Dbl
+#> 1   71  160  831  104          16           236   26 134  944.0   6       19
+#> 2  105  267 1886  181          49           503   52  NA 1754.5  16       34
+#> 3   77  297 1575  128          29           370   51 214 1489.0  24       32
+#> 4  104  325 1402  143          42           430   58  NA 1625.0  17       35
+#> 5   81  342 1539  155          34           375   49  NA 1678.5   1       36
+#>   SrvAtt RetAtt Dbl Dbl
+#> 1     NA     NA      NA
+#> 2   2431     NA      NA
+#> 3     NA   2337      NA
+#> 4     NA   2552      35
+#> 5     NA   2748      NA
 ```
 
 Here's a table describing the different team statistics returned.
@@ -324,22 +278,24 @@ To get overall match stats for a team in a particular season, use `team_match_st
 ``` r
 find_team_id(team = "Nebraska", year = 2024) |>
   team_match_stats()
-#> # A tibble: 37 × 21
-#>    Date    Team  Conference Opponent Result     S Kills Errors `Total Attacks` `Hit Pct` Assists  Aces
-#>    <chr>   <chr> <chr>      <chr>    <chr>  <dbl> <dbl>  <dbl>           <dbl>     <dbl>   <dbl> <dbl>
-#>  1 08/27/… Nebr… Big Ten    Kentuck… W 3-1      4    47     16             120     0.258      44     4
-#>  2 08/30/… Nebr… Big Ten    A&M-Cor… W 3-0      3    48      7              96     0.427      43     7
-#>  3 08/31/… Nebr… Big Ten    TCU      W 3-1      4    55     25             141     0.213      52     9
-#>  4 09/03/… Nebr… Big Ten    @ SMU    L 0-3      3    36     18             105     0.171      35     1
-#>  5 09/05/… Nebr… Big Ten    The Cit… W 3-0      3    43      7              98     0.367      39     6
-#>  6 09/07/… Nebr… Big Ten    Montana… W 3-0      3    47     11              90     0.4        44     7
-#>  7 09/10/… Nebr… Big Ten    Creight… W 3-2      5    73     27             193     0.238      67     2
-#>  8 09/13/… Nebr… Big Ten    Arizona… W 3-0      3    48     12             113     0.319      47     2
-#>  9 09/14/… Nebr… Big Ten    Wichita… W 3-0      3    50      8              88     0.477      44     3
-#> 10 09/18/… Nebr… Big Ten    Stanford W 3-0      3    38     13              95     0.263      36     5
-#> # ℹ 27 more rows
-#> # ℹ 9 more variables: SErr <dbl>, Digs <dbl>, RetAtt <dbl>, RErr <dbl>, `Block Solos` <dbl>,
-#> #   `Block Assists` <dbl>, BErr <dbl>, PTS <dbl>, BHE <dbl>
+#> # A tibble: 36 × 22
+#>    Season    Date       Team     Conference Opponent   Result     S Kills Errors
+#>    <chr>     <chr>      <chr>    <chr>      <chr>      <chr>  <dbl> <dbl>  <dbl>
+#>  1 2024-2025 08/27/2024 Nebraska Big Ten    Kentucky … W 3-1      4    47     16
+#>  2 2024-2025 08/30/2024 Nebraska Big Ten    A&M-Corpu… W 3-0      3    48      7
+#>  3 2024-2025 08/31/2024 Nebraska Big Ten    TCU        W 3-1      4    55     25
+#>  4 2024-2025 09/03/2024 Nebraska Big Ten    @ SMU      L 0-3      3    36     18
+#>  5 2024-2025 09/05/2024 Nebraska Big Ten    The Citad… W 3-0      3    43      7
+#>  6 2024-2025 09/07/2024 Nebraska Big Ten    Montana S… W 3-0      3    47     11
+#>  7 2024-2025 09/10/2024 Nebraska Big Ten    Creighton  W 3-2      5    73     27
+#>  8 2024-2025 09/13/2024 Nebraska Big Ten    Arizona S… W 3-0      3    48     12
+#>  9 2024-2025 09/14/2024 Nebraska Big Ten    Wichita S… W 3-0      3    50      8
+#> 10 2024-2025 09/18/2024 Nebraska Big Ten    Stanford   W 3-0      3    38     13
+#> # ℹ 26 more rows
+#> # ℹ 13 more variables: `Total Attacks` <dbl>, `Hit Pct` <dbl>, Assists <dbl>,
+#> #   Aces <dbl>, SErr <dbl>, Digs <dbl>, RetAtt <dbl>, RErr <dbl>,
+#> #   `Block Solos` <dbl>, `Block Assists` <dbl>, BErr <dbl>, PTS <dbl>,
+#> #   BHE <dbl>
 ```
 
 
