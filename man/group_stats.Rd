@@ -17,8 +17,8 @@ group_stats(
 
 \item{year}{Numeric vector of years for fall of desired seasons.}
 
-\item{level}{Character string defining whether to aggregate "season",
-"match", or play-by-play ("pbp") data.}
+\item{level}{Character string defining whether to aggregate "teamseason",
+"teammatch", "playermatch", or match play-by-play ("pbp") data.}
 
 \item{unique}{Logical indicating whether to only process unique contests
 (TRUE) or whether to process duplicated contests (FALSE). Default is TRUE.}
@@ -33,10 +33,11 @@ statistics and play-by-play information respectively.
 }
 \description{
 This function aggregates player statistics and play-by-play information
-within a season by applying \code{\link[=player_season_stats]{player_season_stats()}}, \code{\link[=player_match_stats]{player_match_stats()}},
+within a season by applying \code{\link[=team_match_stats]{team_match_stats()}}, \code{\link[=player_season_stats]{player_season_stats()}}, \code{\link[=player_match_stats]{player_match_stats()}},
 or \code{\link[=match_pbp]{match_pbp()}} across groups of teams (for \code{\link[=player_season_stats]{player_season_stats()}}) or
-across contests within a season (for \code{\link[=player_match_stats]{player_match_stats()}} and
-\code{\link[=match_pbp]{match_pbp()}}). For season stats, it aggregates all player data and team
+across contests within a season (for \code{\link[=team_match_stats]{team_match_stats()}},
+\code{\link[=player_match_stats]{player_match_stats()}} and \code{\link[=match_pbp]{match_pbp()}}).
+For season stats, it aggregates all player data and team
 data into separate data frames and combines them into a list.
 For instance, if you want to extract the data from the teams in the women's
 2024 Final Four, pass a vector of
@@ -48,11 +49,15 @@ using \code{\link[=find_team_name]{find_team_name()}}.
 \note{
 This function \strong{requires internet connectivity} as it checks the
 \href{https://stats.ncaa.org}{NCAA website} for information.
+The "teammatch" level uses the
+\href{https://rstudio.github.io/chromote/}{\code{{chromote}}} package
+and \strong{requires \href{https://www.google.com/chrome/}{Google Chrome}} to be
+installed.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 group_stats(teams = c("Louisville", "Nebraska", "Penn St.", "Pittsburgh"),
-year = 2024, level = "season")
+year = 2024, level = "teamseason")
 \dontshow{\}) # examplesIf}
 }
 \seealso{

@@ -4,7 +4,7 @@
 \alias{check_sport}
 \title{Checks if sport is valid}
 \usage{
-check_sport(sport, vb_only = TRUE)
+check_sport(sport = NULL, vb_only = TRUE)
 }
 \arguments{
 \item{sport}{Sport code.}

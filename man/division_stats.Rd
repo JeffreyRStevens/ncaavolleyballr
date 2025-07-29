@@ -18,8 +18,8 @@ division_stats(
 
 \item{division}{NCAA division (must be 1, 2, or 3).}
 
-\item{level}{Character string defining whether to aggregate "season",
-"match", or play-by-play ("pbp") data.}
+\item{level}{Character string defining whether to aggregate "teamseason",
+"teammatch", "playermatch", or match play-by-play ("pbp") data.}
 
 \item{sport}{Three letter abbreviation for NCAA sport (must be upper case;
 for example "WVB" for women's volleyball and "MVB" for men's volleyball).}
@@ -44,6 +44,15 @@ data frame.
 \note{
 This function \strong{requires internet connectivity} as it checks the
 \href{https://stats.ncaa.org}{NCAA website} for information.
+The "teammatch" level uses the
+\href{https://rstudio.github.io/chromote/}{\code{{chromote}}} package
+and \strong{requires \href{https://www.google.com/chrome/}{Google Chrome}} to be
+installed.
+}
+\examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+division_stats(year = 2024, division = 1, level = "teamseason")
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other functions that aggregate statistics: 

@@ -18,8 +18,8 @@ conference_stats(
 
 \item{conf}{NCAA conference name.}
 
-\item{level}{Character string defining whether to aggregate "season",
-"match", or play-by-play ("pbp") data.}
+\item{level}{Character string defining whether to aggregate "teamseason",
+"teammatch", "playermatch", or match play-by-play ("pbp") data.}
 
 \item{sport}{Three letter abbreviation for NCAA sport (must be upper case;
 for example "WVB" for women's volleyball and "MVB" for men's volleyball).}
@@ -46,10 +46,14 @@ Conferences names can be found in
 \note{
 This function \strong{requires internet connectivity} as it checks the
 \href{https://stats.ncaa.org}{NCAA website} for information.
+The "teammatch" level uses the
+\href{https://rstudio.github.io/chromote/}{\code{{chromote}}} package
+and \strong{requires \href{https://www.google.com/chrome/}{Google Chrome}} to be
+installed.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-conference_stats(year = 2024, conf = "Peach Belt", level = "season")
+conference_stats(year = 2024, conf = "Peach Belt", level = "teamseason")
 \dontshow{\}) # examplesIf}
 }
 \seealso{

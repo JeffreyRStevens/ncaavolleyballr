@@ -1,10 +1,11 @@
 #' Aggregate player statistics and play-by-play information
 #'
 #' This function aggregates player statistics and play-by-play information
-#' within a season by applying [player_season_stats()], [player_match_stats()],
+#' within a season by applying [team_match_stats()], [player_season_stats()], [player_match_stats()],
 #' or [match_pbp()] across groups of teams (for [player_season_stats()]) or
-#' across contests within a season (for [player_match_stats()] and
-#' [match_pbp()]). For season stats, it aggregates all player data and team
+#' across contests within a season (for [team_match_stats()],
+#' [player_match_stats()] and [match_pbp()]).
+#' For season stats, it aggregates all player data and team
 #' data into separate data frames and combines them into a list.
 #' For instance, if you want to extract the data from the teams in the women's
 #' 2024 Final Four, pass a vector of
@@ -14,8 +15,8 @@
 #' using [find_team_name()].
 #'
 #' @param teams Character vector of team names to aggregate.
-#' @param level Character string defining whether to aggregate "season",
-#' "match", or play-by-play ("pbp") data.
+#' @param level Character string defining whether to aggregate "teamseason",
+#' "teammatch", "playermatch", or match play-by-play ("pbp") data.
 #' @param unique Logical indicating whether to only process unique contests
 #' (TRUE) or whether to process duplicated contests (FALSE). Default is TRUE.
 #' @inheritParams find_team_id
@@ -31,28 +32,41 @@
 #' @note
 #' This function **requires internet connectivity** as it checks the
 #' [NCAA website](https://stats.ncaa.org) for information.
+#' The "teammatch" level uses the
+#' [`{chromote}`](https://rstudio.github.io/chromote/) package
+#' and **requires [Google Chrome](https://www.google.com/chrome/)** to be
+#' installed.
 #'
 #' @family functions that aggregate statistics
 #'
 #' @examplesIf interactive()
 #' group_stats(teams = c("Louisville", "Nebraska", "Penn St.", "Pittsburgh"),
-#' year = 2024, level = "season")
-group_stats <- function(teams = NULL,
-                        year = NULL,
-                        level = "season",
-                        unique = TRUE,
-                        sport = "WVB") {
+#' year = 2024, level = "teamseason")
+group_stats <- function(
+  teams = NULL,
+  year = NULL,
+  level = "season",
+  unique = TRUE,
+  sport = "WVB"
+) {
   # check inputs
   team_df <- check_sport(sport, vb_only = TRUE)
   check_team_name(team = teams, teams = team_df)
   check_year(year)
-  check_match("level", level, c("season", "match", "pbp"))
+  check_match(
+    "level",
+    level,
+    c("teamseason", "season", "teammatch", "playermatch", "match", "pbp")
+  )
   check_logical("unique", unique)
 
   # group season-level stats
-  if (level == "season") {
-    data <- purrr::map2(rep(teams, each = length(year)), rep(year, times = length(teams)),
-                        ~ player_season_stats(find_team_id(.x, .y, sport))) |>
+  if (level == "teamseason" | level == "season") {
+    data <- purrr::map2(
+      rep(teams, each = length(year)),
+      rep(year, times = length(teams)),
+      ~ player_season_stats(find_team_id(.x, .y, sport))
+    ) |>
       purrr::set_names(rep(teams, each = length(year))) |>
       purrr::list_rbind(names_to = "Team")
     playerdata <- data |>
@@ -64,15 +78,27 @@ group_stats <- function(teams = NULL,
 
     output <- list(playerdata = playerdata, teamdata = teamdata)
     return(output)
-  } else if (level == "match") {
+  } else if (level == "teammatch") {
+    contest_vec <- find_team_id(teams, year, sport)
+    purrr::map(
+      contest_vec,
+      ~ team_match_stats(.x, sport = sport)
+    ) |>
+      purrr::list_rbind()
+  } else if (level == "playermatch" | level == "match") {
     # group match level stats
     contest_vec <- find_team_id(teams, year, sport)
     contests <- purrr::map(contest_vec, find_team_contests) |>
       purrr::list_rbind() |>
       dplyr::filter(!is.na(.data$contest))
-    if (unique) contests <- dplyr::slice_head(contests, by = "contest", n = 1)
-    purrr::map2(contests$contest, contests$team,
-                ~ player_match_stats(.x, .y, team_stats = FALSE, sport = sport)) |>
+    if (unique) {
+      contests <- dplyr::slice_head(contests, by = "contest", n = 1)
+    }
+    purrr::map2(
+      contests$contest,
+      contests$team,
+      ~ player_match_stats(.x, .y, team_stats = FALSE, sport = sport)
+    ) |>
       purrr::set_names(contests$team) |>
       purrr::list_rbind(names_to = "team")
   } else if (level == "pbp") {
@@ -81,9 +107,11 @@ group_stats <- function(teams = NULL,
     contests <- purrr::map(contest_vec, find_team_contests) |>
       purrr::list_rbind() |>
       dplyr::filter(!is.na(.data$contest))
-    if (unique) contests <- dplyr::slice_head(contests, by = "contest", n = 1)
+    if (unique) {
+      contests <- dplyr::slice_head(contests, by = "contest", n = 1)
+    }
     purrr::map(contests$contest, match_pbp) |>
       purrr::set_names(contests$date) |>
       purrr::list_rbind(names_to = "date")
-    }
+  }
 }
