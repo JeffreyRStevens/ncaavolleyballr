@@ -70,7 +70,12 @@ team_match_stats <- function(team_id = NULL, sport = "WVB") {
       return(invisible())
     }
   )
-  live_url$session$close()
+  if (inherits(live_url, "LiveHTML")) {
+    live_url$session$close()
+  } else {
+    cli::cli_warn("No match info available for team ID {team_id}.")
+    return(invisible())
+  }
   rm(live_url)
 
   if (length(table) == 0) {
