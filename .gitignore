@@ -5,5 +5,5 @@
 docs
 inst/doc
 **/.quarto/
-
+.vscode
 old
