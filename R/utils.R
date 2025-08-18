@@ -3,7 +3,7 @@
 #' @keywords internal
 #'
 most_recent_season <- function() {
-  2024
+  2025
 }
 
 

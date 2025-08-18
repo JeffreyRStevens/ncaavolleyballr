@@ -26,9 +26,7 @@
 #'
 #' @export
 #'
-get_teams <- function(year = NULL,
-                      division = 1,
-                      sport = "WVB") {
+get_teams <- function(year = NULL, division = 1, sport = "WVB") {
   # check inputs
   check_year(year)
   check_match("division", division, 1:3)
@@ -38,11 +36,15 @@ get_teams <- function(year = NULL,
   url_year <- year + 1
 
   # get and request URL
-  url <- paste0("http://stats.ncaa.org/team/inst_team_list?academic_year=",
-                url_year,
-                "&conf_id=-1",
-                "&division=", division,
-                "&sport_code=", sport)
+  url <- paste0(
+    "http://stats.ncaa.org/team/inst_team_list?academic_year=",
+    url_year,
+    "&conf_id=-1",
+    "&division=",
+    division,
+    "&sport_code=",
+    sport
+  )
   resp <- tryCatch(
     error = function(cnd) {
       cli::cli_warn("No website available.")
@@ -68,27 +70,34 @@ get_teams <- function(year = NULL,
     rvest::html_text()
 
   conference_names <- ((data_read |>
-                          rvest::html_elements(".level2"))[[4]] |>
-                         rvest::html_elements("a") |>
-                         rvest::html_text())[-1]
+    rvest::html_elements(".level2"))[[4]] |>
+    rvest::html_elements("a") |>
+    rvest::html_text())[-1]
 
   conference_ids <- (data_read |>
-                       rvest::html_elements(".level2"))[[4]] |>
+    rvest::html_elements(".level2"))[[4]] |>
     rvest::html_elements("a") |>
     rvest::html_attr("href") |>
     stringr::str_extract("javascript:changeConference\\(\\d+\\)") |>
     stringr::str_subset("javascript:changeConference\\(\\d+\\)") |>
     stringr::str_extract("\\d+")
 
-  conference_df <- data.frame(conference = conference_names,
-                              conference_id = conference_ids)
+  conference_df <- data.frame(
+    conference = conference_names,
+    conference_id = conference_ids
+  )
 
   conferences_team_df <- lapply(conference_df$conference_id, function(x) {
-    conf_team_urls <- paste0("http://stats.ncaa.org/team/inst_team_list?academic_year=",
-                             url_year,
-                             "&conf_id=", x,
-                             "&division=", division,
-                             "&sport_code=", sport)
+    conf_team_urls <- paste0(
+      "http://stats.ncaa.org/team/inst_team_list?academic_year=",
+      url_year,
+      "&conf_id=",
+      x,
+      "&division=",
+      division,
+      "&sport_code=",
+      sport
+    )
     resp <- tryCatch(
       error = function(cnd) {
         cli::cli_warn("No website available.")
@@ -112,17 +121,26 @@ get_teams <- function(year = NULL,
       rvest::html_text()
 
     # assemble data frame
-    data <- data.frame(team_url = team_urls,
-                       team_name = team_names,
-                       div = division,
-                       yr = year,
-                       conference_id = x)
+    data <- data.frame(
+      team_url = team_urls,
+      team_name = team_names,
+      div = division,
+      yr = year,
+      conference_id = x
+    )
     data <- data |>
-      dplyr::left_join(conferences_team_df, by = c("conference_id"))
+      dplyr::left_join(conference_df, by = c("conference_id"))
     Sys.sleep(5)
     return(data)
   }) |>
     purrr::list_rbind() |>
     dplyr::mutate(team_id = stringr::str_extract(.data$team_url, "(\\d+)")) |>
-    dplyr::select("team_id", "team_name", "conference_id", "conference", "div", "yr")
+    dplyr::select(
+      "team_id",
+      "team_name",
+      "conference_id",
+      "conference",
+      "div",
+      "yr"
+    )
 }
