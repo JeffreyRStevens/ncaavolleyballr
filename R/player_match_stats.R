@@ -49,19 +49,44 @@ player_match_stats <- function(
     "/individual_stats"
   )
 
-  match_all <- tryCatch(
+  live_url <- tryCatch(
+    request_live_url(url),
     error = function(cnd) {
-      cli::cli_warn("No website available for contest {contest}.")
-    },
-    request_url(url = url) |>
-      httr2::resp_body_html() |>
-      rvest::html_elements("table") |>
-      rvest::html_table()
-  )
-  if (length(match_all) == 1) {
-    if (grepl(pattern = "No website available for contest", match_all)) {
+      cli::cli_warn("No website available for team ID {team_id}.")
       return(invisible())
     }
+  )
+  match_all <- tryCatch(
+    live_url |>
+      rvest::html_elements("table") |>
+      rvest::html_table(),
+    error = function(cnd) {
+      cli::cli_warn("No match info available for team ID {team_id}.")
+      return(invisible())
+    }
+  )
+  if (inherits(live_url, "LiveHTML")) {
+    live_url$session$close()
+  } else {
+    cli::cli_warn("No match info available for team ID {team_id}.")
+    return(invisible())
+  }
+  rm(live_url)
+
+  # match_all <- tryCatch(
+  #   error = function(cnd) {
+  #     cli::cli_warn("No website available for contest {contest}.")
+  #   },
+  #   request_url(url = url) |>
+  #     httr2::resp_body_html() |>
+  #     rvest::html_elements("table") |>
+  #     rvest::html_table()
+  # )
+  if (length(match_all) <= 1) {
+    cli::cli_warn("No website available for contest {contest}.")
+    # if (grepl(pattern = "No website available for contest", match_all)) {
+    return(invisible())
+    # }
   }
   match_info <- match_all[[1]]
 

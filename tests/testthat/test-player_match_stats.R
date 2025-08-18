@@ -60,9 +60,9 @@ test_that("player_match_stats() errors trigger correctly", {
     player_match_stats(contest = TRUE),
     "Enter valid contest ID as a character string"
   )
-  expect_error(
+  expect_warning(
     player_match_stats(contest = ""),
-    "subscript out of bounds"
+    "No website available for contest"
   )
 
   # Test team_stats parameter validation

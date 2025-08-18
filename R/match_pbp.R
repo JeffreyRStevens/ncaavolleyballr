@@ -26,15 +26,39 @@ match_pbp <- function(contest = NULL) {
   url <- paste0("https://stats.ncaa.org/contests/", contest, "/play_by_play")
 
   ## get pbp HTML table
-  pbp_all <- tryCatch(
+  live_url <- tryCatch(
+    request_live_url(url),
     error = function(cnd) {
       cli::cli_warn("No website available for contest {contest}.")
-    },
-    request_url(url = url) |>
-      httr2::resp_body_html() |>
-      rvest::html_elements("table") |>
-      rvest::html_table()
+      return(invisible())
+    }
   )
+  pbp_all <- tryCatch(
+    live_url |>
+      rvest::html_elements("table") |>
+      rvest::html_table(),
+    error = function(cnd) {
+      cli::cli_warn("No match info available for contest {contest}.")
+      return(invisible())
+    }
+  )
+  if (inherits(live_url, "LiveHTML")) {
+    live_url$session$close()
+  } else {
+    cli::cli_warn("No match info available for contest {contest}.")
+    return(invisible())
+  }
+  rm(live_url)
+
+  # pbp_all <- tryCatch(
+  #   error = function(cnd) {
+  #     cli::cli_warn("No website available for contest {contest}.")
+  #   },
+  #   request_url(url = url) |>
+  #     httr2::resp_body_html() |>
+  #     rvest::html_elements("table") |>
+  #     rvest::html_table()
+  # )
   if (length(pbp_all) == 1) {
     if (grepl(pattern = "No website available for contest", pbp_all)) {
       return(invisible())
@@ -50,10 +74,6 @@ match_pbp <- function(contest = NULL) {
   match_info <- pbp_all[[1]]
 
   # calculate number of sets
-  # num_sets <- match_info[1, which(match_info[1, ] == "S") - 1] |>
-  #   dplyr::pull() |>
-  #   as.numeric()
-  # sets <- 4:(3 + num_sets)
   sets <- 4:(length(pbp_all))
   num_sets <- length(sets)
 
