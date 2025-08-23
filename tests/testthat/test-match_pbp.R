@@ -94,7 +94,7 @@ test_that("match_pbp() warnings trigger correctly", {
   skip_on_ci()
   expect_warning(
     match_pbp(contest = "5675914"),
-    "No website available for contest"
+    "Set information not available for contest 5675914"
   )
   expect_warning(
     match_pbp(contest = "5669768"),
