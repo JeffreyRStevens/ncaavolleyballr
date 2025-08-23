@@ -1,26 +1,26 @@
 test_that("player_season_stats() works", {
   skip_on_cran()
   skip_on_ci()
-  suppressWarnings(neb2024 <- player_season_stats(team_id = "585290"))
+  suppressWarnings(neb2020 <- player_season_stats(team_id = "504517"))
   suppressWarnings(
-    neb2023 <- player_season_stats(team_id = "558878", team_stats = FALSE)
+    neb2020b <- player_season_stats(team_id = "504517", team_stats = FALSE)
   )
   # Should return a data frame
-  expect_true(is.data.frame(neb2024))
-  expect_s3_class(neb2024, "data.frame")
+  expect_true(is.data.frame(neb2020))
+  expect_s3_class(neb2020, "data.frame")
 
   # Should have expected column names
   expected_cols <- c("Season", "Team", "Conference", "Number", "Player")
-  expect_true(all(expected_cols %in% names(neb2024)))
-  expect_true(length(names(neb2024)) >= length(expected_cols))
+  expect_true(all(expected_cols %in% names(neb2020)))
+  expect_true(length(names(neb2020)) >= length(expected_cols))
 
   # Check returned values
-  expect_equal(neb2024$Player[1], "Bergen Reilly")
-  expect_equal(neb2024$Assists[1], 1352)
-  expect_equal(neb2023$Player[1], "Bergen Reilly")
-  expect_equal(neb2023$Assists[1], 1272)
-  expect_equal(nrow(neb2023), 13)
-  expect_equal(nrow(neb2024), 16)
+  expect_equal(neb2020$Player[1], "Nicklin Hames")
+  expect_equal(neb2020$Assists[1], 720)
+  expect_equal(neb2020b$Player[1], "Nicklin Hames")
+  expect_equal(neb2020b$Assists[1], 720)
+  expect_equal(nrow(neb2020b), 14)
+  expect_equal(nrow(neb2020), 17)
 })
 
 test_that("player_season_stats() errors trigger correctly", {

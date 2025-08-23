@@ -5,20 +5,18 @@ test_that("group_stats() works at team season level", {
     group_stats(
       teams = c("Nebraska", "UCLA"),
       level = "teamseason",
-      year = 2024
+      year = 2020
     )$playerdata$Player[1],
-    "Bergen Reilly"
+    "Nicklin Hames"
   )
   expect_equal(
     group_stats(
       teams = "UCLA",
-      year = 2023,
+      year = 2020,
       level = "teamseason",
       sport = "MVB"
-    )$playerdata$Player[
-      1
-    ],
-    "Hideharu Nakamura"
+    )$playerdata$Player[1],
+    "Kyle Vom Steeg"
   )
 })
 
@@ -26,10 +24,10 @@ test_that("group_stats() works at team match level", {
   skip_on_cran()
   skip_on_ci()
   expect_equal(
-    group_stats(teams = "Nebraska", year = 2024, level = "teammatch")$Opponent[
+    group_stats(teams = "Nebraska", year = 2020, level = "teammatch")$Opponent[
       1
     ],
-    "Kentucky @Louisville, KY"
+    "@ Indiana"
   )
 })
 
@@ -37,8 +35,8 @@ test_that("group_stats() works at player match level", {
   skip_on_cran()
   skip_on_ci()
   expect_equal(
-    group_stats(teams = "Nebraska", year = 2024, level = "match")$Player[1],
-    "Rebekah Allick"
+    group_stats(teams = "Nebraska", year = 2020, level = "match")$Player[1],
+    "Keonilei Akana"
   )
 })
 
@@ -46,8 +44,8 @@ test_that("group_stats() works at pbp level", {
   skip_on_cran()
   skip_on_ci()
   expect_equal(
-    group_stats(teams = "Nebraska", year = 2024, level = "pbp")$home_team[1],
-    "Kentucky"
+    group_stats(teams = "Nebraska", year = 2020, level = "pbp")$home_team[1],
+    "Indiana"
   )
 })
 
