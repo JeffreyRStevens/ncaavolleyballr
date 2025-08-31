@@ -50,15 +50,6 @@ match_pbp <- function(contest = NULL) {
   }
   rm(live_url)
 
-  # pbp_all <- tryCatch(
-  #   error = function(cnd) {
-  #     cli::cli_warn("No website available for contest {contest}.")
-  #   },
-  #   request_url(url = url) |>
-  #     httr2::resp_body_html() |>
-  #     rvest::html_elements("table") |>
-  #     rvest::html_table()
-  # )
   if (length(pbp_all) == 1) {
     if (grepl(pattern = "No website available for contest", pbp_all)) {
       return(invisible())
