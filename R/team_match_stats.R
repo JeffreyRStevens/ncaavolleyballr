@@ -32,24 +32,31 @@ team_match_stats <- function(team_id = NULL, sport = "WVB") {
   # get team info and request URL
   team_info <- get_team_info(team_id)
   team_url <- paste0("https://stats.ncaa.org/teams/", team_id)
-  resp <- tryCatch(
-    request_url(url = team_url),
+  live_url <- tryCatch(
+    request_live_url(team_url),
     error = function(cnd) {
       cli::cli_warn("No website available for team ID {team_id}.")
-    }
-  )
-  if (length(resp) == 1) {
-    if (grepl(pattern = "No website available for team ID", resp)) {
       return(invisible())
     }
+  )
+  gbg_page <- tryCatch(
+    live_url |>
+      rvest::html_elements(".nav-link") |>
+      rvest::html_attr("href") |>
+      stringr::str_subset("/players/\\d+"),
+    error = function(cnd) {
+      cli::cli_warn("No match info available for team ID {team_id}.")
+      return(invisible())
+    }
+  )
+  if (inherits(live_url, "LiveHTML")) {
+    live_url$session$close()
+  } else {
+    cli::cli_warn("No match info available for team ID {team_id}.")
+    return(invisible())
   }
+  rm(live_url)
 
-  # extract arena info
-  gbg_page <- resp |>
-    httr2::resp_body_html() |>
-    rvest::html_elements(".nav-link") |>
-    rvest::html_attr("href") |>
-    stringr::str_subset("/players/\\d+")
   gbg_url <- paste0("https://stats.ncaa.org", gbg_page)
   gbg_num <- sub("/players/", "", gbg_page)
   gbg_id <- paste0("#game_log_", gbg_num, "_player")
