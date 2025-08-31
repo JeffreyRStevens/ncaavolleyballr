@@ -1,19 +1,19 @@
 test_that("team_season_info() works", {
   skip_on_cran()
   skip_on_ci()
-  expect_silent(neb2024 <- team_season_info(team_id = "585290"))
-  names(neb2024$record) <- NULL
+  expect_silent(neb2020 <- team_season_info(team_id = "504517"))
+  names(neb2020$record) <- NULL
   # Should return a list
-  expect_true(is.list(neb2024))
-  expect_type(neb2024, "list")
+  expect_true(is.list(neb2020))
+  expect_type(neb2020, "list")
 
   # Should have expected list elements
   expected_elements <- c("team_info", "arena", "coach", "record", "schedule")
-  expect_true(all(expected_elements %in% names(neb2024)))
-  expect_equal(length(neb2024), length(expected_elements))
+  expect_true(all(expected_elements %in% names(neb2020)))
+  expect_equal(length(neb2020), length(expected_elements))
 
   # Check returned values
-  expect_equal(neb2024$record[1], "33-3 (0.917)")
+  expect_equal(neb2020$record[1], "16-3 (0.842)")
 })
 
 test_that("team_season_info() errors trigger correctly", {
