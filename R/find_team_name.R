@@ -21,8 +21,12 @@
 #' @examplesIf interactive()
 #' find_team_name(pattern = "Neb")
 find_team_name <- function(pattern = NULL) {
-  if (is.null(pattern)) cli::cli_abort("Enter valid pattern as a character string.")
-  if (!is.character(pattern)) cli::cli_abort("Enter valid pattern as a character string.")
+  if (is.null(pattern)) {
+    cli::cli_abort("Enter valid pattern as a character string.")
+  }
+  if (!is.character(pattern)) {
+    cli::cli_abort("Enter valid pattern as a character string.")
+  }
 
   ncaavolleyballr::ncaa_teams[grep(pattern, ncaavolleyballr::ncaa_teams)]
 }

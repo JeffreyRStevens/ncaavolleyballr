@@ -61,23 +61,39 @@ single_season_stats <- function(team_id, opponent) {
   )
 
   # extract season table
-  table <- tryCatch(
+  live_url <- tryCatch(
+    request_live_url(team_url),
     error = function(cnd) {
       cli::cli_warn("No website available for team ID {team_id}.")
-    },
-    request_url(url = team_url) |>
-      httr2::resp_body_html() |>
-      rvest::html_element("table") |>
-      rvest::html_table()
-  )
-  if (length(table) == 1) {
-    if (grepl(pattern = "No website available for team ID", table)) {
       return(invisible())
     }
+  )
+  output <- tryCatch(
+    live_url |>
+      rvest::html_elements("table") |>
+      rvest::html_table(),
+    error = function(cnd) {
+      cli::cli_warn("No match info available for team ID {team_id}.")
+      return(invisible())
+    }
+  )
+  if (inherits(live_url, "LiveHTML")) {
+    live_url$session$close()
+  } else {
+    cli::cli_warn("No match info available for team ID {team_id}.")
+    return(invisible())
+  }
+  rm(live_url)
+
+  if (length(output) == 1) {
+    if (grepl(pattern = "No website available for team ID", output)) {
+      return(invisible())
+    }
+  } else {
+    table <- output[[2]]
   }
 
-  # check that table is complete
-  if (nrow(table) == 0 || !"Player" %in% colnames(table)) {
+  if (nrow(table) <= 1 || !"Player" %in% colnames(table)) {
     cli::cli_warn(
       "No {team_info$yr[1]} season stats available for {team_info$team_name[1]} (team ID {team_id})."
     )

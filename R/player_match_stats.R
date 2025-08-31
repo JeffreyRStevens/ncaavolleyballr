@@ -73,15 +73,6 @@ player_match_stats <- function(
   }
   rm(live_url)
 
-  # match_all <- tryCatch(
-  #   error = function(cnd) {
-  #     cli::cli_warn("No website available for contest {contest}.")
-  #   },
-  #   request_url(url = url) |>
-  #     httr2::resp_body_html() |>
-  #     rvest::html_elements("table") |>
-  #     rvest::html_table()
-  # )
   if (length(match_all) <= 1) {
     cli::cli_warn("No website available for contest {contest}.")
     # if (grepl(pattern = "No website available for contest", match_all)) {

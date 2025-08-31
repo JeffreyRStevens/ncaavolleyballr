@@ -1,4 +1,3 @@
-
 #' Extract arena, coach, record, and schedule information for a particular team
 #' and season
 #'
@@ -31,19 +30,36 @@ team_season_info <- function(team_id = NULL) {
   team_info <- get_team_info(team_id)
 
   url <- paste0("https://stats.ncaa.org/teams/", team_id)
-  resp <- tryCatch(
+  live_url <- tryCatch(
+    request_live_url(url),
     error = function(cnd) {
       cli::cli_warn("No website available for team ID {team_id}.")
-    },
-    request_url(url = url)
+      return(invisible())
+    }
   )
-  if (length(resp) == 1) {
-    if (grepl(pattern = "No website available for team ID", resp)) return(invisible())
-  }
+  # resp <- tryCatch(
+  #   live_url,
+  #   error = function(cnd) {
+  #     cli::cli_warn("No match info available for team ID {team_id}.")
+  #     return(invisible())
+  #   }
+  # )
+
+  # resp <- tryCatch(
+  #   error = function(cnd) {
+  #     cli::cli_warn("No website available for team ID {team_id}.")
+  #   },
+  #   request_url(url = url)
+  # )
+  # if (length(resp) == 1) {
+  #   if (grepl(pattern = "No website available for team ID", resp)) {
+  #     return(invisible())
+  #   }
+  # }
 
   # extract arena info
-  arena <- resp |>
-    httr2::resp_body_html() |>
+  arena <- live_url |>
+    # httr2::resp_body_html() |>
     rvest::html_element(".mb-0") |>
     rvest::html_text() |>
     stringr::str_split_1("\n      \n") |>
@@ -52,8 +68,8 @@ team_season_info <- function(team_id = NULL) {
   names(arena) <- c("Arena name", "Capacity", "Year built")
 
   # extract coach info
-  coach <- resp |>
-    httr2::resp_body_html() |>
+  coach <- live_url |>
+    # httr2::resp_body_html() |>
     rvest::html_elements(".mb-0") |>
     rvest::html_text()
   if (coach[8] == "Primary Venue:") {
@@ -70,27 +86,60 @@ team_season_info <- function(team_id = NULL) {
   names(coach) <- c("Name", "Alma mater", "Seasons", "Record")
 
   # extract record info
-  record <- resp |>
-    httr2::resp_body_html() |>
+  record <- live_url |>
     rvest::html_elements(".row") |>
-    rvest::html_elements("span") |>
+    rvest::html_elements(".card-body.p-0") |>
     rvest::html_text() |>
-    stringr::str_trim()
-  record <- record[-1]
-  names(record) <- c("Overall record", "Overall streak", "Conference record",
-                     "Conference streak", "Home record", "Home streak",
-                     "Road record", "Road streak", "Neutral record",
-                     "Neutral streak", "Non-division record",
-                     "Non-division streak")
+    stringr::str_split("\\n\\s+")
+  record <- record[[1]][
+    !record[[1]] %in%
+      c(
+        "",
+        "Overall",
+        "Conference",
+        "Home",
+        "Road",
+        "Neutral",
+        "Neutral ",
+        "Non-Division"
+      )
+  ]
+  names(record) <- c(
+    "Overall record",
+    "Overall streak",
+    "Conference record",
+    "Conference streak",
+    "Home record",
+    "Home streak",
+    "Road record",
+    "Road streak",
+    "Neutral record",
+    "Neutral streak",
+    "Non-division record",
+    "Non-division streak"
+  )
 
   # extract schedule info
-  schedule <- resp |>
-    httr2::resp_body_html() |>
+  schedule <- live_url |>
+    # httr2::resp_body_html() |>
     rvest::html_element("table") |>
     rvest::html_table() |>
     dplyr::filter(.data$Date != "")
 
-  output <- list(team_info = team_info, arena = arena, coach = coach,
-                 record = record, schedule = schedule)
+  if (inherits(live_url, "LiveHTML")) {
+    live_url$session$close()
+  } else {
+    cli::cli_warn("No match info available for team ID {team_id}.")
+    return(invisible())
+  }
+  rm(live_url)
+
+  output <- list(
+    team_info = team_info,
+    arena = arena,
+    coach = coach,
+    record = record,
+    schedule = schedule
+  )
   return(output)
 }

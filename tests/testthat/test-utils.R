@@ -486,14 +486,6 @@ test_that("get_team_info() works correctly", {
 test_that("html_table_raw() works", {
   skip_on_cran()
   skip_on_ci()
-  team_id <- "585290"
-  url <- paste0("https://stats.ncaa.org/teams/", team_id)
-  resp <- request_url(url)
-
-  html_table <- resp |>
-    httr2::resp_body_html() |>
-    rvest::html_element("table")
-
-  schedule <- html_table |> html_table_raw()
-  expect_equal(schedule$Date[1], "<td>08/27/2024</td>")
+  schedule <- find_team_contests(team_id = "585290")
+  expect_equal(schedule$date[1], "08/27/2024")
 })
