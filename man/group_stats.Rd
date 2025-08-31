@@ -7,7 +7,7 @@
 group_stats(
   teams = NULL,
   year = NULL,
-  level = "season",
+  level = "teamseason",
   unique = TRUE,
   sport = "WVB"
 )

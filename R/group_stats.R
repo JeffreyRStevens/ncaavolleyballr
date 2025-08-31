@@ -45,7 +45,7 @@
 group_stats <- function(
   teams = NULL,
   year = NULL,
-  level = "season",
+  level = "teamseason",
   unique = TRUE,
   sport = "WVB"
 ) {
