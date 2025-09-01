@@ -7,7 +7,9 @@ test_that("team_season_stats() works", {
   expect_true(is.data.frame(nebseasons))
   expect_s3_class(nebseasons, "data.frame")
 
-  # Should have expected column names
+  # Should have expected dimensions and column names
+  expect_equal(nrow(nebseasons), 6)
+  expect_equal(ncol(nebseasons), 24)
   expected_cols <- c("Season", "Team", "Conference", "S")
   expect_true(all(expected_cols %in% names(nebseasons)))
   expect_true(length(names(nebseasons)) >= length(expected_cols))
