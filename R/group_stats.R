@@ -29,13 +29,7 @@
 #'
 #' @export
 #'
-#' @note
-#' This function **requires internet connectivity** as it checks the
-#' [NCAA website](https://stats.ncaa.org) for information.
-#' The "teammatch" level uses the
-#' [`{chromote}`](https://rstudio.github.io/chromote/) package
-#' and **requires [Google Chrome](https://www.google.com/chrome/)** to be
-#' installed.
+#' @inherit request_live_url note
 #'
 #' @family functions that aggregate statistics
 #'

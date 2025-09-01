@@ -17,9 +17,7 @@
 #'
 #' @export
 #'
-#' @note
-#' This function **requires internet connectivity** as it checks the
-#' [NCAA website](https://stats.ncaa.org) for information.
+#' @inherit request_live_url note
 #'
 #' @family functions that extract player statistics
 #'

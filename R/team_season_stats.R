@@ -14,12 +14,7 @@
 #'
 #' @export
 #'
-#' @note
-#' This function **requires internet connectivity** as it checks the
-#' [NCAA website](https://stats.ncaa.org) for information.
-#'
-#' Due to changes in the NCAA website, statistics from before 2020 are no
-#' longer available.
+#' @inherit request_live_url note
 #'
 #' @family functions that extract team statistics
 #'

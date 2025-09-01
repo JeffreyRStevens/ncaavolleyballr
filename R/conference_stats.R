@@ -15,7 +15,7 @@
 #'
 #' @export
 #'
-#' @inherit group_stats note
+#' @inherit request_live_url note
 #'
 #' @family functions that aggregate statistics
 #'

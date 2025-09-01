@@ -14,9 +14,7 @@
 #'
 #' @export
 #'
-#' @note
-#' This function **requires internet connectivity** as it checks the
-#' [NCAA website](https://stats.ncaa.org) for information.
+#' @inherit request_live_url note
 #'
 #' @family functions that extract team statistics
 #'
@@ -37,25 +35,6 @@ team_season_info <- function(team_id = NULL) {
       return(invisible())
     }
   )
-  # resp <- tryCatch(
-  #   live_url,
-  #   error = function(cnd) {
-  #     cli::cli_warn("No match info available for team ID {team_id}.")
-  #     return(invisible())
-  #   }
-  # )
-
-  # resp <- tryCatch(
-  #   error = function(cnd) {
-  #     cli::cli_warn("No website available for team ID {team_id}.")
-  #   },
-  #   request_url(url = url)
-  # )
-  # if (length(resp) == 1) {
-  #   if (grepl(pattern = "No website available for team ID", resp)) {
-  #     return(invisible())
-  #   }
-  # }
 
   # extract arena info
   arena <- live_url |>

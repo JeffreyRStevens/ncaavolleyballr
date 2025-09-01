@@ -44,8 +44,7 @@ data frame.
 \note{
 This function \strong{requires internet connectivity} as it checks the
 \href{https://stats.ncaa.org}{NCAA website} for information.
-The "teammatch" level uses the
-\href{https://rstudio.github.io/chromote/}{\code{{chromote}}} package
+It also uses the \href{https://rstudio.github.io/chromote/}{\code{{chromote}}} package
 and \strong{requires \href{https://www.google.com/chrome/}{Google Chrome}} to be
 installed.
 }

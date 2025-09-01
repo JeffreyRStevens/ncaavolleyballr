@@ -26,6 +26,8 @@
 #'
 #' @export
 #'
+#' @examplesIf interactive()
+#' get_teams(year = 2020, division = 1, sport = "WVB")
 get_teams <- function(year = NULL, division = 1, sport = "WVB") {
   # check inputs
   check_year(year)
