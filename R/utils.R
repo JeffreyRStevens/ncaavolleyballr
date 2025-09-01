@@ -211,6 +211,15 @@ check_year <- function(year = NULL, single = FALSE) {
   }
 }
 
+#' Find path for Chrome or Chromium
+#'
+#' Uses `chromote::find_chrome()` to find path of Google Chrome or Chromium
+#'
+#' @keywords internal
+#'
+find_chromium <- function() {
+  chromote::find_chrome()
+}
 
 #' Fix teams that change their names
 #'
