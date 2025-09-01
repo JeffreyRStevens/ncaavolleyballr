@@ -131,18 +131,34 @@ find_team_id("Penn St.", 2024) |>
 
 </div>
 
-    #> Warning: No website available for team ID 585406.
-
-From that, we can see that the contest ID is . If we pass this contest
-ID to the `player_match_stats()` function, we'll get a list with two
-data frames (one for each team in the contest) that contain player
+From that, we can see that the contest ID is 6080706. If we pass this
+contest ID to the `player_match_stats()` function, we'll get a list with
+two data frames (one for each team in the contest) that contain player
 statistics for the match. If we want to get just the Penn State player
 data, we can set `team = "Penn St."`.
 
 ``` r
 player_match_stats(contest = "6080706", team = "Penn St.")
-#> Warning: No website available for contest 6080706.
 ```
+
+<div class="kable-table">
+
+| Season | Date | Team | Conference | Opponent Team | Opponent Conference | Location | Number | Player | P | S | Kills | Errors | TotalAttacks | HitPct | Assists | Aces | SErr | Digs | RetAtt | RErr | BlockSolos | BlockAssists | BErr | PTS | BHE |
+|:---|:---|:---|:---|:---|:---|:---|---:|:---|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 2024-2025 | 2024-12-22 | Penn St. | Big Ten | Louisville | ACC | Home | 2 | Ava Falduto | L/DS | 4 | 0 | 0 | 0 | 0.000 | 2 | 2 | 1 | 14 | 24 | 0 | 0 | 0 | 0 | 2.0 | 0 |
+| 2024-2025 | 2024-12-22 | Penn St. | Big Ten | Louisville | ACC | Home | 3 | Gillian Grimes | L/DS | 4 | 0 | 0 | 0 | 0.000 | 7 | 1 | 3 | 16 | 23 | 1 | 0 | 0 | 0 | 1.0 | 0 |
+| 2024-2025 | 2024-12-22 | Penn St. | Big Ten | Louisville | ACC | Home | 8 | Camryn Hannah | OH | 4 | 19 | 9 | 42 | 0.238 | 0 | 1 | 4 | 3 | 9 | 2 | 1 | 1 | 0 | 21.5 | 0 |
+| 2024-2025 | 2024-12-22 | Penn St. | Big Ten | Louisville | ACC | Home | 14 | Caroline Jurevicius | OH | 4 | 10 | 4 | 26 | 0.231 | 0 | 0 | 0 | 3 | 0 | 0 | 0 | 2 | 0 | 11.0 | 0 |
+| 2024-2025 | 2024-12-22 | Penn St. | Big Ten | Louisville | ACC | Home | 44 | Maggie Mendelson | MB | 4 | 6 | 1 | 14 | 0.357 | 1 | 0 | 0 | 1 | 0 | 0 | 1 | 5 | 0 | 9.5 | 0 |
+| 2024-2025 | 2024-12-22 | Penn St. | Big Ten | Louisville | ACC | Home | 24 | Quinn Menger | DS | 4 | 0 | 0 | 0 | 0.000 | 0 | 0 | 1 | 4 | 0 | 0 | 0 | 0 | 0 | 0.0 | 0 |
+| 2024-2025 | 2024-12-22 | Penn St. | Big Ten | Louisville | ACC | Home | 9 | Jess Mruzik | OH | 4 | 29 | 6 | 73 | 0.315 | 1 | 1 | 1 | 14 | 22 | 1 | 1 | 4 | 2 | 33.0 | 1 |
+| 2024-2025 | 2024-12-22 | Penn St. | Big Ten | Louisville | ACC | Home | 11 | Jocelyn Nathan | L/DS | 4 | 0 | 0 | 0 | 0.000 | 3 | 1 | 0 | 10 | 10 | 0 | 0 | 0 | 0 | 1.0 | 0 |
+| 2024-2025 | 2024-12-22 | Penn St. | Big Ten | Louisville | ACC | Home | 21 | Izzy Starck | S | 4 | 0 | 2 | 7 | -0.286 | 55 | 1 | 3 | 13 | 0 | 0 | 0 | 1 | 0 | 1.5 | 0 |
+| 2024-2025 | 2024-12-22 | Penn St. | Big Ten | Louisville | ACC | Home | 1 | Taylor Trammell | MB | 4 | 8 | 1 | 15 | 0.467 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 0 | 9.5 | 0 |
+| 2024-2025 | 2024-12-22 | Penn St. | Big Ten | Louisville | ACC | Home | NA | TEAM |  | 0 | 0 | 0 | 0 | 0.000 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0.0 | 0 |
+| 2024-2025 | 2024-12-22 | Penn St. | Big Ten | Louisville | ACC | Home | NA | Penn St. |  | 4 | 72 | 23 | 177 | 0.277 | 69 | 7 | 13 | 78 | 88 | 4 | 3 | 16 | 2 | 90.0 | 1 |
+
+</div>
 
 ### Play-by-play data
 
@@ -152,9 +168,24 @@ data frame with all events and players.
 ``` r
 match_pbp(contest = "6080706") |> 
   head(10)
-#> Warning: No website available for contest 6080706.
-#> NULL
 ```
+
+<div class="kable-table">
+
+| set | away_team | home_team | score | team | event | player | description |
+|:---|:---|:---|:---|:---|:---|:---|:---|
+| 1 | Louisville | Penn St. | 0-0 | Louisville | Serve | Payton Petersen | Payton Petersen serves |
+| 1 | Louisville | Penn St. | 0-0 | Penn St. | Reception | Jocelyn Nathan | Reception by Jocelyn Nathan |
+| 1 | Louisville | Penn St. | 0-0 | Penn St. | Set | Izzy Starck | Set by Izzy Starck |
+| 1 | Louisville | Penn St. | 0-0 | Penn St. | Attack | Taylor Trammell | Attack by Taylor Trammell |
+| 1 | Louisville | Penn St. | 0-1 | Penn St. | First ball kill | Taylor Trammell | First ball kill by Taylor Trammell |
+| 1 | Louisville | Penn St. | 0-1 | Penn St. | Serve | Gillian Grimes | Gillian Grimes serves |
+| 1 | Louisville | Penn St. | 0-1 | Louisville | Reception | Payton Petersen | Reception by Payton Petersen |
+| 1 | Louisville | Penn St. | 0-1 | Louisville | Set | Elle Glock | Set by Elle Glock |
+| 1 | Louisville | Penn St. | 0-1 | Louisville | Attack | Cara Cresse | Attack by Cara Cresse |
+| 1 | Louisville | Penn St. | 1-1 | Louisville | First ball kill | Cara Cresse | First ball kill by Cara Cresse |
+
+</div>
 
 ### Other functionality
 
