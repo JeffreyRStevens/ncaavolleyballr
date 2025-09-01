@@ -1,7 +1,7 @@
 Package: ncaavolleyballr
 Type: Package
 Title: Extract Data from NCAA Women's and Men's Volleyball Website
-Version: 0.4.3.9000
+Version: 0.4.3.9001
 Authors@R: 
     person("Jeffrey R.", "Stevens", , "jeffrey.r.stevens@protonmail.com", 
     role = c("aut", "cre", "cph"),
@@ -20,6 +20,7 @@ Depends:
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Imports: 
+    chromote,
     cli,
     curl,
     dplyr,
@@ -33,7 +34,6 @@ Imports:
     tidyr,
     xml2
 Suggests: 
-    chromote,
     knitr,
     rmarkdown,
     testthat (>= 3.0.0)
