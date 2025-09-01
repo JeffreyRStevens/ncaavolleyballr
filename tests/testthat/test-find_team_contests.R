@@ -1,7 +1,10 @@
 test_that("find_team_contests() works", {
   skip_on_cran()
   skip_on_ci()
-  expect_equal(find_team_contests(team_id = "585290")$contest[1], "5362360")
+  neb2020 <- find_team_contests(team_id = "504517")
+  expect_equal(neb2020$contest[1], "2001682")
+  expect_equal(nrow(neb2020), 25)
+  expect_equal(ncol(neb2020), 6)
 })
 
 test_that("find_team_contests() errors trigger correctly", {

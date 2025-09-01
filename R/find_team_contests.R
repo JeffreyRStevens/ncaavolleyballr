@@ -13,9 +13,7 @@
 #'
 #' @export
 #'
-#' @note
-#' This function **requires internet connectivity** as it checks the
-#' [NCAA website](https://stats.ncaa.org) for information.
+#' @inherit request_live_url note
 #'
 #' @examplesIf interactive()
 #' find_team_contests(team_id = "585290")
@@ -39,7 +37,9 @@ find_team_contests <- function(team_id = NULL) {
   )
   html_table <- tryCatch(
     live_url |>
-      rvest::html_elements("table"),
+      rvest::html_elements(
+        css = "div.row:nth-child(4) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > table:nth-child(1)"
+      ),
     error = function(cnd) {
       cli::cli_warn("No match info available for team ID {team_id}.")
       return(invisible())

@@ -7,10 +7,15 @@ test_that("team_season_info() works", {
   expect_true(is.list(neb2020))
   expect_type(neb2020, "list")
 
-  # Should have expected list elements
+  # Should have expected list elements and dimensions
   expected_elements <- c("team_info", "arena", "coach", "record", "schedule")
   expect_true(all(expected_elements %in% names(neb2020)))
   expect_equal(length(neb2020), length(expected_elements))
+  expect_equal(length(neb2020$team_info), 7)
+  expect_equal(length(neb2020$arena), 3)
+  expect_equal(length(neb2020$coach), 4)
+  expect_equal(length(neb2020$record), 12)
+  expect_equal(nrow(neb2020$schedule), 25)
 
   # Check returned values
   expect_equal(neb2020$record[1], "16-3 (0.842)")

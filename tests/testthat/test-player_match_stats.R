@@ -16,7 +16,9 @@ test_that("player_match_stats() works", {
   expect_true(is.data.frame(final2024))
   expect_s3_class(final2024, "data.frame")
 
-  # Should have expected column names
+  # Should have expected dimensions and column names
+  expect_equal(nrow(final2024), 26)
+  expect_equal(ncol(final2024), 26)
   expected_cols <- c(
     "Season",
     "Date",

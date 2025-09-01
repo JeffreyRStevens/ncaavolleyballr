@@ -15,5 +15,8 @@ Submit URL request via live browser
 \note{
 This function \strong{requires internet connectivity} as it checks the
 \href{https://stats.ncaa.org}{NCAA website} for information.
+It also uses the \href{https://rstudio.github.io/chromote/}{\code{{chromote}}} package
+and \strong{requires \href{https://www.google.com/chrome/}{Google Chrome}} to be
+installed.
 }
 \keyword{internal}

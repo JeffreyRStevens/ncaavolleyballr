@@ -24,6 +24,9 @@ information from an object called \code{output}, use \code{output$coach}).
 \note{
 This function \strong{requires internet connectivity} as it checks the
 \href{https://stats.ncaa.org}{NCAA website} for information.
+It also uses the \href{https://rstudio.github.io/chromote/}{\code{{chromote}}} package
+and \strong{requires \href{https://www.google.com/chrome/}{Google Chrome}} to be
+installed.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

@@ -2,12 +2,14 @@ test_that("team_match_stats() works", {
   skip_on_cran()
   skip_on_ci()
   chromote::local_chrome_version("system", quiet = TRUE)
-  expect_silent(neb2024 <- team_match_stats(team_id = "585290"))
+  expect_silent(neb2020 <- team_match_stats(team_id = "504517"))
   # Should return a data frame
-  expect_true(is.data.frame(neb2024))
-  expect_s3_class(neb2024, "data.frame")
+  expect_true(is.data.frame(neb2020))
+  expect_s3_class(neb2020, "data.frame")
 
-  # Should have expected column names
+  # Should have expected dimensions and column names
+  expect_equal(nrow(neb2020), 25)
+  expect_equal(ncol(neb2020), 23)
   expected_cols <- c(
     "Season",
     "Date",
@@ -17,13 +19,11 @@ test_that("team_match_stats() works", {
     "Result",
     "S"
   )
-  expect_true(all(expected_cols %in% names(neb2024)))
-  expect_true(length(names(neb2024)) >= length(expected_cols))
+  expect_true(all(expected_cols %in% names(neb2020)))
+  expect_true(length(names(neb2020)) >= length(expected_cols))
 
   # Check returned values
-  expect_equal(nrow(neb2024), 36)
-  expect_equal(ncol(neb2024), 22)
-  expect_equal(neb2024[neb2024$Date == "08/27/2024", ]$Kills, 47)
+  expect_equal(neb2020[neb2020$Date == "04/19/2021", ]$Kills, 44)
 })
 
 test_that("team_match_stats() errors trigger correctly", {

@@ -12,9 +12,7 @@
 #'
 #' @export
 #'
-#' @note
-#' This function **requires internet connectivity** as it checks the
-#' [NCAA website](https://stats.ncaa.org) for information.
+#' @inherit request_live_url note
 #'
 #' @examplesIf interactive()
 #' match_pbp(contest = "6080706")
