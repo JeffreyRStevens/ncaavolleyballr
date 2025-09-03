@@ -1,0 +1,182 @@
+---
+title: "Data"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Scraping large datasets from the NCAA stats pages can take a long time. So I have already scraped all of the data from 2020-2024 and stored it here. This currently includes team and player season data, team and player match data, and match play-by-play data for women's and men's Division 1, 2, and 3 volleyball from 2020-2024. 
+
+Each sport (`wvb` = women's, `mvb` = men's), data level (`teamseason` = team season, `playerseason` = player season, `teammatch` = team match, `playermatch` = player match, `pbp` = match play-by-play), division (1, 2, 3), and year (2020-2024) combination is a separate file. <!--For instance, the women's team season data for division 1 in 2020 can be found in `wvb_teamseason_div1_2020.csv`. -->
+
+
+<details>
+
+<summary> Team season statistics </summary>
+
+* [Women's Division 1 2020]()
+* [Women's Division 1 2021]()
+* [Women's Division 1 2022]()
+* [Women's Division 1 2023]()
+* [Women's Division 1 2024]()
+* [Women's Division 2 2020]()
+* [Women's Division 2 2021]()
+* [Women's Division 2 2022]()
+* [Women's Division 2 2023]()
+* [Women's Division 2 2024]()
+* [Women's Division 3 2020]()
+* [Women's Division 3 2021]()
+* [Women's Division 3 2022]()
+* [Women's Division 3 2023]()
+* [Women's Division 3 2024]()
+
+* [Men's Division 1 2020]()
+* [Men's Division 1 2021]()
+* [Men's Division 1 2022]()
+* [Men's Division 1 2023]()
+* [Men's Division 1 2024]()
+* [Men's Division 3 2020]()
+* [Men's Division 3 2021]()
+* [Men's Division 3 2022]()
+* [Men's Division 3 2023]()
+* [Men's Division 3 2024]()
+
+</details>
+
+
+<details>
+
+<summary> Team match statistics </summary>
+
+* [Women's Division 1 2020]()
+* [Women's Division 1 2021]()
+* [Women's Division 1 2022]()
+* [Women's Division 1 2023]()
+* [Women's Division 1 2024]()
+* [Women's Division 2 2020]()
+* [Women's Division 2 2021]()
+* [Women's Division 2 2022]()
+* [Women's Division 2 2023]()
+* [Women's Division 2 2024]()
+* [Women's Division 3 2020]()
+* [Women's Division 3 2021]()
+* [Women's Division 3 2022]()
+* [Women's Division 3 2023]()
+* [Women's Division 3 2024]()
+
+* [Men's Division 1 2020]()
+* [Men's Division 1 2021]()
+* [Men's Division 1 2022]()
+* [Men's Division 1 2023]()
+* [Men's Division 1 2024]()
+* [Men's Division 3 2020]()
+* [Men's Division 3 2021]()
+* [Men's Division 3 2022]()
+* [Men's Division 3 2023]()
+* [Men's Division 3 2024]()
+
+</details>
+
+
+<details>
+
+<summary> Player season statistics </summary>
+
+* [Women's Division 1 2020]()
+* [Women's Division 1 2021]()
+* [Women's Division 1 2022]()
+* [Women's Division 1 2023]()
+* [Women's Division 1 2024]()
+* [Women's Division 2 2020]()
+* [Women's Division 2 2021]()
+* [Women's Division 2 2022]()
+* [Women's Division 2 2023]()
+* [Women's Division 2 2024]()
+* [Women's Division 3 2020]()
+* [Women's Division 3 2021]()
+* [Women's Division 3 2022]()
+* [Women's Division 3 2023]()
+* [Women's Division 3 2024]()
+
+* [Men's Division 1 2020]()
+* [Men's Division 1 2021]()
+* [Men's Division 1 2022]()
+* [Men's Division 1 2023]()
+* [Men's Division 1 2024]()
+* [Men's Division 3 2020]()
+* [Men's Division 3 2021]()
+* [Men's Division 3 2022]()
+* [Men's Division 3 2023]()
+* [Men's Division 3 2024]()
+
+</details>
+
+
+<details>
+
+<summary> Player match statistics </summary>
+
+* [Women's Division 1 2020]()
+* [Women's Division 1 2021]()
+* [Women's Division 1 2022]()
+* [Women's Division 1 2023]()
+* [Women's Division 1 2024]()
+* [Women's Division 2 2020]()
+* [Women's Division 2 2021]()
+* [Women's Division 2 2022]()
+* [Women's Division 2 2023]()
+* [Women's Division 2 2024]()
+* [Women's Division 3 2020]()
+* [Women's Division 3 2021]()
+* [Women's Division 3 2022]()
+* [Women's Division 3 2023]()
+* [Women's Division 3 2024]()
+
+* [Men's Division 1 2020]()
+* [Men's Division 1 2021]()
+* [Men's Division 1 2022]()
+* [Men's Division 1 2023]()
+* [Men's Division 1 2024]()
+* [Men's Division 3 2020]()
+* [Men's Division 3 2021]()
+* [Men's Division 3 2022]()
+* [Men's Division 3 2023]()
+* [Men's Division 3 2024]()
+
+</details>
+
+
+<details>
+
+<summary> Match play-by-play statistics </summary>
+
+* [Women's Division 1 2020]()
+* [Women's Division 1 2021]()
+* [Women's Division 1 2022]()
+* [Women's Division 1 2023]()
+* [Women's Division 1 2024]()
+* [Women's Division 2 2020]()
+* [Women's Division 2 2021]()
+* [Women's Division 2 2022]()
+* [Women's Division 2 2023]()
+* [Women's Division 2 2024](../../data-csv/wvb_pbp_div2_2024.csv)
+* [Women's Division 3 2020]()
+* [Women's Division 3 2021]()
+* [Women's Division 3 2022]()
+* [Women's Division 3 2023]()
+* [Women's Division 3 2024]()
+
+* [Men's Division 1 2020]()
+* [Men's Division 1 2021]()
+* [Men's Division 1 2022]()
+* [Men's Division 1 2023]()
+* [Men's Division 1 2024]()
+* [Men's Division 3 2020]()
+* [Men's Division 3 2021]()
+* [Men's Division 3 2022]()
+* [Men's Division 3 2023]()
+* [Men's Division 3 2024]()
+
+</details>
