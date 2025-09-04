@@ -39,6 +39,12 @@
       <ul class="navbar-nav me-auto">
 <li class="nav-item"><a class="nav-link" href="articles/ncaavolleyballr.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="articles/data.html">Data</a></li>
+  </ul>
+</li>
 <li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
       </ul>
 <ul class="navbar-nav">
@@ -1375,6 +1381,11 @@
 </h3>
 <p>By default, these functions return information on women’s teams, but they can be set to return men’s information by setting <code>sport = "MVB"</code>. You can also aggregate data across conferences, divisions, or custom groups with <code><a href="reference/conference_stats.html">conference_stats()</a></code>, <code><a href="reference/division_stats.html">division_stats()</a></code>, and <code><a href="reference/group_stats.html">group_stats()</a></code>.</p>
 </div>
+</div>
+<div class="section level2">
+<h2 id="scraped-data">Scraped data<a class="anchor" aria-label="anchor" href="#scraped-data"></a>
+</h2>
+<p>Scraping large amounts of data from the NCAA stats site can take a long time and is prone to unstable connections. Accessing the website too frequently or with multiple functions simultaneously can result in your IP address being blocked. To get around this issue, I have scraped all data from 2020-2024 and have posted it on the <a href="https://jeffreyrstevens.github.io/ncaavolleyballr/articles/data.html">data page</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
