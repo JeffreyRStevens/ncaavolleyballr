@@ -195,6 +195,15 @@ You can also aggregate data across conferences, divisions, or custom
 groups with `conference_stats()`, `division_stats()`, and
 `group_stats()`.
 
+## Scraped data
+
+Scraping large amounts of data from the NCAA stats site can take a long
+time and is prone to unstable connections. Accessing the website too
+frequently or with multiple functions simultaneously can result in your
+IP address being blocked. To get around this issue, I have scraped all
+data from 2020-2024 and have posted it on the [data
+page](https://jeffreyrstevens.github.io/ncaavolleyballr/articles/data.html).
+
 ## Citation
 
 To cite

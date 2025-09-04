@@ -16,3 +16,4 @@
 ^CRAN-SUBMISSION$
 ^\.vscode$
 ^[.]?air[.]toml$
+^data-csv$

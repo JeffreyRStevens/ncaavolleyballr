@@ -2,11 +2,11 @@ test_that("request_url() and request_live_url() handle errors gracefully", {
   skip_on_cran()
   skip_on_ci()
   suppressMessages(expect_error(
-    request_url("http://httpbin.org/status/404"),
+    request_url(url = "http://httpbin.org/status/404"),
     "HTTP 404 Not Found."
   ))
-  expect_silent(request_url("http://httpbin.org/"))
-  expect_silent(request_live_url("http://httpbin.org/"))
+  expect_silent(request_url(url = "http://httpbin.org/"))
+  expect_silent(request_live_url(url = "http://httpbin.org/"))
 })
 
 test_that("check_confdiv() validates group parameter correctly", {
