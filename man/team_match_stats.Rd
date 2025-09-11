@@ -30,7 +30,7 @@ and \strong{requires \href{https://www.google.com/chrome/}{Google Chrome}} to be
 installed.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 team_match_stats(team_id = "585290")
 \dontshow{\}) # examplesIf}
 }

@@ -27,7 +27,7 @@ and \strong{requires \href{https://www.google.com/chrome/}{Google Chrome}} to be
 installed.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 match_pbp(contest = "6080706")
 \dontshow{\}) # examplesIf}
 }

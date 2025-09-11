@@ -35,7 +35,7 @@ This function is a modification of the \code{ncaa_teams()} function from the
 \href{https://billpetti.github.io/baseballr/}{\code{{baseballr}}} package.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 get_teams(year = 2020, division = 1, sport = "WVB")
 \dontshow{\}) # examplesIf}
 }

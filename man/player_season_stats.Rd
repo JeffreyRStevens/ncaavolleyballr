@@ -31,7 +31,7 @@ and \strong{requires \href{https://www.google.com/chrome/}{Google Chrome}} to be
 installed.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 player_season_stats(team_id = "585290")
 \dontshow{\}) # examplesIf}
 }

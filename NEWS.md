@@ -1,8 +1,28 @@
 # ncaavolleyballr (development version)
 
+* The 2025 season has begun, and this version has updated the `current_season()` to 2025 to allow scraping this season's data.
+
+* The [package website](https://jeffreyrstevens.github.io/ncaavolleyballr/) now includes a [data page](https://jeffreyrstevens.github.io/ncaavolleyballr/articles/data.html) that includes all data from 2020-2024 as separate files for each sport, data level, dividion, and year.
+
+* Data output now includes contest ID or team ID columns to facilitate joining datasets.
+
+* Most of NCAA's websites now using JavaScript with loading pages, so most functions now use `rvest::read_live_html()`. Unfortunately, this has resulted in much slower processing of data, and large-scale scraping triggers IP address bans.
+
+## Package development
+
+* Chromote sessions are now closed after scraping data.
+
+* Unit testing is greatly expanded and improved to test the code better.
+
+* Documentation uses inherited notes to simplify documentation changes.
+
+* [Air](https://posit-dev.github.io/air/) is now used to format code.
+
+
+
 # ncaavolleyballr 0.4.3
 
-* NCAA's game-by-game website introduced a loading page that disrupted team_season_stats() and team_match_stats(). team_season_stats() now gets the info from a different page. team_match_stats() now uses the rvest::read_live_html() function, which requires the {chromote} package and access to Google Chrome.
+* NCAA's game-by-game website introduced a loading page that disrupted `team_season_stats()` and `team_match_stats()`. `team_season_stats()` now gets the info from a different page. `team_match_stats()` now uses the `rvest::read_live_html()` function, which requires the `{chromote}` package and access to Google Chrome.
 
 * Catch contests with too many sets and return warning instead of error
 
