@@ -138,6 +138,7 @@ player_season_stats <- function(team_id, team_stats = TRUE) {
       ) |>
       dplyr::mutate(
         Season = team_info$season[1],
+        TeamID = team_info$team_id[1],
         Team = team_info$team_name[1],
         Conference = team_info$conference[1],
         .before = 1
@@ -154,6 +155,7 @@ player_season_stats <- function(team_id, team_stats = TRUE) {
       ) |>
       dplyr::mutate(
         Season = team_info$season[1],
+        TeamID = team_info$team_id[1],
         Team = team_info$team_name[1],
         Conference = team_info$conference[1],
         .before = 1

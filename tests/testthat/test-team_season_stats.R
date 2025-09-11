@@ -9,7 +9,7 @@ test_that("team_season_stats() works", {
 
   # Should have expected dimensions and column names
   expect_equal(nrow(nebseasons), 6)
-  expect_equal(ncol(nebseasons), 24)
+  expect_equal(ncol(nebseasons), 25)
   expected_cols <- c("Season", "Team", "Conference", "S")
   expect_true(all(expected_cols %in% names(nebseasons)))
   expect_true(length(names(nebseasons)) >= length(expected_cols))

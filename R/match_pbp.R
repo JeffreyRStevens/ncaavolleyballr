@@ -69,7 +69,8 @@ match_pbp <- function(contest = NULL) {
   # process pbp information for all sets
   purrr::lmap(sets, ~ `[[`(pbp_all, .x) |> process_set()) |>
     purrr::set_names(nm = 1:num_sets) |>
-    purrr::list_rbind(names_to = "set")
+    purrr::list_rbind(names_to = "set") |>
+    dplyr::mutate(contestid = contest, .before = 1)
 }
 
 # process set information in pbp table
