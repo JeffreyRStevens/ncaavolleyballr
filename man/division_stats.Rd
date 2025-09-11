@@ -41,6 +41,12 @@ it aggregates all player data and team data into separate data frames and
 combines them into a list. For match and pbp stats, it aggregates into a
 data frame.
 }
+\details{
+Note: Changes to the NCAA website have made large-scale scraping unstable, and
+can trigger IP address blocks when there are lots of requests. This function
+seems to trigger these blocks frequently now, so use caution when scraping large
+amounts of data.
+}
 \note{
 This function \strong{requires internet connectivity} as it checks the
 \href{https://stats.ncaa.org}{NCAA website} for information.
@@ -49,7 +55,7 @@ and \strong{requires \href{https://www.google.com/chrome/}{Google Chrome}} to be
 installed.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 division_stats(year = 2024, division = 1, level = "teamseason")
 \dontshow{\}) # examplesIf}
 }

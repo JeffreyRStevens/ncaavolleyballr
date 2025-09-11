@@ -6,6 +6,11 @@
 #' combines them into a list. For match and pbp stats, it aggregates into a
 #' data frame.
 #'
+#' Note: Changes to the NCAA website have made large-scale scraping unstable, and
+#' can trigger IP address blocks when there are lots of requests. This function
+#' seems to trigger these blocks frequently now, so use caution when scraping large
+#' amounts of data.
+#'
 #' @inheritParams group_stats
 #' @inheritParams get_teams
 #' @param save Logical for whether to save the statistics locally as CSVs
