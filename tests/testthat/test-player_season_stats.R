@@ -11,7 +11,7 @@ test_that("player_season_stats() works", {
 
   # Should have expected dimensions and column names
   expect_equal(nrow(neb2020), 17)
-  expect_equal(ncol(neb2020), 28)
+  expect_equal(ncol(neb2020), 29)
   expected_cols <- c("Season", "Team", "Conference", "Number", "Player")
   expect_true(all(expected_cols %in% names(neb2020)))
   expect_true(length(names(neb2020)) >= length(expected_cols))

@@ -132,6 +132,7 @@ player_match_stats <- function(
     dplyr::mutate(
       Season = season,
       Date = match_date,
+      ContestID = contest,
       Team = away_team,
       Conference = away_conf,
       `Opponent Team` = home_team,
@@ -145,6 +146,7 @@ player_match_stats <- function(
     dplyr::mutate(
       Season = season,
       Date = match_date,
+      ContestID = contest,
       Team = home_team,
       Conference = home_conf,
       `Opponent Team` = away_team,

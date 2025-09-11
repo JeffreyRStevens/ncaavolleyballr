@@ -42,10 +42,12 @@ single_season_stats <- function(team_id, opponent) {
   # get team info and URL for season
   team_info <- get_team_info(team_id) |>
     dplyr::mutate(
+      TeamID = team_id,
       year = stringr::`str_sub<-`(.data$season, 6, 7, value = "")
     ) |>
     dplyr::select(
       Season = "year",
+      "TeamID",
       Team = "team_name",
       Conference = "conference"
     )

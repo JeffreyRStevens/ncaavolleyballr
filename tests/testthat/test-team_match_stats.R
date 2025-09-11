@@ -9,7 +9,7 @@ test_that("team_match_stats() works", {
 
   # Should have expected dimensions and column names
   expect_equal(nrow(neb2020), 25)
-  expect_equal(ncol(neb2020), 23)
+  expect_equal(ncol(neb2020), 24)
   expected_cols <- c(
     "Season",
     "Date",
