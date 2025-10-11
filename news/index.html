@@ -45,7 +45,7 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="ncaavolleyballr-development-version">ncaavolleyballr (development version)<a class="anchor" aria-label="anchor" href="#ncaavolleyballr-development-version"></a></h2>
 <ul><li><p>The 2025 season has begun, and this version has updated the <code>current_season()</code> to 2025 to allow scraping this season’s data.</p></li>
-<li><p>The <a href="https://jeffreyrstevens.github.io/ncaavolleyballr/">package website</a> now includes a <a href="https://jeffreyrstevens.github.io/ncaavolleyballr/articles/data.html">data page</a> that includes all data from 2020-2024 as separate files for each sport, data level, dividion, and year.</p></li>
+<li><p>The <a href="https://jeffreyrstevens.github.io/ncaavolleyballr/">package website</a> now includes a <a href="https://jeffreyrstevens.github.io/ncaavolleyballr/articles/data.html">data page</a> that includes all data from 2020-2024 as separate files for each sport, data level, division, and year.</p></li>
 <li><p>Data output now includes contest ID or team ID columns to facilitate joining datasets.</p></li>
 <li><p>Most of NCAA’s websites now using JavaScript with loading pages, so most functions now use <code>rvest::read_live_html()</code>. Unfortunately, this has resulted in <strong>much</strong> slower processing of data, and large-scale scraping triggers IP address bans. When encountering errors, try running the function again or at a later time.</p></li>
 </ul><div class="section level3">
