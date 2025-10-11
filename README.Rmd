@@ -54,6 +54,8 @@ library(ncaavolleyballr)
 
 A suite of functions can be used to extract season, match, and play-by-play data for teams and players. See the [Getting Started vignette](https://jeffreyrstevens.github.io/ncaavolleyballr/articles/ncaavolleyballr.html) for a more thorough description of the functions.
 
+Note that changes to the NCAA stats website has greatly slowed data scraping and has resulted in unstable connections. When encountering errors, try running the function again or at a later time.
+
 
 ### Season data
 

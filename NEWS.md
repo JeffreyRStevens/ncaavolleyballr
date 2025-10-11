@@ -6,7 +6,7 @@
 
 * Data output now includes contest ID or team ID columns to facilitate joining datasets.
 
-* Most of NCAA's websites now using JavaScript with loading pages, so most functions now use `rvest::read_live_html()`. Unfortunately, this has resulted in much slower processing of data, and large-scale scraping triggers IP address bans.
+* Most of NCAA's websites now using JavaScript with loading pages, so most functions now use `rvest::read_live_html()`. Unfortunately, this has resulted in **much** slower processing of data, and large-scale scraping triggers IP address bans. When encountering errors, try running the function again or at a later time.
 
 ## Package development
 
