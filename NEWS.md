@@ -2,7 +2,7 @@
 
 * The 2025 season has begun, and this version has updated the `current_season()` to 2025 to allow scraping this season's data.
 
-* The [package website](https://jeffreyrstevens.github.io/ncaavolleyballr/) now includes a [data page](https://jeffreyrstevens.github.io/ncaavolleyballr/articles/data.html) that includes all data from 2020-2024 as separate files for each sport, data level, dividion, and year.
+* The [package website](https://jeffreyrstevens.github.io/ncaavolleyballr/) now includes a [data page](https://jeffreyrstevens.github.io/ncaavolleyballr/articles/data.html) that includes all data from 2020-2024 as separate files for each sport, data level, division, and year.
 
 * Data output now includes contest ID or team ID columns to facilitate joining datasets.
 
