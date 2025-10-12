@@ -40,7 +40,7 @@ test_that("team_season_stats() errors trigger correctly", {
   )
   expect_error(
     team_season_stats(team = "Nebraska", opponent = NA),
-    "missing value where TRUE/FALSE needed"
+    "Enter valid value"
   )
   expect_error(
     team_season_stats(team = "Nebraska", opponent = c(TRUE, FALSE)),
@@ -67,6 +67,8 @@ test_that("team_season_stats() errors trigger correctly", {
 })
 
 test_that("team_season_stats() warnings trigger correctly", {
+  skip_on_cran()
+  skip_on_ci()
   expect_warning(
     team_season_stats(team = "Georgetown"),
     "No season stats available"

@@ -1,4 +1,4 @@
-# ncaavolleyballr (development version)
+# ncaavolleyballr 0.5.0
 
 * The 2025 season has begun, and this version has updated the `current_season()` to 2025 to allow scraping this season's data.
 
