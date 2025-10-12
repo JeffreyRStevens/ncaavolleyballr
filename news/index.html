@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ncaavolleyballr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.3.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,13 +43,13 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="development version" id="ncaavolleyballr-development-version">ncaavolleyballr (development version)<a class="anchor" aria-label="anchor" href="#ncaavolleyballr-development-version"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.5.0" id="ncaavolleyballr-050">ncaavolleyballr 0.5.0<a class="anchor" aria-label="anchor" href="#ncaavolleyballr-050"></a></h2>
 <ul><li><p>The 2025 season has begun, and this version has updated the <code>current_season()</code> to 2025 to allow scraping this season’s data.</p></li>
 <li><p>The <a href="https://jeffreyrstevens.github.io/ncaavolleyballr/">package website</a> now includes a <a href="https://jeffreyrstevens.github.io/ncaavolleyballr/articles/data.html">data page</a> that includes all data from 2020-2024 as separate files for each sport, data level, division, and year.</p></li>
 <li><p>Data output now includes contest ID or team ID columns to facilitate joining datasets.</p></li>
 <li><p>Most of NCAA’s websites now using JavaScript with loading pages, so most functions now use <code>rvest::read_live_html()</code>. Unfortunately, this has resulted in <strong>much</strong> slower processing of data, and large-scale scraping triggers IP address bans. When encountering errors, try running the function again or at a later time.</p></li>
 </ul><div class="section level3">
-<h3 id="package-development-development-version">Package development<a class="anchor" aria-label="anchor" href="#package-development-development-version"></a></h3>
+<h3 id="package-development-0-5-0">Package development<a class="anchor" aria-label="anchor" href="#package-development-0-5-0"></a></h3>
 <ul><li><p>Chromote sessions are now closed after scraping data.</p></li>
 <li><p>Unit testing is greatly expanded and improved to test the code better.</p></li>
 <li><p>Documentation uses inherited notes to simplify documentation changes.</p></li>
