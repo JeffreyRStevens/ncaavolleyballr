@@ -73,9 +73,7 @@ player_match_stats <- function(
 
   if (length(match_all) <= 1) {
     cli::cli_warn("No website available for contest {contest}.")
-    # if (grepl(pattern = "No website available for contest", match_all)) {
-    return(invisible())
-    # }
+   return(invisible())
   }
   match_info <- match_all[[1]]
 

@@ -63,7 +63,7 @@ test_that("player_season_stats() errors trigger correctly", {
   )
   expect_error(
     player_season_stats(team_id = "585290", team_stats = NA),
-    "missing value where TRUE/FALSE needed"
+    "Enter valid value"
   )
   expect_error(
     player_season_stats(team_id = "585290", team_stats = c(TRUE, FALSE)),

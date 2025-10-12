@@ -24,10 +24,10 @@ team_season_stats <- function(team = NULL, opponent = FALSE, sport = "WVB") {
   # check input
   team_df <- check_sport(sport, vb_only = TRUE)
   check_team_name(team, teams = team_df)
-  check_logical("opponent", opponent)
   if (length(opponent) > 1) {
     cli::cli_abort("Enter single value for `opponent`")
   }
+  check_logical("opponent", opponent)
 
   # get team ids
   team_ids <- find_team_id(team, 2020:most_recent_season(), sport = sport)

@@ -76,6 +76,9 @@ check_logical <- function(name = NULL, value = NULL) {
   if (is.null(value)) {
     cli::cli_abort(paste0("Enter valid `{name}` value (TRUE or FALSE)."))
   }
+  if (is.na(value)) {
+    cli::cli_abort(paste0("Enter valid value (TRUE or FALSE)."))
+  }
   if (!is.logical(value)) {
     cli::cli_abort("`{name}` must be a logical (TRUE or FALSE).")
   }

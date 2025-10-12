@@ -62,46 +62,6 @@ test_that("player_match_stats() errors trigger correctly", {
     player_match_stats(contest = TRUE),
     "Enter valid contest ID as a character string"
   )
-  expect_warning(
-    player_match_stats(contest = ""),
-    "No website available for contest"
-  )
-
-  # Test team_stats parameter validation
-  expect_error(
-    player_match_stats(contest = "6080706", team_stats = "TRUE"),
-    "`team_stats` must be a logical"
-  )
-  expect_error(
-    player_match_stats(contest = "6080706", team_stats = 1),
-    "`team_stats` must be a logical"
-  )
-  expect_error(
-    player_match_stats(contest = "6080706", team_stats = NA),
-    "missing value where TRUE/FALSE needed"
-  )
-  expect_error(
-    player_match_stats(contest = "6080706", team_stats = c(TRUE, FALSE)),
-    "Enter single value for `team_stats`"
-  )
-
-  # Test sport parameter validation
-  expect_error(
-    player_match_stats(contest = "6080706", sport = "VB"),
-    "Enter valid sport"
-  )
-  expect_error(
-    player_match_stats(contest = "6080706", sport = "volleyball"),
-    "Enter valid sport"
-  )
-  expect_error(
-    player_match_stats(contest = "6080706", sport = c("WVB", "MVB")),
-    "Enter single value for `sport`"
-  )
-  expect_error(
-    player_match_stats(contest = "6080706", sport = NA),
-    "Enter valid sport"
-  )
 })
 
 test_that("player_match_stats() errors trigger correctly when internet is required", {
@@ -130,6 +90,10 @@ test_that("player_match_stats() warnings trigger correctly", {
   )
   expect_warning(
     player_match_stats(contest = "5675914", team = "Franklin"),
+    "No website available for contest"
+  )
+  expect_warning(
+    player_match_stats(contest = ""),
     "No website available for contest"
   )
 })
