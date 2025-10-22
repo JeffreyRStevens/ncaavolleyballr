@@ -120,7 +120,11 @@ process_set <- function(set_data) {
       "event",
       "player",
       "description"
-    )
+    ) |>
+    dplyr::mutate(rally = cumsum("event" == "Serve")) |>
+    dplyr::group_by(.data$rally) |>
+    dplyr::mutate(rally_event = dplyr::row_number()) |>
+    dplyr::relocate("rally", "rally_event", .before = "score")
 }
 
 # extract event information from description
