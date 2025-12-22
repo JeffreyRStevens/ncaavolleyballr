@@ -116,15 +116,15 @@ process_set <- function(set_data) {
       "away_team",
       "home_team",
       score = "Score",
-      "team",
       "event",
+      "team",
       "player",
       "description"
     ) |>
     dplyr::mutate(rally = cumsum(event == "Serve")) |>
     dplyr::group_by(.data$rally) |>
     dplyr::mutate(rally_event = dplyr::row_number()) |>
-    dplyr::relocate("rally", "rally_event", .before = "score")
+    dplyr::relocate("rally", "rally_event", .before = event)
 }
 
 # extract event information from description
