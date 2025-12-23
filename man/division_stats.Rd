@@ -10,7 +10,8 @@ division_stats(
   level = NULL,
   sport = "WVB",
   save = FALSE,
-  path = "."
+  path = ".",
+  delay = 2
 )
 }
 \arguments{
@@ -28,6 +29,8 @@ for example "WVB" for women's volleyball and "MVB" for men's volleyball).}
 (default FALSE).}
 
 \item{path}{Character string of path to save statistics files.}
+
+\item{delay}{Numeric for time delay between teams/contests in seconds.}
 }
 \value{
 For season level, returns list with data frames of player statistics and
