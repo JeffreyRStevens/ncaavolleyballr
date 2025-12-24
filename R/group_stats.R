@@ -119,7 +119,7 @@ group_stats <- function(
       contests$contest,
       ~ {
         Sys.sleep(delay)
-        match_pbp
+        match_pbp(.x)
       }
     ) |>
       purrr::set_names(contests$date) |>
