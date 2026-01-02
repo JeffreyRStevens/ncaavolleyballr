@@ -14,6 +14,8 @@ test_that("match_pbp() works", {
     "set",
     "away_team",
     "home_team",
+    "rally",
+    "rally_event",
     "score",
     "team",
     "event",
@@ -36,7 +38,7 @@ test_that("match_pbp() works", {
   # Check returned values are correct
   expect_equal(result$set[nrow(result)], "4")
   expect_equal(nrow(result), 1448)
-  expect_equal(ncol(result), 9)
+  expect_equal(ncol(result), 11)
   expect_equal(result$away_team[1], "Louisville")
 
   # Set numbers should be sequential starting from 1

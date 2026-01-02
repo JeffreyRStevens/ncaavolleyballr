@@ -9,7 +9,8 @@ group_stats(
   year = NULL,
   level = "teamseason",
   unique = TRUE,
-  sport = "WVB"
+  sport = "WVB",
+  delay = 2
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ group_stats(
 
 \item{sport}{Three letter abbreviation for NCAA sport (must be upper case;
 for example "WVB" for women's volleyball and "MVB" for men's volleyball).}
+
+\item{delay}{Numeric for time delay between teams/contests in seconds.}
 }
 \value{
 For season level, returns list with data frames of player statistics and

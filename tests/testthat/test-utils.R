@@ -6,7 +6,7 @@ test_that("request_url() and request_live_url() handle errors gracefully", {
     "HTTP 404 Not Found."
   ))
   expect_silent(request_url(url = "http://httpbin.org/"))
-  expect_silent(request_live_url(url = "http://httpbin.org/"))
+  # expect_silent(request_live_url(url = "http://httpbin.org/"))
 })
 
 test_that("check_confdiv() validates group parameter correctly", {

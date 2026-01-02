@@ -19,6 +19,7 @@
 #' "teammatch", "playermatch", or match play-by-play ("pbp") data.
 #' @param unique Logical indicating whether to only process unique contests
 #' (TRUE) or whether to process duplicated contests (FALSE). Default is TRUE.
+#' @param delay Numeric for time delay between teams/contests in seconds.
 #' @inheritParams find_team_id
 #' @inheritParams get_teams
 #'
@@ -41,7 +42,8 @@ group_stats <- function(
   year = NULL,
   level = "teamseason",
   unique = TRUE,
-  sport = "WVB"
+  sport = "WVB",
+  delay = 2
 ) {
   # check inputs
   team_df <- check_sport(sport, vb_only = TRUE)
@@ -59,7 +61,10 @@ group_stats <- function(
     data <- purrr::map2(
       rep(teams, each = length(year)),
       rep(year, times = length(teams)),
-      ~ player_season_stats(find_team_id(.x, .y, sport))
+      ~ {
+        Sys.sleep(delay)
+        player_season_stats(find_team_id(.x, .y, sport))
+      }
     ) |>
       purrr::set_names(rep(teams, each = length(year))) |>
       purrr::list_rbind(names_to = "Team")
@@ -76,7 +81,10 @@ group_stats <- function(
     contest_vec <- find_team_id(teams, year, sport)
     purrr::map(
       contest_vec,
-      ~ team_match_stats(.x, sport = sport)
+      ~ {
+        Sys.sleep(delay)
+        team_match_stats(.x, sport = sport)
+      }
     ) |>
       purrr::list_rbind()
   } else if (level == "playermatch" | level == "match") {
@@ -91,7 +99,10 @@ group_stats <- function(
     purrr::map2(
       contests$contest,
       contests$team,
-      ~ player_match_stats(.x, .y, team_stats = FALSE, sport = sport)
+      ~ {
+        Sys.sleep(delay)
+        player_match_stats(.x, .y, team_stats = FALSE, sport = sport)
+      }
     ) |>
       purrr::set_names(contests$team) |>
       purrr::list_rbind(names_to = "team")
@@ -104,7 +115,13 @@ group_stats <- function(
     if (unique) {
       contests <- dplyr::slice_head(contests, by = "contest", n = 1)
     }
-    purrr::map(contests$contest, match_pbp) |>
+    purrr::map(
+      contests$contest,
+      ~ {
+        Sys.sleep(delay)
+        match_pbp(.x)
+      }
+    ) |>
       purrr::set_names(contests$date) |>
       purrr::list_rbind(names_to = "date")
   }

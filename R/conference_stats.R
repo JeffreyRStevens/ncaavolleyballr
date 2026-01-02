@@ -27,7 +27,8 @@ conference_stats <- function(
   level = NULL,
   sport = "WVB",
   save = FALSE,
-  path = "."
+  path = ".",
+  delay = 2
 ) {
   # check inputs
   check_year(year)
@@ -53,7 +54,8 @@ conference_stats <- function(
     teams = teams,
     year = year,
     level = level,
-    sport = sport
+    sport = sport,
+    delay = delay
   )
 
   # remove / at end of path
