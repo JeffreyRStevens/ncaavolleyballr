@@ -28,7 +28,7 @@
 
     <a class="navbar-brand me-2" href="index.html">ncaavolleyballr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -1286,17 +1286,19 @@
 <code class="sourceCode R"><span><span class="fu"><a href="reference/match_pbp.html">match_pbp</a></span><span class="op">(</span>contest <span class="op">=</span> <span class="st">"6080706"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <div class="kable-table">
-<table style="width:100%;" class="table">
+<table class="table">
 <colgroup>
-<col width="11%">
-<col width="11%">
-<col width="11%">
-<col width="11%">
-<col width="11%">
-<col width="11%">
-<col width="11%">
-<col width="11%">
-<col width="11%">
+<col width="9%">
+<col width="9%">
+<col width="9%">
+<col width="9%">
+<col width="9%">
+<col width="9%">
+<col width="9%">
+<col width="9%">
+<col width="9%">
+<col width="9%">
+<col width="9%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">contestid</th>
@@ -1304,8 +1306,10 @@
 <th align="left">away_team</th>
 <th align="left">home_team</th>
 <th align="left">score</th>
-<th align="left">team</th>
+<th align="right">rally</th>
+<th align="right">rally_event</th>
 <th align="left">event</th>
+<th align="left">team</th>
 <th align="left">player</th>
 <th align="left">description</th>
 </tr></thead>
@@ -1316,8 +1320,10 @@
 <td align="left">Louisville</td>
 <td align="left">Penn St.</td>
 <td align="left">0-0</td>
-<td align="left">Louisville</td>
+<td align="right">1</td>
+<td align="right">1</td>
 <td align="left">Serve</td>
+<td align="left">Louisville</td>
 <td align="left">Payton Petersen</td>
 <td align="left">Payton Petersen serves</td>
 </tr>
@@ -1327,8 +1333,10 @@
 <td align="left">Louisville</td>
 <td align="left">Penn St.</td>
 <td align="left">0-0</td>
-<td align="left">Penn St.</td>
+<td align="right">1</td>
+<td align="right">2</td>
 <td align="left">Reception</td>
+<td align="left">Penn St.</td>
 <td align="left">Jocelyn Nathan</td>
 <td align="left">Reception by Jocelyn Nathan</td>
 </tr>
@@ -1338,8 +1346,10 @@
 <td align="left">Louisville</td>
 <td align="left">Penn St.</td>
 <td align="left">0-0</td>
-<td align="left">Penn St.</td>
+<td align="right">1</td>
+<td align="right">3</td>
 <td align="left">Set</td>
+<td align="left">Penn St.</td>
 <td align="left">Izzy Starck</td>
 <td align="left">Set by Izzy Starck</td>
 </tr>
@@ -1349,8 +1359,10 @@
 <td align="left">Louisville</td>
 <td align="left">Penn St.</td>
 <td align="left">0-0</td>
-<td align="left">Penn St.</td>
+<td align="right">1</td>
+<td align="right">4</td>
 <td align="left">Attack</td>
+<td align="left">Penn St.</td>
 <td align="left">Taylor Trammell</td>
 <td align="left">Attack by Taylor Trammell</td>
 </tr>
@@ -1360,8 +1372,10 @@
 <td align="left">Louisville</td>
 <td align="left">Penn St.</td>
 <td align="left">0-1</td>
-<td align="left">Penn St.</td>
+<td align="right">1</td>
+<td align="right">5</td>
 <td align="left">First ball kill</td>
+<td align="left">Penn St.</td>
 <td align="left">Taylor Trammell</td>
 <td align="left">First ball kill by Taylor Trammell</td>
 </tr>
@@ -1371,8 +1385,10 @@
 <td align="left">Louisville</td>
 <td align="left">Penn St.</td>
 <td align="left">0-1</td>
-<td align="left">Penn St.</td>
+<td align="right">2</td>
+<td align="right">1</td>
 <td align="left">Serve</td>
+<td align="left">Penn St.</td>
 <td align="left">Gillian Grimes</td>
 <td align="left">Gillian Grimes serves</td>
 </tr>
@@ -1382,8 +1398,10 @@
 <td align="left">Louisville</td>
 <td align="left">Penn St.</td>
 <td align="left">0-1</td>
-<td align="left">Louisville</td>
+<td align="right">2</td>
+<td align="right">2</td>
 <td align="left">Reception</td>
+<td align="left">Louisville</td>
 <td align="left">Payton Petersen</td>
 <td align="left">Reception by Payton Petersen</td>
 </tr>
@@ -1393,8 +1411,10 @@
 <td align="left">Louisville</td>
 <td align="left">Penn St.</td>
 <td align="left">0-1</td>
-<td align="left">Louisville</td>
+<td align="right">2</td>
+<td align="right">3</td>
 <td align="left">Set</td>
+<td align="left">Louisville</td>
 <td align="left">Elle Glock</td>
 <td align="left">Set by Elle Glock</td>
 </tr>
@@ -1404,8 +1424,10 @@
 <td align="left">Louisville</td>
 <td align="left">Penn St.</td>
 <td align="left">0-1</td>
-<td align="left">Louisville</td>
+<td align="right">2</td>
+<td align="right">4</td>
 <td align="left">Attack</td>
+<td align="left">Louisville</td>
 <td align="left">Cara Cresse</td>
 <td align="left">Attack by Cara Cresse</td>
 </tr>
@@ -1415,8 +1437,10 @@
 <td align="left">Louisville</td>
 <td align="left">Penn St.</td>
 <td align="left">1-1</td>
-<td align="left">Louisville</td>
+<td align="right">2</td>
+<td align="right">5</td>
 <td align="left">First ball kill</td>
+<td align="left">Louisville</td>
 <td align="left">Cara Cresse</td>
 <td align="left">First ball kill by Cara Cresse</td>
 </tr>
@@ -1439,7 +1463,7 @@
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
 </h2>
 <p>To cite <a href="https://jeffreyrstevens.github.io/ncaavolleyballr/"><code>{ncaavolleyballr}</code></a>, use:</p>
-<p>Stevens JR (2025). <em>Extract Data from NCAA Women’s and Men’s Volleyball Website</em>. R package version 0.5.0, <a href="https://github.com/JeffreyRStevens/ncaavolleyballr" class="external-link uri">https://github.com/JeffreyRStevens/ncaavolleyballr</a>.</p>
+<p>Stevens JR (2026). <em>Extract Data from NCAA Women’s and Men’s Volleyball Website</em>. R package version 0.5.1, <a href="https://github.com/JeffreyRStevens/ncaavolleyballr" class="external-link uri">https://github.com/JeffreyRStevens/ncaavolleyballr</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="acknowledgments">Acknowledgments<a class="anchor" aria-label="anchor" href="#acknowledgments"></a>

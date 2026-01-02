@@ -28,6 +28,9 @@ Team season statistics
 - [Women’s Division 1
   2024](https://media.githubusercontent.com/media/JeffreyRStevens/ncaavolleyballr/refs/heads/main/data-csv/wvb_teamseason_div1_2024.csv)
 
+- [Women’s Division 1
+  2025](https://media.githubusercontent.com/media/JeffreyRStevens/ncaavolleyballr/refs/heads/main/data-csv/wvb_teamseason_div1_2025.csv)
+
 - [Women’s Division 2
   2020](https://media.githubusercontent.com/media/JeffreyRStevens/ncaavolleyballr/refs/heads/main/data-csv/wvb_teamseason_div2_2020.csv)
 
@@ -104,6 +107,9 @@ Team match statistics
 
 - [Women’s Division 1
   2024](https://media.githubusercontent.com/media/JeffreyRStevens/ncaavolleyballr/refs/heads/main/data-csv/wvb_teammatch_div1_2024.csv)
+
+- [Women’s Division 1
+  2025](https://media.githubusercontent.com/media/JeffreyRStevens/ncaavolleyballr/refs/heads/main/data-csv/wvb_teammatch_div1_2025.csv)
 
 - [Women’s Division 2
   2020](https://media.githubusercontent.com/media/JeffreyRStevens/ncaavolleyballr/refs/heads/main/data-csv/wvb_teammatch_div2_2020.csv)
@@ -182,6 +188,9 @@ Player season statistics
 - [Women’s Division 1
   2024](https://media.githubusercontent.com/media/JeffreyRStevens/ncaavolleyballr/refs/heads/main/data-csv/wvb_playerseason_div1_2024.csv)
 
+- [Women’s Division 1
+  2025](https://media.githubusercontent.com/media/JeffreyRStevens/ncaavolleyballr/refs/heads/main/data-csv/wvb_playerseason_div1_2025.csv)
+
 - [Women’s Division 2
   2020](https://media.githubusercontent.com/media/JeffreyRStevens/ncaavolleyballr/refs/heads/main/data-csv/wvb_playerseason_div2_2020.csv)
 
@@ -259,6 +268,9 @@ Player match statistics
 - [Women’s Division 1
   2024](https://media.githubusercontent.com/media/JeffreyRStevens/ncaavolleyballr/refs/heads/main/data-csv/wvb_playermatch_div1_2024.csv)
 
+- [Women’s Division 1
+  2025](https://media.githubusercontent.com/media/JeffreyRStevens/ncaavolleyballr/refs/heads/main/data-csv/wvb_playermatch_div1_2025.csv)
+
 - [Women’s Division 2
   2020](https://media.githubusercontent.com/media/JeffreyRStevens/ncaavolleyballr/refs/heads/main/data-csv/wvb_playermatch_div2_2020.csv)
 
@@ -335,6 +347,9 @@ Match play-by-play statistics
 
 - [Women’s Division 1
   2024](https://media.githubusercontent.com/media/JeffreyRStevens/ncaavolleyballr/refs/heads/main/data-csv/wvb_pbp_div1_2024.csv)
+
+- [Women’s Division 1
+  2025](https://media.githubusercontent.com/media/JeffreyRStevens/ncaavolleyballr/refs/heads/main/data-csv/wvb_pbp_div1_2025.csv)
 
 - [Women’s Division 2
   2020](https://media.githubusercontent.com/media/JeffreyRStevens/ncaavolleyballr/refs/heads/main/data-csv/wvb_pbp_div2_2020.csv)

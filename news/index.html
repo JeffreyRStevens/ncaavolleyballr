@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ncaavolleyballr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,8 +43,11 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="development version" id="ncaavolleyballr-development-version">ncaavolleyballr (development version)<a class="anchor" aria-label="anchor" href="#ncaavolleyballr-development-version"></a></h2>
-</div>
+<h2 class="pkg-version" data-toc-text="0.5.1" id="ncaavolleyballr-051">ncaavolleyballr 0.5.1<a class="anchor" aria-label="anchor" href="#ncaavolleyballr-051"></a></h2>
+<ul><li><p>The 2025 women’s volleyball season has completed, so we have added Division 1 data to the <a href="https://jeffreyrstevens.github.io/ncaavolleyballr/articles/data.html">data page</a>. The NCAA is making it very difficult to scrape lots of data at once, so we don’t have Divisions 2 or 3 uploaded yet.</p></li>
+<li><p>To help with the scraping we have added a <code>delay</code> argument to the <code><a href="../reference/group_stats.html">group_stats()</a></code> function (and downstream <code><a href="../reference/conference_stats.html">conference_stats()</a></code> and <code><a href="../reference/division_stats.html">division_stats()</a></code> wrappers) that allows control over the time delay between scraping the next team/contest.</p></li>
+<li><p>The output of play-by-play data now has a column counting each rally and each event within a rally to address <a href="https://github.com/JeffreyRStevens/ncaavolleyballr/issues/20" class="external-link">#20</a>.</p></li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.5.0" id="ncaavolleyballr-050">ncaavolleyballr 0.5.0<a class="anchor" aria-label="anchor" href="#ncaavolleyballr-050"></a></h2><p class="text-muted">CRAN release: 2025-10-12</p>
 <ul><li><p>The 2025 season has begun, and this version has updated the <code>current_season()</code> to 2025 to allow scraping this season’s data.</p></li>

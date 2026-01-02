@@ -1,6 +1,25 @@
 # Changelog
 
-## ncaavolleyballr (development version)
+## ncaavolleyballr 0.5.1
+
+- The 2025 women’s volleyball season has completed, so we have added
+  Division 1 data to the [data
+  page](https://jeffreyrstevens.github.io/ncaavolleyballr/articles/data.html).
+  The NCAA is making it very difficult to scrape lots of data at once,
+  so we don’t have Divisions 2 or 3 uploaded yet.
+
+- To help with the scraping we have added a `delay` argument to the
+  [`group_stats()`](https://jeffreyrstevens.github.io/ncaavolleyballr/reference/group_stats.md)
+  function (and downstream
+  [`conference_stats()`](https://jeffreyrstevens.github.io/ncaavolleyballr/reference/conference_stats.md)
+  and
+  [`division_stats()`](https://jeffreyrstevens.github.io/ncaavolleyballr/reference/division_stats.md)
+  wrappers) that allows control over the time delay between scraping the
+  next team/contest.
+
+- The output of play-by-play data now has a column counting each rally
+  and each event within a rally to address
+  [\#20](https://github.com/JeffreyRStevens/ncaavolleyballr/issues/20).
 
 ## ncaavolleyballr 0.5.0
 

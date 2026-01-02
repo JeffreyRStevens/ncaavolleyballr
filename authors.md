@@ -10,14 +10,14 @@
 Source:
 [`inst/CITATION`](https://github.com/JeffreyRStevens/ncaavolleyballr/blob/main/inst/CITATION)
 
-Stevens JR (2025). *Extract Data from NCAA Women's and Men's Volleyball
-Website*. R package version 0.5.0,
+Stevens JR (2026). *Extract Data from NCAA Women's and Men's Volleyball
+Website*. R package version 0.5.1,
 <https://github.com/JeffreyRStevens/ncaavolleyballr>.
 
     @Manual{,
       title = {Extract Data from NCAA Women's and Men's Volleyball Website},
       author = {Jeffrey R. Stevens},
-      note = {R package version 0.5.0},
-      year = {2025},
+      note = {R package version 0.5.1},
+      year = {2026},
       url = {https://github.com/JeffreyRStevens/ncaavolleyballr},
     }
