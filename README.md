@@ -176,18 +176,18 @@ match_pbp(contest = "6080706") |>
 
 <div class="kable-table">
 
-| contestid | set | away_team | home_team | score | team | event | player | description |
-|:---|:---|:---|:---|:---|:---|:---|:---|:---|
-| 6080706 | 1 | Louisville | Penn St. | 0-0 | Louisville | Serve | Payton Petersen | Payton Petersen serves |
-| 6080706 | 1 | Louisville | Penn St. | 0-0 | Penn St. | Reception | Jocelyn Nathan | Reception by Jocelyn Nathan |
-| 6080706 | 1 | Louisville | Penn St. | 0-0 | Penn St. | Set | Izzy Starck | Set by Izzy Starck |
-| 6080706 | 1 | Louisville | Penn St. | 0-0 | Penn St. | Attack | Taylor Trammell | Attack by Taylor Trammell |
-| 6080706 | 1 | Louisville | Penn St. | 0-1 | Penn St. | First ball kill | Taylor Trammell | First ball kill by Taylor Trammell |
-| 6080706 | 1 | Louisville | Penn St. | 0-1 | Penn St. | Serve | Gillian Grimes | Gillian Grimes serves |
-| 6080706 | 1 | Louisville | Penn St. | 0-1 | Louisville | Reception | Payton Petersen | Reception by Payton Petersen |
-| 6080706 | 1 | Louisville | Penn St. | 0-1 | Louisville | Set | Elle Glock | Set by Elle Glock |
-| 6080706 | 1 | Louisville | Penn St. | 0-1 | Louisville | Attack | Cara Cresse | Attack by Cara Cresse |
-| 6080706 | 1 | Louisville | Penn St. | 1-1 | Louisville | First ball kill | Cara Cresse | First ball kill by Cara Cresse |
+| contestid | set | away_team | home_team | score | rally | rally_event | event | team | player | description |
+|:---|:---|:---|:---|:---|---:|---:|:---|:---|:---|:---|
+| 6080706 | 1 | Louisville | Penn St. | 0-0 | 1 | 1 | Serve | Louisville | Payton Petersen | Payton Petersen serves |
+| 6080706 | 1 | Louisville | Penn St. | 0-0 | 1 | 2 | Reception | Penn St. | Jocelyn Nathan | Reception by Jocelyn Nathan |
+| 6080706 | 1 | Louisville | Penn St. | 0-0 | 1 | 3 | Set | Penn St. | Izzy Starck | Set by Izzy Starck |
+| 6080706 | 1 | Louisville | Penn St. | 0-0 | 1 | 4 | Attack | Penn St. | Taylor Trammell | Attack by Taylor Trammell |
+| 6080706 | 1 | Louisville | Penn St. | 0-1 | 1 | 5 | First ball kill | Penn St. | Taylor Trammell | First ball kill by Taylor Trammell |
+| 6080706 | 1 | Louisville | Penn St. | 0-1 | 2 | 1 | Serve | Penn St. | Gillian Grimes | Gillian Grimes serves |
+| 6080706 | 1 | Louisville | Penn St. | 0-1 | 2 | 2 | Reception | Louisville | Payton Petersen | Reception by Payton Petersen |
+| 6080706 | 1 | Louisville | Penn St. | 0-1 | 2 | 3 | Set | Louisville | Elle Glock | Set by Elle Glock |
+| 6080706 | 1 | Louisville | Penn St. | 0-1 | 2 | 4 | Attack | Louisville | Cara Cresse | Attack by Cara Cresse |
+| 6080706 | 1 | Louisville | Penn St. | 1-1 | 2 | 5 | First ball kill | Louisville | Cara Cresse | First ball kill by Cara Cresse |
 
 </div>
 
@@ -214,8 +214,8 @@ To cite
 [`{ncaavolleyballr}`](https://jeffreyrstevens.github.io/ncaavolleyballr/),
 use:
 
-Stevens JR (2025). *Extract Data from NCAA Women’s and Men’s Volleyball
-Website*. R package version 0.5.0,
+Stevens JR (2026). *Extract Data from NCAA Women’s and Men’s Volleyball
+Website*. R package version 0.5.1,
 <https://github.com/JeffreyRStevens/ncaavolleyballr>.
 
 ## Acknowledgments
