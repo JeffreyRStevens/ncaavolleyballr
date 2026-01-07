@@ -2,6 +2,8 @@
 
 ## ncaavolleyballr 0.5.1
 
+CRAN release: 2026-01-07
+
 - The 2025 women’s volleyball season has completed, so we have added
   Division 1 data to the [data
   page](https://jeffreyrstevens.github.io/ncaavolleyballr/articles/data.html).

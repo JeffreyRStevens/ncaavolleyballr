@@ -8,7 +8,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/JeffreyRStevens/ncaavolleyballr/blob/main/inst/CITATION)
+[`inst/CITATION`](https://github.com/JeffreyRStevens/ncaavolleyballr/blob/v0.5.1/inst/CITATION)
 
 Stevens JR (2026). *Extract Data from NCAA Women's and Men's Volleyball
 Website*. R package version 0.5.1,
